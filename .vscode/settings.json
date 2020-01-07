@@ -11,5 +11,9 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
-  }
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
 }
