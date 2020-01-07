@@ -7,13 +7,24 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.*;
+
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
+
+  private final TalonFX leftFront = new TalonFX(FALCON_DRIVE_LEFT_FRONT_CAN_ADDR);
+  private final TalonFX leftRear = new TalonFX(FALCON_DRIVE_LEFT_REAR_CAN_ADDR);
+  private final TalonFX rightFront = new TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
+  private final TalonFX rightRear = new TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
+
   /**
    * Creates a new ExampleSubsystem.
    */
   public DriveSubsystem() {
+    // TODO: combine Talons into master/slave groups.
   }
 
   @Override

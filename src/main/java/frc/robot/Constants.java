@@ -16,4 +16,16 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    // Falcon CAN addresses
+    public static final int FALCON_DRIVE_LEFT_FRONT_CAN_ADDR = 1;
+    public static final int FALCON_DRIVE_LEFT_REAR_CAN_ADDR = 2;
+    public static final int FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR = 3;
+    public static final int FALCON_DRIVE_RIGHT_REAR_CAN_ADDR = 4;
+
+    // SparkMAX CAN addresses
+
+    // Pneumatic solenoid addresses
+
+    // Brushed PWM addresses
 }
