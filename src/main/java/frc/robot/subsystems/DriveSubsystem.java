@@ -11,7 +11,6 @@ import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -44,14 +43,14 @@ public class DriveSubsystem extends SubsystemBase {
     turnRequest *= speedLimiter;
 
     double moveRate = getMoveRate();
-    double turnRate = getTurnRate();
+    double turnRate = getTurnRate(); 
 
-    double move;
-    double turn;
+    double move =  pidEnabled ? movePID.calculate(moveRequest, moveRate) : moveRequest;  
+    double turn =  pidEnabled ? turnPID.calculate(turnRequest, turnRate) : turnRequest;
 
-    /*
-     * double m_r = 1; double t_r = 1; drive.arcadeDrive(m_r, t_r, false);
-     */
+    double m_r = 1; 
+    double t_r = 1;
+    drive.arcadeDrive(m_r, t_r, false);
     // }
   }
 
@@ -71,12 +70,12 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-    // after creating ArcadeDrive(),
-    // arcadeDrive(0, 0, 0);
+   arcadeDrive(0,0,0);
+  
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+  // This method will be called once per scheduler run
   }
 }
