@@ -43,8 +43,8 @@ public class DriveSubsystem extends SubsystemBase {
     moveRequest *= speedLimiter;
     turnRequest *= speedLimiter;
 
-    double moveRate;
-    double turnRate;
+    double moveRate = getMoveRate();
+    double turnRate = getTurnRate();
 
     double move;
     double turn;
