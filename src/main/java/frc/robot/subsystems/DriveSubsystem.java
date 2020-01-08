@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.networktables.NetworkTableEntry;
 
 public class DriveSubsystem extends SubsystemBase {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -29,12 +30,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final boolean pidEnabled = false;
 
-  private final pid movePID = new pid();
-  private final pid turnPID = new pid();
+  private final pid movePID;
+  private final pid turnPID;
+  private final NetworkTableEntry pidWidget;
 
   public DriveSubsystem() {
     leftRear.follow(leftFront); // Slaves the left rear motor to the left front motor
     rightRear.follow(rightFront);
+    movePID = new pid();
+    turnPID = new pid();
+    // pidWidget = new NetworkTableEntry(inst, handle)
 
     drive = new DifferentialDrive(leftFront, rightFront); // Links both master-slave groups
 
@@ -79,7 +84,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void stop() {
     arcadeDrive(0, 0, 0);
-
   }
 
   @Override
