@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,6 +23,9 @@ public class DriveSubsystem extends SubsystemBase {
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
   private final DifferentialDrive drive;
 
+  private final SensorCollection leftEnc = new SensorCollection(leftFront);
+  private final SensorCollection rightEnc = new SensorCollection(rightFront);
+
   public DriveSubsystem() {
     leftRear.follow(leftFront); // Slaves the left rear motor to the left front motor
     rightRear.follow(rightFront);
@@ -29,6 +33,30 @@ public class DriveSubsystem extends SubsystemBase {
     drive = new DifferentialDrive(leftFront, rightFront); // Links both master-slave groups
 
     drive.setDeadband(0);
+  }
+
+  public void arcadeDrive(double moveRequest, double turnRequest, double speedLimiter) {
+    /*
+     * try(MoPerfMon.Period period =
+     * Robot.perfMon.newPeriod("DriveSubsystem::arcadeDrive")) {
+     */
+    moveRequest *= speedLimiter;
+    turnRequest *= speedLimiter;
+
+    double moveRate;
+    double turnRate;
+
+    double move;
+    double turn;
+
+    double m_r = 1;
+    double t_r = 1;
+    drive.arcadeDrive(m_r, t_r, false);
+    // }
+  }
+
+  public void resetEncoders() {
+
   }
 
   public void stop() {
