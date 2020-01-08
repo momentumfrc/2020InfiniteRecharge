@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
+import frc.robot.utils.pid;
+import frc.robot.utils.Utils;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
@@ -25,6 +27,11 @@ public class DriveSubsystem extends SubsystemBase {
   private final SensorCollection leftEnc = new SensorCollection(leftFront);
   private final SensorCollection rightEnc = new SensorCollection(rightFront);
 
+  private final boolean pidEnabled = false;
+
+  private final pid movePID = new pid();
+  private final pid turnPID = new pid();
+
   public DriveSubsystem() {
     leftRear.follow(leftFront); // Slaves the left rear motor to the left front motor
     rightRear.follow(rightFront);
@@ -39,17 +46,18 @@ public class DriveSubsystem extends SubsystemBase {
      * try(MoPerfMon.Period period =
      * Robot.perfMon.newPeriod("DriveSubsystem::arcadeDrive")) {
      */
+
     moveRequest *= speedLimiter;
     turnRequest *= speedLimiter;
 
     double moveRate = getMoveRate();
-    double turnRate = getTurnRate(); 
+    double turnRate = getTurnRate();
 
-    double move =  pidEnabled ? movePID.calculate(moveRequest, moveRate) : moveRequest;  
-    double turn =  pidEnabled ? turnPID.calculate(turnRequest, turnRate) : turnRequest;
+    double move = pidEnabled ? movePID.calculate(moveRequest, moveRate) : moveRequest;
+    double turn = pidEnabled ? turnPID.calculate(turnRequest, turnRate) : turnRequest;
 
-    double m_r = 1; 
-    double t_r = 1;
+    double m_r = Utils.clip(move, -speedLimiter, speedLimiter);
+    double t_r = Utils.clip(turn, -speedLimiter, speedLimiter);
     drive.arcadeDrive(m_r, t_r, false);
     // }
   }
@@ -70,12 +78,12 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-   arcadeDrive(0,0,0);
-  
+    arcadeDrive(0, 0, 0);
+
   }
 
   @Override
   public void periodic() {
-  // This method will be called once per scheduler run
+    // This method will be called once per scheduler run
   }
 }
