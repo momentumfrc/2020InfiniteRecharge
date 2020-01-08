@@ -22,14 +22,13 @@ public class DriveSubsystem extends SubsystemBase {
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
   private final DifferentialDrive drive;
 
-  /**
-   * Creates a new ExampleSubsystem.
-   */
   public DriveSubsystem() {
-    leftRear.follow(leftFront);
+    leftRear.follow(leftFront); // Slaves the left rear motor to the left front motor
     rightRear.follow(rightFront);
 
-    drive = new DifferentialDrive(leftFront, rightFront);
+    drive = new DifferentialDrive(leftFront, rightFront); // Links both master-slave groups
+
+    drive.setDeadband(0);
   }
 
   @Override

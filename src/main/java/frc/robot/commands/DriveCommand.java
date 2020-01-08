@@ -41,6 +41,11 @@ public class DriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    if (interrupted) {
+      end(true);
+    } else {
+      drive_subsystem.stop();
+    }
   }
 
   // Returns true when the command should end.
