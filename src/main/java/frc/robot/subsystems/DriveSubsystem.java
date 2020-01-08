@@ -72,15 +72,18 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getMoveRate() {
-    return (leftEnc.getQuadratureVelocity() + rightEnc.getQuadratureVelocity()) / 2;
+    return (leftEnc.getQuadratureVelocity() + rightEnc.getQuadratureVelocity()) / 2; // Averages the speed of both drive
+                                                                                     // sides to get mean forward
+                                                                                     // velocity.
   }
 
   public double getTurnRate() {
-    return (leftEnc.getQuadratureVelocity() - rightEnc.getQuadratureVelocity());
+    return (leftEnc.getQuadratureVelocity() - rightEnc.getQuadratureVelocity()); // Subtracts the speed of both drive
+                                                                                 // sides to get net turn vector.
   }
 
   public void stop() {
-    arcadeDrive(0, 0, 0);
+    drive.arcadeDrive(0, 0, false);
   }
 
   @Override
