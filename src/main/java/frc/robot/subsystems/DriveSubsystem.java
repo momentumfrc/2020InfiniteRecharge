@@ -56,7 +56,18 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void resetEncoders() {
+    leftEnc.setQuadraturePosition(0, 0);
+    rightEnc.setQuadraturePosition(0, 0);
+  }
 
+  public double getMoveRate() {
+    double moverate = (leftEnc.getQuadratureVelocity() + rightEnc.getQuadratureVelocity()) / 2;
+    return moverate;
+  }
+
+  public double getTurnRate() {
+    double turnrate = (leftEnc.getQuadratureVelocity() - rightEnc.getQuadratureVelocity());
+    return turnrate;
   }
 
   public void stop() {
