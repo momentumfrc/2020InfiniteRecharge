@@ -31,16 +31,19 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final PIDController movePID;
   private final PIDController turnPID;
-  // private NetworkTableEntry pidWidget;
 
   public DriveSubsystem() {
-    leftRear.follow(leftFront); // Slaves the left rear motor to the left front motor
+    // Slaves the left rear motor to the left front motor
+    leftRear.follow(leftFront);
     rightRear.follow(rightFront);
+
+    // Initializes the 2 PIDControllers that will generate appropriate motor power
+    // values
     movePID = new PIDController(1, 1, 1);
     turnPID = new PIDController(1, 1, 1);
-    // pidWidget = new NetworkTableEntry(inst, handle);
 
-    drive = new DifferentialDrive(leftFront, rightFront); // Links both master-slave groups
+    // Links both master-slave groups
+    drive = new DifferentialDrive(leftFront, rightFront);
 
     drive.setDeadband(0);
   }
@@ -51,23 +54,34 @@ public class DriveSubsystem extends SubsystemBase {
      * Robot.perfMon.newPeriod("DriveSubsystem::arcadeDrive")) {
      */
 
+    // Scales the move and turn targets so they don't exceed the speed limit.
     moveRequest *= speedLimiter;
     turnRequest *= speedLimiter;
 
+    // Gets the actual forward/backward motion of the robot.
     double moveRate = getMoveRate();
+    // Gets the acutal speed difference between left and right sides of the robot.
     double turnRate = getTurnRate();
 
+    /**
+     * Generates a motor power value that will move the robot where the driver wants
+     * it to go, based on the difference between the current motor rate and the
+     * target.
+     */
     double move = pidEnabled ? movePID.calculate(moveRate, moveRequest) : moveRequest;
     double turn = pidEnabled ? turnPID.calculate(turnRate, turnRequest) : turnRequest;
 
+    // Forces the speed limit on the output of the PID controllers.
     double m_r = Utils.clip(move, -speedLimiter, speedLimiter);
     double t_r = Utils.clip(turn, -speedLimiter, speedLimiter);
+
+    // Sends the actual drive command that activates the motors.
     drive.arcadeDrive(m_r, t_r, false);
     // }
   }
 
   public void resetEncoders() {
-    leftEnc.setQuadraturePosition(0, 0);
+    leftEnc.setQuadraturePosition(0, 0); // Resets both encoders so they count from zero.
     rightEnc.setQuadraturePosition(0, 0);
   }
 
