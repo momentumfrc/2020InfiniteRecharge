@@ -31,6 +31,11 @@ public class DriveSubsystem extends SubsystemBase {
     drive.setDeadband(0);
   }
 
+  public void stop() {
+    // after creating ArcadeDrive(),
+    // arcadeDrive(0, 0, 0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
