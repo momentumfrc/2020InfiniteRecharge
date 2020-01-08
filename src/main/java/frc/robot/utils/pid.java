@@ -1,8 +1,12 @@
+/**
+ * DO NOT USE
+ * THIS CLASS IS DEPRECATED AND BASED ON 2019 CODE
+ */
 package frc.robot.utils;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class pid {
+public class PID {
 
   private double kP, kI, kD, kF, iErrZone;
 
@@ -10,7 +14,7 @@ public class pid {
   private double lastErr;
   private double lastTime;
 
-  public pid() {
+  public PID() {
 
   }
 
