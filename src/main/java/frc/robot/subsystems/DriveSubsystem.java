@@ -49,9 +49,9 @@ public class DriveSubsystem extends SubsystemBase {
     double move;
     double turn;
 
-    double m_r = 1;
-    double t_r = 1;
-    drive.arcadeDrive(m_r, t_r, false);
+    /*
+     * double m_r = 1; double t_r = 1; drive.arcadeDrive(m_r, t_r, false);
+     */
     // }
   }
 
