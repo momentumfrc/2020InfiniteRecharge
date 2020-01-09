@@ -70,4 +70,11 @@ public interface DriveController {
    * @return whether the robot should attempt the Position Control objective.
    */
   abstract public boolean getPositionCtrl();
+
+  /**
+   * Gets whether the robot should compact itself to fit under the TRENCH.
+   * 
+   * @return whether the robot should compact itself to fit under the TRENCH.
+   */
+  abstract public boolean getCompactUnderTrench();
 }
