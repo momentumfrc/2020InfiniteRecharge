@@ -49,30 +49,30 @@ public class ControllerBase implements DriveController {
   }
 
   public boolean getIntakePowerCells() {
-    return f310.getBButtonPressed();
+    return f310.getBumperPressed(Hand.kLeft);
   }
 
   public boolean getShootPowerCellsLow() {
-    return f310.getAButtonPressed();
+    return false;
   }
 
   public boolean getShootPowerCellsOuter() {
-    return f310.getXButtonPressed();
+    return f310.getBumperPressed(Hand.kRight);
   }
 
   public boolean getShootPowerCellsInner() {
-    return f310.getYButtonPressed();
+    return false;
   }
 
   public boolean getRotationCtrl() {
-    return false;
+    return f310.getAButtonPressed();
   }
 
   public boolean getPositionCtrl() {
-    return false;
+    return f310.getBButtonPressed();
   }
 
   public boolean getCompactUnderTrench() {
-    return false;
+    return f310.getYButtonPressed();
   }
 }
