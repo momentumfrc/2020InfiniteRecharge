@@ -21,4 +21,4 @@ jobs:
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
-        args: '{\"channel\":\"C1JUCTD5E\",\"text\":\"Build Failed*\\nA recent commit to <https://github.com/momentumfrc/2020InfiniteRecharge|momentumfrc/2020InfiniteRecharge> fails to compile"\"}'
+        args: '{\"channel\":\"C1JUCTD5E\",\"text\":\"*Build Failed!*\nA recent commit to <https://github.com/momentumfrc/2020InfiniteRecharge|momentumfrc/2020InfiniteRecharge> fails to compile"\"}'
