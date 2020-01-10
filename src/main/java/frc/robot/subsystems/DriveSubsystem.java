@@ -71,7 +71,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param kIz The Integral Zone, used in PID to control the maximum value of the
    *            integral accumulator.
    */
-  private final double kIz = 1;
+  private final int kIz = 1;
   /**
    * @param kF The Feed-Forward Gain, used in PID to anticipate future changes in
    *           error and stabilize a PID curve.
@@ -86,7 +86,16 @@ public class DriveSubsystem extends SubsystemBase {
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
     // Sets the PID configs for all motors.
-    leftFront.config_kP(1, kP);
+    leftFront.config_kP(0, kP);
+    leftFront.config_kI(0, kI);
+    leftFront.config_kD(0, kD);
+    leftFront.config_IntegralZone(0, kIz);
+    leftFront.config_kF(0, kF);
+    rightFront.config_kP(0, kP);
+    rightFront.config_kI(0, kI);
+    rightFront.config_kD(0, kD);
+    rightFront.config_IntegralZone(0, kIz);
+    rightFront.config_kF(0, kF);
   }
 
   /**
