@@ -54,8 +54,11 @@ public class DriveSubsystem extends SubsystemBase {
     DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
     double leftMPerS = wheelSpeeds.leftMetersPerSecond;
     double rightMPerS = wheelSpeeds.rightMetersPerSecond;
-    double leftETPerS = FeetToEncTicks(Units.metersToFeet(leftMPerS));
-    double rightETPerS = FeetToEncTicks(Units.metersToFeet(rightMPerS));
+    double leftETPerS = FeetToEncTicks(
+        Units.metersToFeet(leftMPerS) < 12 && Units.metersToFeet(leftMPerS) > -12 ? Units.metersToFeet(leftMPerS) : 12);
+    double rightETPerS = FeetToEncTicks(
+        Units.metersToFeet(rightMPerS) < 12 && Units.metersToFeet(rightMPerS) > -12 ? Units.metersToFeet(leftMPerS)
+            : 12);
     leftFront.set(ControlMode.Velocity, leftETPerS);
     rightFront.set(ControlMode.Velocity, rightETPerS);
   }
