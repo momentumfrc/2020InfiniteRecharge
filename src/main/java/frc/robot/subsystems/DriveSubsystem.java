@@ -11,9 +11,13 @@ import static frc.robot.Constants.*;
 import frc.robot.utils.Utils;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.util.Units;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 
 public class DriveSubsystem extends SubsystemBase {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -25,8 +29,18 @@ public class DriveSubsystem extends SubsystemBase {
   private final SensorCollection leftEnc = new SensorCollection(leftFront);
   private final SensorCollection rightEnc = new SensorCollection(rightFront);
 
+  private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Units.inchesToMeters(26));
+
   private final boolean pidEnabled = false;
 
+  /**
+   * @param ENC_TICKS_PER_FOOT The number of TalonFX encoder ticks per foot that
+   *                           the robot drives on 6" wheels. Used to input ft/s
+   *                           into WPI_TalonFX.set(VelocityControl, double
+   *                           value), which takes its value in encoder ticks per
+   *                           second.
+   * 
+   */
   private final double ENC_TICKS_PER_FOOT = 1304;
 
   public DriveSubsystem() {
@@ -35,24 +49,29 @@ public class DriveSubsystem extends SubsystemBase {
     rightRear.follow(rightFront);
   }
 
+  public void drive(double moveRequest, double turnRequest) {
+    var chassisSpeeds = new ChassisSpeeds(moveRequest, 0, turnRequest);
+    DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
+    double leftMPerS = wheelSpeeds.leftMetersPerSecond;
+    double rightMPerS = wheelSpeeds.rightMetersPerSecond;
+    double leftETPerS = FeetToEncTicks(Units.metersToFeet(leftMPerS));
+    double rightETPerS = FeetToEncTicks(Units.metersToFeet(rightMPerS));
+    leftFront.set(ControlMode.Velocity, leftETPerS);
+    rightFront.set(ControlMode.Velocity, rightETPerS);
+  }
+
   public void resetEncoders() {
     leftEnc.setQuadraturePosition(0, 0); // Resets both encoders so they count from zero.
     rightEnc.setQuadraturePosition(0, 0);
   }
 
-  public double getMoveRate() {
-    return (leftEnc.getQuadratureVelocity() + rightEnc.getQuadratureVelocity()) / 2; // Averages the speed of both drive
-                                                                                     // sides to get mean forward
-                                                                                     // velocity.
-  }
-
-  public double getTurnRate() {
-    return (leftEnc.getQuadratureVelocity() - rightEnc.getQuadratureVelocity()); // Subtracts the speed of both drive
-                                                                                 // sides to get net turn vector.
-  }
+  /**
+   * Averages the speed of both drive sides to get mean forward velocity
+   */
 
   public void stop() {
-
+    leftFront.stopMotor();
+    rightFront.stopMotor();
   }
 
   @Override
