@@ -2,9 +2,9 @@ package frc.robot.controllers;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import static frc.robot.utils.Utils.*;
 
 import org.usfirst.frc.team4999.controllers.LogitechF310;
+import org.usfirst.frc.team4999.utils.Utils;
 
 public class ControllerBase implements DriveController {
   protected XboxController xbox = new XboxController(0);
@@ -19,21 +19,12 @@ public class ControllerBase implements DriveController {
 
   public double getMoveRequest() {
     double moveRequest = -xbox.getY(XboxController.Hand.kLeft);
-    if (-DEADZONE <= moveRequest && moveRequest <= DEADZONE) {
-      return 0;
-    } else {
-      return Math.pow(moveRequest, MOVE_CURVE);
-    }
+    return Utils.deadzone(moveRequest, DEADZONE);
   }
 
   public double getTurnRequest() {
     double turnRequest = xbox.getX(XboxController.Hand.kRight);
-    if (-DEADZONE <= turnRequest && turnRequest <= DEADZONE) {
-
-      return 0;
-    } else {
-      return Math.pow(turnRequest, TURN_CURVE);
-    }
+    return Utils.deadzone(turnRequest, DEADZONE);
   }
 
   public double getSpeedLimiter() {
