@@ -12,9 +12,8 @@ import frc.robot.utils.Utils;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.util.Units;
 
 public class DriveSubsystem extends SubsystemBase {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -22,62 +21,18 @@ public class DriveSubsystem extends SubsystemBase {
   private final WPI_TalonFX leftRear = new WPI_TalonFX(FALCON_DRIVE_LEFT_REAR_CAN_ADDR);
   private final WPI_TalonFX rightFront = new WPI_TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
-  private final DifferentialDrive drive;
 
   private final SensorCollection leftEnc = new SensorCollection(leftFront);
   private final SensorCollection rightEnc = new SensorCollection(rightFront);
 
   private final boolean pidEnabled = false;
 
-  private final PIDController movePID;
-  private final PIDController turnPID;
+  private final double ENC_TICKS_PER_FOOT = 1304;
 
   public DriveSubsystem() {
     // Slaves the left rear motor to the left front motor
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
-
-    // Initializes the 2 PIDControllers that will generate appropriate motor power
-    // values
-    movePID = new PIDController(1, 1, 1);
-    turnPID = new PIDController(1, 1, 1);
-
-    // Links both master-slave groups
-    drive = new DifferentialDrive(leftFront, rightFront);
-
-    drive.setDeadband(0);
-  }
-
-  public void arcadeDrive(double moveRequest, double turnRequest, double speedLimiter) {
-    /*
-     * try(MoPerfMon.Period period =
-     * Robot.perfMon.newPeriod("DriveSubsystem::arcadeDrive")) {
-     */
-
-    // Scales the move and turn targets so they don't exceed the speed limit.
-    moveRequest *= speedLimiter;
-    turnRequest *= speedLimiter;
-
-    // Gets the actual forward/backward motion of the robot.
-    double moveRate = getMoveRate();
-    // Gets the acutal speed difference between left and right sides of the robot.
-    double turnRate = getTurnRate();
-
-    /**
-     * Generates a motor power value that will move the robot where the driver wants
-     * it to go, based on the difference between the current motor rate and the
-     * target.
-     */
-    double move = pidEnabled ? movePID.calculate(moveRate, moveRequest) : moveRequest;
-    double turn = pidEnabled ? turnPID.calculate(turnRate, turnRequest) : turnRequest;
-
-    // Forces the speed limit on the output of the PID controllers.
-    double m_r = Utils.clip(move, -speedLimiter, speedLimiter);
-    double t_r = Utils.clip(turn, -speedLimiter, speedLimiter);
-
-    // Sends the actual drive command that activates the motors.
-    drive.arcadeDrive(m_r, t_r, false);
-    // }
   }
 
   public void resetEncoders() {
@@ -97,7 +52,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-    drive.arcadeDrive(0, 0, false);
+
   }
 
   @Override
@@ -105,9 +60,9 @@ public class DriveSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void useOutput(double output, double setpoint) {
-
-  };
+  private double FeetToEncTicks(double ft) {
+    return ft * ENC_TICKS_PER_FOOT;
+  }
 
   public double getMeasurement() {
     return 0;
