@@ -14,7 +14,6 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.controllers.ControllerBase;
-import frc.robot.controllers.MainController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -26,13 +25,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  private final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  public final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
 
-  private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
 
-  private final MainController mainController = new MainController();
+  public final ControllerBase mainController = new ControllerBase();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
