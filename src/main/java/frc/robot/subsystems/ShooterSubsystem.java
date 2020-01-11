@@ -8,20 +8,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.CANSparkMax;
-import frc.robot.controllers.ControllerBase;
-import frc.robot.Constants.*;
 
 public class ShooterSubsystem extends SubsystemBase {
-  private final CANSparkMax mortorSparkMAX = new CANSparkMax(SPARKMAX_SHOOTER_CAN_ADDR);
-
+  /**
+   * Creates a new ExampleSubsystem.
+   */
   public ShooterSubsystem() {
-    if (ControllerBase.getShootPowerCellsOuter()) {
-      shoot();
-    }
-  }
-
-  public void shoot() {
 
   }
 
