@@ -1,9 +1,6 @@
 name: Java CI
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build:
@@ -20,7 +17,7 @@ jobs:
       run: bash gradlew build
     - name: Post Slack messages
       uses: pullreminders/slack-action@v1.0.7
-      if: failure()
+      if: github.ref == 'refs/heads/master' && failure()
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       with:
