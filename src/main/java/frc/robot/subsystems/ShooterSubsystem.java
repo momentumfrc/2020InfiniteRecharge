@@ -22,16 +22,16 @@ public class ShooterSubsystem extends SubsystemBase {
    * Initializes the SparkMAX motor controller, assigns it to the CAN address
    * specified, and sets it to the NEO Brushless Motor.
    */
-  private final CANSparkMax ShooterMAX = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR,
+  private final CANSparkMax shooterMAX = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   /**
    * The built-in PID controller provided by the Spark MAX motor controller.
    */
-  private final CANPIDController ShooterPID = new CANPIDController(ShooterMAX);
+  private final CANPIDController shooterPID = new CANPIDController(shooterMAX);
   /**
    * The target velocity of the NEO Brushless Motor.
    */
-  private final double ShooterSetpoint = 1.0;
+  private final double shooterSetpoint = 1.0;
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
@@ -63,19 +63,19 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
-  private final double OutputRange = 1;
+  private final double outputRange = 1;
 
   public ShooterSubsystem() {
     // Applies the previously-declared values to the PIDF controller.
-    ShooterPID.setP(kP, 0);
-    ShooterPID.setI(kI, 0);
-    ShooterPID.setD(kD, 0);
-    ShooterPID.setIZone(kIz, 0);
-    ShooterPID.setFF(kFF, 0);
-    ShooterPID.setOutputRange(-OutputRange, OutputRange, 0);
+    shooterPID.setP(kP, 0);
+    shooterPID.setI(kI, 0);
+    shooterPID.setD(kD, 0);
+    shooterPID.setIZone(kIz, 0);
+    shooterPID.setFF(kFF, 0);
+    shooterPID.setOutputRange(-outputRange, outputRange, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
-    ShooterMAX.setIdleMode(IdleMode.kCoast);
+    shooterMAX.setIdleMode(IdleMode.kCoast);
   }
 
   /**
@@ -83,7 +83,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
-    ShooterPID.setReference(ShooterSetpoint, ControlType.kVelocity);
+    shooterPID.setReference(shooterSetpoint, ControlType.kVelocity);
   }
 
   /**
@@ -91,7 +91,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * when a button is released.
    */
   public void stopShooter() {
-    ShooterMAX.stopMotor();
+    shooterMAX.stopMotor();
   }
 
   @Override
