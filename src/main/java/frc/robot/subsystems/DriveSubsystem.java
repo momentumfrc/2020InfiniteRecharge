@@ -105,42 +105,42 @@ public class DriveSubsystem extends SubsystemBase {
    *                    joystick, from -1 to 1.
    */
   public void drive(final double moveRequest, final double turnRequest) {
-    /**
-     * Since moveRequest is from -1 to 1 and we need a value in meters per second to
-     * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
-     * converted to ft/s.
-     */
-    final double speedLimitMs = Units.feetToMeters(SPEED_LIMIT_FEET_PER_S);
-    final double moveReqScaled = Utils.map(moveRequest, -1, 1, -speedLimitMs, speedLimitMs);
-    /**
-     * Since turnRequest is from -1 to 1 and we need a value in radians per second
-     * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
-     * limit in radians/second.
-     */
-    final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
-    /**
-     * The object that handles the calculations for how fast each side of the robot
-     * should drive to accomplish the scaled move and turn requests.
-     */
-    final var chassisSpeeds = new ChassisSpeeds(moveReqScaled, 0, turnReqScaled);
-    /**
-     * The object that converts the overall chassis speed into individual wheel
-     * speeds.
-     */
-    final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
-    /**
-     * The variables that store the outputs of the wheel speeds, in meters per
-     * second.
-     */
-    final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
-    final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
-    /**
-     * The variables that store the wheel speeds in TalonFX encoder ticks per
-     * second, as converted from m/s to ft/s.
-     */
-    final double leftETPerS = metersToEncTicks(leftMPerS);
-    final double rightETPerS = metersToEncTicks(rightMPerS);
     if (pidEnabled) {
+      /**
+       * Since moveRequest is from -1 to 1 and we need a value in meters per second to
+       * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
+       * converted to ft/s.
+       */
+      final double speedLimitMs = Units.feetToMeters(SPEED_LIMIT_FEET_PER_S);
+      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -speedLimitMs, speedLimitMs);
+      /**
+       * Since turnRequest is from -1 to 1 and we need a value in radians per second
+       * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
+       * limit in radians/second.
+       */
+      final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
+      /**
+       * The object that handles the calculations for how fast each side of the robot
+       * should drive to accomplish the scaled move and turn requests.
+       */
+      final var chassisSpeeds = new ChassisSpeeds(moveReqScaled, 0, turnReqScaled);
+      /**
+       * The object that converts the overall chassis speed into individual wheel
+       * speeds.
+       */
+      final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
+      /**
+       * The variables that store the outputs of the wheel speeds, in meters per
+       * second.
+       */
+      final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
+      final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
+      /**
+       * The variables that store the wheel speeds in TalonFX encoder ticks per
+       * second, as converted from m/s to ft/s.
+       */
+      final double leftETPerS = metersToEncTicks(leftMPerS);
+      final double rightETPerS = metersToEncTicks(rightMPerS);
       leftFront.set(ControlMode.Velocity, leftETPerS);
       rightFront.set(ControlMode.Velocity, rightETPerS);
     } else {
