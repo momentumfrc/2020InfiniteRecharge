@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
-import frc.robot.utils.Utils;
+import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -32,14 +32,14 @@ public class DriveSubsystem extends SubsystemBase {
   private final boolean pidEnabled = false;
 
   /**
-   * @param ENC_TICKS_PER_FOOT The number of TalonFX encoder ticks per foot that
-   *                           the robot drives on 6" wheels. Used to input ft/s
-   *                           into WPI_TalonFX.set(VelocityControl, double
-   *                           value), which takes its value in encoder ticks per
-   *                           second.
+   * @param ENC_TICKS_PER_METER The number of TalonFX encoder ticks per meter that
+   *                            the robot drives on 6" wheels. Used to input ft/s
+   *                            into WPI_TalonFX.set(VelocityControl, double
+   *                            value), which takes its value in encoder ticks per
+   *                            second.
    * 
    */
-  private final double ENC_TICKS_PER_FOOT = 1304;
+  private final double ENC_TICKS_PER_METER = 4278.215;
   /**
    * @param DRIVE_BASE_WIDTH_INCHES The number of inches between wheels on the
    *                                drive base of the robot.
@@ -110,15 +110,14 @@ public class DriveSubsystem extends SubsystemBase {
      * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
      * converted to ft/s.
      */
-    final double moveReqScaled = org.usfirst.frc.team4999.utils.Utils.map(moveRequest, -1, 1,
-        -Units.feetToMeters(SPEED_LIMIT_FEET_PER_S), Units.feetToMeters(SPEED_LIMIT_FEET_PER_S));
+    final double speedLimitMs = Units.feetToMeters(SPEED_LIMIT_FEET_PER_S);
+    final double moveReqScaled = Utils.map(moveRequest, -1, 1, -speedLimitMs, speedLimitMs);
     /**
      * Since turnRequest is from -1 to 1 and we need a value in radians per second
      * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
      * limit in radians/second.
      */
-    final double turnReqScaled = org.usfirst.frc.team4999.utils.Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S,
-        TURN_LIMIT_RAD_PER_S);
+    final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
     /**
      * The object that handles the calculations for how fast each side of the robot
      * should drive to accomplish the scaled move and turn requests.
@@ -139,8 +138,8 @@ public class DriveSubsystem extends SubsystemBase {
      * The variables that store the wheel speeds in TalonFX encoder ticks per
      * second, as converted from m/s to ft/s.
      */
-    final double leftETPerS = feetToEncTicks(Units.metersToFeet(leftMPerS));
-    final double rightETPerS = feetToEncTicks(Units.metersToFeet(rightMPerS));
+    final double leftETPerS = metersToEncTicks(leftMPerS);
+    final double rightETPerS = metersToEncTicks(rightMPerS);
     if (pidEnabled) {
       leftFront.set(ControlMode.Velocity, leftETPerS);
       rightFront.set(ControlMode.Velocity, rightETPerS);
@@ -171,15 +170,11 @@ public class DriveSubsystem extends SubsystemBase {
 
   /**
    * 
-   * @param ft The number of feet to be converted to encoder ticks.
+   * @param ft The number of meters to be converted to encoder ticks.
    * @return the number of encoder ticks that correspond to @param ft , assuming
    *         6-inch wheels.
    */
-  private double feetToEncTicks(final double ft) {
-    return ft * ENC_TICKS_PER_FOOT;
-  }
-
-  public double getMeasurement() {
-    return 0;
+  private double metersToEncTicks(final double m) {
+    return m * ENC_TICKS_PER_METER;
   }
 }
