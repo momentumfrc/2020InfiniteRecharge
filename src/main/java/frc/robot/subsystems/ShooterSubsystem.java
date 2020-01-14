@@ -31,39 +31,44 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * The target velocity of the NEO Brushless Motor.
    */
-  private final double shooterSetpoint = 1.0;
+  public final double shooterSetpoint = 1.0;
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private final double kP = 1;
+  private final double kP = 0.1;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private final double kI = 1;
+  private final double kI = 0;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
    * by this value.
    */
-  private final double kD = 1;
+  private final double kD = 0;
   /**
    * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
    * will reset once it hits this value.
    */
-  private final double kIz = 1;
+  private final double kIz = 0;
   /**
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private final double kFF = 1;
+  private final double kFF = 0;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
   private final double outputRange = 1;
+  /**
+   * The maximum current the motor controller is allowed to feed to the motor, in
+   * amps.
+   */
+  private final int currentLimit = 40;
 
   public ShooterSubsystem() {
     // Applies the previously-declared values to the PIDF controller.
@@ -76,6 +81,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
     shooterMAX.setIdleMode(IdleMode.kCoast);
+    shooterMAX.setSmartCurrentLimit(currentLimit);
   }
 
   /**
