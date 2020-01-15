@@ -10,6 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.I2C.Port;
+import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.util.Color;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +26,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private ColorSensorV3 colorsensor = new ColorSensorV3(Port.kOnboard);
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -118,5 +122,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    int blue = colorsensor.getBlue();
+    int green = colorsensor.getGreen();
+    int red = colorsensor.getRed();
+
+    System.out.println("Blue: " + blue + "\n Green: " + green + "\n Red: " + red);
+
   }
 }
