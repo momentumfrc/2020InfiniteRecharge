@@ -125,8 +125,8 @@ public class Robot extends TimedRobot {
     int blue = colorsensor.getBlue();
     int green = colorsensor.getGreen();
     int red = colorsensor.getRed();
-
-    System.out.println("Blue: " + blue + "\n Green: " + green + "\n Red: " + red);
+    Color color = colorsensor.getColor();
+    System.out.println("Blue: " + blue + "\n Green: " + green + "\n Red: " + red + "\n Detected Color: " + color);
 
   }
 }
