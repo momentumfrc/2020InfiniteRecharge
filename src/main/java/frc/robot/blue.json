@@ -1,0 +1,6008 @@
+[
+  {
+    "line": " Red: 1140",
+    "messageType": 2,
+    "seqNumber": 20964,
+    "timestamp": 781.1873168945312
+  },
+  {
+    "line": "Blue: 4072",
+    "messageType": 2,
+    "seqNumber": 20965,
+    "timestamp": 781.2063598632812
+  },
+  {
+    "line": " Green: 3914",
+    "messageType": 2,
+    "seqNumber": 20966,
+    "timestamp": 781.2069091796875
+  },
+  {
+    "line": " Red: 1140",
+    "messageType": 2,
+    "seqNumber": 20967,
+    "timestamp": 781.2078247070312
+  },
+  {
+    "line": "Blue: 4068",
+    "messageType": 2,
+    "seqNumber": 20968,
+    "timestamp": 781.2257690429688
+  },
+  {
+    "line": " Green: 3909",
+    "messageType": 2,
+    "seqNumber": 20969,
+    "timestamp": 781.2264404296875
+  },
+  {
+    "line": " Red: 1138",
+    "messageType": 2,
+    "seqNumber": 20970,
+    "timestamp": 781.2271118164062
+  },
+  {
+    "line": "Blue: 4068",
+    "messageType": 2,
+    "seqNumber": 20971,
+    "timestamp": 781.246337890625
+  },
+  {
+    "line": " Green: 3909",
+    "messageType": 2,
+    "seqNumber": 20972,
+    "timestamp": 781.2473754882812
+  },
+  {
+    "line": " Red: 1138",
+    "messageType": 2,
+    "seqNumber": 20973,
+    "timestamp": 781.248291015625
+  },
+  {
+    "line": "Blue: 4068",
+    "messageType": 2,
+    "seqNumber": 20974,
+    "timestamp": 781.2664184570312
+  },
+  {
+    "line": " Green: 3909",
+    "messageType": 2,
+    "seqNumber": 20975,
+    "timestamp": 781.2669677734375
+  },
+  {
+    "line": " Red: 1138",
+    "messageType": 2,
+    "seqNumber": 20976,
+    "timestamp": 781.2680053710938
+  },
+  {
+    "line": "Blue: 4068",
+    "messageType": 2,
+    "seqNumber": 20977,
+    "timestamp": 781.2857055664062
+  },
+  {
+    "line": " Green: 3909",
+    "messageType": 2,
+    "seqNumber": 20978,
+    "timestamp": 781.2865600585938
+  },
+  {
+    "line": " Red: 1138",
+    "messageType": 2,
+    "seqNumber": 20979,
+    "timestamp": 781.286865234375
+  },
+  {
+    "line": "Blue: 4068",
+    "messageType": 2,
+    "seqNumber": 20980,
+    "timestamp": 781.3056640625
+  },
+  {
+    "line": " Green: 3909",
+    "messageType": 2,
+    "seqNumber": 20981,
+    "timestamp": 781.3060302734375
+  },
+  {
+    "line": " Red: 1138",
+    "messageType": 2,
+    "seqNumber": 20982,
+    "timestamp": 781.3062744140625
+  },
+  {
+    "line": "Blue: 4191",
+    "messageType": 2,
+    "seqNumber": 20983,
+    "timestamp": 781.3258056640625
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 20984,
+    "timestamp": 781.326171875
+  },
+  {
+    "line": " Red: 1172",
+    "messageType": 2,
+    "seqNumber": 20985,
+    "timestamp": 781.326416015625
+  },
+  {
+    "line": "Blue: 4191",
+    "messageType": 2,
+    "seqNumber": 20986,
+    "timestamp": 781.3455810546875
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 20987,
+    "timestamp": 781.3462524414062
+  },
+  {
+    "line": " Red: 1172",
+    "messageType": 2,
+    "seqNumber": 20988,
+    "timestamp": 781.3466186523438
+  },
+  {
+    "line": "Blue: 4191",
+    "messageType": 2,
+    "seqNumber": 20989,
+    "timestamp": 781.36572265625
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 20990,
+    "timestamp": 781.3660888671875
+  },
+  {
+    "line": " Red: 1172",
+    "messageType": 2,
+    "seqNumber": 20991,
+    "timestamp": 781.3663940429688
+  },
+  {
+    "line": "Blue: 4191",
+    "messageType": 2,
+    "seqNumber": 20992,
+    "timestamp": 781.3858642578125
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 20993,
+    "timestamp": 781.3861694335938
+  },
+  {
+    "line": " Red: 1172",
+    "messageType": 2,
+    "seqNumber": 20994,
+    "timestamp": 781.3864135742188
+  },
+  {
+    "line": "Blue: 4191",
+    "messageType": 2,
+    "seqNumber": 20995,
+    "timestamp": 781.4059448242188
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 20996,
+    "timestamp": 781.4063110351562
+  },
+  {
+    "line": " Red: 1172",
+    "messageType": 2,
+    "seqNumber": 20997,
+    "timestamp": 781.4065551757812
+  },
+  {
+    "line": "Blue: 4297",
+    "messageType": 2,
+    "seqNumber": 20998,
+    "timestamp": 781.4258422851562
+  },
+  {
+    "line": " Green: 4125",
+    "messageType": 2,
+    "seqNumber": 20999,
+    "timestamp": 781.426513671875
+  },
+  {
+    "line": " Red: 1199",
+    "messageType": 2,
+    "seqNumber": 21000,
+    "timestamp": 781.4268188476562
+  },
+  {
+    "line": "Blue: 4297",
+    "messageType": 2,
+    "seqNumber": 21001,
+    "timestamp": 781.4457397460938
+  },
+  {
+    "line": " Green: 4125",
+    "messageType": 2,
+    "seqNumber": 21002,
+    "timestamp": 781.4462890625
+  },
+  {
+    "line": " Red: 1199",
+    "messageType": 2,
+    "seqNumber": 21003,
+    "timestamp": 781.446533203125
+  },
+  {
+    "line": "Blue: 4297",
+    "messageType": 2,
+    "seqNumber": 21004,
+    "timestamp": 781.4664306640625
+  },
+  {
+    "line": " Green: 4125",
+    "messageType": 2,
+    "seqNumber": 21005,
+    "timestamp": 781.4672241210938
+  },
+  {
+    "line": " Red: 1199",
+    "messageType": 2,
+    "seqNumber": 21006,
+    "timestamp": 781.4683837890625
+  },
+  {
+    "line": "Blue: 4297",
+    "messageType": 2,
+    "seqNumber": 21007,
+    "timestamp": 781.4857788085938
+  },
+  {
+    "line": " Green: 4125",
+    "messageType": 2,
+    "seqNumber": 21008,
+    "timestamp": 781.4864501953125
+  },
+  {
+    "line": " Red: 1199",
+    "messageType": 2,
+    "seqNumber": 21009,
+    "timestamp": 781.4873046875
+  },
+  {
+    "line": "Blue: 4297",
+    "messageType": 2,
+    "seqNumber": 21010,
+    "timestamp": 781.5059204101562
+  },
+  {
+    "line": " Green: 4125",
+    "messageType": 2,
+    "seqNumber": 21011,
+    "timestamp": 781.5065307617188
+  },
+  {
+    "line": " Red: 1199",
+    "messageType": 2,
+    "seqNumber": 21012,
+    "timestamp": 781.5071411132812
+  },
+  {
+    "line": "Blue: 4205",
+    "messageType": 2,
+    "seqNumber": 21013,
+    "timestamp": 781.525634765625
+  },
+  {
+    "line": " Green: 4038",
+    "messageType": 2,
+    "seqNumber": 21014,
+    "timestamp": 781.5263061523438
+  },
+  {
+    "line": " Red: 1174",
+    "messageType": 2,
+    "seqNumber": 21015,
+    "timestamp": 781.5269165039062
+  },
+  {
+    "line": "Blue: 4205",
+    "messageType": 2,
+    "seqNumber": 21016,
+    "timestamp": 781.5457763671875
+  },
+  {
+    "line": " Green: 4038",
+    "messageType": 2,
+    "seqNumber": 21017,
+    "timestamp": 781.5464477539062
+  },
+  {
+    "line": " Red: 1174",
+    "messageType": 2,
+    "seqNumber": 21018,
+    "timestamp": 781.5474243164062
+  },
+  {
+    "line": "Blue: 4205",
+    "messageType": 2,
+    "seqNumber": 21019,
+    "timestamp": 781.5659790039062
+  },
+  {
+    "line": " Green: 4038",
+    "messageType": 2,
+    "seqNumber": 21020,
+    "timestamp": 781.5664672851562
+  },
+  {
+    "line": " Red: 1174",
+    "messageType": 2,
+    "seqNumber": 21021,
+    "timestamp": 781.5673217773438
+  },
+  {
+    "line": "Blue: 4205",
+    "messageType": 2,
+    "seqNumber": 21022,
+    "timestamp": 781.5862426757812
+  },
+  {
+    "line": " Green: 4038",
+    "messageType": 2,
+    "seqNumber": 21023,
+    "timestamp": 781.587646484375
+  },
+  {
+    "line": " Red: 1174",
+    "messageType": 2,
+    "seqNumber": 21024,
+    "timestamp": 781.5885620117188
+  },
+  {
+    "line": "Blue: 4205",
+    "messageType": 2,
+    "seqNumber": 21025,
+    "timestamp": 781.6055908203125
+  },
+  {
+    "line": " Green: 4038",
+    "messageType": 2,
+    "seqNumber": 21026,
+    "timestamp": 781.6063232421875
+  },
+  {
+    "line": " Red: 1174",
+    "messageType": 2,
+    "seqNumber": 21027,
+    "timestamp": 781.6067504882812
+  },
+  {
+    "line": "Blue: 4370",
+    "messageType": 2,
+    "seqNumber": 21028,
+    "timestamp": 781.6260375976562
+  },
+  {
+    "line": " Green: 4194",
+    "messageType": 2,
+    "seqNumber": 21029,
+    "timestamp": 781.6278686523438
+  },
+  {
+    "line": " Red: 1219",
+    "messageType": 2,
+    "seqNumber": 21030,
+    "timestamp": 781.628662109375
+  },
+  {
+    "line": "Blue: 4370",
+    "messageType": 2,
+    "seqNumber": 21031,
+    "timestamp": 781.645751953125
+  },
+  {
+    "line": " Green: 4194",
+    "messageType": 2,
+    "seqNumber": 21032,
+    "timestamp": 781.646240234375
+  },
+  {
+    "line": " Red: 1219",
+    "messageType": 2,
+    "seqNumber": 21033,
+    "timestamp": 781.6471557617188
+  },
+  {
+    "line": "Blue: 4370",
+    "messageType": 2,
+    "seqNumber": 21034,
+    "timestamp": 781.6658325195312
+  },
+  {
+    "line": " Green: 4194",
+    "messageType": 2,
+    "seqNumber": 21035,
+    "timestamp": 781.66650390625
+  },
+  {
+    "line": " Red: 1219",
+    "messageType": 2,
+    "seqNumber": 21036,
+    "timestamp": 781.667236328125
+  },
+  {
+    "line": "Blue: 4370",
+    "messageType": 2,
+    "seqNumber": 21037,
+    "timestamp": 781.6856079101562
+  },
+  {
+    "line": " Green: 4194",
+    "messageType": 2,
+    "seqNumber": 21038,
+    "timestamp": 781.6863403320312
+  },
+  {
+    "line": " Red: 1219",
+    "messageType": 2,
+    "seqNumber": 21039,
+    "timestamp": 781.6865844726562
+  },
+  {
+    "line": "Blue: 4370",
+    "messageType": 2,
+    "seqNumber": 21040,
+    "timestamp": 781.7063598632812
+  },
+  {
+    "line": " Green: 4194",
+    "messageType": 2,
+    "seqNumber": 21041,
+    "timestamp": 781.7072143554688
+  },
+  {
+    "line": " Red: 1219",
+    "messageType": 2,
+    "seqNumber": 21042,
+    "timestamp": 781.7091064453125
+  },
+  {
+    "line": "Blue: 4669",
+    "messageType": 2,
+    "seqNumber": 21043,
+    "timestamp": 781.7257080078125
+  },
+  {
+    "line": " Green: 4477",
+    "messageType": 2,
+    "seqNumber": 21044,
+    "timestamp": 781.7264404296875
+  },
+  {
+    "line": " Red: 1299",
+    "messageType": 2,
+    "seqNumber": 21045,
+    "timestamp": 781.7268676757812
+  },
+  {
+    "line": "Blue: 4669",
+    "messageType": 2,
+    "seqNumber": 21046,
+    "timestamp": 781.7456665039062
+  },
+  {
+    "line": " Green: 4477",
+    "messageType": 2,
+    "seqNumber": 21047,
+    "timestamp": 781.7463989257812
+  },
+  {
+    "line": " Red: 1299",
+    "messageType": 2,
+    "seqNumber": 21048,
+    "timestamp": 781.746826171875
+  },
+  {
+    "line": "Blue: 4669",
+    "messageType": 2,
+    "seqNumber": 21049,
+    "timestamp": 781.7659912109375
+  },
+  {
+    "line": " Green: 4477",
+    "messageType": 2,
+    "seqNumber": 21050,
+    "timestamp": 781.7666625976562
+  },
+  {
+    "line": " Red: 1299",
+    "messageType": 2,
+    "seqNumber": 21051,
+    "timestamp": 781.7674560546875
+  },
+  {
+    "line": "Blue: 4669",
+    "messageType": 2,
+    "seqNumber": 21052,
+    "timestamp": 781.7862548828125
+  },
+  {
+    "line": " Green: 4477",
+    "messageType": 2,
+    "seqNumber": 21053,
+    "timestamp": 781.7865600585938
+  },
+  {
+    "line": " Red: 1299",
+    "messageType": 2,
+    "seqNumber": 21054,
+    "timestamp": 781.787353515625
+  },
+  {
+    "line": "Blue: 4669",
+    "messageType": 2,
+    "seqNumber": 21055,
+    "timestamp": 781.8063354492188
+  },
+  {
+    "line": " Green: 4477",
+    "messageType": 2,
+    "seqNumber": 21056,
+    "timestamp": 781.8070068359375
+  },
+  {
+    "line": " Red: 1299",
+    "messageType": 2,
+    "seqNumber": 21057,
+    "timestamp": 781.8073120117188
+  },
+  {
+    "line": "Blue: 4873",
+    "messageType": 2,
+    "seqNumber": 21058,
+    "timestamp": 781.8257446289062
+  },
+  {
+    "line": " Green: 4668",
+    "messageType": 2,
+    "seqNumber": 21059,
+    "timestamp": 781.8264770507812
+  },
+  {
+    "line": " Red: 1353",
+    "messageType": 2,
+    "seqNumber": 21060,
+    "timestamp": 781.826904296875
+  },
+  {
+    "line": "Blue: 4873",
+    "messageType": 2,
+    "seqNumber": 21061,
+    "timestamp": 781.8463134765625
+  },
+  {
+    "line": " Green: 4668",
+    "messageType": 2,
+    "seqNumber": 21062,
+    "timestamp": 781.8475952148438
+  },
+  {
+    "line": " Red: 1353",
+    "messageType": 2,
+    "seqNumber": 21063,
+    "timestamp": 781.848388671875
+  },
+  {
+    "line": "Blue: 4873",
+    "messageType": 2,
+    "seqNumber": 21064,
+    "timestamp": 781.8657836914062
+  },
+  {
+    "line": " Green: 4668",
+    "messageType": 2,
+    "seqNumber": 21065,
+    "timestamp": 781.8665771484375
+  },
+  {
+    "line": " Red: 1353",
+    "messageType": 2,
+    "seqNumber": 21066,
+    "timestamp": 781.8676147460938
+  },
+  {
+    "line": "Blue: 4873",
+    "messageType": 2,
+    "seqNumber": 21067,
+    "timestamp": 781.8857421875
+  },
+  {
+    "line": " Green: 4668",
+    "messageType": 2,
+    "seqNumber": 21068,
+    "timestamp": 781.8864135742188
+  },
+  {
+    "line": " Red: 1353",
+    "messageType": 2,
+    "seqNumber": 21069,
+    "timestamp": 781.8868408203125
+  },
+  {
+    "line": "Blue: 4873",
+    "messageType": 2,
+    "seqNumber": 21070,
+    "timestamp": 781.90576171875
+  },
+  {
+    "line": " Green: 4668",
+    "messageType": 2,
+    "seqNumber": 21071,
+    "timestamp": 781.9064331054688
+  },
+  {
+    "line": " Red: 1353",
+    "messageType": 2,
+    "seqNumber": 21072,
+    "timestamp": 781.90673828125
+  },
+  {
+    "line": "Blue: 4633",
+    "messageType": 2,
+    "seqNumber": 21073,
+    "timestamp": 781.9259643554688
+  },
+  {
+    "line": " Green: 4442",
+    "messageType": 2,
+    "seqNumber": 21074,
+    "timestamp": 781.927001953125
+  },
+  {
+    "line": " Red: 1290",
+    "messageType": 2,
+    "seqNumber": 21075,
+    "timestamp": 781.9282836914062
+  },
+  {
+    "line": "Blue: 4633",
+    "messageType": 2,
+    "seqNumber": 21076,
+    "timestamp": 781.9456787109375
+  },
+  {
+    "line": " Green: 4442",
+    "messageType": 2,
+    "seqNumber": 21077,
+    "timestamp": 781.9462890625
+  },
+  {
+    "line": " Red: 1290",
+    "messageType": 2,
+    "seqNumber": 21078,
+    "timestamp": 781.9472045898438
+  },
+  {
+    "line": "Blue: 4633",
+    "messageType": 2,
+    "seqNumber": 21079,
+    "timestamp": 781.9656982421875
+  },
+  {
+    "line": " Green: 4442",
+    "messageType": 2,
+    "seqNumber": 21080,
+    "timestamp": 781.9671630859375
+  },
+  {
+    "line": " Red: 1290",
+    "messageType": 2,
+    "seqNumber": 21081,
+    "timestamp": 781.9685668945312
+  },
+  {
+    "line": "Blue: 4633",
+    "messageType": 2,
+    "seqNumber": 21082,
+    "timestamp": 781.9857788085938
+  },
+  {
+    "line": " Green: 4442",
+    "messageType": 2,
+    "seqNumber": 21083,
+    "timestamp": 781.9865112304688
+  },
+  {
+    "line": " Red: 1290",
+    "messageType": 2,
+    "seqNumber": 21084,
+    "timestamp": 781.9872436523438
+  },
+  {
+    "line": "Blue: 4633",
+    "messageType": 2,
+    "seqNumber": 21085,
+    "timestamp": 782.0057983398438
+  },
+  {
+    "line": " Green: 4442",
+    "messageType": 2,
+    "seqNumber": 21086,
+    "timestamp": 782.0061645507812
+  },
+  {
+    "line": " Red: 1290",
+    "messageType": 2,
+    "seqNumber": 21087,
+    "timestamp": 782.0064086914062
+  },
+  {
+    "line": "Blue: 4446",
+    "messageType": 2,
+    "seqNumber": 21088,
+    "timestamp": 782.02587890625
+  },
+  {
+    "line": " Green: 4267",
+    "messageType": 2,
+    "seqNumber": 21089,
+    "timestamp": 782.0261840820312
+  },
+  {
+    "line": " Red: 1241",
+    "messageType": 2,
+    "seqNumber": 21090,
+    "timestamp": 782.027587890625
+  },
+  {
+    "line": "Blue: 4446",
+    "messageType": 2,
+    "seqNumber": 21091,
+    "timestamp": 782.0457763671875
+  },
+  {
+    "line": " Green: 4267",
+    "messageType": 2,
+    "seqNumber": 21092,
+    "timestamp": 782.0472412109375
+  },
+  {
+    "line": " Red: 1241",
+    "messageType": 2,
+    "seqNumber": 21093,
+    "timestamp": 782.0475463867188
+  },
+  {
+    "line": "Blue: 4446",
+    "messageType": 2,
+    "seqNumber": 21094,
+    "timestamp": 782.0661010742188
+  },
+  {
+    "line": " Green: 4267",
+    "messageType": 2,
+    "seqNumber": 21095,
+    "timestamp": 782.0665893554688
+  },
+  {
+    "line": " Red: 1241",
+    "messageType": 2,
+    "seqNumber": 21096,
+    "timestamp": 782.0671997070312
+  },
+  {
+    "line": "Blue: 4446",
+    "messageType": 2,
+    "seqNumber": 21097,
+    "timestamp": 782.0859985351562
+  },
+  {
+    "line": " Green: 4267",
+    "messageType": 2,
+    "seqNumber": 21098,
+    "timestamp": 782.086669921875
+  },
+  {
+    "line": " Red: 1241",
+    "messageType": 2,
+    "seqNumber": 21099,
+    "timestamp": 782.0875244140625
+  },
+  {
+    "line": "Blue: 4446",
+    "messageType": 2,
+    "seqNumber": 21100,
+    "timestamp": 782.1058959960938
+  },
+  {
+    "line": " Green: 4267",
+    "messageType": 2,
+    "seqNumber": 21101,
+    "timestamp": 782.1065673828125
+  },
+  {
+    "line": " Red: 1241",
+    "messageType": 2,
+    "seqNumber": 21102,
+    "timestamp": 782.1068725585938
+  },
+  {
+    "line": "Blue: 4342",
+    "messageType": 2,
+    "seqNumber": 21103,
+    "timestamp": 782.1256713867188
+  },
+  {
+    "line": " Green: 4170",
+    "messageType": 2,
+    "seqNumber": 21104,
+    "timestamp": 782.1260375976562
+  },
+  {
+    "line": " Red: 1213",
+    "messageType": 2,
+    "seqNumber": 21105,
+    "timestamp": 782.1262817382812
+  },
+  {
+    "line": "Blue: 4342",
+    "messageType": 2,
+    "seqNumber": 21106,
+    "timestamp": 782.1458129882812
+  },
+  {
+    "line": " Green: 4170",
+    "messageType": 2,
+    "seqNumber": 21107,
+    "timestamp": 782.1461181640625
+  },
+  {
+    "line": " Red: 1213",
+    "messageType": 2,
+    "seqNumber": 21108,
+    "timestamp": 782.1463623046875
+  },
+  {
+    "line": "Blue: 4342",
+    "messageType": 2,
+    "seqNumber": 21109,
+    "timestamp": 782.1661987304688
+  },
+  {
+    "line": " Green: 4170",
+    "messageType": 2,
+    "seqNumber": 21110,
+    "timestamp": 782.1668701171875
+  },
+  {
+    "line": " Red: 1213",
+    "messageType": 2,
+    "seqNumber": 21111,
+    "timestamp": 782.167724609375
+  },
+  {
+    "line": "Blue: 4342",
+    "messageType": 2,
+    "seqNumber": 21112,
+    "timestamp": 782.1857299804688
+  },
+  {
+    "line": " Green: 4170",
+    "messageType": 2,
+    "seqNumber": 21113,
+    "timestamp": 782.1864013671875
+  },
+  {
+    "line": " Red: 1213",
+    "messageType": 2,
+    "seqNumber": 21114,
+    "timestamp": 782.187255859375
+  },
+  {
+    "line": "Blue: 4342",
+    "messageType": 2,
+    "seqNumber": 21115,
+    "timestamp": 782.205810546875
+  },
+  {
+    "line": " Green: 4170",
+    "messageType": 2,
+    "seqNumber": 21116,
+    "timestamp": 782.2064819335938
+  },
+  {
+    "line": " Red: 1213",
+    "messageType": 2,
+    "seqNumber": 21117,
+    "timestamp": 782.2069091796875
+  },
+  {
+    "line": "Blue: 4299",
+    "messageType": 2,
+    "seqNumber": 21118,
+    "timestamp": 782.2257690429688
+  },
+  {
+    "line": " Green: 4128",
+    "messageType": 2,
+    "seqNumber": 21119,
+    "timestamp": 782.2264404296875
+  },
+  {
+    "line": " Red: 1201",
+    "messageType": 2,
+    "seqNumber": 21120,
+    "timestamp": 782.2279052734375
+  },
+  {
+    "line": "Blue: 4299",
+    "messageType": 2,
+    "seqNumber": 21121,
+    "timestamp": 782.2457275390625
+  },
+  {
+    "line": " Green: 4128",
+    "messageType": 2,
+    "seqNumber": 21122,
+    "timestamp": 782.2460327148438
+  },
+  {
+    "line": " Red: 1201",
+    "messageType": 2,
+    "seqNumber": 21123,
+    "timestamp": 782.246337890625
+  },
+  {
+    "line": "Blue: 4299",
+    "messageType": 2,
+    "seqNumber": 21124,
+    "timestamp": 782.2662963867188
+  },
+  {
+    "line": " Green: 4128",
+    "messageType": 2,
+    "seqNumber": 21125,
+    "timestamp": 782.267333984375
+  },
+  {
+    "line": " Red: 1201",
+    "messageType": 2,
+    "seqNumber": 21126,
+    "timestamp": 782.2681884765625
+  },
+  {
+    "line": "Blue: 4299",
+    "messageType": 2,
+    "seqNumber": 21127,
+    "timestamp": 782.286376953125
+  },
+  {
+    "line": " Green: 4128",
+    "messageType": 2,
+    "seqNumber": 21128,
+    "timestamp": 782.2870483398438
+  },
+  {
+    "line": " Red: 1201",
+    "messageType": 2,
+    "seqNumber": 21129,
+    "timestamp": 782.2875366210938
+  },
+  {
+    "line": "Blue: 4299",
+    "messageType": 2,
+    "seqNumber": 21130,
+    "timestamp": 782.305908203125
+  },
+  {
+    "line": " Green: 4128",
+    "messageType": 2,
+    "seqNumber": 21131,
+    "timestamp": 782.3065795898438
+  },
+  {
+    "line": " Red: 1201",
+    "messageType": 2,
+    "seqNumber": 21132,
+    "timestamp": 782.3069458007812
+  },
+  {
+    "line": "Blue: 4235",
+    "messageType": 2,
+    "seqNumber": 21133,
+    "timestamp": 782.3262329101562
+  },
+  {
+    "line": " Green: 4068",
+    "messageType": 2,
+    "seqNumber": 21134,
+    "timestamp": 782.3268432617188
+  },
+  {
+    "line": " Red: 1184",
+    "messageType": 2,
+    "seqNumber": 21135,
+    "timestamp": 782.3276977539062
+  },
+  {
+    "line": "Blue: 4235",
+    "messageType": 2,
+    "seqNumber": 21136,
+    "timestamp": 782.3457641601562
+  },
+  {
+    "line": " Green: 4068",
+    "messageType": 2,
+    "seqNumber": 21137,
+    "timestamp": 782.3466186523438
+  },
+  {
+    "line": " Red: 1184",
+    "messageType": 2,
+    "seqNumber": 21138,
+    "timestamp": 782.347412109375
+  },
+  {
+    "line": "Blue: 4235",
+    "messageType": 2,
+    "seqNumber": 21139,
+    "timestamp": 782.3663940429688
+  },
+  {
+    "line": " Green: 4068",
+    "messageType": 2,
+    "seqNumber": 21140,
+    "timestamp": 782.3679809570312
+  },
+  {
+    "line": " Red: 1184",
+    "messageType": 2,
+    "seqNumber": 21141,
+    "timestamp": 782.368408203125
+  },
+  {
+    "line": "Blue: 4235",
+    "messageType": 2,
+    "seqNumber": 21142,
+    "timestamp": 782.3857421875
+  },
+  {
+    "line": " Green: 4068",
+    "messageType": 2,
+    "seqNumber": 21143,
+    "timestamp": 782.3869018554688
+  },
+  {
+    "line": " Red: 1184",
+    "messageType": 2,
+    "seqNumber": 21144,
+    "timestamp": 782.38720703125
+  },
+  {
+    "line": "Blue: 4235",
+    "messageType": 2,
+    "seqNumber": 21145,
+    "timestamp": 782.40576171875
+  },
+  {
+    "line": " Green: 4068",
+    "messageType": 2,
+    "seqNumber": 21146,
+    "timestamp": 782.4064331054688
+  },
+  {
+    "line": " Red: 1184",
+    "messageType": 2,
+    "seqNumber": 21147,
+    "timestamp": 782.4080200195312
+  },
+  {
+    "line": "Blue: 4267",
+    "messageType": 2,
+    "seqNumber": 21148,
+    "timestamp": 782.4264526367188
+  },
+  {
+    "line": " Green: 4099",
+    "messageType": 2,
+    "seqNumber": 21149,
+    "timestamp": 782.4271850585938
+  },
+  {
+    "line": " Red: 1193",
+    "messageType": 2,
+    "seqNumber": 21150,
+    "timestamp": 782.4277954101562
+  },
+  {
+    "line": "Blue: 4267",
+    "messageType": 2,
+    "seqNumber": 21151,
+    "timestamp": 782.4459838867188
+  },
+  {
+    "line": " Green: 4099",
+    "messageType": 2,
+    "seqNumber": 21152,
+    "timestamp": 782.4464721679688
+  },
+  {
+    "line": " Red: 1193",
+    "messageType": 2,
+    "seqNumber": 21153,
+    "timestamp": 782.44677734375
+  },
+  {
+    "line": "Blue: 4267",
+    "messageType": 2,
+    "seqNumber": 21154,
+    "timestamp": 782.4656982421875
+  },
+  {
+    "line": " Green: 4099",
+    "messageType": 2,
+    "seqNumber": 21155,
+    "timestamp": 782.4660034179688
+  },
+  {
+    "line": " Red: 1193",
+    "messageType": 2,
+    "seqNumber": 21156,
+    "timestamp": 782.4662475585938
+  },
+  {
+    "line": "Blue: 4267",
+    "messageType": 2,
+    "seqNumber": 21157,
+    "timestamp": 782.4857177734375
+  },
+  {
+    "line": " Green: 4099",
+    "messageType": 2,
+    "seqNumber": 21158,
+    "timestamp": 782.4864501953125
+  },
+  {
+    "line": " Red: 1193",
+    "messageType": 2,
+    "seqNumber": 21159,
+    "timestamp": 782.4868774414062
+  },
+  {
+    "line": "Blue: 4267",
+    "messageType": 2,
+    "seqNumber": 21160,
+    "timestamp": 782.505859375
+  },
+  {
+    "line": " Green: 4099",
+    "messageType": 2,
+    "seqNumber": 21161,
+    "timestamp": 782.5065307617188
+  },
+  {
+    "line": " Red: 1193",
+    "messageType": 2,
+    "seqNumber": 21162,
+    "timestamp": 782.5072021484375
+  },
+  {
+    "line": "Blue: 4280",
+    "messageType": 2,
+    "seqNumber": 21163,
+    "timestamp": 782.5257568359375
+  },
+  {
+    "line": " Green: 4110",
+    "messageType": 2,
+    "seqNumber": 21164,
+    "timestamp": 782.5264282226562
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21165,
+    "timestamp": 782.5276489257812
+  },
+  {
+    "line": "Blue: 4280",
+    "messageType": 2,
+    "seqNumber": 21166,
+    "timestamp": 782.5459594726562
+  },
+  {
+    "line": " Green: 4110",
+    "messageType": 2,
+    "seqNumber": 21167,
+    "timestamp": 782.5475463867188
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21168,
+    "timestamp": 782.548583984375
+  },
+  {
+    "line": "Blue: 4280",
+    "messageType": 2,
+    "seqNumber": 21169,
+    "timestamp": 782.565673828125
+  },
+  {
+    "line": " Green: 4110",
+    "messageType": 2,
+    "seqNumber": 21170,
+    "timestamp": 782.5663452148438
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21171,
+    "timestamp": 782.5670166015625
+  },
+  {
+    "line": "Blue: 4280",
+    "messageType": 2,
+    "seqNumber": 21172,
+    "timestamp": 782.5857543945312
+  },
+  {
+    "line": " Green: 4110",
+    "messageType": 2,
+    "seqNumber": 21173,
+    "timestamp": 782.5860595703125
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21174,
+    "timestamp": 782.5864868164062
+  },
+  {
+    "line": "Blue: 4280",
+    "messageType": 2,
+    "seqNumber": 21175,
+    "timestamp": 782.605712890625
+  },
+  {
+    "line": " Green: 4110",
+    "messageType": 2,
+    "seqNumber": 21176,
+    "timestamp": 782.6068115234375
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21177,
+    "timestamp": 782.6075439453125
+  },
+  {
+    "line": "Blue: 4099",
+    "messageType": 2,
+    "seqNumber": 21178,
+    "timestamp": 782.6259765625
+  },
+  {
+    "line": " Green: 3939",
+    "messageType": 2,
+    "seqNumber": 21179,
+    "timestamp": 782.6263427734375
+  },
+  {
+    "line": " Red: 1149",
+    "messageType": 2,
+    "seqNumber": 21180,
+    "timestamp": 782.6266479492188
+  },
+  {
+    "line": "Blue: 4099",
+    "messageType": 2,
+    "seqNumber": 21181,
+    "timestamp": 782.6456298828125
+  },
+  {
+    "line": " Green: 3939",
+    "messageType": 2,
+    "seqNumber": 21182,
+    "timestamp": 782.6463012695312
+  },
+  {
+    "line": " Red: 1149",
+    "messageType": 2,
+    "seqNumber": 21183,
+    "timestamp": 782.6473999023438
+  },
+  {
+    "line": "Blue: 4099",
+    "messageType": 2,
+    "seqNumber": 21184,
+    "timestamp": 782.665771484375
+  },
+  {
+    "line": " Green: 3939",
+    "messageType": 2,
+    "seqNumber": 21185,
+    "timestamp": 782.6664428710938
+  },
+  {
+    "line": " Red: 1149",
+    "messageType": 2,
+    "seqNumber": 21186,
+    "timestamp": 782.667236328125
+  },
+  {
+    "line": "Blue: 4099",
+    "messageType": 2,
+    "seqNumber": 21187,
+    "timestamp": 782.685791015625
+  },
+  {
+    "line": " Green: 3939",
+    "messageType": 2,
+    "seqNumber": 21188,
+    "timestamp": 782.6860961914062
+  },
+  {
+    "line": " Red: 1149",
+    "messageType": 2,
+    "seqNumber": 21189,
+    "timestamp": 782.6863403320312
+  },
+  {
+    "line": "Blue: 4099",
+    "messageType": 2,
+    "seqNumber": 21190,
+    "timestamp": 782.7057495117188
+  },
+  {
+    "line": " Green: 3939",
+    "messageType": 2,
+    "seqNumber": 21191,
+    "timestamp": 782.7062377929688
+  },
+  {
+    "line": " Red: 1149",
+    "messageType": 2,
+    "seqNumber": 21192,
+    "timestamp": 782.7064819335938
+  },
+  {
+    "line": "Blue: 3936",
+    "messageType": 2,
+    "seqNumber": 21193,
+    "timestamp": 782.7257080078125
+  },
+  {
+    "line": " Green: 3786",
+    "messageType": 2,
+    "seqNumber": 21194,
+    "timestamp": 782.72705078125
+  },
+  {
+    "line": " Red: 1103",
+    "messageType": 2,
+    "seqNumber": 21195,
+    "timestamp": 782.727783203125
+  },
+  {
+    "line": "Blue: 3936",
+    "messageType": 2,
+    "seqNumber": 21196,
+    "timestamp": 782.74609375
+  },
+  {
+    "line": " Green: 3786",
+    "messageType": 2,
+    "seqNumber": 21197,
+    "timestamp": 782.7469482421875
+  },
+  {
+    "line": " Red: 1103",
+    "messageType": 2,
+    "seqNumber": 21198,
+    "timestamp": 782.7481689453125
+  },
+  {
+    "line": "Blue: 3936",
+    "messageType": 2,
+    "seqNumber": 21199,
+    "timestamp": 782.7667846679688
+  },
+  {
+    "line": " Green: 3786",
+    "messageType": 2,
+    "seqNumber": 21200,
+    "timestamp": 782.7680053710938
+  },
+  {
+    "line": " Red: 1103",
+    "messageType": 2,
+    "seqNumber": 21201,
+    "timestamp": 782.7683715820312
+  },
+  {
+    "line": "Blue: 3936",
+    "messageType": 2,
+    "seqNumber": 21202,
+    "timestamp": 782.7857055664062
+  },
+  {
+    "line": " Green: 3786",
+    "messageType": 2,
+    "seqNumber": 21203,
+    "timestamp": 782.7865600585938
+  },
+  {
+    "line": " Red: 1103",
+    "messageType": 2,
+    "seqNumber": 21204,
+    "timestamp": 782.7874755859375
+  },
+  {
+    "line": "Blue: 3936",
+    "messageType": 2,
+    "seqNumber": 21205,
+    "timestamp": 782.8063354492188
+  },
+  {
+    "line": " Green: 3786",
+    "messageType": 2,
+    "seqNumber": 21206,
+    "timestamp": 782.8073120117188
+  },
+  {
+    "line": " Red: 1103",
+    "messageType": 2,
+    "seqNumber": 21207,
+    "timestamp": 782.8087158203125
+  },
+  {
+    "line": "Blue: 4016",
+    "messageType": 2,
+    "seqNumber": 21208,
+    "timestamp": 782.8262329101562
+  },
+  {
+    "line": " Green: 3859",
+    "messageType": 2,
+    "seqNumber": 21209,
+    "timestamp": 782.8272094726562
+  },
+  {
+    "line": " Red: 1123",
+    "messageType": 2,
+    "seqNumber": 21210,
+    "timestamp": 782.8287353515625
+  },
+  {
+    "line": "Blue: 4016",
+    "messageType": 2,
+    "seqNumber": 21211,
+    "timestamp": 782.8463134765625
+  },
+  {
+    "line": " Green: 3859",
+    "messageType": 2,
+    "seqNumber": 21212,
+    "timestamp": 782.846923828125
+  },
+  {
+    "line": " Red: 1123",
+    "messageType": 2,
+    "seqNumber": 21213,
+    "timestamp": 782.8473510742188
+  },
+  {
+    "line": "Blue: 4016",
+    "messageType": 2,
+    "seqNumber": 21214,
+    "timestamp": 782.8660278320312
+  },
+  {
+    "line": " Green: 3859",
+    "messageType": 2,
+    "seqNumber": 21215,
+    "timestamp": 782.86669921875
+  },
+  {
+    "line": " Red: 1123",
+    "messageType": 2,
+    "seqNumber": 21216,
+    "timestamp": 782.867919921875
+  },
+  {
+    "line": "Blue: 4016",
+    "messageType": 2,
+    "seqNumber": 21217,
+    "timestamp": 782.8880615234375
+  },
+  {
+    "line": " Green: 3859",
+    "messageType": 2,
+    "seqNumber": 21218,
+    "timestamp": 782.888916015625
+  },
+  {
+    "line": " Red: 1123",
+    "messageType": 2,
+    "seqNumber": 21219,
+    "timestamp": 782.889404296875
+  },
+  {
+    "line": "Blue: 4016",
+    "messageType": 2,
+    "seqNumber": 21220,
+    "timestamp": 782.9057006835938
+  },
+  {
+    "line": " Green: 3859",
+    "messageType": 2,
+    "seqNumber": 21221,
+    "timestamp": 782.9061889648438
+  },
+  {
+    "line": " Red: 1123",
+    "messageType": 2,
+    "seqNumber": 21222,
+    "timestamp": 782.9068603515625
+  },
+  {
+    "line": "Blue: 4331",
+    "messageType": 2,
+    "seqNumber": 21223,
+    "timestamp": 782.9256591796875
+  },
+  {
+    "line": " Green: 4156",
+    "messageType": 2,
+    "seqNumber": 21224,
+    "timestamp": 782.9263916015625
+  },
+  {
+    "line": " Red: 1207",
+    "messageType": 2,
+    "seqNumber": 21225,
+    "timestamp": 782.9268188476562
+  },
+  {
+    "line": "Blue: 4331",
+    "messageType": 2,
+    "seqNumber": 21226,
+    "timestamp": 782.9463500976562
+  },
+  {
+    "line": " Green: 4156",
+    "messageType": 2,
+    "seqNumber": 21227,
+    "timestamp": 782.9470825195312
+  },
+  {
+    "line": " Red: 1207",
+    "messageType": 2,
+    "seqNumber": 21228,
+    "timestamp": 782.9476318359375
+  },
+  {
+    "line": "Blue: 4331",
+    "messageType": 2,
+    "seqNumber": 21229,
+    "timestamp": 782.9658203125
+  },
+  {
+    "line": " Green: 4156",
+    "messageType": 2,
+    "seqNumber": 21230,
+    "timestamp": 782.9664916992188
+  },
+  {
+    "line": " Red: 1207",
+    "messageType": 2,
+    "seqNumber": 21231,
+    "timestamp": 782.9668579101562
+  },
+  {
+    "line": "Blue: 4331",
+    "messageType": 2,
+    "seqNumber": 21232,
+    "timestamp": 782.9856567382812
+  },
+  {
+    "line": " Green: 4156",
+    "messageType": 2,
+    "seqNumber": 21233,
+    "timestamp": 782.9860229492188
+  },
+  {
+    "line": " Red: 1207",
+    "messageType": 2,
+    "seqNumber": 21234,
+    "timestamp": 782.9862670898438
+  },
+  {
+    "line": "Blue: 4331",
+    "messageType": 2,
+    "seqNumber": 21235,
+    "timestamp": 783.0057373046875
+  },
+  {
+    "line": " Green: 4156",
+    "messageType": 2,
+    "seqNumber": 21236,
+    "timestamp": 783.0060424804688
+  },
+  {
+    "line": " Red: 1207",
+    "messageType": 2,
+    "seqNumber": 21237,
+    "timestamp": 783.00634765625
+  },
+  {
+    "line": "Blue: 4604",
+    "messageType": 2,
+    "seqNumber": 21238,
+    "timestamp": 783.0257568359375
+  },
+  {
+    "line": " Green: 4415",
+    "messageType": 2,
+    "seqNumber": 21239,
+    "timestamp": 783.0264282226562
+  },
+  {
+    "line": " Red: 1281",
+    "messageType": 2,
+    "seqNumber": 21240,
+    "timestamp": 783.0272827148438
+  },
+  {
+    "line": "Blue: 4604",
+    "messageType": 2,
+    "seqNumber": 21241,
+    "timestamp": 783.0457153320312
+  },
+  {
+    "line": " Green: 4415",
+    "messageType": 2,
+    "seqNumber": 21242,
+    "timestamp": 783.046142578125
+  },
+  {
+    "line": " Red: 1281",
+    "messageType": 2,
+    "seqNumber": 21243,
+    "timestamp": 783.0471801757812
+  },
+  {
+    "line": "Blue: 4604",
+    "messageType": 2,
+    "seqNumber": 21244,
+    "timestamp": 783.0657958984375
+  },
+  {
+    "line": " Green: 4415",
+    "messageType": 2,
+    "seqNumber": 21245,
+    "timestamp": 783.0662231445312
+  },
+  {
+    "line": " Red: 1281",
+    "messageType": 2,
+    "seqNumber": 21246,
+    "timestamp": 783.0664672851562
+  },
+  {
+    "line": "Blue: 4604",
+    "messageType": 2,
+    "seqNumber": 21247,
+    "timestamp": 783.0863037109375
+  },
+  {
+    "line": " Green: 4415",
+    "messageType": 2,
+    "seqNumber": 21248,
+    "timestamp": 783.0872192382812
+  },
+  {
+    "line": " Red: 1281",
+    "messageType": 2,
+    "seqNumber": 21249,
+    "timestamp": 783.0882568359375
+  },
+  {
+    "line": "Blue: 4604",
+    "messageType": 2,
+    "seqNumber": 21250,
+    "timestamp": 783.1062622070312
+  },
+  {
+    "line": " Green: 4415",
+    "messageType": 2,
+    "seqNumber": 21251,
+    "timestamp": 783.10693359375
+  },
+  {
+    "line": " Red: 1281",
+    "messageType": 2,
+    "seqNumber": 21252,
+    "timestamp": 783.1072998046875
+  },
+  {
+    "line": "Blue: 4464",
+    "messageType": 2,
+    "seqNumber": 21253,
+    "timestamp": 783.1257934570312
+  },
+  {
+    "line": " Green: 4282",
+    "messageType": 2,
+    "seqNumber": 21254,
+    "timestamp": 783.126708984375
+  },
+  {
+    "line": " Red: 1244",
+    "messageType": 2,
+    "seqNumber": 21255,
+    "timestamp": 783.1277465820312
+  },
+  {
+    "line": "Blue: 4464",
+    "messageType": 2,
+    "seqNumber": 21256,
+    "timestamp": 783.145751953125
+  },
+  {
+    "line": " Green: 4282",
+    "messageType": 2,
+    "seqNumber": 21257,
+    "timestamp": 783.1465454101562
+  },
+  {
+    "line": " Red: 1244",
+    "messageType": 2,
+    "seqNumber": 21258,
+    "timestamp": 783.1471557617188
+  },
+  {
+    "line": "Blue: 4464",
+    "messageType": 2,
+    "seqNumber": 21259,
+    "timestamp": 783.1658325195312
+  },
+  {
+    "line": " Green: 4282",
+    "messageType": 2,
+    "seqNumber": 21260,
+    "timestamp": 783.167236328125
+  },
+  {
+    "line": " Red: 1244",
+    "messageType": 2,
+    "seqNumber": 21261,
+    "timestamp": 783.1683349609375
+  },
+  {
+    "line": "Blue: 4464",
+    "messageType": 2,
+    "seqNumber": 21262,
+    "timestamp": 783.1862182617188
+  },
+  {
+    "line": " Green: 4282",
+    "messageType": 2,
+    "seqNumber": 21263,
+    "timestamp": 783.1868286132812
+  },
+  {
+    "line": " Red: 1244",
+    "messageType": 2,
+    "seqNumber": 21264,
+    "timestamp": 783.1873779296875
+  },
+  {
+    "line": "Blue: 4464",
+    "messageType": 2,
+    "seqNumber": 21265,
+    "timestamp": 783.205810546875
+  },
+  {
+    "line": " Green: 4282",
+    "messageType": 2,
+    "seqNumber": 21266,
+    "timestamp": 783.2061767578125
+  },
+  {
+    "line": " Red: 1244",
+    "messageType": 2,
+    "seqNumber": 21267,
+    "timestamp": 783.2064819335938
+  },
+  {
+    "line": "Blue: 4204",
+    "messageType": 2,
+    "seqNumber": 21268,
+    "timestamp": 783.2257690429688
+  },
+  {
+    "line": " Green: 4037",
+    "messageType": 2,
+    "seqNumber": 21269,
+    "timestamp": 783.22607421875
+  },
+  {
+    "line": " Red: 1175",
+    "messageType": 2,
+    "seqNumber": 21270,
+    "timestamp": 783.2264404296875
+  },
+  {
+    "line": "Blue: 4204",
+    "messageType": 2,
+    "seqNumber": 21271,
+    "timestamp": 783.246337890625
+  },
+  {
+    "line": " Green: 4037",
+    "messageType": 2,
+    "seqNumber": 21272,
+    "timestamp": 783.2472534179688
+  },
+  {
+    "line": " Red: 1175",
+    "messageType": 2,
+    "seqNumber": 21273,
+    "timestamp": 783.2490844726562
+  },
+  {
+    "line": "Blue: 4204",
+    "messageType": 2,
+    "seqNumber": 21274,
+    "timestamp": 783.2662353515625
+  },
+  {
+    "line": " Green: 4037",
+    "messageType": 2,
+    "seqNumber": 21275,
+    "timestamp": 783.2672119140625
+  },
+  {
+    "line": " Red: 1175",
+    "messageType": 2,
+    "seqNumber": 21276,
+    "timestamp": 783.2677612304688
+  },
+  {
+    "line": "Blue: 4204",
+    "messageType": 2,
+    "seqNumber": 21277,
+    "timestamp": 783.2857055664062
+  },
+  {
+    "line": " Green: 4037",
+    "messageType": 2,
+    "seqNumber": 21278,
+    "timestamp": 783.286376953125
+  },
+  {
+    "line": " Red: 1175",
+    "messageType": 2,
+    "seqNumber": 21279,
+    "timestamp": 783.2874755859375
+  },
+  {
+    "line": "Blue: 4204",
+    "messageType": 2,
+    "seqNumber": 21280,
+    "timestamp": 783.3057861328125
+  },
+  {
+    "line": " Green: 4037",
+    "messageType": 2,
+    "seqNumber": 21281,
+    "timestamp": 783.3065185546875
+  },
+  {
+    "line": " Red: 1175",
+    "messageType": 2,
+    "seqNumber": 21282,
+    "timestamp": 783.306884765625
+  },
+  {
+    "line": "Blue: 3863",
+    "messageType": 2,
+    "seqNumber": 21283,
+    "timestamp": 783.3258666992188
+  },
+  {
+    "line": " Green: 3716",
+    "messageType": 2,
+    "seqNumber": 21284,
+    "timestamp": 783.3265380859375
+  },
+  {
+    "line": " Red: 1084",
+    "messageType": 2,
+    "seqNumber": 21285,
+    "timestamp": 783.3276977539062
+  },
+  {
+    "line": "Blue: 3863",
+    "messageType": 2,
+    "seqNumber": 21286,
+    "timestamp": 783.3458862304688
+  },
+  {
+    "line": " Green: 3716",
+    "messageType": 2,
+    "seqNumber": 21287,
+    "timestamp": 783.3463745117188
+  },
+  {
+    "line": " Red: 1084",
+    "messageType": 2,
+    "seqNumber": 21288,
+    "timestamp": 783.3466796875
+  },
+  {
+    "line": "Blue: 3863",
+    "messageType": 2,
+    "seqNumber": 21289,
+    "timestamp": 783.36572265625
+  },
+  {
+    "line": " Green: 3716",
+    "messageType": 2,
+    "seqNumber": 21290,
+    "timestamp": 783.3660888671875
+  },
+  {
+    "line": " Red: 1084",
+    "messageType": 2,
+    "seqNumber": 21291,
+    "timestamp": 783.3665161132812
+  },
+  {
+    "line": "Blue: 3863",
+    "messageType": 2,
+    "seqNumber": 21292,
+    "timestamp": 783.3858642578125
+  },
+  {
+    "line": " Green: 3716",
+    "messageType": 2,
+    "seqNumber": 21293,
+    "timestamp": 783.386474609375
+  },
+  {
+    "line": " Red: 1084",
+    "messageType": 2,
+    "seqNumber": 21294,
+    "timestamp": 783.3876953125
+  },
+  {
+    "line": "Blue: 3863",
+    "messageType": 2,
+    "seqNumber": 21295,
+    "timestamp": 783.40576171875
+  },
+  {
+    "line": " Green: 3716",
+    "messageType": 2,
+    "seqNumber": 21296,
+    "timestamp": 783.4060668945312
+  },
+  {
+    "line": " Red: 1084",
+    "messageType": 2,
+    "seqNumber": 21297,
+    "timestamp": 783.4063110351562
+  },
+  {
+    "line": "Blue: 3798",
+    "messageType": 2,
+    "seqNumber": 21298,
+    "timestamp": 783.42578125
+  },
+  {
+    "line": " Green: 3654",
+    "messageType": 2,
+    "seqNumber": 21299,
+    "timestamp": 783.4261474609375
+  },
+  {
+    "line": " Red: 1065",
+    "messageType": 2,
+    "seqNumber": 21300,
+    "timestamp": 783.4263916015625
+  },
+  {
+    "line": "Blue: 3798",
+    "messageType": 2,
+    "seqNumber": 21301,
+    "timestamp": 783.4463500976562
+  },
+  {
+    "line": " Green: 3654",
+    "messageType": 2,
+    "seqNumber": 21302,
+    "timestamp": 783.4476928710938
+  },
+  {
+    "line": " Red: 1065",
+    "messageType": 2,
+    "seqNumber": 21303,
+    "timestamp": 783.4480590820312
+  },
+  {
+    "line": "Blue: 3798",
+    "messageType": 2,
+    "seqNumber": 21304,
+    "timestamp": 783.46630859375
+  },
+  {
+    "line": " Green: 3654",
+    "messageType": 2,
+    "seqNumber": 21305,
+    "timestamp": 783.4673461914062
+  },
+  {
+    "line": " Red: 1065",
+    "messageType": 2,
+    "seqNumber": 21306,
+    "timestamp": 783.468017578125
+  },
+  {
+    "line": "Blue: 3798",
+    "messageType": 2,
+    "seqNumber": 21307,
+    "timestamp": 783.4857177734375
+  },
+  {
+    "line": " Green: 3654",
+    "messageType": 2,
+    "seqNumber": 21308,
+    "timestamp": 783.4860229492188
+  },
+  {
+    "line": " Red: 1065",
+    "messageType": 2,
+    "seqNumber": 21309,
+    "timestamp": 783.486328125
+  },
+  {
+    "line": "Blue: 3798",
+    "messageType": 2,
+    "seqNumber": 21310,
+    "timestamp": 783.5062866210938
+  },
+  {
+    "line": " Green: 3654",
+    "messageType": 2,
+    "seqNumber": 21311,
+    "timestamp": 783.507568359375
+  },
+  {
+    "line": " Red: 1065",
+    "messageType": 2,
+    "seqNumber": 21312,
+    "timestamp": 783.5084838867188
+  },
+  {
+    "line": "Blue: 3845",
+    "messageType": 2,
+    "seqNumber": 21313,
+    "timestamp": 783.5263061523438
+  },
+  {
+    "line": " Green: 3697",
+    "messageType": 2,
+    "seqNumber": 21314,
+    "timestamp": 783.5272827148438
+  },
+  {
+    "line": " Red: 1077",
+    "messageType": 2,
+    "seqNumber": 21315,
+    "timestamp": 783.5286865234375
+  },
+  {
+    "line": "Blue: 3845",
+    "messageType": 2,
+    "seqNumber": 21316,
+    "timestamp": 783.5465698242188
+  },
+  {
+    "line": " Green: 3697",
+    "messageType": 2,
+    "seqNumber": 21317,
+    "timestamp": 783.5471801757812
+  },
+  {
+    "line": " Red: 1077",
+    "messageType": 2,
+    "seqNumber": 21318,
+    "timestamp": 783.5477905273438
+  },
+  {
+    "line": "Blue: 3845",
+    "messageType": 2,
+    "seqNumber": 21319,
+    "timestamp": 783.5658569335938
+  },
+  {
+    "line": " Green: 3697",
+    "messageType": 2,
+    "seqNumber": 21320,
+    "timestamp": 783.5665283203125
+  },
+  {
+    "line": " Red: 1077",
+    "messageType": 2,
+    "seqNumber": 21321,
+    "timestamp": 783.56689453125
+  },
+  {
+    "line": "Blue: 3845",
+    "messageType": 2,
+    "seqNumber": 21322,
+    "timestamp": 783.58642578125
+  },
+  {
+    "line": " Green: 3697",
+    "messageType": 2,
+    "seqNumber": 21323,
+    "timestamp": 783.587158203125
+  },
+  {
+    "line": " Red: 1077",
+    "messageType": 2,
+    "seqNumber": 21324,
+    "timestamp": 783.5875244140625
+  },
+  {
+    "line": "Blue: 3845",
+    "messageType": 2,
+    "seqNumber": 21325,
+    "timestamp": 783.6061401367188
+  },
+  {
+    "line": " Green: 3697",
+    "messageType": 2,
+    "seqNumber": 21326,
+    "timestamp": 783.6066284179688
+  },
+  {
+    "line": " Red: 1077",
+    "messageType": 2,
+    "seqNumber": 21327,
+    "timestamp": 783.6072998046875
+  },
+  {
+    "line": "Blue: 3733",
+    "messageType": 2,
+    "seqNumber": 21328,
+    "timestamp": 783.6262817382812
+  },
+  {
+    "line": " Green: 3592",
+    "messageType": 2,
+    "seqNumber": 21329,
+    "timestamp": 783.6268920898438
+  },
+  {
+    "line": " Red: 1048",
+    "messageType": 2,
+    "seqNumber": 21330,
+    "timestamp": 783.6290893554688
+  },
+  {
+    "line": "Blue: 3733",
+    "messageType": 2,
+    "seqNumber": 21331,
+    "timestamp": 783.6456909179688
+  },
+  {
+    "line": " Green: 3592",
+    "messageType": 2,
+    "seqNumber": 21332,
+    "timestamp": 783.6464233398438
+  },
+  {
+    "line": " Red: 1048",
+    "messageType": 2,
+    "seqNumber": 21333,
+    "timestamp": 783.6469116210938
+  },
+  {
+    "line": "Blue: 3733",
+    "messageType": 2,
+    "seqNumber": 21334,
+    "timestamp": 783.6658935546875
+  },
+  {
+    "line": " Green: 3592",
+    "messageType": 2,
+    "seqNumber": 21335,
+    "timestamp": 783.6665649414062
+  },
+  {
+    "line": " Red: 1048",
+    "messageType": 2,
+    "seqNumber": 21336,
+    "timestamp": 783.6673583984375
+  },
+  {
+    "line": "Blue: 3733",
+    "messageType": 2,
+    "seqNumber": 21337,
+    "timestamp": 783.6856689453125
+  },
+  {
+    "line": " Green: 3592",
+    "messageType": 2,
+    "seqNumber": 21338,
+    "timestamp": 783.6864013671875
+  },
+  {
+    "line": " Red: 1048",
+    "messageType": 2,
+    "seqNumber": 21339,
+    "timestamp": 783.6866455078125
+  },
+  {
+    "line": "Blue: 3733",
+    "messageType": 2,
+    "seqNumber": 21340,
+    "timestamp": 783.7056884765625
+  },
+  {
+    "line": " Green: 3592",
+    "messageType": 2,
+    "seqNumber": 21341,
+    "timestamp": 783.7063598632812
+  },
+  {
+    "line": " Red: 1048",
+    "messageType": 2,
+    "seqNumber": 21342,
+    "timestamp": 783.7070922851562
+  },
+  {
+    "line": "Blue: 3749",
+    "messageType": 2,
+    "seqNumber": 21343,
+    "timestamp": 783.7259521484375
+  },
+  {
+    "line": " Green: 3606",
+    "messageType": 2,
+    "seqNumber": 21344,
+    "timestamp": 783.7269287109375
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21345,
+    "timestamp": 783.7276611328125
+  },
+  {
+    "line": "Blue: 3749",
+    "messageType": 2,
+    "seqNumber": 21346,
+    "timestamp": 783.7462158203125
+  },
+  {
+    "line": " Green: 3606",
+    "messageType": 2,
+    "seqNumber": 21347,
+    "timestamp": 783.7467041015625
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21348,
+    "timestamp": 783.748291015625
+  },
+  {
+    "line": "Blue: 3749",
+    "messageType": 2,
+    "seqNumber": 21349,
+    "timestamp": 783.765869140625
+  },
+  {
+    "line": " Green: 3606",
+    "messageType": 2,
+    "seqNumber": 21350,
+    "timestamp": 783.766845703125
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21351,
+    "timestamp": 783.767822265625
+  },
+  {
+    "line": "Blue: 3749",
+    "messageType": 2,
+    "seqNumber": 21352,
+    "timestamp": 783.7857666015625
+  },
+  {
+    "line": " Green: 3606",
+    "messageType": 2,
+    "seqNumber": 21353,
+    "timestamp": 783.7864379882812
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21354,
+    "timestamp": 783.7871704101562
+  },
+  {
+    "line": "Blue: 3749",
+    "messageType": 2,
+    "seqNumber": 21355,
+    "timestamp": 783.805908203125
+  },
+  {
+    "line": " Green: 3606",
+    "messageType": 2,
+    "seqNumber": 21356,
+    "timestamp": 783.806640625
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21357,
+    "timestamp": 783.8070068359375
+  },
+  {
+    "line": "Blue: 3799",
+    "messageType": 2,
+    "seqNumber": 21358,
+    "timestamp": 783.82568359375
+  },
+  {
+    "line": " Green: 3655",
+    "messageType": 2,
+    "seqNumber": 21359,
+    "timestamp": 783.8263549804688
+  },
+  {
+    "line": " Red: 1066",
+    "messageType": 2,
+    "seqNumber": 21360,
+    "timestamp": 783.827392578125
+  },
+  {
+    "line": "Blue: 3799",
+    "messageType": 2,
+    "seqNumber": 21361,
+    "timestamp": 783.8457641601562
+  },
+  {
+    "line": " Green: 3655",
+    "messageType": 2,
+    "seqNumber": 21362,
+    "timestamp": 783.8466796875
+  },
+  {
+    "line": " Red: 1066",
+    "messageType": 2,
+    "seqNumber": 21363,
+    "timestamp": 783.84814453125
+  },
+  {
+    "line": "Blue: 3799",
+    "messageType": 2,
+    "seqNumber": 21364,
+    "timestamp": 783.8658447265625
+  },
+  {
+    "line": " Green: 3655",
+    "messageType": 2,
+    "seqNumber": 21365,
+    "timestamp": 783.866943359375
+  },
+  {
+    "line": " Red: 1066",
+    "messageType": 2,
+    "seqNumber": 21366,
+    "timestamp": 783.8676147460938
+  },
+  {
+    "line": "Blue: 3799",
+    "messageType": 2,
+    "seqNumber": 21367,
+    "timestamp": 783.8858642578125
+  },
+  {
+    "line": " Green: 3655",
+    "messageType": 2,
+    "seqNumber": 21368,
+    "timestamp": 783.8869018554688
+  },
+  {
+    "line": " Red: 1066",
+    "messageType": 2,
+    "seqNumber": 21369,
+    "timestamp": 783.8878173828125
+  },
+  {
+    "line": "Blue: 3799",
+    "messageType": 2,
+    "seqNumber": 21370,
+    "timestamp": 783.9059448242188
+  },
+  {
+    "line": " Green: 3655",
+    "messageType": 2,
+    "seqNumber": 21371,
+    "timestamp": 783.9071044921875
+  },
+  {
+    "line": " Red: 1066",
+    "messageType": 2,
+    "seqNumber": 21372,
+    "timestamp": 783.9076538085938
+  },
+  {
+    "line": "Blue: 3787",
+    "messageType": 2,
+    "seqNumber": 21373,
+    "timestamp": 783.9263305664062
+  },
+  {
+    "line": " Green: 3643",
+    "messageType": 2,
+    "seqNumber": 21374,
+    "timestamp": 783.9271240234375
+  },
+  {
+    "line": " Red: 1063",
+    "messageType": 2,
+    "seqNumber": 21375,
+    "timestamp": 783.92822265625
+  },
+  {
+    "line": "Blue: 3787",
+    "messageType": 2,
+    "seqNumber": 21376,
+    "timestamp": 783.9456787109375
+  },
+  {
+    "line": " Green: 3643",
+    "messageType": 2,
+    "seqNumber": 21377,
+    "timestamp": 783.9462280273438
+  },
+  {
+    "line": " Red: 1063",
+    "messageType": 2,
+    "seqNumber": 21378,
+    "timestamp": 783.9468383789062
+  },
+  {
+    "line": "Blue: 3787",
+    "messageType": 2,
+    "seqNumber": 21379,
+    "timestamp": 783.96630859375
+  },
+  {
+    "line": " Green: 3643",
+    "messageType": 2,
+    "seqNumber": 21380,
+    "timestamp": 783.9668579101562
+  },
+  {
+    "line": " Red: 1063",
+    "messageType": 2,
+    "seqNumber": 21381,
+    "timestamp": 783.9681396484375
+  },
+  {
+    "line": "Blue: 3787",
+    "messageType": 2,
+    "seqNumber": 21382,
+    "timestamp": 783.9862670898438
+  },
+  {
+    "line": " Green: 3643",
+    "messageType": 2,
+    "seqNumber": 21383,
+    "timestamp": 783.9866333007812
+  },
+  {
+    "line": " Red: 1063",
+    "messageType": 2,
+    "seqNumber": 21384,
+    "timestamp": 783.987548828125
+  },
+  {
+    "line": "Blue: 3787",
+    "messageType": 2,
+    "seqNumber": 21385,
+    "timestamp": 784.005859375
+  },
+  {
+    "line": " Green: 3643",
+    "messageType": 2,
+    "seqNumber": 21386,
+    "timestamp": 784.0066528320312
+  },
+  {
+    "line": " Red: 1063",
+    "messageType": 2,
+    "seqNumber": 21387,
+    "timestamp": 784.0073852539062
+  },
+  {
+    "line": "Blue: 3603",
+    "messageType": 2,
+    "seqNumber": 21388,
+    "timestamp": 784.0262451171875
+  },
+  {
+    "line": " Green: 3470",
+    "messageType": 2,
+    "seqNumber": 21389,
+    "timestamp": 784.0267333984375
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21390,
+    "timestamp": 784.0286865234375
+  },
+  {
+    "line": "Blue: 3603",
+    "messageType": 2,
+    "seqNumber": 21391,
+    "timestamp": 784.0462036132812
+  },
+  {
+    "line": " Green: 3470",
+    "messageType": 2,
+    "seqNumber": 21392,
+    "timestamp": 784.046875
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21393,
+    "timestamp": 784.04833984375
+  },
+  {
+    "line": "Blue: 3603",
+    "messageType": 2,
+    "seqNumber": 21394,
+    "timestamp": 784.0662231445312
+  },
+  {
+    "line": " Green: 3470",
+    "messageType": 2,
+    "seqNumber": 21395,
+    "timestamp": 784.066650390625
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21396,
+    "timestamp": 784.0682373046875
+  },
+  {
+    "line": "Blue: 3603",
+    "messageType": 2,
+    "seqNumber": 21397,
+    "timestamp": 784.0861206054688
+  },
+  {
+    "line": " Green: 3470",
+    "messageType": 2,
+    "seqNumber": 21398,
+    "timestamp": 784.0868530273438
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21399,
+    "timestamp": 784.0881958007812
+  },
+  {
+    "line": "Blue: 3603",
+    "messageType": 2,
+    "seqNumber": 21400,
+    "timestamp": 784.1063232421875
+  },
+  {
+    "line": " Green: 3470",
+    "messageType": 2,
+    "seqNumber": 21401,
+    "timestamp": 784.1068725585938
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21402,
+    "timestamp": 784.1075439453125
+  },
+  {
+    "line": "Blue: 3442",
+    "messageType": 2,
+    "seqNumber": 21403,
+    "timestamp": 784.126220703125
+  },
+  {
+    "line": " Green: 3319",
+    "messageType": 2,
+    "seqNumber": 21404,
+    "timestamp": 784.12744140625
+  },
+  {
+    "line": " Red: 972",
+    "messageType": 2,
+    "seqNumber": 21405,
+    "timestamp": 784.1286010742188
+  },
+  {
+    "line": "Blue: 3442",
+    "messageType": 2,
+    "seqNumber": 21406,
+    "timestamp": 784.1461181640625
+  },
+  {
+    "line": " Green: 3319",
+    "messageType": 2,
+    "seqNumber": 21407,
+    "timestamp": 784.1469116210938
+  },
+  {
+    "line": " Red: 972",
+    "messageType": 2,
+    "seqNumber": 21408,
+    "timestamp": 784.1485595703125
+  },
+  {
+    "line": "Blue: 3442",
+    "messageType": 2,
+    "seqNumber": 21409,
+    "timestamp": 784.1658935546875
+  },
+  {
+    "line": " Green: 3319",
+    "messageType": 2,
+    "seqNumber": 21410,
+    "timestamp": 784.1668701171875
+  },
+  {
+    "line": " Red: 972",
+    "messageType": 2,
+    "seqNumber": 21411,
+    "timestamp": 784.1683959960938
+  },
+  {
+    "line": "Blue: 3442",
+    "messageType": 2,
+    "seqNumber": 21412,
+    "timestamp": 784.1862182617188
+  },
+  {
+    "line": " Green: 3319",
+    "messageType": 2,
+    "seqNumber": 21413,
+    "timestamp": 784.1865844726562
+  },
+  {
+    "line": " Red: 972",
+    "messageType": 2,
+    "seqNumber": 21414,
+    "timestamp": 784.188232421875
+  },
+  {
+    "line": "Blue: 3442",
+    "messageType": 2,
+    "seqNumber": 21415,
+    "timestamp": 784.206298828125
+  },
+  {
+    "line": " Green: 3319",
+    "messageType": 2,
+    "seqNumber": 21416,
+    "timestamp": 784.2068481445312
+  },
+  {
+    "line": " Red: 972",
+    "messageType": 2,
+    "seqNumber": 21417,
+    "timestamp": 784.2071533203125
+  },
+  {
+    "line": "Blue: 3527",
+    "messageType": 2,
+    "seqNumber": 21418,
+    "timestamp": 784.2257690429688
+  },
+  {
+    "line": " Green: 3398",
+    "messageType": 2,
+    "seqNumber": 21419,
+    "timestamp": 784.2265625
+  },
+  {
+    "line": " Red: 994",
+    "messageType": 2,
+    "seqNumber": 21420,
+    "timestamp": 784.22705078125
+  },
+  {
+    "line": "Blue: 3527",
+    "messageType": 2,
+    "seqNumber": 21421,
+    "timestamp": 784.2462158203125
+  },
+  {
+    "line": " Green: 3398",
+    "messageType": 2,
+    "seqNumber": 21422,
+    "timestamp": 784.2470092773438
+  },
+  {
+    "line": " Red: 994",
+    "messageType": 2,
+    "seqNumber": 21423,
+    "timestamp": 784.2479858398438
+  },
+  {
+    "line": "Blue: 3527",
+    "messageType": 2,
+    "seqNumber": 21424,
+    "timestamp": 784.2662963867188
+  },
+  {
+    "line": " Green: 3398",
+    "messageType": 2,
+    "seqNumber": 21425,
+    "timestamp": 784.2680053710938
+  },
+  {
+    "line": " Red: 994",
+    "messageType": 2,
+    "seqNumber": 21426,
+    "timestamp": 784.2686767578125
+  },
+  {
+    "line": "Blue: 3527",
+    "messageType": 2,
+    "seqNumber": 21427,
+    "timestamp": 784.2862548828125
+  },
+  {
+    "line": " Green: 3398",
+    "messageType": 2,
+    "seqNumber": 21428,
+    "timestamp": 784.2872924804688
+  },
+  {
+    "line": " Red: 994",
+    "messageType": 2,
+    "seqNumber": 21429,
+    "timestamp": 784.2884521484375
+  },
+  {
+    "line": "Blue: 3527",
+    "messageType": 2,
+    "seqNumber": 21430,
+    "timestamp": 784.3062133789062
+  },
+  {
+    "line": " Green: 3398",
+    "messageType": 2,
+    "seqNumber": 21431,
+    "timestamp": 784.3071899414062
+  },
+  {
+    "line": " Red: 994",
+    "messageType": 2,
+    "seqNumber": 21432,
+    "timestamp": 784.3075561523438
+  },
+  {
+    "line": "Blue: 3610",
+    "messageType": 2,
+    "seqNumber": 21433,
+    "timestamp": 784.3262329101562
+  },
+  {
+    "line": " Green: 3477",
+    "messageType": 2,
+    "seqNumber": 21434,
+    "timestamp": 784.326904296875
+  },
+  {
+    "line": " Red: 1016",
+    "messageType": 2,
+    "seqNumber": 21435,
+    "timestamp": 784.3276977539062
+  },
+  {
+    "line": "Blue: 3610",
+    "messageType": 2,
+    "seqNumber": 21436,
+    "timestamp": 784.3462524414062
+  },
+  {
+    "line": " Green: 3477",
+    "messageType": 2,
+    "seqNumber": 21437,
+    "timestamp": 784.3468627929688
+  },
+  {
+    "line": " Red: 1016",
+    "messageType": 2,
+    "seqNumber": 21438,
+    "timestamp": 784.3490600585938
+  },
+  {
+    "line": "Blue: 3610",
+    "messageType": 2,
+    "seqNumber": 21439,
+    "timestamp": 784.3658447265625
+  },
+  {
+    "line": " Green: 3477",
+    "messageType": 2,
+    "seqNumber": 21440,
+    "timestamp": 784.3665771484375
+  },
+  {
+    "line": " Red: 1016",
+    "messageType": 2,
+    "seqNumber": 21441,
+    "timestamp": 784.3676147460938
+  },
+  {
+    "line": "Blue: 3610",
+    "messageType": 2,
+    "seqNumber": 21442,
+    "timestamp": 784.3858642578125
+  },
+  {
+    "line": " Green: 3477",
+    "messageType": 2,
+    "seqNumber": 21443,
+    "timestamp": 784.3866577148438
+  },
+  {
+    "line": " Red: 1016",
+    "messageType": 2,
+    "seqNumber": 21444,
+    "timestamp": 784.3872680664062
+  },
+  {
+    "line": "Blue: 3610",
+    "messageType": 2,
+    "seqNumber": 21445,
+    "timestamp": 784.4058227539062
+  },
+  {
+    "line": " Green: 3477",
+    "messageType": 2,
+    "seqNumber": 21446,
+    "timestamp": 784.4066772460938
+  },
+  {
+    "line": " Red: 1016",
+    "messageType": 2,
+    "seqNumber": 21447,
+    "timestamp": 784.4071044921875
+  },
+  {
+    "line": "Blue: 3665",
+    "messageType": 2,
+    "seqNumber": 21448,
+    "timestamp": 784.4256591796875
+  },
+  {
+    "line": " Green: 3529",
+    "messageType": 2,
+    "seqNumber": 21449,
+    "timestamp": 784.4263305664062
+  },
+  {
+    "line": " Red: 1031",
+    "messageType": 2,
+    "seqNumber": 21450,
+    "timestamp": 784.4266967773438
+  },
+  {
+    "line": "Blue: 3665",
+    "messageType": 2,
+    "seqNumber": 21451,
+    "timestamp": 784.4462890625
+  },
+  {
+    "line": " Green: 3529",
+    "messageType": 2,
+    "seqNumber": 21452,
+    "timestamp": 784.4470825195312
+  },
+  {
+    "line": " Red: 1031",
+    "messageType": 2,
+    "seqNumber": 21453,
+    "timestamp": 784.4478759765625
+  },
+  {
+    "line": "Blue: 3665",
+    "messageType": 2,
+    "seqNumber": 21454,
+    "timestamp": 784.4663696289062
+  },
+  {
+    "line": " Green: 3529",
+    "messageType": 2,
+    "seqNumber": 21455,
+    "timestamp": 784.4668579101562
+  },
+  {
+    "line": " Red: 1031",
+    "messageType": 2,
+    "seqNumber": 21456,
+    "timestamp": 784.4680786132812
+  },
+  {
+    "line": "Blue: 3665",
+    "messageType": 2,
+    "seqNumber": 21457,
+    "timestamp": 784.4861450195312
+  },
+  {
+    "line": " Green: 3529",
+    "messageType": 2,
+    "seqNumber": 21458,
+    "timestamp": 784.4868774414062
+  },
+  {
+    "line": " Red: 1031",
+    "messageType": 2,
+    "seqNumber": 21459,
+    "timestamp": 784.4876708984375
+  },
+  {
+    "line": "Blue: 3665",
+    "messageType": 2,
+    "seqNumber": 21460,
+    "timestamp": 784.5066528320312
+  },
+  {
+    "line": " Green: 3529",
+    "messageType": 2,
+    "seqNumber": 21461,
+    "timestamp": 784.5078125
+  },
+  {
+    "line": " Red: 1031",
+    "messageType": 2,
+    "seqNumber": 21462,
+    "timestamp": 784.5089721679688
+  },
+  {
+    "line": "Blue: 3740",
+    "messageType": 2,
+    "seqNumber": 21463,
+    "timestamp": 784.5257568359375
+  },
+  {
+    "line": " Green: 3599",
+    "messageType": 2,
+    "seqNumber": 21464,
+    "timestamp": 784.5266723632812
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21465,
+    "timestamp": 784.5283203125
+  },
+  {
+    "line": "Blue: 3740",
+    "messageType": 2,
+    "seqNumber": 21466,
+    "timestamp": 784.545654296875
+  },
+  {
+    "line": " Green: 3599",
+    "messageType": 2,
+    "seqNumber": 21467,
+    "timestamp": 784.5462646484375
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21468,
+    "timestamp": 784.5481567382812
+  },
+  {
+    "line": "Blue: 3740",
+    "messageType": 2,
+    "seqNumber": 21469,
+    "timestamp": 784.5657348632812
+  },
+  {
+    "line": " Green: 3599",
+    "messageType": 2,
+    "seqNumber": 21470,
+    "timestamp": 784.5664672851562
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21471,
+    "timestamp": 784.5680541992188
+  },
+  {
+    "line": "Blue: 3740",
+    "messageType": 2,
+    "seqNumber": 21472,
+    "timestamp": 784.5863037109375
+  },
+  {
+    "line": " Green: 3599",
+    "messageType": 2,
+    "seqNumber": 21473,
+    "timestamp": 784.5868530273438
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21474,
+    "timestamp": 784.58740234375
+  },
+  {
+    "line": "Blue: 3740",
+    "messageType": 2,
+    "seqNumber": 21475,
+    "timestamp": 784.605712890625
+  },
+  {
+    "line": " Green: 3599",
+    "messageType": 2,
+    "seqNumber": 21476,
+    "timestamp": 784.6066284179688
+  },
+  {
+    "line": " Red: 1051",
+    "messageType": 2,
+    "seqNumber": 21477,
+    "timestamp": 784.607421875
+  },
+  {
+    "line": "Blue: 3999",
+    "messageType": 2,
+    "seqNumber": 21478,
+    "timestamp": 784.6256713867188
+  },
+  {
+    "line": " Green: 3844",
+    "messageType": 2,
+    "seqNumber": 21479,
+    "timestamp": 784.6266479492188
+  },
+  {
+    "line": " Red: 1121",
+    "messageType": 2,
+    "seqNumber": 21480,
+    "timestamp": 784.627197265625
+  },
+  {
+    "line": "Blue: 3999",
+    "messageType": 2,
+    "seqNumber": 21481,
+    "timestamp": 784.6456909179688
+  },
+  {
+    "line": " Green: 3844",
+    "messageType": 2,
+    "seqNumber": 21482,
+    "timestamp": 784.6466674804688
+  },
+  {
+    "line": " Red: 1121",
+    "messageType": 2,
+    "seqNumber": 21483,
+    "timestamp": 784.6481323242188
+  },
+  {
+    "line": "Blue: 3999",
+    "messageType": 2,
+    "seqNumber": 21484,
+    "timestamp": 784.665771484375
+  },
+  {
+    "line": " Green: 3844",
+    "messageType": 2,
+    "seqNumber": 21485,
+    "timestamp": 784.66650390625
+  },
+  {
+    "line": " Red: 1121",
+    "messageType": 2,
+    "seqNumber": 21486,
+    "timestamp": 784.6679077148438
+  },
+  {
+    "line": "Blue: 3999",
+    "messageType": 2,
+    "seqNumber": 21487,
+    "timestamp": 784.6858520507812
+  },
+  {
+    "line": " Green: 3844",
+    "messageType": 2,
+    "seqNumber": 21488,
+    "timestamp": 784.6865844726562
+  },
+  {
+    "line": " Red: 1121",
+    "messageType": 2,
+    "seqNumber": 21489,
+    "timestamp": 784.6874389648438
+  },
+  {
+    "line": "Blue: 3999",
+    "messageType": 2,
+    "seqNumber": 21490,
+    "timestamp": 784.705810546875
+  },
+  {
+    "line": " Green: 3844",
+    "messageType": 2,
+    "seqNumber": 21491,
+    "timestamp": 784.7064819335938
+  },
+  {
+    "line": " Red: 1121",
+    "messageType": 2,
+    "seqNumber": 21492,
+    "timestamp": 784.7069091796875
+  },
+  {
+    "line": "Blue: 4250",
+    "messageType": 2,
+    "seqNumber": 21493,
+    "timestamp": 784.7257080078125
+  },
+  {
+    "line": " Green: 4081",
+    "messageType": 2,
+    "seqNumber": 21494,
+    "timestamp": 784.7263793945312
+  },
+  {
+    "line": " Red: 1188",
+    "messageType": 2,
+    "seqNumber": 21495,
+    "timestamp": 784.7266235351562
+  },
+  {
+    "line": "Blue: 4250",
+    "messageType": 2,
+    "seqNumber": 21496,
+    "timestamp": 784.745849609375
+  },
+  {
+    "line": " Green: 4081",
+    "messageType": 2,
+    "seqNumber": 21497,
+    "timestamp": 784.7461547851562
+  },
+  {
+    "line": " Red: 1188",
+    "messageType": 2,
+    "seqNumber": 21498,
+    "timestamp": 784.7463989257812
+  },
+  {
+    "line": "Blue: 4250",
+    "messageType": 2,
+    "seqNumber": 21499,
+    "timestamp": 784.766357421875
+  },
+  {
+    "line": " Green: 4081",
+    "messageType": 2,
+    "seqNumber": 21500,
+    "timestamp": 784.7671508789062
+  },
+  {
+    "line": " Red: 1188",
+    "messageType": 2,
+    "seqNumber": 21501,
+    "timestamp": 784.767822265625
+  },
+  {
+    "line": "Blue: 4250",
+    "messageType": 2,
+    "seqNumber": 21502,
+    "timestamp": 784.7862548828125
+  },
+  {
+    "line": " Green: 4081",
+    "messageType": 2,
+    "seqNumber": 21503,
+    "timestamp": 784.7868041992188
+  },
+  {
+    "line": " Red: 1188",
+    "messageType": 2,
+    "seqNumber": 21504,
+    "timestamp": 784.7890014648438
+  },
+  {
+    "line": "Blue: 4250",
+    "messageType": 2,
+    "seqNumber": 21505,
+    "timestamp": 784.806396484375
+  },
+  {
+    "line": " Green: 4081",
+    "messageType": 2,
+    "seqNumber": 21506,
+    "timestamp": 784.80712890625
+  },
+  {
+    "line": " Red: 1188",
+    "messageType": 2,
+    "seqNumber": 21507,
+    "timestamp": 784.8076171875
+  },
+  {
+    "line": "Blue: 4459",
+    "messageType": 2,
+    "seqNumber": 21508,
+    "timestamp": 784.8257446289062
+  },
+  {
+    "line": " Green: 4277",
+    "messageType": 2,
+    "seqNumber": 21509,
+    "timestamp": 784.8264770507812
+  },
+  {
+    "line": " Red: 1242",
+    "messageType": 2,
+    "seqNumber": 21510,
+    "timestamp": 784.8270263671875
+  },
+  {
+    "line": "Blue: 4459",
+    "messageType": 2,
+    "seqNumber": 21511,
+    "timestamp": 784.845703125
+  },
+  {
+    "line": " Green: 4277",
+    "messageType": 2,
+    "seqNumber": 21512,
+    "timestamp": 784.846435546875
+  },
+  {
+    "line": " Red: 1242",
+    "messageType": 2,
+    "seqNumber": 21513,
+    "timestamp": 784.8472900390625
+  },
+  {
+    "line": "Blue: 4459",
+    "messageType": 2,
+    "seqNumber": 21514,
+    "timestamp": 784.8659057617188
+  },
+  {
+    "line": " Green: 4277",
+    "messageType": 2,
+    "seqNumber": 21515,
+    "timestamp": 784.8666381835938
+  },
+  {
+    "line": " Red: 1242",
+    "messageType": 2,
+    "seqNumber": 21516,
+    "timestamp": 784.867431640625
+  },
+  {
+    "line": "Blue: 4459",
+    "messageType": 2,
+    "seqNumber": 21517,
+    "timestamp": 784.8857421875
+  },
+  {
+    "line": " Green: 4277",
+    "messageType": 2,
+    "seqNumber": 21518,
+    "timestamp": 784.8865356445312
+  },
+  {
+    "line": " Red: 1242",
+    "messageType": 2,
+    "seqNumber": 21519,
+    "timestamp": 784.8872680664062
+  },
+  {
+    "line": "Blue: 4459",
+    "messageType": 2,
+    "seqNumber": 21520,
+    "timestamp": 784.9057006835938
+  },
+  {
+    "line": " Green: 4277",
+    "messageType": 2,
+    "seqNumber": 21521,
+    "timestamp": 784.9064331054688
+  },
+  {
+    "line": " Red: 1242",
+    "messageType": 2,
+    "seqNumber": 21522,
+    "timestamp": 784.906982421875
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21523,
+    "timestamp": 784.9263305664062
+  },
+  {
+    "line": " Green: 4116",
+    "messageType": 2,
+    "seqNumber": 21524,
+    "timestamp": 784.9273071289062
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21525,
+    "timestamp": 784.9284057617188
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21526,
+    "timestamp": 784.9462890625
+  },
+  {
+    "line": " Green: 4116",
+    "messageType": 2,
+    "seqNumber": 21527,
+    "timestamp": 784.9476928710938
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21528,
+    "timestamp": 784.9481811523438
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21529,
+    "timestamp": 784.9659423828125
+  },
+  {
+    "line": " Green: 4116",
+    "messageType": 2,
+    "seqNumber": 21530,
+    "timestamp": 784.9669799804688
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21531,
+    "timestamp": 784.9684448242188
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21532,
+    "timestamp": 784.9862670898438
+  },
+  {
+    "line": " Green: 4116",
+    "messageType": 2,
+    "seqNumber": 21533,
+    "timestamp": 784.9874877929688
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21534,
+    "timestamp": 784.988525390625
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21535,
+    "timestamp": 785.0062255859375
+  },
+  {
+    "line": " Green: 4116",
+    "messageType": 2,
+    "seqNumber": 21536,
+    "timestamp": 785.0068359375
+  },
+  {
+    "line": " Red: 1197",
+    "messageType": 2,
+    "seqNumber": 21537,
+    "timestamp": 785.0075073242188
+  },
+  {
+    "line": "Blue: 4288",
+    "messageType": 2,
+    "seqNumber": 21538,
+    "timestamp": 785.026123046875
+  },
+  {
+    "line": " Green: 3842",
+    "messageType": 2,
+    "seqNumber": 21539,
+    "timestamp": 785.0272216796875
+  },
+  {
+    "line": " Red: 1120",
+    "messageType": 2,
+    "seqNumber": 21540,
+    "timestamp": 785.0282592773438
+  },
+  {
+    "line": "Blue: 3996",
+    "messageType": 2,
+    "seqNumber": 21541,
+    "timestamp": 785.0460815429688
+  },
+  {
+    "line": " Green: 3842",
+    "messageType": 2,
+    "seqNumber": 21542,
+    "timestamp": 785.0470581054688
+  },
+  {
+    "line": " Red: 1120",
+    "messageType": 2,
+    "seqNumber": 21543,
+    "timestamp": 785.0482177734375
+  },
+  {
+    "line": "Blue: 3996",
+    "messageType": 2,
+    "seqNumber": 21544,
+    "timestamp": 785.0662231445312
+  },
+  {
+    "line": " Green: 3842",
+    "messageType": 2,
+    "seqNumber": 21545,
+    "timestamp": 785.0668334960938
+  },
+  {
+    "line": " Red: 1120",
+    "messageType": 2,
+    "seqNumber": 21546,
+    "timestamp": 785.06787109375
+  },
+  {
+    "line": "Blue: 3996",
+    "messageType": 2,
+    "seqNumber": 21547,
+    "timestamp": 785.086181640625
+  },
+  {
+    "line": " Green: 3842",
+    "messageType": 2,
+    "seqNumber": 21548,
+    "timestamp": 785.0868530273438
+  },
+  {
+    "line": " Red: 1120",
+    "messageType": 2,
+    "seqNumber": 21549,
+    "timestamp": 785.087646484375
+  },
+  {
+    "line": "Blue: 3996",
+    "messageType": 2,
+    "seqNumber": 21550,
+    "timestamp": 785.1061401367188
+  },
+  {
+    "line": " Green: 3842",
+    "messageType": 2,
+    "seqNumber": 21551,
+    "timestamp": 785.1068725585938
+  },
+  {
+    "line": " Red: 1120",
+    "messageType": 2,
+    "seqNumber": 21552,
+    "timestamp": 785.1073608398438
+  },
+  {
+    "line": "Blue: 3996",
+    "messageType": 2,
+    "seqNumber": 21553,
+    "timestamp": 785.1261596679688
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21554,
+    "timestamp": 785.1268920898438
+  },
+  {
+    "line": " Red: 1112",
+    "messageType": 2,
+    "seqNumber": 21555,
+    "timestamp": 785.1282348632812
+  },
+  {
+    "line": "Blue: 3967",
+    "messageType": 2,
+    "seqNumber": 21556,
+    "timestamp": 785.1461181640625
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21557,
+    "timestamp": 785.1468505859375
+  },
+  {
+    "line": " Red: 1112",
+    "messageType": 2,
+    "seqNumber": 21558,
+    "timestamp": 785.1474609375
+  },
+  {
+    "line": "Blue: 3967",
+    "messageType": 2,
+    "seqNumber": 21559,
+    "timestamp": 785.1663208007812
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21560,
+    "timestamp": 785.1668701171875
+  },
+  {
+    "line": " Red: 1112",
+    "messageType": 2,
+    "seqNumber": 21561,
+    "timestamp": 785.16748046875
+  },
+  {
+    "line": "Blue: 3967",
+    "messageType": 2,
+    "seqNumber": 21562,
+    "timestamp": 785.186279296875
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21563,
+    "timestamp": 785.1875
+  },
+  {
+    "line": " Red: 1112",
+    "messageType": 2,
+    "seqNumber": 21564,
+    "timestamp": 785.1883544921875
+  },
+  {
+    "line": "Blue: 3967",
+    "messageType": 2,
+    "seqNumber": 21565,
+    "timestamp": 785.2062377929688
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21566,
+    "timestamp": 785.2068481445312
+  },
+  {
+    "line": " Red: 1112",
+    "messageType": 2,
+    "seqNumber": 21567,
+    "timestamp": 785.2073974609375
+  },
+  {
+    "line": "Blue: 3967",
+    "messageType": 2,
+    "seqNumber": 21568,
+    "timestamp": 785.2258911132812
+  },
+  {
+    "line": " Green: 3815",
+    "messageType": 2,
+    "seqNumber": 21569,
+    "timestamp": 785.22705078125
+  },
+  {
+    "line": " Red: 1059",
+    "messageType": 2,
+    "seqNumber": 21570,
+    "timestamp": 785.228515625
+  },
+  {
+    "line": "Blue: 3765",
+    "messageType": 2,
+    "seqNumber": 21571,
+    "timestamp": 785.24609375
+  },
+  {
+    "line": " Green: 3624",
+    "messageType": 2,
+    "seqNumber": 21572,
+    "timestamp": 785.246826171875
+  },
+  {
+    "line": " Red: 1059",
+    "messageType": 2,
+    "seqNumber": 21573,
+    "timestamp": 785.2484741210938
+  },
+  {
+    "line": "Blue: 3765",
+    "messageType": 2,
+    "seqNumber": 21574,
+    "timestamp": 785.2662353515625
+  },
+  {
+    "line": " Green: 3624",
+    "messageType": 2,
+    "seqNumber": 21575,
+    "timestamp": 785.2681884765625
+  },
+  {
+    "line": " Red: 1059",
+    "messageType": 2,
+    "seqNumber": 21576,
+    "timestamp": 785.2686157226562
+  },
+  {
+    "line": "Blue: 3765",
+    "messageType": 2,
+    "seqNumber": 21577,
+    "timestamp": 785.2861328125
+  },
+  {
+    "line": " Green: 3624",
+    "messageType": 2,
+    "seqNumber": 21578,
+    "timestamp": 785.2872924804688
+  },
+  {
+    "line": " Red: 1059",
+    "messageType": 2,
+    "seqNumber": 21579,
+    "timestamp": 785.28857421875
+  },
+  {
+    "line": "Blue: 3765",
+    "messageType": 2,
+    "seqNumber": 21580,
+    "timestamp": 785.3062744140625
+  },
+  {
+    "line": " Green: 3624",
+    "messageType": 2,
+    "seqNumber": 21581,
+    "timestamp": 785.3067016601562
+  },
+  {
+    "line": " Red: 1059",
+    "messageType": 2,
+    "seqNumber": 21582,
+    "timestamp": 785.3073120117188
+  },
+  {
+    "line": "Blue: 3765",
+    "messageType": 2,
+    "seqNumber": 21583,
+    "timestamp": 785.326416015625
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21584,
+    "timestamp": 785.328125
+  },
+  {
+    "line": " Red: 981",
+    "messageType": 2,
+    "seqNumber": 21585,
+    "timestamp": 785.3286743164062
+  },
+  {
+    "line": "Blue: 3476",
+    "messageType": 2,
+    "seqNumber": 21586,
+    "timestamp": 785.34619140625
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21587,
+    "timestamp": 785.346923828125
+  },
+  {
+    "line": " Red: 981",
+    "messageType": 2,
+    "seqNumber": 21588,
+    "timestamp": 785.3477172851562
+  },
+  {
+    "line": "Blue: 3476",
+    "messageType": 2,
+    "seqNumber": 21589,
+    "timestamp": 785.3657836914062
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21590,
+    "timestamp": 785.3661499023438
+  },
+  {
+    "line": " Red: 981",
+    "messageType": 2,
+    "seqNumber": 21591,
+    "timestamp": 785.36767578125
+  },
+  {
+    "line": "Blue: 3476",
+    "messageType": 2,
+    "seqNumber": 21592,
+    "timestamp": 785.3858032226562
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21593,
+    "timestamp": 785.3866577148438
+  },
+  {
+    "line": " Red: 981",
+    "messageType": 2,
+    "seqNumber": 21594,
+    "timestamp": 785.3870849609375
+  },
+  {
+    "line": "Blue: 3476",
+    "messageType": 2,
+    "seqNumber": 21595,
+    "timestamp": 785.40576171875
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21596,
+    "timestamp": 785.406494140625
+  },
+  {
+    "line": " Red: 981",
+    "messageType": 2,
+    "seqNumber": 21597,
+    "timestamp": 785.4076538085938
+  },
+  {
+    "line": "Blue: 3476",
+    "messageType": 2,
+    "seqNumber": 21598,
+    "timestamp": 785.42626953125
+  },
+  {
+    "line": " Green: 3351",
+    "messageType": 2,
+    "seqNumber": 21599,
+    "timestamp": 785.4268188476562
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21600,
+    "timestamp": 785.4275512695312
+  },
+  {
+    "line": "Blue: 3228",
+    "messageType": 2,
+    "seqNumber": 21601,
+    "timestamp": 785.4462890625
+  },
+  {
+    "line": " Green: 3118",
+    "messageType": 2,
+    "seqNumber": 21602,
+    "timestamp": 785.4470825195312
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21603,
+    "timestamp": 785.448974609375
+  },
+  {
+    "line": "Blue: 3228",
+    "messageType": 2,
+    "seqNumber": 21604,
+    "timestamp": 785.46630859375
+  },
+  {
+    "line": " Green: 3118",
+    "messageType": 2,
+    "seqNumber": 21605,
+    "timestamp": 785.4669799804688
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21606,
+    "timestamp": 785.4685668945312
+  },
+  {
+    "line": "Blue: 3228",
+    "messageType": 2,
+    "seqNumber": 21607,
+    "timestamp": 785.48583984375
+  },
+  {
+    "line": " Green: 3118",
+    "messageType": 2,
+    "seqNumber": 21608,
+    "timestamp": 785.486572265625
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21609,
+    "timestamp": 785.4869995117188
+  },
+  {
+    "line": "Blue: 3228",
+    "messageType": 2,
+    "seqNumber": 21610,
+    "timestamp": 785.505859375
+  },
+  {
+    "line": " Green: 3118",
+    "messageType": 2,
+    "seqNumber": 21611,
+    "timestamp": 785.506591796875
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21612,
+    "timestamp": 785.5072021484375
+  },
+  {
+    "line": "Blue: 3228",
+    "messageType": 2,
+    "seqNumber": 21613,
+    "timestamp": 785.525634765625
+  },
+  {
+    "line": " Green: 3118",
+    "messageType": 2,
+    "seqNumber": 21614,
+    "timestamp": 785.5264282226562
+  },
+  {
+    "line": " Red: 916",
+    "messageType": 2,
+    "seqNumber": 21615,
+    "timestamp": 785.52685546875
+  },
+  {
+    "line": "Blue: 3260",
+    "messageType": 2,
+    "seqNumber": 21616,
+    "timestamp": 785.5457763671875
+  },
+  {
+    "line": " Green: 3150",
+    "messageType": 2,
+    "seqNumber": 21617,
+    "timestamp": 785.5464477539062
+  },
+  {
+    "line": " Red: 925",
+    "messageType": 2,
+    "seqNumber": 21618,
+    "timestamp": 785.548095703125
+  },
+  {
+    "line": "Blue: 3260",
+    "messageType": 2,
+    "seqNumber": 21619,
+    "timestamp": 785.56591796875
+  },
+  {
+    "line": " Green: 3150",
+    "messageType": 2,
+    "seqNumber": 21620,
+    "timestamp": 785.566650390625
+  },
+  {
+    "line": " Red: 925",
+    "messageType": 2,
+    "seqNumber": 21621,
+    "timestamp": 785.567626953125
+  },
+  {
+    "line": "Blue: 3260",
+    "messageType": 2,
+    "seqNumber": 21622,
+    "timestamp": 785.5858154296875
+  },
+  {
+    "line": " Green: 3150",
+    "messageType": 2,
+    "seqNumber": 21623,
+    "timestamp": 785.5864868164062
+  },
+  {
+    "line": " Red: 925",
+    "messageType": 2,
+    "seqNumber": 21624,
+    "timestamp": 785.5870361328125
+  },
+  {
+    "line": "Blue: 3260",
+    "messageType": 2,
+    "seqNumber": 21625,
+    "timestamp": 785.605712890625
+  },
+  {
+    "line": " Green: 3150",
+    "messageType": 2,
+    "seqNumber": 21626,
+    "timestamp": 785.606689453125
+  },
+  {
+    "line": " Red: 925",
+    "messageType": 2,
+    "seqNumber": 21627,
+    "timestamp": 785.6072387695312
+  },
+  {
+    "line": "Blue: 3260",
+    "messageType": 2,
+    "seqNumber": 21628,
+    "timestamp": 785.625732421875
+  },
+  {
+    "line": " Green: 3150",
+    "messageType": 2,
+    "seqNumber": 21629,
+    "timestamp": 785.6265258789062
+  },
+  {
+    "line": " Red: 925",
+    "messageType": 2,
+    "seqNumber": 21630,
+    "timestamp": 785.6270751953125
+  },
+  {
+    "line": "Blue: 3379",
+    "messageType": 2,
+    "seqNumber": 21631,
+    "timestamp": 785.645751953125
+  },
+  {
+    "line": " Green: 3260",
+    "messageType": 2,
+    "seqNumber": 21632,
+    "timestamp": 785.6464233398438
+  },
+  {
+    "line": " Red: 956",
+    "messageType": 2,
+    "seqNumber": 21633,
+    "timestamp": 785.6472778320312
+  },
+  {
+    "line": "Blue: 3379",
+    "messageType": 2,
+    "seqNumber": 21634,
+    "timestamp": 785.6661987304688
+  },
+  {
+    "line": " Green: 3260",
+    "messageType": 2,
+    "seqNumber": 21635,
+    "timestamp": 785.66748046875
+  },
+  {
+    "line": " Red: 956",
+    "messageType": 2,
+    "seqNumber": 21636,
+    "timestamp": 785.6683349609375
+  },
+  {
+    "line": "Blue: 3379",
+    "messageType": 2,
+    "seqNumber": 21637,
+    "timestamp": 785.686279296875
+  },
+  {
+    "line": " Green: 3260",
+    "messageType": 2,
+    "seqNumber": 21638,
+    "timestamp": 785.6869506835938
+  },
+  {
+    "line": " Red: 956",
+    "messageType": 2,
+    "seqNumber": 21639,
+    "timestamp": 785.6878662109375
+  },
+  {
+    "line": "Blue: 3379",
+    "messageType": 2,
+    "seqNumber": 21640,
+    "timestamp": 785.7057495117188
+  },
+  {
+    "line": " Green: 3260",
+    "messageType": 2,
+    "seqNumber": 21641,
+    "timestamp": 785.7064819335938
+  },
+  {
+    "line": " Red: 956",
+    "messageType": 2,
+    "seqNumber": 21642,
+    "timestamp": 785.7068481445312
+  },
+  {
+    "line": "Blue: 3379",
+    "messageType": 2,
+    "seqNumber": 21643,
+    "timestamp": 785.7260131835938
+  },
+  {
+    "line": " Green: 3260",
+    "messageType": 2,
+    "seqNumber": 21644,
+    "timestamp": 785.7269287109375
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21645,
+    "timestamp": 785.727294921875
+  },
+  {
+    "line": "Blue: 3104",
+    "messageType": 2,
+    "seqNumber": 21646,
+    "timestamp": 785.745849609375
+  },
+  {
+    "line": " Green: 3003",
+    "messageType": 2,
+    "seqNumber": 21647,
+    "timestamp": 785.7461547851562
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21648,
+    "timestamp": 785.7468872070312
+  },
+  {
+    "line": "Blue: 3104",
+    "messageType": 2,
+    "seqNumber": 21649,
+    "timestamp": 785.7658081054688
+  },
+  {
+    "line": " Green: 3003",
+    "messageType": 2,
+    "seqNumber": 21650,
+    "timestamp": 785.76611328125
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21651,
+    "timestamp": 785.7673950195312
+  },
+  {
+    "line": "Blue: 3104",
+    "messageType": 2,
+    "seqNumber": 21652,
+    "timestamp": 785.7866821289062
+  },
+  {
+    "line": " Green: 3003",
+    "messageType": 2,
+    "seqNumber": 21653,
+    "timestamp": 785.7871704101562
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21654,
+    "timestamp": 785.7881469726562
+  },
+  {
+    "line": "Blue: 3104",
+    "messageType": 2,
+    "seqNumber": 21655,
+    "timestamp": 785.8057250976562
+  },
+  {
+    "line": " Green: 3003",
+    "messageType": 2,
+    "seqNumber": 21656,
+    "timestamp": 785.806396484375
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21657,
+    "timestamp": 785.806884765625
+  },
+  {
+    "line": "Blue: 3104",
+    "messageType": 2,
+    "seqNumber": 21658,
+    "timestamp": 785.8257446289062
+  },
+  {
+    "line": " Green: 3003",
+    "messageType": 2,
+    "seqNumber": 21659,
+    "timestamp": 785.8265991210938
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21660,
+    "timestamp": 785.8269653320312
+  },
+  {
+    "line": "Blue: 2854",
+    "messageType": 2,
+    "seqNumber": 21661,
+    "timestamp": 785.8458251953125
+  },
+  {
+    "line": " Green: 2767",
+    "messageType": 2,
+    "seqNumber": 21662,
+    "timestamp": 785.8461303710938
+  },
+  {
+    "line": " Red: 817",
+    "messageType": 2,
+    "seqNumber": 21663,
+    "timestamp": 785.846435546875
+  },
+  {
+    "line": "Blue: 2854",
+    "messageType": 2,
+    "seqNumber": 21664,
+    "timestamp": 785.8659057617188
+  },
+  {
+    "line": " Green: 2767",
+    "messageType": 2,
+    "seqNumber": 21665,
+    "timestamp": 785.8662109375
+  },
+  {
+    "line": " Red: 817",
+    "messageType": 2,
+    "seqNumber": 21666,
+    "timestamp": 785.8665771484375
+  },
+  {
+    "line": "Blue: 2854",
+    "messageType": 2,
+    "seqNumber": 21667,
+    "timestamp": 785.8858032226562
+  },
+  {
+    "line": " Green: 2767",
+    "messageType": 2,
+    "seqNumber": 21668,
+    "timestamp": 785.8861083984375
+  },
+  {
+    "line": " Red: 817",
+    "messageType": 2,
+    "seqNumber": 21669,
+    "timestamp": 785.8865966796875
+  },
+  {
+    "line": "Blue: 2854",
+    "messageType": 2,
+    "seqNumber": 21670,
+    "timestamp": 785.9058227539062
+  },
+  {
+    "line": " Green: 2767",
+    "messageType": 2,
+    "seqNumber": 21671,
+    "timestamp": 785.9061279296875
+  },
+  {
+    "line": " Red: 817",
+    "messageType": 2,
+    "seqNumber": 21672,
+    "timestamp": 785.9063720703125
+  },
+  {
+    "line": "Blue: 2854",
+    "messageType": 2,
+    "seqNumber": 21673,
+    "timestamp": 785.9259033203125
+  },
+  {
+    "line": " Green: 2767",
+    "messageType": 2,
+    "seqNumber": 21674,
+    "timestamp": 785.9262084960938
+  },
+  {
+    "line": " Red: 817",
+    "messageType": 2,
+    "seqNumber": 21675,
+    "timestamp": 785.926513671875
+  },
+  {
+    "line": "Blue: 3016",
+    "messageType": 2,
+    "seqNumber": 21676,
+    "timestamp": 785.94580078125
+  },
+  {
+    "line": " Green: 2918",
+    "messageType": 2,
+    "seqNumber": 21677,
+    "timestamp": 785.9461059570312
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21678,
+    "timestamp": 785.9464721679688
+  },
+  {
+    "line": "Blue: 3016",
+    "messageType": 2,
+    "seqNumber": 21679,
+    "timestamp": 785.9658203125
+  },
+  {
+    "line": " Green: 2918",
+    "messageType": 2,
+    "seqNumber": 21680,
+    "timestamp": 785.9661254882812
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21681,
+    "timestamp": 785.9664306640625
+  },
+  {
+    "line": "Blue: 3016",
+    "messageType": 2,
+    "seqNumber": 21682,
+    "timestamp": 785.98583984375
+  },
+  {
+    "line": " Green: 2918",
+    "messageType": 2,
+    "seqNumber": 21683,
+    "timestamp": 785.9861450195312
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21684,
+    "timestamp": 785.9864501953125
+  },
+  {
+    "line": "Blue: 3016",
+    "messageType": 2,
+    "seqNumber": 21685,
+    "timestamp": 786.0057373046875
+  },
+  {
+    "line": " Green: 2918",
+    "messageType": 2,
+    "seqNumber": 21686,
+    "timestamp": 786.006103515625
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21687,
+    "timestamp": 786.00634765625
+  },
+  {
+    "line": "Blue: 3016",
+    "messageType": 2,
+    "seqNumber": 21688,
+    "timestamp": 786.025634765625
+  },
+  {
+    "line": " Green: 2918",
+    "messageType": 2,
+    "seqNumber": 21689,
+    "timestamp": 786.0260009765625
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21690,
+    "timestamp": 786.0263061523438
+  },
+  {
+    "line": "Blue: 3296",
+    "messageType": 2,
+    "seqNumber": 21691,
+    "timestamp": 786.0458374023438
+  },
+  {
+    "line": " Green: 3182",
+    "messageType": 2,
+    "seqNumber": 21692,
+    "timestamp": 786.046142578125
+  },
+  {
+    "line": " Red: 934",
+    "messageType": 2,
+    "seqNumber": 21693,
+    "timestamp": 786.0464477539062
+  },
+  {
+    "line": "Blue: 3296",
+    "messageType": 2,
+    "seqNumber": 21694,
+    "timestamp": 786.06591796875
+  },
+  {
+    "line": " Green: 3182",
+    "messageType": 2,
+    "seqNumber": 21695,
+    "timestamp": 786.0662841796875
+  },
+  {
+    "line": " Red: 934",
+    "messageType": 2,
+    "seqNumber": 21696,
+    "timestamp": 786.066650390625
+  },
+  {
+    "line": "Blue: 3296",
+    "messageType": 2,
+    "seqNumber": 21697,
+    "timestamp": 786.086181640625
+  },
+  {
+    "line": " Green: 3182",
+    "messageType": 2,
+    "seqNumber": 21698,
+    "timestamp": 786.08740234375
+  },
+  {
+    "line": " Red: 934",
+    "messageType": 2,
+    "seqNumber": 21699,
+    "timestamp": 786.0878295898438
+  },
+  {
+    "line": "Blue: 3296",
+    "messageType": 2,
+    "seqNumber": 21700,
+    "timestamp": 786.1062622070312
+  },
+  {
+    "line": " Green: 3182",
+    "messageType": 2,
+    "seqNumber": 21701,
+    "timestamp": 786.1068725585938
+  },
+  {
+    "line": " Red: 934",
+    "messageType": 2,
+    "seqNumber": 21702,
+    "timestamp": 786.107421875
+  },
+  {
+    "line": "Blue: 3296",
+    "messageType": 2,
+    "seqNumber": 21703,
+    "timestamp": 786.125732421875
+  },
+  {
+    "line": " Green: 3182",
+    "messageType": 2,
+    "seqNumber": 21704,
+    "timestamp": 786.12646484375
+  },
+  {
+    "line": " Red: 934",
+    "messageType": 2,
+    "seqNumber": 21705,
+    "timestamp": 786.1279296875
+  },
+  {
+    "line": "Blue: 3406",
+    "messageType": 2,
+    "seqNumber": 21706,
+    "timestamp": 786.145751953125
+  },
+  {
+    "line": " Green: 3286",
+    "messageType": 2,
+    "seqNumber": 21707,
+    "timestamp": 786.1461181640625
+  },
+  {
+    "line": " Red: 963",
+    "messageType": 2,
+    "seqNumber": 21708,
+    "timestamp": 786.1463623046875
+  },
+  {
+    "line": "Blue: 3406",
+    "messageType": 2,
+    "seqNumber": 21709,
+    "timestamp": 786.1661987304688
+  },
+  {
+    "line": " Green: 3286",
+    "messageType": 2,
+    "seqNumber": 21710,
+    "timestamp": 786.1668701171875
+  },
+  {
+    "line": " Red: 963",
+    "messageType": 2,
+    "seqNumber": 21711,
+    "timestamp": 786.1677856445312
+  },
+  {
+    "line": "Blue: 3406",
+    "messageType": 2,
+    "seqNumber": 21712,
+    "timestamp": 786.1856689453125
+  },
+  {
+    "line": " Green: 3286",
+    "messageType": 2,
+    "seqNumber": 21713,
+    "timestamp": 786.1859741210938
+  },
+  {
+    "line": " Red: 963",
+    "messageType": 2,
+    "seqNumber": 21714,
+    "timestamp": 786.186279296875
+  },
+  {
+    "line": "Blue: 3406",
+    "messageType": 2,
+    "seqNumber": 21715,
+    "timestamp": 786.2060546875
+  },
+  {
+    "line": " Green: 3286",
+    "messageType": 2,
+    "seqNumber": 21716,
+    "timestamp": 786.2063598632812
+  },
+  {
+    "line": " Red: 963",
+    "messageType": 2,
+    "seqNumber": 21717,
+    "timestamp": 786.2066650390625
+  },
+  {
+    "line": "Blue: 3406",
+    "messageType": 2,
+    "seqNumber": 21718,
+    "timestamp": 786.2257080078125
+  },
+  {
+    "line": " Green: 3286",
+    "messageType": 2,
+    "seqNumber": 21719,
+    "timestamp": 786.2266235351562
+  },
+  {
+    "line": " Red: 963",
+    "messageType": 2,
+    "seqNumber": 21720,
+    "timestamp": 786.2275390625
+  },
+  {
+    "line": "Blue: 3332",
+    "messageType": 2,
+    "seqNumber": 21721,
+    "timestamp": 786.2457275390625
+  },
+  {
+    "line": " Green: 3216",
+    "messageType": 2,
+    "seqNumber": 21722,
+    "timestamp": 786.2463989257812
+  },
+  {
+    "line": " Red: 943",
+    "messageType": 2,
+    "seqNumber": 21723,
+    "timestamp": 786.2472534179688
+  },
+  {
+    "line": "Blue: 3332",
+    "messageType": 2,
+    "seqNumber": 21724,
+    "timestamp": 786.2659301757812
+  },
+  {
+    "line": " Green: 3216",
+    "messageType": 2,
+    "seqNumber": 21725,
+    "timestamp": 786.2666625976562
+  },
+  {
+    "line": " Red: 943",
+    "messageType": 2,
+    "seqNumber": 21726,
+    "timestamp": 786.267578125
+  },
+  {
+    "line": "Blue: 3332",
+    "messageType": 2,
+    "seqNumber": 21727,
+    "timestamp": 786.2863159179688
+  },
+  {
+    "line": " Green: 3216",
+    "messageType": 2,
+    "seqNumber": 21728,
+    "timestamp": 786.286865234375
+  },
+  {
+    "line": " Red: 943",
+    "messageType": 2,
+    "seqNumber": 21729,
+    "timestamp": 786.287353515625
+  },
+  {
+    "line": "Blue: 3332",
+    "messageType": 2,
+    "seqNumber": 21730,
+    "timestamp": 786.3057861328125
+  },
+  {
+    "line": " Green: 3216",
+    "messageType": 2,
+    "seqNumber": 21731,
+    "timestamp": 786.3064575195312
+  },
+  {
+    "line": " Red: 943",
+    "messageType": 2,
+    "seqNumber": 21732,
+    "timestamp": 786.3071899414062
+  },
+  {
+    "line": "Blue: 3332",
+    "messageType": 2,
+    "seqNumber": 21733,
+    "timestamp": 786.3263549804688
+  },
+  {
+    "line": " Green: 3216",
+    "messageType": 2,
+    "seqNumber": 21734,
+    "timestamp": 786.3273315429688
+  },
+  {
+    "line": " Red: 943",
+    "messageType": 2,
+    "seqNumber": 21735,
+    "timestamp": 786.3280639648438
+  },
+  {
+    "line": "Blue: 3644",
+    "messageType": 2,
+    "seqNumber": 21736,
+    "timestamp": 786.3457641601562
+  },
+  {
+    "line": " Green: 3510",
+    "messageType": 2,
+    "seqNumber": 21737,
+    "timestamp": 786.346435546875
+  },
+  {
+    "line": " Red: 1025",
+    "messageType": 2,
+    "seqNumber": 21738,
+    "timestamp": 786.3475952148438
+  },
+  {
+    "line": "Blue: 3644",
+    "messageType": 2,
+    "seqNumber": 21739,
+    "timestamp": 786.366455078125
+  },
+  {
+    "line": " Green: 3510",
+    "messageType": 2,
+    "seqNumber": 21740,
+    "timestamp": 786.3674926757812
+  },
+  {
+    "line": " Red: 1025",
+    "messageType": 2,
+    "seqNumber": 21741,
+    "timestamp": 786.3684692382812
+  },
+  {
+    "line": "Blue: 3644",
+    "messageType": 2,
+    "seqNumber": 21742,
+    "timestamp": 786.385986328125
+  },
+  {
+    "line": " Green: 3510",
+    "messageType": 2,
+    "seqNumber": 21743,
+    "timestamp": 786.3878784179688
+  },
+  {
+    "line": " Red: 1025",
+    "messageType": 2,
+    "seqNumber": 21744,
+    "timestamp": 786.38818359375
+  },
+  {
+    "line": "Blue: 3644",
+    "messageType": 2,
+    "seqNumber": 21745,
+    "timestamp": 786.40625
+  },
+  {
+    "line": " Green: 3510",
+    "messageType": 2,
+    "seqNumber": 21746,
+    "timestamp": 786.4068603515625
+  },
+  {
+    "line": " Red: 1025",
+    "messageType": 2,
+    "seqNumber": 21747,
+    "timestamp": 786.4078979492188
+  },
+  {
+    "line": "Blue: 3644",
+    "messageType": 2,
+    "seqNumber": 21748,
+    "timestamp": 786.4261474609375
+  },
+  {
+    "line": " Green: 3510",
+    "messageType": 2,
+    "seqNumber": 21749,
+    "timestamp": 786.4276733398438
+  },
+  {
+    "line": " Red: 1025",
+    "messageType": 2,
+    "seqNumber": 21750,
+    "timestamp": 786.4280395507812
+  },
+  {
+    "line": "Blue: 3914",
+    "messageType": 2,
+    "seqNumber": 21751,
+    "timestamp": 786.4456787109375
+  },
+  {
+    "line": " Green: 3763",
+    "messageType": 2,
+    "seqNumber": 21752,
+    "timestamp": 786.446044921875
+  },
+  {
+    "line": " Red: 1098",
+    "messageType": 2,
+    "seqNumber": 21753,
+    "timestamp": 786.4476318359375
+  },
+  {
+    "line": "Blue: 3914",
+    "messageType": 2,
+    "seqNumber": 21754,
+    "timestamp": 786.4656982421875
+  },
+  {
+    "line": " Green: 3763",
+    "messageType": 2,
+    "seqNumber": 21755,
+    "timestamp": 786.4671630859375
+  },
+  {
+    "line": " Red: 1098",
+    "messageType": 2,
+    "seqNumber": 21756,
+    "timestamp": 786.4680786132812
+  },
+  {
+    "line": "Blue: 3914",
+    "messageType": 2,
+    "seqNumber": 21757,
+    "timestamp": 786.4857177734375
+  },
+  {
+    "line": " Green: 3763",
+    "messageType": 2,
+    "seqNumber": 21758,
+    "timestamp": 786.4860229492188
+  },
+  {
+    "line": " Red: 1098",
+    "messageType": 2,
+    "seqNumber": 21759,
+    "timestamp": 786.4862670898438
+  },
+  {
+    "line": "Blue: 3914",
+    "messageType": 2,
+    "seqNumber": 21760,
+    "timestamp": 786.5062255859375
+  },
+  {
+    "line": " Green: 3763",
+    "messageType": 2,
+    "seqNumber": 21761,
+    "timestamp": 786.5067138671875
+  },
+  {
+    "line": " Red: 1098",
+    "messageType": 2,
+    "seqNumber": 21762,
+    "timestamp": 786.5079345703125
+  },
+  {
+    "line": "Blue: 3914",
+    "messageType": 2,
+    "seqNumber": 21763,
+    "timestamp": 786.5258178710938
+  },
+  {
+    "line": " Green: 3763",
+    "messageType": 2,
+    "seqNumber": 21764,
+    "timestamp": 786.5269165039062
+  },
+  {
+    "line": " Red: 1098",
+    "messageType": 2,
+    "seqNumber": 21765,
+    "timestamp": 786.52783203125
+  },
+  {
+    "line": "Blue: 3769",
+    "messageType": 2,
+    "seqNumber": 21766,
+    "timestamp": 786.5457153320312
+  },
+  {
+    "line": " Green: 3629",
+    "messageType": 2,
+    "seqNumber": 21767,
+    "timestamp": 786.5465087890625
+  },
+  {
+    "line": " Red: 1061",
+    "messageType": 2,
+    "seqNumber": 21768,
+    "timestamp": 786.5474853515625
+  },
+  {
+    "line": "Blue: 3769",
+    "messageType": 2,
+    "seqNumber": 21769,
+    "timestamp": 786.56640625
+  },
+  {
+    "line": " Green: 3629",
+    "messageType": 2,
+    "seqNumber": 21770,
+    "timestamp": 786.5674438476562
+  },
+  {
+    "line": " Red: 1061",
+    "messageType": 2,
+    "seqNumber": 21771,
+    "timestamp": 786.5691528320312
+  },
+  {
+    "line": "Blue: 3769",
+    "messageType": 2,
+    "seqNumber": 21772,
+    "timestamp": 786.5857543945312
+  },
+  {
+    "line": " Green: 3629",
+    "messageType": 2,
+    "seqNumber": 21773,
+    "timestamp": 786.58642578125
+  },
+  {
+    "line": " Red: 1061",
+    "messageType": 2,
+    "seqNumber": 21774,
+    "timestamp": 786.5873413085938
+  },
+  {
+    "line": "Blue: 3769",
+    "messageType": 2,
+    "seqNumber": 21775,
+    "timestamp": 786.6061401367188
+  },
+  {
+    "line": " Green: 3629",
+    "messageType": 2,
+    "seqNumber": 21776,
+    "timestamp": 786.6068115234375
+  },
+  {
+    "line": " Red: 1061",
+    "messageType": 2,
+    "seqNumber": 21777,
+    "timestamp": 786.6075439453125
+  },
+  {
+    "line": "Blue: 3769",
+    "messageType": 2,
+    "seqNumber": 21778,
+    "timestamp": 786.6258544921875
+  },
+  {
+    "line": " Green: 3629",
+    "messageType": 2,
+    "seqNumber": 21779,
+    "timestamp": 786.6266479492188
+  },
+  {
+    "line": " Red: 1061",
+    "messageType": 2,
+    "seqNumber": 21780,
+    "timestamp": 786.6273193359375
+  },
+  {
+    "line": "Blue: 3206",
+    "messageType": 2,
+    "seqNumber": 21781,
+    "timestamp": 786.6466674804688
+  },
+  {
+    "line": " Green: 3098",
+    "messageType": 2,
+    "seqNumber": 21782,
+    "timestamp": 786.648193359375
+  },
+  {
+    "line": " Red: 910",
+    "messageType": 2,
+    "seqNumber": 21783,
+    "timestamp": 786.6491088867188
+  },
+  {
+    "line": "Blue: 3206",
+    "messageType": 2,
+    "seqNumber": 21784,
+    "timestamp": 786.666259765625
+  },
+  {
+    "line": " Green: 3098",
+    "messageType": 2,
+    "seqNumber": 21785,
+    "timestamp": 786.6670532226562
+  },
+  {
+    "line": " Red: 910",
+    "messageType": 2,
+    "seqNumber": 21786,
+    "timestamp": 786.668701171875
+  },
+  {
+    "line": "Blue: 3206",
+    "messageType": 2,
+    "seqNumber": 21787,
+    "timestamp": 786.6857299804688
+  },
+  {
+    "line": " Green: 3098",
+    "messageType": 2,
+    "seqNumber": 21788,
+    "timestamp": 786.6864624023438
+  },
+  {
+    "line": " Red: 910",
+    "messageType": 2,
+    "seqNumber": 21789,
+    "timestamp": 786.6870727539062
+  },
+  {
+    "line": "Blue: 3206",
+    "messageType": 2,
+    "seqNumber": 21790,
+    "timestamp": 786.7057495117188
+  },
+  {
+    "line": " Green: 3098",
+    "messageType": 2,
+    "seqNumber": 21791,
+    "timestamp": 786.7064208984375
+  },
+  {
+    "line": " Red: 910",
+    "messageType": 2,
+    "seqNumber": 21792,
+    "timestamp": 786.7068481445312
+  },
+  {
+    "line": "Blue: 3206",
+    "messageType": 2,
+    "seqNumber": 21793,
+    "timestamp": 786.7265625
+  },
+  {
+    "line": " Green: 3098",
+    "messageType": 2,
+    "seqNumber": 21794,
+    "timestamp": 786.7279052734375
+  },
+  {
+    "line": " Red: 910",
+    "messageType": 2,
+    "seqNumber": 21795,
+    "timestamp": 786.7291259765625
+  },
+  {
+    "line": "Blue: 2999",
+    "messageType": 2,
+    "seqNumber": 21796,
+    "timestamp": 786.746337890625
+  },
+  {
+    "line": " Green: 2903",
+    "messageType": 2,
+    "seqNumber": 21797,
+    "timestamp": 786.7476196289062
+  },
+  {
+    "line": " Red: 854",
+    "messageType": 2,
+    "seqNumber": 21798,
+    "timestamp": 786.74853515625
+  },
+  {
+    "line": "Blue: 2999",
+    "messageType": 2,
+    "seqNumber": 21799,
+    "timestamp": 786.7657470703125
+  },
+  {
+    "line": " Green: 2903",
+    "messageType": 2,
+    "seqNumber": 21800,
+    "timestamp": 786.7664794921875
+  },
+  {
+    "line": " Red: 854",
+    "messageType": 2,
+    "seqNumber": 21801,
+    "timestamp": 786.7671508789062
+  },
+  {
+    "line": "Blue: 2999",
+    "messageType": 2,
+    "seqNumber": 21802,
+    "timestamp": 786.7858276367188
+  },
+  {
+    "line": " Green: 2903",
+    "messageType": 2,
+    "seqNumber": 21803,
+    "timestamp": 786.7864990234375
+  },
+  {
+    "line": " Red: 854",
+    "messageType": 2,
+    "seqNumber": 21804,
+    "timestamp": 786.7868041992188
+  },
+  {
+    "line": "Blue: 2999",
+    "messageType": 2,
+    "seqNumber": 21805,
+    "timestamp": 786.8062744140625
+  },
+  {
+    "line": " Green: 2903",
+    "messageType": 2,
+    "seqNumber": 21806,
+    "timestamp": 786.8068237304688
+  },
+  {
+    "line": " Red: 854",
+    "messageType": 2,
+    "seqNumber": 21807,
+    "timestamp": 786.8074340820312
+  },
+  {
+    "line": "Blue: 2999",
+    "messageType": 2,
+    "seqNumber": 21808,
+    "timestamp": 786.8260498046875
+  },
+  {
+    "line": " Green: 2903",
+    "messageType": 2,
+    "seqNumber": 21809,
+    "timestamp": 786.8275146484375
+  },
+  {
+    "line": " Red: 854",
+    "messageType": 2,
+    "seqNumber": 21810,
+    "timestamp": 786.8287353515625
+  },
+  {
+    "line": "Blue: 3024",
+    "messageType": 2,
+    "seqNumber": 21811,
+    "timestamp": 786.84619140625
+  },
+  {
+    "line": " Green: 2926",
+    "messageType": 2,
+    "seqNumber": 21812,
+    "timestamp": 786.84716796875
+  },
+  {
+    "line": " Red: 861",
+    "messageType": 2,
+    "seqNumber": 21813,
+    "timestamp": 786.8484497070312
+  },
+  {
+    "line": "Blue: 3024",
+    "messageType": 2,
+    "seqNumber": 21814,
+    "timestamp": 786.8663940429688
+  },
+  {
+    "line": " Green: 2926",
+    "messageType": 2,
+    "seqNumber": 21815,
+    "timestamp": 786.8680419921875
+  },
+  {
+    "line": " Red: 861",
+    "messageType": 2,
+    "seqNumber": 21816,
+    "timestamp": 786.868896484375
+  },
+  {
+    "line": "Blue: 3024",
+    "messageType": 2,
+    "seqNumber": 21817,
+    "timestamp": 786.8857421875
+  },
+  {
+    "line": " Green: 2926",
+    "messageType": 2,
+    "seqNumber": 21818,
+    "timestamp": 786.8864135742188
+  },
+  {
+    "line": " Red: 861",
+    "messageType": 2,
+    "seqNumber": 21819,
+    "timestamp": 786.8881225585938
+  },
+  {
+    "line": "Blue: 3024",
+    "messageType": 2,
+    "seqNumber": 21820,
+    "timestamp": 786.9057006835938
+  },
+  {
+    "line": " Green: 2926",
+    "messageType": 2,
+    "seqNumber": 21821,
+    "timestamp": 786.9068603515625
+  },
+  {
+    "line": " Red: 861",
+    "messageType": 2,
+    "seqNumber": 21822,
+    "timestamp": 786.9083251953125
+  },
+  {
+    "line": "Blue: 3024",
+    "messageType": 2,
+    "seqNumber": 21823,
+    "timestamp": 786.9257202148438
+  },
+  {
+    "line": " Green: 2926",
+    "messageType": 2,
+    "seqNumber": 21824,
+    "timestamp": 786.9264526367188
+  },
+  {
+    "line": " Red: 861",
+    "messageType": 2,
+    "seqNumber": 21825,
+    "timestamp": 786.9271850585938
+  },
+  {
+    "line": "Blue: 3219",
+    "messageType": 2,
+    "seqNumber": 21826,
+    "timestamp": 786.9461669921875
+  },
+  {
+    "line": " Green: 3110",
+    "messageType": 2,
+    "seqNumber": 21827,
+    "timestamp": 786.9468994140625
+  },
+  {
+    "line": " Red: 912",
+    "messageType": 2,
+    "seqNumber": 21828,
+    "timestamp": 786.9481811523438
+  },
+  {
+    "line": "Blue: 3219",
+    "messageType": 2,
+    "seqNumber": 21829,
+    "timestamp": 786.9661254882812
+  },
+  {
+    "line": " Green: 3110",
+    "messageType": 2,
+    "seqNumber": 21830,
+    "timestamp": 786.9666748046875
+  },
+  {
+    "line": " Red: 912",
+    "messageType": 2,
+    "seqNumber": 21831,
+    "timestamp": 786.9678344726562
+  },
+  {
+    "line": "Blue: 3219",
+    "messageType": 2,
+    "seqNumber": 21832,
+    "timestamp": 786.9862670898438
+  },
+  {
+    "line": " Green: 3110",
+    "messageType": 2,
+    "seqNumber": 21833,
+    "timestamp": 786.9868774414062
+  },
+  {
+    "line": " Red: 912",
+    "messageType": 2,
+    "seqNumber": 21834,
+    "timestamp": 786.988525390625
+  },
+  {
+    "line": "Blue: 3219",
+    "messageType": 2,
+    "seqNumber": 21835,
+    "timestamp": 787.0060424804688
+  },
+  {
+    "line": " Green: 3110",
+    "messageType": 2,
+    "seqNumber": 21836,
+    "timestamp": 787.0068969726562
+  },
+  {
+    "line": " Red: 912",
+    "messageType": 2,
+    "seqNumber": 21837,
+    "timestamp": 787.0076904296875
+  },
+  {
+    "line": "Blue: 3219",
+    "messageType": 2,
+    "seqNumber": 21838,
+    "timestamp": 787.0261840820312
+  },
+  {
+    "line": " Green: 3110",
+    "messageType": 2,
+    "seqNumber": 21839,
+    "timestamp": 787.0269165039062
+  },
+  {
+    "line": " Red: 912",
+    "messageType": 2,
+    "seqNumber": 21840,
+    "timestamp": 787.0276489257812
+  },
+  {
+    "line": "Blue: 3597",
+    "messageType": 2,
+    "seqNumber": 21841,
+    "timestamp": 787.0463256835938
+  },
+  {
+    "line": " Green: 3466",
+    "messageType": 2,
+    "seqNumber": 21842,
+    "timestamp": 787.0471801757812
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21843,
+    "timestamp": 787.0477294921875
+  },
+  {
+    "line": "Blue: 3597",
+    "messageType": 2,
+    "seqNumber": 21844,
+    "timestamp": 787.0661010742188
+  },
+  {
+    "line": " Green: 3466",
+    "messageType": 2,
+    "seqNumber": 21845,
+    "timestamp": 787.0668334960938
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21846,
+    "timestamp": 787.0675659179688
+  },
+  {
+    "line": "Blue: 3597",
+    "messageType": 2,
+    "seqNumber": 21847,
+    "timestamp": 787.0861206054688
+  },
+  {
+    "line": " Green: 3466",
+    "messageType": 2,
+    "seqNumber": 21848,
+    "timestamp": 787.0868530273438
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21849,
+    "timestamp": 787.088623046875
+  },
+  {
+    "line": "Blue: 3597",
+    "messageType": 2,
+    "seqNumber": 21850,
+    "timestamp": 787.1064453125
+  },
+  {
+    "line": " Green: 3466",
+    "messageType": 2,
+    "seqNumber": 21851,
+    "timestamp": 787.1072387695312
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21852,
+    "timestamp": 787.1076049804688
+  },
+  {
+    "line": "Blue: 3597",
+    "messageType": 2,
+    "seqNumber": 21853,
+    "timestamp": 787.1261596679688
+  },
+  {
+    "line": " Green: 3466",
+    "messageType": 2,
+    "seqNumber": 21854,
+    "timestamp": 787.1268310546875
+  },
+  {
+    "line": " Red: 1014",
+    "messageType": 2,
+    "seqNumber": 21855,
+    "timestamp": 787.1275024414062
+  },
+  {
+    "line": "Blue: 4173",
+    "messageType": 2,
+    "seqNumber": 21856,
+    "timestamp": 787.1461181640625
+  },
+  {
+    "line": " Green: 4012",
+    "messageType": 2,
+    "seqNumber": 21857,
+    "timestamp": 787.1473388671875
+  },
+  {
+    "line": " Red: 1169",
+    "messageType": 2,
+    "seqNumber": 21858,
+    "timestamp": 787.148681640625
+  },
+  {
+    "line": "Blue: 4173",
+    "messageType": 2,
+    "seqNumber": 21859,
+    "timestamp": 787.1660766601562
+  },
+  {
+    "line": " Green: 4012",
+    "messageType": 2,
+    "seqNumber": 21860,
+    "timestamp": 787.1666870117188
+  },
+  {
+    "line": " Red: 1169",
+    "messageType": 2,
+    "seqNumber": 21861,
+    "timestamp": 787.1677856445312
+  },
+  {
+    "line": "Blue: 4173",
+    "messageType": 2,
+    "seqNumber": 21862,
+    "timestamp": 787.1862182617188
+  },
+  {
+    "line": " Green: 4012",
+    "messageType": 2,
+    "seqNumber": 21863,
+    "timestamp": 787.1873779296875
+  },
+  {
+    "line": " Red: 1169",
+    "messageType": 2,
+    "seqNumber": 21864,
+    "timestamp": 787.1881713867188
+  },
+  {
+    "line": "Blue: 4173",
+    "messageType": 2,
+    "seqNumber": 21865,
+    "timestamp": 787.206298828125
+  },
+  {
+    "line": " Green: 4012",
+    "messageType": 2,
+    "seqNumber": 21866,
+    "timestamp": 787.2069091796875
+  },
+  {
+    "line": " Red: 1169",
+    "messageType": 2,
+    "seqNumber": 21867,
+    "timestamp": 787.2073974609375
+  },
+  {
+    "line": "Blue: 4173",
+    "messageType": 2,
+    "seqNumber": 21868,
+    "timestamp": 787.2261962890625
+  },
+  {
+    "line": " Green: 4012",
+    "messageType": 2,
+    "seqNumber": 21869,
+    "timestamp": 787.2271728515625
+  },
+  {
+    "line": " Red: 1169",
+    "messageType": 2,
+    "seqNumber": 21870,
+    "timestamp": 787.2279052734375
+  },
+  {
+    "line": "Blue: 4190",
+    "messageType": 2,
+    "seqNumber": 21871,
+    "timestamp": 787.2461547851562
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 21872,
+    "timestamp": 787.2472534179688
+  },
+  {
+    "line": " Red: 1173",
+    "messageType": 2,
+    "seqNumber": 21873,
+    "timestamp": 787.2479858398438
+  },
+  {
+    "line": "Blue: 4190",
+    "messageType": 2,
+    "seqNumber": 21874,
+    "timestamp": 787.2662353515625
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 21875,
+    "timestamp": 787.2669067382812
+  },
+  {
+    "line": " Red: 1173",
+    "messageType": 2,
+    "seqNumber": 21876,
+    "timestamp": 787.2680053710938
+  },
+  {
+    "line": "Blue: 4190",
+    "messageType": 2,
+    "seqNumber": 21877,
+    "timestamp": 787.2861938476562
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 21878,
+    "timestamp": 787.286865234375
+  },
+  {
+    "line": " Red: 1173",
+    "messageType": 2,
+    "seqNumber": 21879,
+    "timestamp": 787.2879638671875
+  },
+  {
+    "line": "Blue: 4190",
+    "messageType": 2,
+    "seqNumber": 21880,
+    "timestamp": 787.3062133789062
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 21881,
+    "timestamp": 787.306884765625
+  },
+  {
+    "line": " Red: 1173",
+    "messageType": 2,
+    "seqNumber": 21882,
+    "timestamp": 787.3074340820312
+  },
+  {
+    "line": "Blue: 4190",
+    "messageType": 2,
+    "seqNumber": 21883,
+    "timestamp": 787.3262329101562
+  },
+  {
+    "line": " Green: 4027",
+    "messageType": 2,
+    "seqNumber": 21884,
+    "timestamp": 787.326904296875
+  },
+  {
+    "line": " Red: 1173",
+    "messageType": 2,
+    "seqNumber": 21885,
+    "timestamp": 787.3280639648438
+  },
+  {
+    "line": "Blue: 3613",
+    "messageType": 2,
+    "seqNumber": 21886,
+    "timestamp": 787.3463134765625
+  },
+  {
+    "line": " Green: 3482",
+    "messageType": 2,
+    "seqNumber": 21887,
+    "timestamp": 787.346923828125
+  },
+  {
+    "line": " Red: 1018",
+    "messageType": 2,
+    "seqNumber": 21888,
+    "timestamp": 787.348388671875
+  },
+  {
+    "line": "Blue: 3613",
+    "messageType": 2,
+    "seqNumber": 21889,
+    "timestamp": 787.3684692382812
+  },
+  {
+    "line": " Green: 3482",
+    "messageType": 2,
+    "seqNumber": 21890,
+    "timestamp": 787.3699340820312
+  },
+  {
+    "line": " Red: 1018",
+    "messageType": 2,
+    "seqNumber": 21891,
+    "timestamp": 787.370361328125
+  },
+  {
+    "line": "Blue: 3613",
+    "messageType": 2,
+    "seqNumber": 21892,
+    "timestamp": 787.3861694335938
+  },
+  {
+    "line": " Green: 3482",
+    "messageType": 2,
+    "seqNumber": 21893,
+    "timestamp": 787.3868408203125
+  },
+  {
+    "line": " Red: 1018",
+    "messageType": 2,
+    "seqNumber": 21894,
+    "timestamp": 787.3876342773438
+  },
+  {
+    "line": "Blue: 3613",
+    "messageType": 2,
+    "seqNumber": 21895,
+    "timestamp": 787.4063720703125
+  },
+  {
+    "line": " Green: 3482",
+    "messageType": 2,
+    "seqNumber": 21896,
+    "timestamp": 787.4071044921875
+  },
+  {
+    "line": " Red: 1018",
+    "messageType": 2,
+    "seqNumber": 21897,
+    "timestamp": 787.4078369140625
+  },
+  {
+    "line": "Blue: 3613",
+    "messageType": 2,
+    "seqNumber": 21898,
+    "timestamp": 787.4260864257812
+  },
+  {
+    "line": " Green: 3482",
+    "messageType": 2,
+    "seqNumber": 21899,
+    "timestamp": 787.4269409179688
+  },
+  {
+    "line": " Red: 1018",
+    "messageType": 2,
+    "seqNumber": 21900,
+    "timestamp": 787.4283447265625
+  },
+  {
+    "line": "Blue: 3216",
+    "messageType": 2,
+    "seqNumber": 21901,
+    "timestamp": 787.4462890625
+  },
+  {
+    "line": " Green: 3109",
+    "messageType": 2,
+    "seqNumber": 21902,
+    "timestamp": 787.4468383789062
+  },
+  {
+    "line": " Red: 914",
+    "messageType": 2,
+    "seqNumber": 21903,
+    "timestamp": 787.4478149414062
+  },
+  {
+    "line": "Blue: 3216",
+    "messageType": 2,
+    "seqNumber": 21904,
+    "timestamp": 787.4661865234375
+  },
+  {
+    "line": " Green: 3109",
+    "messageType": 2,
+    "seqNumber": 21905,
+    "timestamp": 787.4668579101562
+  },
+  {
+    "line": " Red: 914",
+    "messageType": 2,
+    "seqNumber": 21906,
+    "timestamp": 787.467529296875
+  },
+  {
+    "line": "Blue: 3216",
+    "messageType": 2,
+    "seqNumber": 21907,
+    "timestamp": 787.48583984375
+  },
+  {
+    "line": " Green: 3109",
+    "messageType": 2,
+    "seqNumber": 21908,
+    "timestamp": 787.4868774414062
+  },
+  {
+    "line": " Red: 914",
+    "messageType": 2,
+    "seqNumber": 21909,
+    "timestamp": 787.48779296875
+  },
+  {
+    "line": "Blue: 3216",
+    "messageType": 2,
+    "seqNumber": 21910,
+    "timestamp": 787.50634765625
+  },
+  {
+    "line": " Green: 3109",
+    "messageType": 2,
+    "seqNumber": 21911,
+    "timestamp": 787.507080078125
+  },
+  {
+    "line": " Red: 914",
+    "messageType": 2,
+    "seqNumber": 21912,
+    "timestamp": 787.5075073242188
+  },
+  {
+    "line": "Blue: 3216",
+    "messageType": 2,
+    "seqNumber": 21913,
+    "timestamp": 787.5263671875
+  },
+  {
+    "line": " Green: 3109",
+    "messageType": 2,
+    "seqNumber": 21914,
+    "timestamp": 787.527099609375
+  },
+  {
+    "line": " Red: 914",
+    "messageType": 2,
+    "seqNumber": 21915,
+    "timestamp": 787.5280151367188
+  },
+  {
+    "line": "Blue: 3078",
+    "messageType": 2,
+    "seqNumber": 21916,
+    "timestamp": 787.5466918945312
+  },
+  {
+    "line": " Green: 2979",
+    "messageType": 2,
+    "seqNumber": 21917,
+    "timestamp": 787.5477294921875
+  },
+  {
+    "line": " Red: 878",
+    "messageType": 2,
+    "seqNumber": 21918,
+    "timestamp": 787.5484619140625
+  },
+  {
+    "line": "Blue: 3078",
+    "messageType": 2,
+    "seqNumber": 21919,
+    "timestamp": 787.5661010742188
+  },
+  {
+    "line": " Green: 2979",
+    "messageType": 2,
+    "seqNumber": 21920,
+    "timestamp": 787.5665893554688
+  },
+  {
+    "line": " Red: 878",
+    "messageType": 2,
+    "seqNumber": 21921,
+    "timestamp": 787.5673217773438
+  },
+  {
+    "line": "Blue: 3078",
+    "messageType": 2,
+    "seqNumber": 21922,
+    "timestamp": 787.5861206054688
+  },
+  {
+    "line": " Green: 2979",
+    "messageType": 2,
+    "seqNumber": 21923,
+    "timestamp": 787.5874633789062
+  },
+  {
+    "line": " Red: 878",
+    "messageType": 2,
+    "seqNumber": 21924,
+    "timestamp": 787.588623046875
+  },
+  {
+    "line": "Blue: 3078",
+    "messageType": 2,
+    "seqNumber": 21925,
+    "timestamp": 787.6062622070312
+  },
+  {
+    "line": " Green: 2979",
+    "messageType": 2,
+    "seqNumber": 21926,
+    "timestamp": 787.6068115234375
+  },
+  {
+    "line": " Red: 878",
+    "messageType": 2,
+    "seqNumber": 21927,
+    "timestamp": 787.6077880859375
+  },
+  {
+    "line": "Blue: 3078",
+    "messageType": 2,
+    "seqNumber": 21928,
+    "timestamp": 787.6262817382812
+  },
+  {
+    "line": " Green: 2979",
+    "messageType": 2,
+    "seqNumber": 21929,
+    "timestamp": 787.6272583007812
+  },
+  {
+    "line": " Red: 878",
+    "messageType": 2,
+    "seqNumber": 21930,
+    "timestamp": 787.6290283203125
+  },
+  {
+    "line": "Blue: 3006",
+    "messageType": 2,
+    "seqNumber": 21931,
+    "timestamp": 787.64599609375
+  },
+  {
+    "line": " Green: 2912",
+    "messageType": 2,
+    "seqNumber": 21932,
+    "timestamp": 787.6472778320312
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21933,
+    "timestamp": 787.6483154296875
+  },
+  {
+    "line": "Blue: 3006",
+    "messageType": 2,
+    "seqNumber": 21934,
+    "timestamp": 787.665771484375
+  },
+  {
+    "line": " Green: 2912",
+    "messageType": 2,
+    "seqNumber": 21935,
+    "timestamp": 787.6666259765625
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21936,
+    "timestamp": 787.66845703125
+  },
+  {
+    "line": "Blue: 3006",
+    "messageType": 2,
+    "seqNumber": 21937,
+    "timestamp": 787.686279296875
+  },
+  {
+    "line": " Green: 2912",
+    "messageType": 2,
+    "seqNumber": 21938,
+    "timestamp": 787.6868896484375
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21939,
+    "timestamp": 787.687744140625
+  },
+  {
+    "line": "Blue: 3006",
+    "messageType": 2,
+    "seqNumber": 21940,
+    "timestamp": 787.706298828125
+  },
+  {
+    "line": " Green: 2912",
+    "messageType": 2,
+    "seqNumber": 21941,
+    "timestamp": 787.7068481445312
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21942,
+    "timestamp": 787.70751953125
+  },
+  {
+    "line": "Blue: 3006",
+    "messageType": 2,
+    "seqNumber": 21943,
+    "timestamp": 787.7264404296875
+  },
+  {
+    "line": " Green: 2912",
+    "messageType": 2,
+    "seqNumber": 21944,
+    "timestamp": 787.727783203125
+  },
+  {
+    "line": " Red: 860",
+    "messageType": 2,
+    "seqNumber": 21945,
+    "timestamp": 787.7283325195312
+  },
+  {
+    "line": "Blue: 3095",
+    "messageType": 2,
+    "seqNumber": 21946,
+    "timestamp": 787.7463989257812
+  },
+  {
+    "line": " Green: 2995",
+    "messageType": 2,
+    "seqNumber": 21947,
+    "timestamp": 787.7476196289062
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21948,
+    "timestamp": 787.74853515625
+  },
+  {
+    "line": "Blue: 3095",
+    "messageType": 2,
+    "seqNumber": 21949,
+    "timestamp": 787.7662963867188
+  },
+  {
+    "line": " Green: 2995",
+    "messageType": 2,
+    "seqNumber": 21950,
+    "timestamp": 787.7671508789062
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21951,
+    "timestamp": 787.7689819335938
+  },
+  {
+    "line": "Blue: 3095",
+    "messageType": 2,
+    "seqNumber": 21952,
+    "timestamp": 787.785888671875
+  },
+  {
+    "line": " Green: 2995",
+    "messageType": 2,
+    "seqNumber": 21953,
+    "timestamp": 787.7865600585938
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21954,
+    "timestamp": 787.78759765625
+  },
+  {
+    "line": "Blue: 3095",
+    "messageType": 2,
+    "seqNumber": 21955,
+    "timestamp": 787.8057250976562
+  },
+  {
+    "line": " Green: 2995",
+    "messageType": 2,
+    "seqNumber": 21956,
+    "timestamp": 787.806396484375
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21957,
+    "timestamp": 787.806640625
+  },
+  {
+    "line": "Blue: 3095",
+    "messageType": 2,
+    "seqNumber": 21958,
+    "timestamp": 787.82568359375
+  },
+  {
+    "line": " Green: 2995",
+    "messageType": 2,
+    "seqNumber": 21959,
+    "timestamp": 787.8263549804688
+  },
+  {
+    "line": " Red: 883",
+    "messageType": 2,
+    "seqNumber": 21960,
+    "timestamp": 787.8270263671875
+  },
+  {
+    "line": "Blue: 3318",
+    "messageType": 2,
+    "seqNumber": 21961,
+    "timestamp": 787.845947265625
+  },
+  {
+    "line": " Green: 3204",
+    "messageType": 2,
+    "seqNumber": 21962,
+    "timestamp": 787.8466796875
+  },
+  {
+    "line": " Red: 942",
+    "messageType": 2,
+    "seqNumber": 21963,
+    "timestamp": 787.8477783203125
+  },
+  {
+    "line": "stopping live window mode.",
+    "messageType": 2,
+    "seqNumber": 21964,
+    "timestamp": 787.8660278320312
+  }
+]
