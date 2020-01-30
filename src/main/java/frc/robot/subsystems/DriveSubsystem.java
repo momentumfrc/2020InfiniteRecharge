@@ -26,7 +26,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final SensorCollection leftEnc = new SensorCollection(leftFront);
   private final SensorCollection rightEnc = new SensorCollection(rightFront);
-
   private final boolean pidEnabled = false;
 
   private final PIDController movePID;
