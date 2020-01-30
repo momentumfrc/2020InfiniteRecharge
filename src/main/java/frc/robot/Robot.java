@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.I2C.Port;
 import com.revrobotics.ColorSensorV3;
-import edu.wpi.first.wpilibj.util.Color;
+import java.awt.Color;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -125,10 +125,8 @@ public class Robot extends TimedRobot {
     int blue = colorsensor.getBlue();
     int green = colorsensor.getGreen();
     int red = colorsensor.getRed();
-    // Color color = colorsensor.getColor();
-    System.out.println("Blue: " + blue + "\n Green: " + green + "\n Red: " + red /* + "\n Detected Color: " + color */);
-    if (9316 > green && green > 8345 && 5181 > red && red > 4830 && 1873 > blue && blue > 1853) {
-      System.out.println("\n Detected color: Yellow");
-    }
+    float[] hsv = new float[3];
+    Color.RGBtoHSB(red, green, blue, hsv);
+    System.out.println("Hue: " + hsv[0] + "\n Saturation: " + hsv[1] + "\n Value:" + hsv[2]);
   }
 }
