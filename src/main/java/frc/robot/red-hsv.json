@@ -1,0 +1,6008 @@
+[
+    {
+        "line": " Value:4.929412",
+        "messageType": 2,
+        "seqNumber": 15642,
+        "timestamp": 325.64935302734375
+    },
+    {
+        "line": "Hue: 0.08860103",
+        "messageType": 2,
+        "seqNumber": 15643,
+        "timestamp": 325.66912841796875
+    },
+    {
+        "line": " Saturation: 0.76770085",
+        "messageType": 2,
+        "seqNumber": 15644,
+        "timestamp": 325.66949462890625
+    },
+    {
+        "line": " Value:4.929412",
+        "messageType": 2,
+        "seqNumber": 15645,
+        "timestamp": 325.66973876953125
+    },
+    {
+        "line": "Hue: 0.08849698",
+        "messageType": 2,
+        "seqNumber": 15646,
+        "timestamp": 325.68865966796875
+    },
+    {
+        "line": " Saturation: 0.7684982",
+        "messageType": 2,
+        "seqNumber": 15647,
+        "timestamp": 325.689453125
+    },
+    {
+        "line": " Value:5.352941",
+        "messageType": 2,
+        "seqNumber": 15648,
+        "timestamp": 325.68975830078125
+    },
+    {
+        "line": "Hue: 0.08849698",
+        "messageType": 2,
+        "seqNumber": 15649,
+        "timestamp": 325.70892333984375
+    },
+    {
+        "line": " Saturation: 0.7684982",
+        "messageType": 2,
+        "seqNumber": 15650,
+        "timestamp": 325.7093505859375
+    },
+    {
+        "line": " Value:5.352941",
+        "messageType": 2,
+        "seqNumber": 15651,
+        "timestamp": 325.7095947265625
+    },
+    {
+        "line": "Hue: 0.08849698",
+        "messageType": 2,
+        "seqNumber": 15652,
+        "timestamp": 325.72900390625
+    },
+    {
+        "line": " Saturation: 0.7684982",
+        "messageType": 2,
+        "seqNumber": 15653,
+        "timestamp": 325.72930908203125
+    },
+    {
+        "line": " Value:5.352941",
+        "messageType": 2,
+        "seqNumber": 15654,
+        "timestamp": 325.72955322265625
+    },
+    {
+        "line": "Hue: 0.08849698",
+        "messageType": 2,
+        "seqNumber": 15655,
+        "timestamp": 325.74884033203125
+    },
+    {
+        "line": " Saturation: 0.7684982",
+        "messageType": 2,
+        "seqNumber": 15656,
+        "timestamp": 325.7491455078125
+    },
+    {
+        "line": " Value:5.352941",
+        "messageType": 2,
+        "seqNumber": 15657,
+        "timestamp": 325.7493896484375
+    },
+    {
+        "line": "Hue: 0.08849698",
+        "messageType": 2,
+        "seqNumber": 15658,
+        "timestamp": 325.76885986328125
+    },
+    {
+        "line": " Saturation: 0.7684982",
+        "messageType": 2,
+        "seqNumber": 15659,
+        "timestamp": 325.76947021484375
+    },
+    {
+        "line": " Value:5.352941",
+        "messageType": 2,
+        "seqNumber": 15660,
+        "timestamp": 325.769775390625
+    },
+    {
+        "line": "Hue: 0.08926081",
+        "messageType": 2,
+        "seqNumber": 15661,
+        "timestamp": 325.7889404296875
+    },
+    {
+        "line": " Saturation: 0.76602566",
+        "messageType": 2,
+        "seqNumber": 15662,
+        "timestamp": 325.78924560546875
+    },
+    {
+        "line": " Value:6.117647",
+        "messageType": 2,
+        "seqNumber": 15663,
+        "timestamp": 325.78961181640625
+    },
+    {
+        "line": "Hue: 0.08926081",
+        "messageType": 2,
+        "seqNumber": 15664,
+        "timestamp": 325.8087158203125
+    },
+    {
+        "line": " Saturation: 0.76602566",
+        "messageType": 2,
+        "seqNumber": 15665,
+        "timestamp": 325.80902099609375
+    },
+    {
+        "line": " Value:6.117647",
+        "messageType": 2,
+        "seqNumber": 15666,
+        "timestamp": 325.8094482421875
+    },
+    {
+        "line": "Hue: 0.08926081",
+        "messageType": 2,
+        "seqNumber": 15667,
+        "timestamp": 325.8287353515625
+    },
+    {
+        "line": " Saturation: 0.76602566",
+        "messageType": 2,
+        "seqNumber": 15668,
+        "timestamp": 325.8291015625
+    },
+    {
+        "line": " Value:6.117647",
+        "messageType": 2,
+        "seqNumber": 15669,
+        "timestamp": 325.829345703125
+    },
+    {
+        "line": "Hue: 0.08926081",
+        "messageType": 2,
+        "seqNumber": 15670,
+        "timestamp": 325.84869384765625
+    },
+    {
+        "line": " Saturation: 0.76602566",
+        "messageType": 2,
+        "seqNumber": 15671,
+        "timestamp": 325.8489990234375
+    },
+    {
+        "line": " Value:6.117647",
+        "messageType": 2,
+        "seqNumber": 15672,
+        "timestamp": 325.8492431640625
+    },
+    {
+        "line": "Hue: 0.08926081",
+        "messageType": 2,
+        "seqNumber": 15673,
+        "timestamp": 325.868896484375
+    },
+    {
+        "line": " Saturation: 0.76602566",
+        "messageType": 2,
+        "seqNumber": 15674,
+        "timestamp": 325.8692626953125
+    },
+    {
+        "line": " Value:6.117647",
+        "messageType": 2,
+        "seqNumber": 15675,
+        "timestamp": 325.8697509765625
+    },
+    {
+        "line": "Hue: 0.091536544",
+        "messageType": 2,
+        "seqNumber": 15676,
+        "timestamp": 325.8887939453125
+    },
+    {
+        "line": " Saturation: 0.7573265",
+        "messageType": 2,
+        "seqNumber": 15677,
+        "timestamp": 325.88909912109375
+    },
+    {
+        "line": " Value:7.627451",
+        "messageType": 2,
+        "seqNumber": 15678,
+        "timestamp": 325.889404296875
+    },
+    {
+        "line": "Hue: 0.091536544",
+        "messageType": 2,
+        "seqNumber": 15679,
+        "timestamp": 325.90899658203125
+    },
+    {
+        "line": " Saturation: 0.7573265",
+        "messageType": 2,
+        "seqNumber": 15680,
+        "timestamp": 325.90936279296875
+    },
+    {
+        "line": " Value:7.627451",
+        "messageType": 2,
+        "seqNumber": 15681,
+        "timestamp": 325.90960693359375
+    },
+    {
+        "line": "Hue: 0.091536544",
+        "messageType": 2,
+        "seqNumber": 15682,
+        "timestamp": 325.928955078125
+    },
+    {
+        "line": " Saturation: 0.7573265",
+        "messageType": 2,
+        "seqNumber": 15683,
+        "timestamp": 325.9293212890625
+    },
+    {
+        "line": " Value:7.627451",
+        "messageType": 2,
+        "seqNumber": 15684,
+        "timestamp": 325.9295654296875
+    },
+    {
+        "line": "Hue: 0.091536544",
+        "messageType": 2,
+        "seqNumber": 15685,
+        "timestamp": 325.9486083984375
+    },
+    {
+        "line": " Saturation: 0.7573265",
+        "messageType": 2,
+        "seqNumber": 15686,
+        "timestamp": 325.948974609375
+    },
+    {
+        "line": " Value:7.627451",
+        "messageType": 2,
+        "seqNumber": 15687,
+        "timestamp": 325.94921875
+    },
+    {
+        "line": "Hue: 0.091536544",
+        "messageType": 2,
+        "seqNumber": 15688,
+        "timestamp": 325.96875
+    },
+    {
+        "line": " Saturation: 0.7573265",
+        "messageType": 2,
+        "seqNumber": 15689,
+        "timestamp": 325.96905517578125
+    },
+    {
+        "line": " Value:7.627451",
+        "messageType": 2,
+        "seqNumber": 15690,
+        "timestamp": 325.96929931640625
+    },
+    {
+        "line": "Hue: 0.09381172",
+        "messageType": 2,
+        "seqNumber": 15691,
+        "timestamp": 325.98870849609375
+    },
+    {
+        "line": " Saturation: 0.74717164",
+        "messageType": 2,
+        "seqNumber": 15692,
+        "timestamp": 325.98944091796875
+    },
+    {
+        "line": " Value:7.972549",
+        "messageType": 2,
+        "seqNumber": 15693,
+        "timestamp": 325.98974609375
+    },
+    {
+        "line": "Hue: 0.09381172",
+        "messageType": 2,
+        "seqNumber": 15694,
+        "timestamp": 326.00872802734375
+    },
+    {
+        "line": " Saturation: 0.74717164",
+        "messageType": 2,
+        "seqNumber": 15695,
+        "timestamp": 326.009033203125
+    },
+    {
+        "line": " Value:7.972549",
+        "messageType": 2,
+        "seqNumber": 15696,
+        "timestamp": 326.00927734375
+    },
+    {
+        "line": "Hue: 0.09381172",
+        "messageType": 2,
+        "seqNumber": 15697,
+        "timestamp": 326.0289306640625
+    },
+    {
+        "line": " Saturation: 0.74717164",
+        "messageType": 2,
+        "seqNumber": 15698,
+        "timestamp": 326.02923583984375
+    },
+    {
+        "line": " Value:7.972549",
+        "messageType": 2,
+        "seqNumber": 15699,
+        "timestamp": 326.02947998046875
+    },
+    {
+        "line": "Hue: 0.09381172",
+        "messageType": 2,
+        "seqNumber": 15700,
+        "timestamp": 326.04864501953125
+    },
+    {
+        "line": " Saturation: 0.74717164",
+        "messageType": 2,
+        "seqNumber": 15701,
+        "timestamp": 326.04901123046875
+    },
+    {
+        "line": " Value:7.972549",
+        "messageType": 2,
+        "seqNumber": 15702,
+        "timestamp": 326.04925537109375
+    },
+    {
+        "line": "Hue: 0.09381172",
+        "messageType": 2,
+        "seqNumber": 15703,
+        "timestamp": 326.06866455078125
+    },
+    {
+        "line": " Saturation: 0.74717164",
+        "messageType": 2,
+        "seqNumber": 15704,
+        "timestamp": 326.06915283203125
+    },
+    {
+        "line": " Value:7.972549",
+        "messageType": 2,
+        "seqNumber": 15705,
+        "timestamp": 326.069580078125
+    },
+    {
+        "line": "Hue: 0.09494492",
+        "messageType": 2,
+        "seqNumber": 15706,
+        "timestamp": 326.08868408203125
+    },
+    {
+        "line": " Saturation: 0.74147046",
+        "messageType": 2,
+        "seqNumber": 15707,
+        "timestamp": 326.0889892578125
+    },
+    {
+        "line": " Value:8.160785",
+        "messageType": 2,
+        "seqNumber": 15708,
+        "timestamp": 326.0892333984375
+    },
+    {
+        "line": "Hue: 0.09494492",
+        "messageType": 2,
+        "seqNumber": 15709,
+        "timestamp": 326.10894775390625
+    },
+    {
+        "line": " Saturation: 0.74147046",
+        "messageType": 2,
+        "seqNumber": 15710,
+        "timestamp": 326.109619140625
+    },
+    {
+        "line": " Value:8.160785",
+        "messageType": 2,
+        "seqNumber": 15711,
+        "timestamp": 326.11004638671875
+    },
+    {
+        "line": "Hue: 0.09494492",
+        "messageType": 2,
+        "seqNumber": 15712,
+        "timestamp": 326.12884521484375
+    },
+    {
+        "line": " Saturation: 0.74147046",
+        "messageType": 2,
+        "seqNumber": 15713,
+        "timestamp": 326.12921142578125
+    },
+    {
+        "line": " Value:8.160785",
+        "messageType": 2,
+        "seqNumber": 15714,
+        "timestamp": 326.12945556640625
+    },
+    {
+        "line": "Hue: 0.09494492",
+        "messageType": 2,
+        "seqNumber": 15715,
+        "timestamp": 326.14892578125
+    },
+    {
+        "line": " Saturation: 0.74147046",
+        "messageType": 2,
+        "seqNumber": 15716,
+        "timestamp": 326.14959716796875
+    },
+    {
+        "line": " Value:8.160785",
+        "messageType": 2,
+        "seqNumber": 15717,
+        "timestamp": 326.14990234375
+    },
+    {
+        "line": "Hue: 0.09494492",
+        "messageType": 2,
+        "seqNumber": 15718,
+        "timestamp": 326.1688232421875
+    },
+    {
+        "line": " Saturation: 0.74147046",
+        "messageType": 2,
+        "seqNumber": 15719,
+        "timestamp": 326.16912841796875
+    },
+    {
+        "line": " Value:8.160785",
+        "messageType": 2,
+        "seqNumber": 15720,
+        "timestamp": 326.16943359375
+    },
+    {
+        "line": "Hue: 0.09519271",
+        "messageType": 2,
+        "seqNumber": 15721,
+        "timestamp": 326.18890380859375
+    },
+    {
+        "line": " Saturation: 0.737582",
+        "messageType": 2,
+        "seqNumber": 15722,
+        "timestamp": 326.189208984375
+    },
+    {
+        "line": " Value:8.368628",
+        "messageType": 2,
+        "seqNumber": 15723,
+        "timestamp": 326.189453125
+    },
+    {
+        "line": "Hue: 0.09519271",
+        "messageType": 2,
+        "seqNumber": 15724,
+        "timestamp": 326.20892333984375
+    },
+    {
+        "line": " Saturation: 0.737582",
+        "messageType": 2,
+        "seqNumber": 15725,
+        "timestamp": 326.20953369140625
+    },
+    {
+        "line": " Value:8.368628",
+        "messageType": 2,
+        "seqNumber": 15726,
+        "timestamp": 326.21026611328125
+    },
+    {
+        "line": "Hue: 0.09519271",
+        "messageType": 2,
+        "seqNumber": 15727,
+        "timestamp": 326.2288818359375
+    },
+    {
+        "line": " Saturation: 0.737582",
+        "messageType": 2,
+        "seqNumber": 15728,
+        "timestamp": 326.229736328125
+    },
+    {
+        "line": " Value:8.368628",
+        "messageType": 2,
+        "seqNumber": 15729,
+        "timestamp": 326.2301025390625
+    },
+    {
+        "line": "Hue: 0.09519271",
+        "messageType": 2,
+        "seqNumber": 15730,
+        "timestamp": 326.24908447265625
+    },
+    {
+        "line": " Saturation: 0.737582",
+        "messageType": 2,
+        "seqNumber": 15731,
+        "timestamp": 326.2493896484375
+    },
+    {
+        "line": " Value:8.368628",
+        "messageType": 2,
+        "seqNumber": 15732,
+        "timestamp": 326.2496337890625
+    },
+    {
+        "line": "Hue: 0.09519271",
+        "messageType": 2,
+        "seqNumber": 15733,
+        "timestamp": 326.26898193359375
+    },
+    {
+        "line": " Saturation: 0.737582",
+        "messageType": 2,
+        "seqNumber": 15734,
+        "timestamp": 326.2701416015625
+    },
+    {
+        "line": " Value:8.368628",
+        "messageType": 2,
+        "seqNumber": 15735,
+        "timestamp": 326.2708740234375
+    },
+    {
+        "line": "Hue: 0.09561753",
+        "messageType": 2,
+        "seqNumber": 15736,
+        "timestamp": 326.28863525390625
+    },
+    {
+        "line": " Saturation: 0.73427594",
+        "messageType": 2,
+        "seqNumber": 15737,
+        "timestamp": 326.289306640625
+    },
+    {
+        "line": " Value:8.043138",
+        "messageType": 2,
+        "seqNumber": 15738,
+        "timestamp": 326.28955078125
+    },
+    {
+        "line": "Hue: 0.09561753",
+        "messageType": 2,
+        "seqNumber": 15739,
+        "timestamp": 326.3087158203125
+    },
+    {
+        "line": " Saturation: 0.73427594",
+        "messageType": 2,
+        "seqNumber": 15740,
+        "timestamp": 326.30902099609375
+    },
+    {
+        "line": " Value:8.043138",
+        "messageType": 2,
+        "seqNumber": 15741,
+        "timestamp": 326.30926513671875
+    },
+    {
+        "line": "Hue: 0.09561753",
+        "messageType": 2,
+        "seqNumber": 15742,
+        "timestamp": 326.32867431640625
+    },
+    {
+        "line": " Saturation: 0.73427594",
+        "messageType": 2,
+        "seqNumber": 15743,
+        "timestamp": 326.3289794921875
+    },
+    {
+        "line": " Value:8.043138",
+        "messageType": 2,
+        "seqNumber": 15744,
+        "timestamp": 326.3292236328125
+    },
+    {
+        "line": "Hue: 0.09561753",
+        "messageType": 2,
+        "seqNumber": 15745,
+        "timestamp": 326.34881591796875
+    },
+    {
+        "line": " Saturation: 0.73427594",
+        "messageType": 2,
+        "seqNumber": 15746,
+        "timestamp": 326.34918212890625
+    },
+    {
+        "line": " Value:8.043138",
+        "messageType": 2,
+        "seqNumber": 15747,
+        "timestamp": 326.349609375
+    },
+    {
+        "line": "Hue: 0.09561753",
+        "messageType": 2,
+        "seqNumber": 15748,
+        "timestamp": 326.369140625
+    },
+    {
+        "line": " Saturation: 0.73427594",
+        "messageType": 2,
+        "seqNumber": 15749,
+        "timestamp": 326.3695068359375
+    },
+    {
+        "line": " Value:8.043138",
+        "messageType": 2,
+        "seqNumber": 15750,
+        "timestamp": 326.3697509765625
+    },
+    {
+        "line": "Hue: 0.09629629",
+        "messageType": 2,
+        "seqNumber": 15751,
+        "timestamp": 326.388916015625
+    },
+    {
+        "line": " Saturation: 0.73170733",
+        "messageType": 2,
+        "seqNumber": 15752,
+        "timestamp": 326.38922119140625
+    },
+    {
+        "line": " Value:7.717647",
+        "messageType": 2,
+        "seqNumber": 15753,
+        "timestamp": 326.38958740234375
+    },
+    {
+        "line": "Hue: 0.09629629",
+        "messageType": 2,
+        "seqNumber": 15754,
+        "timestamp": 326.40887451171875
+    },
+    {
+        "line": " Saturation: 0.73170733",
+        "messageType": 2,
+        "seqNumber": 15755,
+        "timestamp": 326.4091796875
+    },
+    {
+        "line": " Value:7.717647",
+        "messageType": 2,
+        "seqNumber": 15756,
+        "timestamp": 326.409423828125
+    },
+    {
+        "line": "Hue: 0.09629629",
+        "messageType": 2,
+        "seqNumber": 15757,
+        "timestamp": 326.42864990234375
+    },
+    {
+        "line": " Saturation: 0.73170733",
+        "messageType": 2,
+        "seqNumber": 15758,
+        "timestamp": 326.4290771484375
+    },
+    {
+        "line": " Value:7.717647",
+        "messageType": 2,
+        "seqNumber": 15759,
+        "timestamp": 326.4293212890625
+    },
+    {
+        "line": "Hue: 0.09629629",
+        "messageType": 2,
+        "seqNumber": 15760,
+        "timestamp": 326.4486083984375
+    },
+    {
+        "line": " Saturation: 0.73170733",
+        "messageType": 2,
+        "seqNumber": 15761,
+        "timestamp": 326.448974609375
+    },
+    {
+        "line": " Value:7.717647",
+        "messageType": 2,
+        "seqNumber": 15762,
+        "timestamp": 326.44921875
+    },
+    {
+        "line": "Hue: 0.09629629",
+        "messageType": 2,
+        "seqNumber": 15763,
+        "timestamp": 326.46893310546875
+    },
+    {
+        "line": " Saturation: 0.73170733",
+        "messageType": 2,
+        "seqNumber": 15764,
+        "timestamp": 326.46923828125
+    },
+    {
+        "line": " Value:7.717647",
+        "messageType": 2,
+        "seqNumber": 15765,
+        "timestamp": 326.469482421875
+    },
+    {
+        "line": "Hue: 0.096876524",
+        "messageType": 2,
+        "seqNumber": 15766,
+        "timestamp": 326.48870849609375
+    },
+    {
+        "line": " Saturation: 0.728145",
+        "messageType": 2,
+        "seqNumber": 15767,
+        "timestamp": 326.489013671875
+    },
+    {
+        "line": " Value:7.3568625",
+        "messageType": 2,
+        "seqNumber": 15768,
+        "timestamp": 326.48931884765625
+    },
+    {
+        "line": "Hue: 0.096876524",
+        "messageType": 2,
+        "seqNumber": 15769,
+        "timestamp": 326.50885009765625
+    },
+    {
+        "line": " Saturation: 0.728145",
+        "messageType": 2,
+        "seqNumber": 15770,
+        "timestamp": 326.50927734375
+    },
+    {
+        "line": " Value:7.3568625",
+        "messageType": 2,
+        "seqNumber": 15771,
+        "timestamp": 326.509521484375
+    },
+    {
+        "line": "Hue: 0.096876524",
+        "messageType": 2,
+        "seqNumber": 15772,
+        "timestamp": 326.52886962890625
+    },
+    {
+        "line": " Saturation: 0.728145",
+        "messageType": 2,
+        "seqNumber": 15773,
+        "timestamp": 326.5291748046875
+    },
+    {
+        "line": " Value:7.3568625",
+        "messageType": 2,
+        "seqNumber": 15774,
+        "timestamp": 326.52947998046875
+    },
+    {
+        "line": "Hue: 0.096876524",
+        "messageType": 2,
+        "seqNumber": 15775,
+        "timestamp": 326.5487060546875
+    },
+    {
+        "line": " Saturation: 0.728145",
+        "messageType": 2,
+        "seqNumber": 15776,
+        "timestamp": 326.54913330078125
+    },
+    {
+        "line": " Value:7.3568625",
+        "messageType": 2,
+        "seqNumber": 15777,
+        "timestamp": 326.5494384765625
+    },
+    {
+        "line": "Hue: 0.096876524",
+        "messageType": 2,
+        "seqNumber": 15778,
+        "timestamp": 326.56866455078125
+    },
+    {
+        "line": " Saturation: 0.728145",
+        "messageType": 2,
+        "seqNumber": 15779,
+        "timestamp": 326.569091796875
+    },
+    {
+        "line": " Value:7.3568625",
+        "messageType": 2,
+        "seqNumber": 15780,
+        "timestamp": 326.5697021484375
+    },
+    {
+        "line": "Hue: 0.09789839",
+        "messageType": 2,
+        "seqNumber": 15781,
+        "timestamp": 326.58892822265625
+    },
+    {
+        "line": " Saturation: 0.72427744",
+        "messageType": 2,
+        "seqNumber": 15782,
+        "timestamp": 326.58935546875
+    },
+    {
+        "line": " Value:6.7843137",
+        "messageType": 2,
+        "seqNumber": 15783,
+        "timestamp": 326.589599609375
+    },
+    {
+        "line": "Hue: 0.09789839",
+        "messageType": 2,
+        "seqNumber": 15784,
+        "timestamp": 326.60888671875
+    },
+    {
+        "line": " Saturation: 0.72427744",
+        "messageType": 2,
+        "seqNumber": 15785,
+        "timestamp": 326.60919189453125
+    },
+    {
+        "line": " Value:6.7843137",
+        "messageType": 2,
+        "seqNumber": 15786,
+        "timestamp": 326.6094970703125
+    },
+    {
+        "line": "Hue: 0.09789839",
+        "messageType": 2,
+        "seqNumber": 15787,
+        "timestamp": 326.6290283203125
+    },
+    {
+        "line": " Saturation: 0.72427744",
+        "messageType": 2,
+        "seqNumber": 15788,
+        "timestamp": 326.62933349609375
+    },
+    {
+        "line": " Value:6.7843137",
+        "messageType": 2,
+        "seqNumber": 15789,
+        "timestamp": 326.629638671875
+    },
+    {
+        "line": "Hue: 0.09789839",
+        "messageType": 2,
+        "seqNumber": 15790,
+        "timestamp": 326.64874267578125
+    },
+    {
+        "line": " Saturation: 0.72427744",
+        "messageType": 2,
+        "seqNumber": 15791,
+        "timestamp": 326.6492919921875
+    },
+    {
+        "line": " Value:6.7843137",
+        "messageType": 2,
+        "seqNumber": 15792,
+        "timestamp": 326.649658203125
+    },
+    {
+        "line": "Hue: 0.09789839",
+        "messageType": 2,
+        "seqNumber": 15793,
+        "timestamp": 326.66912841796875
+    },
+    {
+        "line": " Saturation: 0.72427744",
+        "messageType": 2,
+        "seqNumber": 15794,
+        "timestamp": 326.66943359375
+    },
+    {
+        "line": " Value:6.7843137",
+        "messageType": 2,
+        "seqNumber": 15795,
+        "timestamp": 326.669677734375
+    },
+    {
+        "line": "Hue: 0.0994575",
+        "messageType": 2,
+        "seqNumber": 15796,
+        "timestamp": 326.68865966796875
+    },
+    {
+        "line": " Saturation: 0.7181818",
+        "messageType": 2,
+        "seqNumber": 15797,
+        "timestamp": 326.68896484375
+    },
+    {
+        "line": " Value:6.0392156",
+        "messageType": 2,
+        "seqNumber": 15798,
+        "timestamp": 326.689208984375
+    },
+    {
+        "line": "Hue: 0.0994575",
+        "messageType": 2,
+        "seqNumber": 15799,
+        "timestamp": 326.70867919921875
+    },
+    {
+        "line": " Saturation: 0.7181818",
+        "messageType": 2,
+        "seqNumber": 15800,
+        "timestamp": 326.70928955078125
+    },
+    {
+        "line": " Value:6.0392156",
+        "messageType": 2,
+        "seqNumber": 15801,
+        "timestamp": 326.70953369140625
+    },
+    {
+        "line": "Hue: 0.0994575",
+        "messageType": 2,
+        "seqNumber": 15802,
+        "timestamp": 326.72869873046875
+    },
+    {
+        "line": " Saturation: 0.7181818",
+        "messageType": 2,
+        "seqNumber": 15803,
+        "timestamp": 326.72906494140625
+    },
+    {
+        "line": " Value:6.0392156",
+        "messageType": 2,
+        "seqNumber": 15804,
+        "timestamp": 326.72930908203125
+    },
+    {
+        "line": "Hue: 0.0994575",
+        "messageType": 2,
+        "seqNumber": 15805,
+        "timestamp": 326.7486572265625
+    },
+    {
+        "line": " Saturation: 0.7181818",
+        "messageType": 2,
+        "seqNumber": 15806,
+        "timestamp": 326.74896240234375
+    },
+    {
+        "line": " Value:6.0392156",
+        "messageType": 2,
+        "seqNumber": 15807,
+        "timestamp": 326.749267578125
+    },
+    {
+        "line": "Hue: 0.0994575",
+        "messageType": 2,
+        "seqNumber": 15808,
+        "timestamp": 326.76861572265625
+    },
+    {
+        "line": " Saturation: 0.7181818",
+        "messageType": 2,
+        "seqNumber": 15809,
+        "timestamp": 326.76898193359375
+    },
+    {
+        "line": " Value:6.0392156",
+        "messageType": 2,
+        "seqNumber": 15810,
+        "timestamp": 326.76922607421875
+    },
+    {
+        "line": "Hue: 0.10116598",
+        "messageType": 2,
+        "seqNumber": 15811,
+        "timestamp": 326.7886962890625
+    },
+    {
+        "line": " Saturation: 0.7110461",
+        "messageType": 2,
+        "seqNumber": 15812,
+        "timestamp": 326.78900146484375
+    },
+    {
+        "line": " Value:5.3607845",
+        "messageType": 2,
+        "seqNumber": 15813,
+        "timestamp": 326.789306640625
+    },
+    {
+        "line": "Hue: 0.10116598",
+        "messageType": 2,
+        "seqNumber": 15814,
+        "timestamp": 326.8089599609375
+    },
+    {
+        "line": " Saturation: 0.7110461",
+        "messageType": 2,
+        "seqNumber": 15815,
+        "timestamp": 326.809326171875
+    },
+    {
+        "line": " Value:5.3607845",
+        "messageType": 2,
+        "seqNumber": 15816,
+        "timestamp": 326.8095703125
+    },
+    {
+        "line": "Hue: 0.10116598",
+        "messageType": 2,
+        "seqNumber": 15817,
+        "timestamp": 326.83087158203125
+    },
+    {
+        "line": " Saturation: 0.7110461",
+        "messageType": 2,
+        "seqNumber": 15818,
+        "timestamp": 326.8311767578125
+    },
+    {
+        "line": " Value:5.3607845",
+        "messageType": 2,
+        "seqNumber": 15819,
+        "timestamp": 326.8314208984375
+    },
+    {
+        "line": "Hue: 0.10116598",
+        "messageType": 2,
+        "seqNumber": 15820,
+        "timestamp": 326.84881591796875
+    },
+    {
+        "line": " Saturation: 0.7110461",
+        "messageType": 2,
+        "seqNumber": 15821,
+        "timestamp": 326.84918212890625
+    },
+    {
+        "line": " Value:5.3607845",
+        "messageType": 2,
+        "seqNumber": 15822,
+        "timestamp": 326.84942626953125
+    },
+    {
+        "line": "Hue: 0.10116598",
+        "messageType": 2,
+        "seqNumber": 15823,
+        "timestamp": 326.86883544921875
+    },
+    {
+        "line": " Saturation: 0.7110461",
+        "messageType": 2,
+        "seqNumber": 15824,
+        "timestamp": 326.869140625
+    },
+    {
+        "line": " Value:5.3607845",
+        "messageType": 2,
+        "seqNumber": 15825,
+        "timestamp": 326.869384765625
+    },
+    {
+        "line": "Hue: 0.10290698",
+        "messageType": 2,
+        "seqNumber": 15826,
+        "timestamp": 326.88873291015625
+    },
+    {
+        "line": " Saturation: 0.704918",
+        "messageType": 2,
+        "seqNumber": 15827,
+        "timestamp": 326.8890380859375
+    },
+    {
+        "line": " Value:4.7843137",
+        "messageType": 2,
+        "seqNumber": 15828,
+        "timestamp": 326.88934326171875
+    },
+    {
+        "line": "Hue: 0.10290698",
+        "messageType": 2,
+        "seqNumber": 15829,
+        "timestamp": 326.90899658203125
+    },
+    {
+        "line": " Saturation: 0.704918",
+        "messageType": 2,
+        "seqNumber": 15830,
+        "timestamp": 326.9093017578125
+    },
+    {
+        "line": " Value:4.7843137",
+        "messageType": 2,
+        "seqNumber": 15831,
+        "timestamp": 326.90960693359375
+    },
+    {
+        "line": "Hue: 0.10290698",
+        "messageType": 2,
+        "seqNumber": 15832,
+        "timestamp": 326.92889404296875
+    },
+    {
+        "line": " Saturation: 0.704918",
+        "messageType": 2,
+        "seqNumber": 15833,
+        "timestamp": 326.92919921875
+    },
+    {
+        "line": " Value:4.7843137",
+        "messageType": 2,
+        "seqNumber": 15834,
+        "timestamp": 326.929443359375
+    },
+    {
+        "line": "Hue: 0.10290698",
+        "messageType": 2,
+        "seqNumber": 15835,
+        "timestamp": 326.9488525390625
+    },
+    {
+        "line": " Saturation: 0.704918",
+        "messageType": 2,
+        "seqNumber": 15836,
+        "timestamp": 326.94915771484375
+    },
+    {
+        "line": " Value:4.7843137",
+        "messageType": 2,
+        "seqNumber": 15837,
+        "timestamp": 326.94940185546875
+    },
+    {
+        "line": "Hue: 0.10290698",
+        "messageType": 2,
+        "seqNumber": 15838,
+        "timestamp": 326.96875
+    },
+    {
+        "line": " Saturation: 0.704918",
+        "messageType": 2,
+        "seqNumber": 15839,
+        "timestamp": 326.9691162109375
+    },
+    {
+        "line": " Value:4.7843137",
+        "messageType": 2,
+        "seqNumber": 15840,
+        "timestamp": 326.9693603515625
+    },
+    {
+        "line": "Hue: 0.10503473",
+        "messageType": 2,
+        "seqNumber": 15841,
+        "timestamp": 326.9886474609375
+    },
+    {
+        "line": " Saturation: 0.69881713",
+        "messageType": 2,
+        "seqNumber": 15842,
+        "timestamp": 326.989013671875
+    },
+    {
+        "line": " Value:4.309804",
+        "messageType": 2,
+        "seqNumber": 15843,
+        "timestamp": 326.9892578125
+    },
+    {
+        "line": "Hue: 0.10503473",
+        "messageType": 2,
+        "seqNumber": 15844,
+        "timestamp": 327.00909423828125
+    },
+    {
+        "line": " Saturation: 0.69881713",
+        "messageType": 2,
+        "seqNumber": 15845,
+        "timestamp": 327.0093994140625
+    },
+    {
+        "line": " Value:4.309804",
+        "messageType": 2,
+        "seqNumber": 15846,
+        "timestamp": 327.0096435546875
+    },
+    {
+        "line": "Hue: 0.10503473",
+        "messageType": 2,
+        "seqNumber": 15847,
+        "timestamp": 327.0289306640625
+    },
+    {
+        "line": " Saturation: 0.69881713",
+        "messageType": 2,
+        "seqNumber": 15848,
+        "timestamp": 327.0291748046875
+    },
+    {
+        "line": " Value:4.309804",
+        "messageType": 2,
+        "seqNumber": 15849,
+        "timestamp": 327.02947998046875
+    },
+    {
+        "line": "Hue: 0.10503473",
+        "messageType": 2,
+        "seqNumber": 15850,
+        "timestamp": 327.04876708984375
+    },
+    {
+        "line": " Saturation: 0.69881713",
+        "messageType": 2,
+        "seqNumber": 15851,
+        "timestamp": 327.0491943359375
+    },
+    {
+        "line": " Value:4.309804",
+        "messageType": 2,
+        "seqNumber": 15852,
+        "timestamp": 327.0494384765625
+    },
+    {
+        "line": "Hue: 0.10503473",
+        "messageType": 2,
+        "seqNumber": 15853,
+        "timestamp": 327.0689697265625
+    },
+    {
+        "line": " Saturation: 0.69881713",
+        "messageType": 2,
+        "seqNumber": 15854,
+        "timestamp": 327.06927490234375
+    },
+    {
+        "line": " Value:4.309804",
+        "messageType": 2,
+        "seqNumber": 15855,
+        "timestamp": 327.06951904296875
+    },
+    {
+        "line": "Hue: 0.10660878",
+        "messageType": 2,
+        "seqNumber": 15856,
+        "timestamp": 327.08868408203125
+    },
+    {
+        "line": " Saturation: 0.69307923",
+        "messageType": 2,
+        "seqNumber": 15857,
+        "timestamp": 327.08905029296875
+    },
+    {
+        "line": " Value:3.9098039",
+        "messageType": 2,
+        "seqNumber": 15858,
+        "timestamp": 327.08935546875
+    },
+    {
+        "line": "Hue: 0.10660878",
+        "messageType": 2,
+        "seqNumber": 15859,
+        "timestamp": 327.10888671875
+    },
+    {
+        "line": " Saturation: 0.69307923",
+        "messageType": 2,
+        "seqNumber": 15860,
+        "timestamp": 327.1092529296875
+    },
+    {
+        "line": " Value:3.9098039",
+        "messageType": 2,
+        "seqNumber": 15861,
+        "timestamp": 327.1094970703125
+    },
+    {
+        "line": "Hue: 0.10660878",
+        "messageType": 2,
+        "seqNumber": 15862,
+        "timestamp": 327.12884521484375
+    },
+    {
+        "line": " Saturation: 0.69307923",
+        "messageType": 2,
+        "seqNumber": 15863,
+        "timestamp": 327.12957763671875
+    },
+    {
+        "line": " Value:3.9098039",
+        "messageType": 2,
+        "seqNumber": 15864,
+        "timestamp": 327.1298828125
+    },
+    {
+        "line": "Hue: 0.10660878",
+        "messageType": 2,
+        "seqNumber": 15865,
+        "timestamp": 327.14886474609375
+    },
+    {
+        "line": " Saturation: 0.69307923",
+        "messageType": 2,
+        "seqNumber": 15866,
+        "timestamp": 327.149169921875
+    },
+    {
+        "line": " Value:3.9098039",
+        "messageType": 2,
+        "seqNumber": 15867,
+        "timestamp": 327.14947509765625
+    },
+    {
+        "line": "Hue: 0.10660878",
+        "messageType": 2,
+        "seqNumber": 15868,
+        "timestamp": 327.16876220703125
+    },
+    {
+        "line": " Saturation: 0.69307923",
+        "messageType": 2,
+        "seqNumber": 15869,
+        "timestamp": 327.1690673828125
+    },
+    {
+        "line": " Value:3.9098039",
+        "messageType": 2,
+        "seqNumber": 15870,
+        "timestamp": 327.16937255859375
+    },
+    {
+        "line": "Hue: 0.10810113",
+        "messageType": 2,
+        "seqNumber": 15871,
+        "timestamp": 327.189208984375
+    },
+    {
+        "line": " Saturation: 0.6879659",
+        "messageType": 2,
+        "seqNumber": 15872,
+        "timestamp": 327.1895751953125
+    },
+    {
+        "line": " Value:3.682353",
+        "messageType": 2,
+        "seqNumber": 15873,
+        "timestamp": 327.1898193359375
+    },
+    {
+        "line": "Hue: 0.10810113",
+        "messageType": 2,
+        "seqNumber": 15874,
+        "timestamp": 327.2086181640625
+    },
+    {
+        "line": " Saturation: 0.6879659",
+        "messageType": 2,
+        "seqNumber": 15875,
+        "timestamp": 327.208984375
+    },
+    {
+        "line": " Value:3.682353",
+        "messageType": 2,
+        "seqNumber": 15876,
+        "timestamp": 327.209228515625
+    },
+    {
+        "line": "Hue: 0.10810113",
+        "messageType": 2,
+        "seqNumber": 15877,
+        "timestamp": 327.22869873046875
+    },
+    {
+        "line": " Saturation: 0.6879659",
+        "messageType": 2,
+        "seqNumber": 15878,
+        "timestamp": 327.22900390625
+    },
+    {
+        "line": " Value:3.682353",
+        "messageType": 2,
+        "seqNumber": 15879,
+        "timestamp": 327.229248046875
+    },
+    {
+        "line": "Hue: 0.10810113",
+        "messageType": 2,
+        "seqNumber": 15880,
+        "timestamp": 327.24920654296875
+    },
+    {
+        "line": " Saturation: 0.6879659",
+        "messageType": 2,
+        "seqNumber": 15881,
+        "timestamp": 327.24951171875
+    },
+    {
+        "line": " Value:3.682353",
+        "messageType": 2,
+        "seqNumber": 15882,
+        "timestamp": 327.249755859375
+    },
+    {
+        "line": "Hue: 0.10810113",
+        "messageType": 2,
+        "seqNumber": 15883,
+        "timestamp": 327.26885986328125
+    },
+    {
+        "line": " Saturation: 0.6879659",
+        "messageType": 2,
+        "seqNumber": 15884,
+        "timestamp": 327.2691650390625
+    },
+    {
+        "line": " Value:3.682353",
+        "messageType": 2,
+        "seqNumber": 15885,
+        "timestamp": 327.2694091796875
+    },
+    {
+        "line": "Hue: 0.10820513",
+        "messageType": 2,
+        "seqNumber": 15886,
+        "timestamp": 327.28900146484375
+    },
+    {
+        "line": " Saturation: 0.6885593",
+        "messageType": 2,
+        "seqNumber": 15887,
+        "timestamp": 327.289306640625
+    },
+    {
+        "line": " Value:3.7019608",
+        "messageType": 2,
+        "seqNumber": 15888,
+        "timestamp": 327.28961181640625
+    },
+    {
+        "line": "Hue: 0.10820513",
+        "messageType": 2,
+        "seqNumber": 15889,
+        "timestamp": 327.3089599609375
+    },
+    {
+        "line": " Saturation: 0.6885593",
+        "messageType": 2,
+        "seqNumber": 15890,
+        "timestamp": 327.30926513671875
+    },
+    {
+        "line": " Value:3.7019608",
+        "messageType": 2,
+        "seqNumber": 15891,
+        "timestamp": 327.3095703125
+    },
+    {
+        "line": "Hue: 0.10820513",
+        "messageType": 2,
+        "seqNumber": 15892,
+        "timestamp": 327.328857421875
+    },
+    {
+        "line": " Saturation: 0.6885593",
+        "messageType": 2,
+        "seqNumber": 15893,
+        "timestamp": 327.3292236328125
+    },
+    {
+        "line": " Value:3.7019608",
+        "messageType": 2,
+        "seqNumber": 15894,
+        "timestamp": 327.3294677734375
+    },
+    {
+        "line": "Hue: 0.10820513",
+        "messageType": 2,
+        "seqNumber": 15895,
+        "timestamp": 327.34893798828125
+    },
+    {
+        "line": " Saturation: 0.6885593",
+        "messageType": 2,
+        "seqNumber": 15896,
+        "timestamp": 327.34954833984375
+    },
+    {
+        "line": " Value:3.7019608",
+        "messageType": 2,
+        "seqNumber": 15897,
+        "timestamp": 327.349853515625
+    },
+    {
+        "line": "Hue: 0.10820513",
+        "messageType": 2,
+        "seqNumber": 15898,
+        "timestamp": 327.3687744140625
+    },
+    {
+        "line": " Saturation: 0.6885593",
+        "messageType": 2,
+        "seqNumber": 15899,
+        "timestamp": 327.36907958984375
+    },
+    {
+        "line": " Value:3.7019608",
+        "messageType": 2,
+        "seqNumber": 15900,
+        "timestamp": 327.36932373046875
+    },
+    {
+        "line": "Hue: 0.106800765",
+        "messageType": 2,
+        "seqNumber": 15901,
+        "timestamp": 327.38885498046875
+    },
+    {
+        "line": " Saturation: 0.6925373",
+        "messageType": 2,
+        "seqNumber": 15902,
+        "timestamp": 327.38916015625
+    },
+    {
+        "line": " Value:3.9411764",
+        "messageType": 2,
+        "seqNumber": 15903,
+        "timestamp": 327.389404296875
+    },
+    {
+        "line": "Hue: 0.106800765",
+        "messageType": 2,
+        "seqNumber": 15904,
+        "timestamp": 327.40869140625
+    },
+    {
+        "line": " Saturation: 0.6925373",
+        "messageType": 2,
+        "seqNumber": 15905,
+        "timestamp": 327.40899658203125
+    },
+    {
+        "line": " Value:3.9411764",
+        "messageType": 2,
+        "seqNumber": 15906,
+        "timestamp": 327.40924072265625
+    },
+    {
+        "line": "Hue: 0.106800765",
+        "messageType": 2,
+        "seqNumber": 15907,
+        "timestamp": 327.4287109375
+    },
+    {
+        "line": " Saturation: 0.6925373",
+        "messageType": 2,
+        "seqNumber": 15908,
+        "timestamp": 327.42901611328125
+    },
+    {
+        "line": " Value:3.9411764",
+        "messageType": 2,
+        "seqNumber": 15909,
+        "timestamp": 327.42926025390625
+    },
+    {
+        "line": "Hue: 0.106800765",
+        "messageType": 2,
+        "seqNumber": 15910,
+        "timestamp": 327.4486083984375
+    },
+    {
+        "line": " Saturation: 0.6925373",
+        "messageType": 2,
+        "seqNumber": 15911,
+        "timestamp": 327.448974609375
+    },
+    {
+        "line": " Value:3.9411764",
+        "messageType": 2,
+        "seqNumber": 15912,
+        "timestamp": 327.44921875
+    },
+    {
+        "line": "Hue: 0.106800765",
+        "messageType": 2,
+        "seqNumber": 15913,
+        "timestamp": 327.46893310546875
+    },
+    {
+        "line": " Saturation: 0.6925373",
+        "messageType": 2,
+        "seqNumber": 15914,
+        "timestamp": 327.46966552734375
+    },
+    {
+        "line": " Value:3.9411764",
+        "messageType": 2,
+        "seqNumber": 15915,
+        "timestamp": 327.4703369140625
+    },
+    {
+        "line": "Hue: 0.10639777",
+        "messageType": 2,
+        "seqNumber": 15916,
+        "timestamp": 327.48870849609375
+    },
+    {
+        "line": " Saturation: 0.69535786",
+        "messageType": 2,
+        "seqNumber": 15917,
+        "timestamp": 327.48907470703125
+    },
+    {
+        "line": " Value:4.054902",
+        "messageType": 2,
+        "seqNumber": 15918,
+        "timestamp": 327.48931884765625
+    },
+    {
+        "line": "Hue: 0.10639777",
+        "messageType": 2,
+        "seqNumber": 15919,
+        "timestamp": 327.50860595703125
+    },
+    {
+        "line": " Saturation: 0.69535786",
+        "messageType": 2,
+        "seqNumber": 15920,
+        "timestamp": 327.50897216796875
+    },
+    {
+        "line": " Value:4.054902",
+        "messageType": 2,
+        "seqNumber": 15921,
+        "timestamp": 327.50921630859375
+    },
+    {
+        "line": "Hue: 0.10639777",
+        "messageType": 2,
+        "seqNumber": 15922,
+        "timestamp": 327.52899169921875
+    },
+    {
+        "line": " Saturation: 0.69535786",
+        "messageType": 2,
+        "seqNumber": 15923,
+        "timestamp": 327.529296875
+    },
+    {
+        "line": " Value:4.054902",
+        "messageType": 2,
+        "seqNumber": 15924,
+        "timestamp": 327.529541015625
+    },
+    {
+        "line": "Hue: 0.10639777",
+        "messageType": 2,
+        "seqNumber": 15925,
+        "timestamp": 327.54876708984375
+    },
+    {
+        "line": " Saturation: 0.69535786",
+        "messageType": 2,
+        "seqNumber": 15926,
+        "timestamp": 327.54913330078125
+    },
+    {
+        "line": " Value:4.054902",
+        "messageType": 2,
+        "seqNumber": 15927,
+        "timestamp": 327.54986572265625
+    },
+    {
+        "line": "Hue: 0.10639777",
+        "messageType": 2,
+        "seqNumber": 15928,
+        "timestamp": 327.5687255859375
+    },
+    {
+        "line": " Saturation: 0.69535786",
+        "messageType": 2,
+        "seqNumber": 15929,
+        "timestamp": 327.56903076171875
+    },
+    {
+        "line": " Value:4.054902",
+        "messageType": 2,
+        "seqNumber": 15930,
+        "timestamp": 327.56927490234375
+    },
+    {
+        "line": "Hue: 0.105831034",
+        "messageType": 2,
+        "seqNumber": 15931,
+        "timestamp": 327.5887451171875
+    },
+    {
+        "line": " Saturation: 0.696069",
+        "messageType": 2,
+        "seqNumber": 15932,
+        "timestamp": 327.58905029296875
+    },
+    {
+        "line": " Value:4.090196",
+        "messageType": 2,
+        "seqNumber": 15933,
+        "timestamp": 327.58929443359375
+    },
+    {
+        "line": "Hue: 0.105831034",
+        "messageType": 2,
+        "seqNumber": 15934,
+        "timestamp": 327.608642578125
+    },
+    {
+        "line": " Saturation: 0.696069",
+        "messageType": 2,
+        "seqNumber": 15935,
+        "timestamp": 327.6090087890625
+    },
+    {
+        "line": " Value:4.090196",
+        "messageType": 2,
+        "seqNumber": 15936,
+        "timestamp": 327.6092529296875
+    },
+    {
+        "line": "Hue: 0.105831034",
+        "messageType": 2,
+        "seqNumber": 15937,
+        "timestamp": 327.628662109375
+    },
+    {
+        "line": " Saturation: 0.696069",
+        "messageType": 2,
+        "seqNumber": 15938,
+        "timestamp": 327.62908935546875
+    },
+    {
+        "line": " Value:4.090196",
+        "messageType": 2,
+        "seqNumber": 15939,
+        "timestamp": 327.62933349609375
+    },
+    {
+        "line": "Hue: 0.105831034",
+        "messageType": 2,
+        "seqNumber": 15940,
+        "timestamp": 327.64874267578125
+    },
+    {
+        "line": " Saturation: 0.696069",
+        "messageType": 2,
+        "seqNumber": 15941,
+        "timestamp": 327.64910888671875
+    },
+    {
+        "line": " Value:4.090196",
+        "messageType": 2,
+        "seqNumber": 15942,
+        "timestamp": 327.64935302734375
+    },
+    {
+        "line": "Hue: 0.105831034",
+        "messageType": 2,
+        "seqNumber": 15943,
+        "timestamp": 327.668701171875
+    },
+    {
+        "line": " Saturation: 0.696069",
+        "messageType": 2,
+        "seqNumber": 15944,
+        "timestamp": 327.6690673828125
+    },
+    {
+        "line": " Value:4.090196",
+        "messageType": 2,
+        "seqNumber": 15945,
+        "timestamp": 327.6693115234375
+    },
+    {
+        "line": "Hue: 0.10589319",
+        "messageType": 2,
+        "seqNumber": 15946,
+        "timestamp": 327.68865966796875
+    },
+    {
+        "line": " Saturation: 0.6954851",
+        "messageType": 2,
+        "seqNumber": 15947,
+        "timestamp": 327.68896484375
+    },
+    {
+        "line": " Value:4.082353",
+        "messageType": 2,
+        "seqNumber": 15948,
+        "timestamp": 327.68927001953125
+    },
+    {
+        "line": "Hue: 0.10589319",
+        "messageType": 2,
+        "seqNumber": 15949,
+        "timestamp": 327.70867919921875
+    },
+    {
+        "line": " Saturation: 0.6954851",
+        "messageType": 2,
+        "seqNumber": 15950,
+        "timestamp": 327.70904541015625
+    },
+    {
+        "line": " Value:4.082353",
+        "messageType": 2,
+        "seqNumber": 15951,
+        "timestamp": 327.70928955078125
+    },
+    {
+        "line": "Hue: 0.10589319",
+        "messageType": 2,
+        "seqNumber": 15952,
+        "timestamp": 327.7286376953125
+    },
+    {
+        "line": " Saturation: 0.6954851",
+        "messageType": 2,
+        "seqNumber": 15953,
+        "timestamp": 327.72900390625
+    },
+    {
+        "line": " Value:4.082353",
+        "messageType": 2,
+        "seqNumber": 15954,
+        "timestamp": 327.729248046875
+    },
+    {
+        "line": "Hue: 0.10589319",
+        "messageType": 2,
+        "seqNumber": 15955,
+        "timestamp": 327.7486572265625
+    },
+    {
+        "line": " Saturation: 0.6954851",
+        "messageType": 2,
+        "seqNumber": 15956,
+        "timestamp": 327.7490234375
+    },
+    {
+        "line": " Value:4.082353",
+        "messageType": 2,
+        "seqNumber": 15957,
+        "timestamp": 327.74932861328125
+    },
+    {
+        "line": "Hue: 0.10589319",
+        "messageType": 2,
+        "seqNumber": 15958,
+        "timestamp": 327.76873779296875
+    },
+    {
+        "line": " Saturation: 0.6954851",
+        "messageType": 2,
+        "seqNumber": 15959,
+        "timestamp": 327.76910400390625
+    },
+    {
+        "line": " Value:4.082353",
+        "messageType": 2,
+        "seqNumber": 15960,
+        "timestamp": 327.76934814453125
+    },
+    {
+        "line": "Hue: 0.105465226",
+        "messageType": 2,
+        "seqNumber": 15961,
+        "timestamp": 327.7886962890625
+    },
+    {
+        "line": " Saturation: 0.69688386",
+        "messageType": 2,
+        "seqNumber": 15962,
+        "timestamp": 327.78900146484375
+    },
+    {
+        "line": " Value:4.152941",
+        "messageType": 2,
+        "seqNumber": 15963,
+        "timestamp": 327.78924560546875
+    },
+    {
+        "line": "Hue: 0.105465226",
+        "messageType": 2,
+        "seqNumber": 15964,
+        "timestamp": 327.80865478515625
+    },
+    {
+        "line": " Saturation: 0.69688386",
+        "messageType": 2,
+        "seqNumber": 15965,
+        "timestamp": 327.8089599609375
+    },
+    {
+        "line": " Value:4.152941",
+        "messageType": 2,
+        "seqNumber": 15966,
+        "timestamp": 327.8092041015625
+    },
+    {
+        "line": "Hue: 0.105465226",
+        "messageType": 2,
+        "seqNumber": 15967,
+        "timestamp": 327.82867431640625
+    },
+    {
+        "line": " Saturation: 0.69688386",
+        "messageType": 2,
+        "seqNumber": 15968,
+        "timestamp": 327.82904052734375
+    },
+    {
+        "line": " Value:4.152941",
+        "messageType": 2,
+        "seqNumber": 15969,
+        "timestamp": 327.829833984375
+    },
+    {
+        "line": "Hue: 0.105465226",
+        "messageType": 2,
+        "seqNumber": 15970,
+        "timestamp": 327.8489990234375
+    },
+    {
+        "line": " Saturation: 0.69688386",
+        "messageType": 2,
+        "seqNumber": 15971,
+        "timestamp": 327.84930419921875
+    },
+    {
+        "line": " Value:4.152941",
+        "messageType": 2,
+        "seqNumber": 15972,
+        "timestamp": 327.84954833984375
+    },
+    {
+        "line": "Hue: 0.105465226",
+        "messageType": 2,
+        "seqNumber": 15973,
+        "timestamp": 327.86859130859375
+    },
+    {
+        "line": " Saturation: 0.69688386",
+        "messageType": 2,
+        "seqNumber": 15974,
+        "timestamp": 327.86895751953125
+    },
+    {
+        "line": " Value:4.152941",
+        "messageType": 2,
+        "seqNumber": 15975,
+        "timestamp": 327.86981201171875
+    },
+    {
+        "line": "Hue: 0.104706384",
+        "messageType": 2,
+        "seqNumber": 15976,
+        "timestamp": 327.88885498046875
+    },
+    {
+        "line": " Saturation: 0.7005445",
+        "messageType": 2,
+        "seqNumber": 15977,
+        "timestamp": 327.88922119140625
+    },
+    {
+        "line": " Value:4.3215685",
+        "messageType": 2,
+        "seqNumber": 15978,
+        "timestamp": 327.88946533203125
+    },
+    {
+        "line": "Hue: 0.104706384",
+        "messageType": 2,
+        "seqNumber": 15979,
+        "timestamp": 327.90887451171875
+    },
+    {
+        "line": " Saturation: 0.7005445",
+        "messageType": 2,
+        "seqNumber": 15980,
+        "timestamp": 327.9091796875
+    },
+    {
+        "line": " Value:4.3215685",
+        "messageType": 2,
+        "seqNumber": 15981,
+        "timestamp": 327.909423828125
+    },
+    {
+        "line": "Hue: 0.104706384",
+        "messageType": 2,
+        "seqNumber": 15982,
+        "timestamp": 327.92913818359375
+    },
+    {
+        "line": " Saturation: 0.7005445",
+        "messageType": 2,
+        "seqNumber": 15983,
+        "timestamp": 327.92950439453125
+    },
+    {
+        "line": " Value:4.3215685",
+        "messageType": 2,
+        "seqNumber": 15984,
+        "timestamp": 327.92974853515625
+    },
+    {
+        "line": "Hue: 0.104706384",
+        "messageType": 2,
+        "seqNumber": 15985,
+        "timestamp": 327.9488525390625
+    },
+    {
+        "line": " Saturation: 0.7005445",
+        "messageType": 2,
+        "seqNumber": 15986,
+        "timestamp": 327.94915771484375
+    },
+    {
+        "line": " Value:4.3215685",
+        "messageType": 2,
+        "seqNumber": 15987,
+        "timestamp": 327.94940185546875
+    },
+    {
+        "line": "Hue: 0.104706384",
+        "messageType": 2,
+        "seqNumber": 15988,
+        "timestamp": 327.9688720703125
+    },
+    {
+        "line": " Saturation: 0.7005445",
+        "messageType": 2,
+        "seqNumber": 15989,
+        "timestamp": 327.96917724609375
+    },
+    {
+        "line": " Value:4.3215685",
+        "messageType": 2,
+        "seqNumber": 15990,
+        "timestamp": 327.96942138671875
+    },
+    {
+        "line": "Hue: 0.10448074",
+        "messageType": 2,
+        "seqNumber": 15991,
+        "timestamp": 327.9886474609375
+    },
+    {
+        "line": " Saturation: 0.7069272",
+        "messageType": 2,
+        "seqNumber": 15992,
+        "timestamp": 327.989013671875
+    },
+    {
+        "line": " Value:4.415686",
+        "messageType": 2,
+        "seqNumber": 15993,
+        "timestamp": 327.98944091796875
+    },
+    {
+        "line": "Hue: 0.104008436",
+        "messageType": 2,
+        "seqNumber": 15994,
+        "timestamp": 328.0087890625
+    },
+    {
+        "line": " Saturation: 0.7015986",
+        "messageType": 2,
+        "seqNumber": 15995,
+        "timestamp": 328.00927734375
+    },
+    {
+        "line": " Value:4.415686",
+        "messageType": 2,
+        "seqNumber": 15996,
+        "timestamp": 328.0096435546875
+    },
+    {
+        "line": "Hue: 0.104008436",
+        "messageType": 2,
+        "seqNumber": 15997,
+        "timestamp": 328.02862548828125
+    },
+    {
+        "line": " Saturation: 0.7015986",
+        "messageType": 2,
+        "seqNumber": 15998,
+        "timestamp": 328.029052734375
+    },
+    {
+        "line": " Value:4.415686",
+        "messageType": 2,
+        "seqNumber": 15999,
+        "timestamp": 328.029296875
+    },
+    {
+        "line": "Hue: 0.104008436",
+        "messageType": 2,
+        "seqNumber": 16000,
+        "timestamp": 328.048828125
+    },
+    {
+        "line": " Saturation: 0.7015986",
+        "messageType": 2,
+        "seqNumber": 16001,
+        "timestamp": 328.0491943359375
+    },
+    {
+        "line": " Value:4.415686",
+        "messageType": 2,
+        "seqNumber": 16002,
+        "timestamp": 328.0494384765625
+    },
+    {
+        "line": "Hue: 0.104008436",
+        "messageType": 2,
+        "seqNumber": 16003,
+        "timestamp": 328.0689697265625
+    },
+    {
+        "line": " Saturation: 0.7015986",
+        "messageType": 2,
+        "seqNumber": 16004,
+        "timestamp": 328.06927490234375
+    },
+    {
+        "line": " Value:4.415686",
+        "messageType": 2,
+        "seqNumber": 16005,
+        "timestamp": 328.06951904296875
+    },
+    {
+        "line": "Hue: 0.104272425",
+        "messageType": 2,
+        "seqNumber": 16006,
+        "timestamp": 328.088623046875
+    },
+    {
+        "line": " Saturation: 0.7010676",
+        "messageType": 2,
+        "seqNumber": 16007,
+        "timestamp": 328.0889892578125
+    },
+    {
+        "line": " Value:4.407843",
+        "messageType": 2,
+        "seqNumber": 16008,
+        "timestamp": 328.0892333984375
+    },
+    {
+        "line": "Hue: 0.10414026",
+        "messageType": 2,
+        "seqNumber": 16009,
+        "timestamp": 328.10870361328125
+    },
+    {
+        "line": " Saturation: 0.7019573",
+        "messageType": 2,
+        "seqNumber": 16010,
+        "timestamp": 328.1090087890625
+    },
+    {
+        "line": " Value:4.407843",
+        "messageType": 2,
+        "seqNumber": 16011,
+        "timestamp": 328.10931396484375
+    },
+    {
+        "line": "Hue: 0.10414026",
+        "messageType": 2,
+        "seqNumber": 16012,
+        "timestamp": 328.12884521484375
+    },
+    {
+        "line": " Saturation: 0.7019573",
+        "messageType": 2,
+        "seqNumber": 16013,
+        "timestamp": 328.12921142578125
+    },
+    {
+        "line": " Value:4.407843",
+        "messageType": 2,
+        "seqNumber": 16014,
+        "timestamp": 328.12945556640625
+    },
+    {
+        "line": "Hue: 0.10414026",
+        "messageType": 2,
+        "seqNumber": 16015,
+        "timestamp": 328.14898681640625
+    },
+    {
+        "line": " Saturation: 0.7019573",
+        "messageType": 2,
+        "seqNumber": 16016,
+        "timestamp": 328.14935302734375
+    },
+    {
+        "line": " Value:4.407843",
+        "messageType": 2,
+        "seqNumber": 16017,
+        "timestamp": 328.14959716796875
+    },
+    {
+        "line": "Hue: 0.10414026",
+        "messageType": 2,
+        "seqNumber": 16018,
+        "timestamp": 328.168701171875
+    },
+    {
+        "line": " Saturation: 0.7019573",
+        "messageType": 2,
+        "seqNumber": 16019,
+        "timestamp": 328.16900634765625
+    },
+    {
+        "line": " Value:4.407843",
+        "messageType": 2,
+        "seqNumber": 16020,
+        "timestamp": 328.1693115234375
+    },
+    {
+        "line": "Hue: 0.10493827",
+        "messageType": 2,
+        "seqNumber": 16021,
+        "timestamp": 328.188720703125
+    },
+    {
+        "line": " Saturation: 0.7003578",
+        "messageType": 2,
+        "seqNumber": 16022,
+        "timestamp": 328.1890869140625
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16023,
+        "timestamp": 328.19012451171875
+    },
+    {
+        "line": "Hue: 0.10437926",
+        "messageType": 2,
+        "seqNumber": 16024,
+        "timestamp": 328.208740234375
+    },
+    {
+        "line": " Saturation: 0.7012522",
+        "messageType": 2,
+        "seqNumber": 16025,
+        "timestamp": 328.20904541015625
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16026,
+        "timestamp": 328.20928955078125
+    },
+    {
+        "line": "Hue: 0.10437926",
+        "messageType": 2,
+        "seqNumber": 16027,
+        "timestamp": 328.2286376953125
+    },
+    {
+        "line": " Saturation: 0.7012522",
+        "messageType": 2,
+        "seqNumber": 16028,
+        "timestamp": 328.22900390625
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16029,
+        "timestamp": 328.229248046875
+    },
+    {
+        "line": "Hue: 0.10437926",
+        "messageType": 2,
+        "seqNumber": 16030,
+        "timestamp": 328.24871826171875
+    },
+    {
+        "line": " Saturation: 0.7012522",
+        "messageType": 2,
+        "seqNumber": 16031,
+        "timestamp": 328.24908447265625
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16032,
+        "timestamp": 328.24932861328125
+    },
+    {
+        "line": "Hue: 0.10437926",
+        "messageType": 2,
+        "seqNumber": 16033,
+        "timestamp": 328.2686767578125
+    },
+    {
+        "line": " Saturation: 0.7012522",
+        "messageType": 2,
+        "seqNumber": 16034,
+        "timestamp": 328.26898193359375
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16035,
+        "timestamp": 328.269287109375
+    },
+    {
+        "line": "Hue: 0.10437926",
+        "messageType": 2,
+        "seqNumber": 16036,
+        "timestamp": 328.28875732421875
+    },
+    {
+        "line": " Saturation: 0.7012522",
+        "messageType": 2,
+        "seqNumber": 16037,
+        "timestamp": 328.28912353515625
+    },
+    {
+        "line": " Value:4.3843136",
+        "messageType": 2,
+        "seqNumber": 16038,
+        "timestamp": 328.28936767578125
+    },
+    {
+        "line": "Hue: 0.10457516",
+        "messageType": 2,
+        "seqNumber": 16039,
+        "timestamp": 328.3087158203125
+    },
+    {
+        "line": " Saturation: 0.6999085",
+        "messageType": 2,
+        "seqNumber": 16040,
+        "timestamp": 328.30926513671875
+    },
+    {
+        "line": " Value:4.2862744",
+        "messageType": 2,
+        "seqNumber": 16041,
+        "timestamp": 328.3095703125
+    },
+    {
+        "line": "Hue: 0.10457516",
+        "messageType": 2,
+        "seqNumber": 16042,
+        "timestamp": 328.3289794921875
+    },
+    {
+        "line": " Saturation: 0.6999085",
+        "messageType": 2,
+        "seqNumber": 16043,
+        "timestamp": 328.329345703125
+    },
+    {
+        "line": " Value:4.2862744",
+        "messageType": 2,
+        "seqNumber": 16044,
+        "timestamp": 328.32958984375
+    },
+    {
+        "line": "Hue: 0.10457516",
+        "messageType": 2,
+        "seqNumber": 16045,
+        "timestamp": 328.348876953125
+    },
+    {
+        "line": " Saturation: 0.6999085",
+        "messageType": 2,
+        "seqNumber": 16046,
+        "timestamp": 328.34918212890625
+    },
+    {
+        "line": " Value:4.2862744",
+        "messageType": 2,
+        "seqNumber": 16047,
+        "timestamp": 328.34942626953125
+    },
+    {
+        "line": "Hue: 0.10457516",
+        "messageType": 2,
+        "seqNumber": 16048,
+        "timestamp": 328.368896484375
+    },
+    {
+        "line": " Saturation: 0.6999085",
+        "messageType": 2,
+        "seqNumber": 16049,
+        "timestamp": 328.3692626953125
+    },
+    {
+        "line": " Value:4.2862744",
+        "messageType": 2,
+        "seqNumber": 16050,
+        "timestamp": 328.36956787109375
+    },
+    {
+        "line": "Hue: 0.10457516",
+        "messageType": 2,
+        "seqNumber": 16051,
+        "timestamp": 328.38873291015625
+    },
+    {
+        "line": " Saturation: 0.6999085",
+        "messageType": 2,
+        "seqNumber": 16052,
+        "timestamp": 328.38909912109375
+    },
+    {
+        "line": " Value:4.2862744",
+        "messageType": 2,
+        "seqNumber": 16053,
+        "timestamp": 328.38934326171875
+    },
+    {
+        "line": "Hue: 0.10648801",
+        "messageType": 2,
+        "seqNumber": 16054,
+        "timestamp": 328.40887451171875
+    },
+    {
+        "line": " Saturation: 0.69441724",
+        "messageType": 2,
+        "seqNumber": 16055,
+        "timestamp": 328.40924072265625
+    },
+    {
+        "line": " Value:4.0039215",
+        "messageType": 2,
+        "seqNumber": 16056,
+        "timestamp": 328.40948486328125
+    },
+    {
+        "line": "Hue: 0.10648801",
+        "messageType": 2,
+        "seqNumber": 16057,
+        "timestamp": 328.4288330078125
+    },
+    {
+        "line": " Saturation: 0.69441724",
+        "messageType": 2,
+        "seqNumber": 16058,
+        "timestamp": 328.42913818359375
+    },
+    {
+        "line": " Value:4.0039215",
+        "messageType": 2,
+        "seqNumber": 16059,
+        "timestamp": 328.429443359375
+    },
+    {
+        "line": "Hue: 0.10648801",
+        "messageType": 2,
+        "seqNumber": 16060,
+        "timestamp": 328.44879150390625
+    },
+    {
+        "line": " Saturation: 0.69441724",
+        "messageType": 2,
+        "seqNumber": 16061,
+        "timestamp": 328.449462890625
+    },
+    {
+        "line": " Value:4.0039215",
+        "messageType": 2,
+        "seqNumber": 16062,
+        "timestamp": 328.4501953125
+    },
+    {
+        "line": "Hue: 0.10648801",
+        "messageType": 2,
+        "seqNumber": 16063,
+        "timestamp": 328.46893310546875
+    },
+    {
+        "line": " Saturation: 0.69441724",
+        "messageType": 2,
+        "seqNumber": 16064,
+        "timestamp": 328.46923828125
+    },
+    {
+        "line": " Value:4.0039215",
+        "messageType": 2,
+        "seqNumber": 16065,
+        "timestamp": 328.469482421875
+    },
+    {
+        "line": "Hue: 0.10648801",
+        "messageType": 2,
+        "seqNumber": 16066,
+        "timestamp": 328.48870849609375
+    },
+    {
+        "line": " Saturation: 0.69441724",
+        "messageType": 2,
+        "seqNumber": 16067,
+        "timestamp": 328.489013671875
+    },
+    {
+        "line": " Value:4.0039215",
+        "messageType": 2,
+        "seqNumber": 16068,
+        "timestamp": 328.48931884765625
+    },
+    {
+        "line": "Hue: 0.109917365",
+        "messageType": 2,
+        "seqNumber": 16069,
+        "timestamp": 328.5087890625
+    },
+    {
+        "line": " Saturation: 0.6836158",
+        "messageType": 2,
+        "seqNumber": 16070,
+        "timestamp": 328.50921630859375
+    },
+    {
+        "line": " Value:3.4705882",
+        "messageType": 2,
+        "seqNumber": 16071,
+        "timestamp": 328.50946044921875
+    },
+    {
+        "line": "Hue: 0.109917365",
+        "messageType": 2,
+        "seqNumber": 16072,
+        "timestamp": 328.52886962890625
+    },
+    {
+        "line": " Saturation: 0.6836158",
+        "messageType": 2,
+        "seqNumber": 16073,
+        "timestamp": 328.5296630859375
+    },
+    {
+        "line": " Value:3.4705882",
+        "messageType": 2,
+        "seqNumber": 16074,
+        "timestamp": 328.530029296875
+    },
+    {
+        "line": "Hue: 0.109917365",
+        "messageType": 2,
+        "seqNumber": 16075,
+        "timestamp": 328.54888916015625
+    },
+    {
+        "line": " Saturation: 0.6836158",
+        "messageType": 2,
+        "seqNumber": 16076,
+        "timestamp": 328.5491943359375
+    },
+    {
+        "line": " Value:3.4705882",
+        "messageType": 2,
+        "seqNumber": 16077,
+        "timestamp": 328.5494384765625
+    },
+    {
+        "line": "Hue: 0.109917365",
+        "messageType": 2,
+        "seqNumber": 16078,
+        "timestamp": 328.56884765625
+    },
+    {
+        "line": " Saturation: 0.6836158",
+        "messageType": 2,
+        "seqNumber": 16079,
+        "timestamp": 328.5693359375
+    },
+    {
+        "line": " Value:3.4705882",
+        "messageType": 2,
+        "seqNumber": 16080,
+        "timestamp": 328.57025146484375
+    },
+    {
+        "line": "Hue: 0.109917365",
+        "messageType": 2,
+        "seqNumber": 16081,
+        "timestamp": 328.5888671875
+    },
+    {
+        "line": " Saturation: 0.6836158",
+        "messageType": 2,
+        "seqNumber": 16082,
+        "timestamp": 328.58917236328125
+    },
+    {
+        "line": " Value:3.4705882",
+        "messageType": 2,
+        "seqNumber": 16083,
+        "timestamp": 328.58941650390625
+    },
+    {
+        "line": "Hue: 0.114221364",
+        "messageType": 2,
+        "seqNumber": 16084,
+        "timestamp": 328.60894775390625
+    },
+    {
+        "line": " Saturation: 0.67098445",
+        "messageType": 2,
+        "seqNumber": 16085,
+        "timestamp": 328.6092529296875
+    },
+    {
+        "line": " Value:3.027451",
+        "messageType": 2,
+        "seqNumber": 16086,
+        "timestamp": 328.60955810546875
+    },
+    {
+        "line": "Hue: 0.114221364",
+        "messageType": 2,
+        "seqNumber": 16087,
+        "timestamp": 328.628662109375
+    },
+    {
+        "line": " Saturation: 0.67098445",
+        "messageType": 2,
+        "seqNumber": 16088,
+        "timestamp": 328.6290283203125
+    },
+    {
+        "line": " Value:3.027451",
+        "messageType": 2,
+        "seqNumber": 16089,
+        "timestamp": 328.6292724609375
+    },
+    {
+        "line": "Hue: 0.114221364",
+        "messageType": 2,
+        "seqNumber": 16090,
+        "timestamp": 328.64874267578125
+    },
+    {
+        "line": " Saturation: 0.67098445",
+        "messageType": 2,
+        "seqNumber": 16091,
+        "timestamp": 328.64910888671875
+    },
+    {
+        "line": " Value:3.027451",
+        "messageType": 2,
+        "seqNumber": 16092,
+        "timestamp": 328.64935302734375
+    },
+    {
+        "line": "Hue: 0.114221364",
+        "messageType": 2,
+        "seqNumber": 16093,
+        "timestamp": 328.668701171875
+    },
+    {
+        "line": " Saturation: 0.67098445",
+        "messageType": 2,
+        "seqNumber": 16094,
+        "timestamp": 328.66943359375
+    },
+    {
+        "line": " Value:3.027451",
+        "messageType": 2,
+        "seqNumber": 16095,
+        "timestamp": 328.66973876953125
+    },
+    {
+        "line": "Hue: 0.114221364",
+        "messageType": 2,
+        "seqNumber": 16096,
+        "timestamp": 328.68878173828125
+    },
+    {
+        "line": " Saturation: 0.67098445",
+        "messageType": 2,
+        "seqNumber": 16097,
+        "timestamp": 328.68914794921875
+    },
+    {
+        "line": " Value:3.027451",
+        "messageType": 2,
+        "seqNumber": 16098,
+        "timestamp": 328.68939208984375
+    },
+    {
+        "line": "Hue: 0.11867559",
+        "messageType": 2,
+        "seqNumber": 16099,
+        "timestamp": 328.7088623046875
+    },
+    {
+        "line": " Saturation: 0.6597938",
+        "messageType": 2,
+        "seqNumber": 16100,
+        "timestamp": 328.709228515625
+    },
+    {
+        "line": " Value:2.662745",
+        "messageType": 2,
+        "seqNumber": 16101,
+        "timestamp": 328.70947265625
+    },
+    {
+        "line": "Hue: 0.11867559",
+        "messageType": 2,
+        "seqNumber": 16102,
+        "timestamp": 328.728759765625
+    },
+    {
+        "line": " Saturation: 0.6597938",
+        "messageType": 2,
+        "seqNumber": 16103,
+        "timestamp": 328.7291259765625
+    },
+    {
+        "line": " Value:2.662745",
+        "messageType": 2,
+        "seqNumber": 16104,
+        "timestamp": 328.7293701171875
+    },
+    {
+        "line": "Hue: 0.11867559",
+        "messageType": 2,
+        "seqNumber": 16105,
+        "timestamp": 328.7489013671875
+    },
+    {
+        "line": " Saturation: 0.6597938",
+        "messageType": 2,
+        "seqNumber": 16106,
+        "timestamp": 328.749267578125
+    },
+    {
+        "line": " Value:2.662745",
+        "messageType": 2,
+        "seqNumber": 16107,
+        "timestamp": 328.74981689453125
+    },
+    {
+        "line": "Hue: 0.11867559",
+        "messageType": 2,
+        "seqNumber": 16108,
+        "timestamp": 328.768798828125
+    },
+    {
+        "line": " Saturation: 0.6597938",
+        "messageType": 2,
+        "seqNumber": 16109,
+        "timestamp": 328.7691650390625
+    },
+    {
+        "line": " Value:2.662745",
+        "messageType": 2,
+        "seqNumber": 16110,
+        "timestamp": 328.7694091796875
+    },
+    {
+        "line": "Hue: 0.11867559",
+        "messageType": 2,
+        "seqNumber": 16111,
+        "timestamp": 328.78875732421875
+    },
+    {
+        "line": " Saturation: 0.6597938",
+        "messageType": 2,
+        "seqNumber": 16112,
+        "timestamp": 328.7890625
+    },
+    {
+        "line": " Value:2.662745",
+        "messageType": 2,
+        "seqNumber": 16113,
+        "timestamp": 328.789306640625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16114,
+        "timestamp": 328.8089599609375
+    },
+    {
+        "line": " Saturation: 0.65238094",
+        "messageType": 2,
+        "seqNumber": 16115,
+        "timestamp": 328.809326171875
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16116,
+        "timestamp": 328.8095703125
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16117,
+        "timestamp": 328.82879638671875
+    },
+    {
+        "line": " Saturation: 0.65238094",
+        "messageType": 2,
+        "seqNumber": 16118,
+        "timestamp": 328.82916259765625
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16119,
+        "timestamp": 328.82940673828125
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16120,
+        "timestamp": 328.84869384765625
+    },
+    {
+        "line": " Saturation: 0.65238094",
+        "messageType": 2,
+        "seqNumber": 16121,
+        "timestamp": 328.84906005859375
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16122,
+        "timestamp": 328.84930419921875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16123,
+        "timestamp": 328.86883544921875
+    },
+    {
+        "line": " Saturation: 0.65238094",
+        "messageType": 2,
+        "seqNumber": 16124,
+        "timestamp": 328.869140625
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16125,
+        "timestamp": 328.869384765625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16126,
+        "timestamp": 328.88897705078125
+    },
+    {
+        "line": " Saturation: 0.65238094",
+        "messageType": 2,
+        "seqNumber": 16127,
+        "timestamp": 328.8892822265625
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16128,
+        "timestamp": 328.8895263671875
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16129,
+        "timestamp": 328.90887451171875
+    },
+    {
+        "line": " Saturation: 0.64597315",
+        "messageType": 2,
+        "seqNumber": 16130,
+        "timestamp": 328.90972900390625
+    },
+    {
+        "line": " Value:2.337255",
+        "messageType": 2,
+        "seqNumber": 16131,
+        "timestamp": 328.9100341796875
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16132,
+        "timestamp": 328.92889404296875
+    },
+    {
+        "line": " Saturation: 0.64597315",
+        "messageType": 2,
+        "seqNumber": 16133,
+        "timestamp": 328.9295654296875
+    },
+    {
+        "line": " Value:2.337255",
+        "messageType": 2,
+        "seqNumber": 16134,
+        "timestamp": 328.9302978515625
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16135,
+        "timestamp": 328.94873046875
+    },
+    {
+        "line": " Saturation: 0.64597315",
+        "messageType": 2,
+        "seqNumber": 16136,
+        "timestamp": 328.9490966796875
+    },
+    {
+        "line": " Value:2.337255",
+        "messageType": 2,
+        "seqNumber": 16137,
+        "timestamp": 328.9493408203125
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16138,
+        "timestamp": 328.96875
+    },
+    {
+        "line": " Saturation: 0.64597315",
+        "messageType": 2,
+        "seqNumber": 16139,
+        "timestamp": 328.96923828125
+    },
+    {
+        "line": " Value:2.337255",
+        "messageType": 2,
+        "seqNumber": 16140,
+        "timestamp": 328.96966552734375
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16141,
+        "timestamp": 328.98895263671875
+    },
+    {
+        "line": " Saturation: 0.64597315",
+        "messageType": 2,
+        "seqNumber": 16142,
+        "timestamp": 328.9892578125
+    },
+    {
+        "line": " Value:2.337255",
+        "messageType": 2,
+        "seqNumber": 16143,
+        "timestamp": 328.989501953125
+    },
+    {
+        "line": "Hue: 0.125",
+        "messageType": 2,
+        "seqNumber": 16144,
+        "timestamp": 329.0089111328125
+    },
+    {
+        "line": " Saturation: 0.6413793",
+        "messageType": 2,
+        "seqNumber": 16145,
+        "timestamp": 329.00921630859375
+    },
+    {
+        "line": " Value:2.27451",
+        "messageType": 2,
+        "seqNumber": 16146,
+        "timestamp": 329.00946044921875
+    },
+    {
+        "line": "Hue: 0.125",
+        "messageType": 2,
+        "seqNumber": 16147,
+        "timestamp": 329.02899169921875
+    },
+    {
+        "line": " Saturation: 0.6413793",
+        "messageType": 2,
+        "seqNumber": 16148,
+        "timestamp": 329.029296875
+    },
+    {
+        "line": " Value:2.27451",
+        "messageType": 2,
+        "seqNumber": 16149,
+        "timestamp": 329.029541015625
+    },
+    {
+        "line": "Hue: 0.125",
+        "messageType": 2,
+        "seqNumber": 16150,
+        "timestamp": 329.048828125
+    },
+    {
+        "line": " Saturation: 0.6413793",
+        "messageType": 2,
+        "seqNumber": 16151,
+        "timestamp": 329.04913330078125
+    },
+    {
+        "line": " Value:2.27451",
+        "messageType": 2,
+        "seqNumber": 16152,
+        "timestamp": 329.04937744140625
+    },
+    {
+        "line": "Hue: 0.125",
+        "messageType": 2,
+        "seqNumber": 16153,
+        "timestamp": 329.06884765625
+    },
+    {
+        "line": " Saturation: 0.6413793",
+        "messageType": 2,
+        "seqNumber": 16154,
+        "timestamp": 329.06915283203125
+    },
+    {
+        "line": " Value:2.27451",
+        "messageType": 2,
+        "seqNumber": 16155,
+        "timestamp": 329.06939697265625
+    },
+    {
+        "line": "Hue: 0.125",
+        "messageType": 2,
+        "seqNumber": 16156,
+        "timestamp": 329.0887451171875
+    },
+    {
+        "line": " Saturation: 0.6413793",
+        "messageType": 2,
+        "seqNumber": 16157,
+        "timestamp": 329.0892333984375
+    },
+    {
+        "line": " Value:2.27451",
+        "messageType": 2,
+        "seqNumber": 16158,
+        "timestamp": 329.089599609375
+    },
+    {
+        "line": "Hue: 0.12567568",
+        "messageType": 2,
+        "seqNumber": 16159,
+        "timestamp": 329.10870361328125
+    },
+    {
+        "line": " Saturation: 0.6412478",
+        "messageType": 2,
+        "seqNumber": 16160,
+        "timestamp": 329.109130859375
+    },
+    {
+        "line": " Value:2.2627451",
+        "messageType": 2,
+        "seqNumber": 16161,
+        "timestamp": 329.109375
+    },
+    {
+        "line": "Hue: 0.12567568",
+        "messageType": 2,
+        "seqNumber": 16162,
+        "timestamp": 329.12890625
+    },
+    {
+        "line": " Saturation: 0.6412478",
+        "messageType": 2,
+        "seqNumber": 16163,
+        "timestamp": 329.1292724609375
+    },
+    {
+        "line": " Value:2.2627451",
+        "messageType": 2,
+        "seqNumber": 16164,
+        "timestamp": 329.1295166015625
+    },
+    {
+        "line": "Hue: 0.12567568",
+        "messageType": 2,
+        "seqNumber": 16165,
+        "timestamp": 329.14874267578125
+    },
+    {
+        "line": " Saturation: 0.6412478",
+        "messageType": 2,
+        "seqNumber": 16166,
+        "timestamp": 329.1490478515625
+    },
+    {
+        "line": " Value:2.2627451",
+        "messageType": 2,
+        "seqNumber": 16167,
+        "timestamp": 329.14935302734375
+    },
+    {
+        "line": "Hue: 0.12567568",
+        "messageType": 2,
+        "seqNumber": 16168,
+        "timestamp": 329.16912841796875
+    },
+    {
+        "line": " Saturation: 0.6412478",
+        "messageType": 2,
+        "seqNumber": 16169,
+        "timestamp": 329.16943359375
+    },
+    {
+        "line": " Value:2.2627451",
+        "messageType": 2,
+        "seqNumber": 16170,
+        "timestamp": 329.1697998046875
+    },
+    {
+        "line": "Hue: 0.12567568",
+        "messageType": 2,
+        "seqNumber": 16171,
+        "timestamp": 329.1888427734375
+    },
+    {
+        "line": " Saturation: 0.6412478",
+        "messageType": 2,
+        "seqNumber": 16172,
+        "timestamp": 329.18914794921875
+    },
+    {
+        "line": " Value:2.2627451",
+        "messageType": 2,
+        "seqNumber": 16173,
+        "timestamp": 329.18939208984375
+    },
+    {
+        "line": "Hue: 0.124777175",
+        "messageType": 2,
+        "seqNumber": 16174,
+        "timestamp": 329.20892333984375
+    },
+    {
+        "line": " Saturation: 0.6415094",
+        "messageType": 2,
+        "seqNumber": 16175,
+        "timestamp": 329.209228515625
+    },
+    {
+        "line": " Value:2.2862744",
+        "messageType": 2,
+        "seqNumber": 16176,
+        "timestamp": 329.20953369140625
+    },
+    {
+        "line": "Hue: 0.124777175",
+        "messageType": 2,
+        "seqNumber": 16177,
+        "timestamp": 329.2288818359375
+    },
+    {
+        "line": " Saturation: 0.6415094",
+        "messageType": 2,
+        "seqNumber": 16178,
+        "timestamp": 329.22918701171875
+    },
+    {
+        "line": " Value:2.2862744",
+        "messageType": 2,
+        "seqNumber": 16179,
+        "timestamp": 329.22943115234375
+    },
+    {
+        "line": "Hue: 0.124777175",
+        "messageType": 2,
+        "seqNumber": 16180,
+        "timestamp": 329.24859619140625
+    },
+    {
+        "line": " Saturation: 0.6415094",
+        "messageType": 2,
+        "seqNumber": 16181,
+        "timestamp": 329.24908447265625
+    },
+    {
+        "line": " Value:2.2862744",
+        "messageType": 2,
+        "seqNumber": 16182,
+        "timestamp": 329.2493896484375
+    },
+    {
+        "line": "Hue: 0.124777175",
+        "messageType": 2,
+        "seqNumber": 16183,
+        "timestamp": 329.2689208984375
+    },
+    {
+        "line": " Saturation: 0.6415094",
+        "messageType": 2,
+        "seqNumber": 16184,
+        "timestamp": 329.269287109375
+    },
+    {
+        "line": " Value:2.2862744",
+        "messageType": 2,
+        "seqNumber": 16185,
+        "timestamp": 329.26953125
+    },
+    {
+        "line": "Hue: 0.124777175",
+        "messageType": 2,
+        "seqNumber": 16186,
+        "timestamp": 329.2886962890625
+    },
+    {
+        "line": " Saturation: 0.6415094",
+        "messageType": 2,
+        "seqNumber": 16187,
+        "timestamp": 329.2890625
+    },
+    {
+        "line": " Value:2.2862744",
+        "messageType": 2,
+        "seqNumber": 16188,
+        "timestamp": 329.289306640625
+    },
+    {
+        "line": "Hue: 0.12478185",
+        "messageType": 2,
+        "seqNumber": 16189,
+        "timestamp": 329.30865478515625
+    },
+    {
+        "line": " Saturation: 0.64418215",
+        "messageType": 2,
+        "seqNumber": 16190,
+        "timestamp": 329.30902099609375
+    },
+    {
+        "line": " Value:2.3254902",
+        "messageType": 2,
+        "seqNumber": 16191,
+        "timestamp": 329.30926513671875
+    },
+    {
+        "line": "Hue: 0.12478185",
+        "messageType": 2,
+        "seqNumber": 16192,
+        "timestamp": 329.3287353515625
+    },
+    {
+        "line": " Saturation: 0.64418215",
+        "messageType": 2,
+        "seqNumber": 16193,
+        "timestamp": 329.32904052734375
+    },
+    {
+        "line": " Value:2.3254902",
+        "messageType": 2,
+        "seqNumber": 16194,
+        "timestamp": 329.32928466796875
+    },
+    {
+        "line": "Hue: 0.12478185",
+        "messageType": 2,
+        "seqNumber": 16195,
+        "timestamp": 329.3486328125
+    },
+    {
+        "line": " Saturation: 0.64418215",
+        "messageType": 2,
+        "seqNumber": 16196,
+        "timestamp": 329.3489990234375
+    },
+    {
+        "line": " Value:2.3254902",
+        "messageType": 2,
+        "seqNumber": 16197,
+        "timestamp": 329.3492431640625
+    },
+    {
+        "line": "Hue: 0.12478185",
+        "messageType": 2,
+        "seqNumber": 16198,
+        "timestamp": 329.36865234375
+    },
+    {
+        "line": " Saturation: 0.64418215",
+        "messageType": 2,
+        "seqNumber": 16199,
+        "timestamp": 329.36920166015625
+    },
+    {
+        "line": " Value:2.3254902",
+        "messageType": 2,
+        "seqNumber": 16200,
+        "timestamp": 329.36944580078125
+    },
+    {
+        "line": "Hue: 0.12478185",
+        "messageType": 2,
+        "seqNumber": 16201,
+        "timestamp": 329.388916015625
+    },
+    {
+        "line": " Saturation: 0.64418215",
+        "messageType": 2,
+        "seqNumber": 16202,
+        "timestamp": 329.3896484375
+    },
+    {
+        "line": " Value:2.3254902",
+        "messageType": 2,
+        "seqNumber": 16203,
+        "timestamp": 329.390380859375
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16204,
+        "timestamp": 329.40869140625
+    },
+    {
+        "line": " Saturation: 0.64489114",
+        "messageType": 2,
+        "seqNumber": 16205,
+        "timestamp": 329.4090576171875
+    },
+    {
+        "line": " Value:2.3411765",
+        "messageType": 2,
+        "seqNumber": 16206,
+        "timestamp": 329.4093017578125
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16207,
+        "timestamp": 329.42877197265625
+    },
+    {
+        "line": " Saturation: 0.64489114",
+        "messageType": 2,
+        "seqNumber": 16208,
+        "timestamp": 329.4290771484375
+    },
+    {
+        "line": " Value:2.3411765",
+        "messageType": 2,
+        "seqNumber": 16209,
+        "timestamp": 329.42938232421875
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16210,
+        "timestamp": 329.448974609375
+    },
+    {
+        "line": " Saturation: 0.64489114",
+        "messageType": 2,
+        "seqNumber": 16211,
+        "timestamp": 329.44927978515625
+    },
+    {
+        "line": " Value:2.3411765",
+        "messageType": 2,
+        "seqNumber": 16212,
+        "timestamp": 329.44952392578125
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16213,
+        "timestamp": 329.46893310546875
+    },
+    {
+        "line": " Saturation: 0.64489114",
+        "messageType": 2,
+        "seqNumber": 16214,
+        "timestamp": 329.470703125
+    },
+    {
+        "line": " Value:2.3411765",
+        "messageType": 2,
+        "seqNumber": 16215,
+        "timestamp": 329.47100830078125
+    },
+    {
+        "line": "Hue: 0.124242425",
+        "messageType": 2,
+        "seqNumber": 16216,
+        "timestamp": 329.48883056640625
+    },
+    {
+        "line": " Saturation: 0.64489114",
+        "messageType": 2,
+        "seqNumber": 16217,
+        "timestamp": 329.4891357421875
+    },
+    {
+        "line": " Value:2.3411765",
+        "messageType": 2,
+        "seqNumber": 16218,
+        "timestamp": 329.4893798828125
+    },
+    {
+        "line": "Hue: 0.124352336",
+        "messageType": 2,
+        "seqNumber": 16219,
+        "timestamp": 329.5087890625
+    },
+    {
+        "line": " Saturation: 0.64440733",
+        "messageType": 2,
+        "seqNumber": 16220,
+        "timestamp": 329.5091552734375
+    },
+    {
+        "line": " Value:2.3490195",
+        "messageType": 2,
+        "seqNumber": 16221,
+        "timestamp": 329.5093994140625
+    },
+    {
+        "line": "Hue: 0.124352336",
+        "messageType": 2,
+        "seqNumber": 16222,
+        "timestamp": 329.52911376953125
+    },
+    {
+        "line": " Saturation: 0.64440733",
+        "messageType": 2,
+        "seqNumber": 16223,
+        "timestamp": 329.5294189453125
+    },
+    {
+        "line": " Value:2.3490195",
+        "messageType": 2,
+        "seqNumber": 16224,
+        "timestamp": 329.52978515625
+    },
+    {
+        "line": "Hue: 0.124352336",
+        "messageType": 2,
+        "seqNumber": 16225,
+        "timestamp": 329.5487060546875
+    },
+    {
+        "line": " Saturation: 0.64440733",
+        "messageType": 2,
+        "seqNumber": 16226,
+        "timestamp": 329.54962158203125
+    },
+    {
+        "line": " Value:2.3490195",
+        "messageType": 2,
+        "seqNumber": 16227,
+        "timestamp": 329.5499267578125
+    },
+    {
+        "line": "Hue: 0.124352336",
+        "messageType": 2,
+        "seqNumber": 16228,
+        "timestamp": 329.56890869140625
+    },
+    {
+        "line": " Saturation: 0.64440733",
+        "messageType": 2,
+        "seqNumber": 16229,
+        "timestamp": 329.5692138671875
+    },
+    {
+        "line": " Value:2.3490195",
+        "messageType": 2,
+        "seqNumber": 16230,
+        "timestamp": 329.569580078125
+    },
+    {
+        "line": "Hue: 0.124352336",
+        "messageType": 2,
+        "seqNumber": 16231,
+        "timestamp": 329.58868408203125
+    },
+    {
+        "line": " Saturation: 0.64440733",
+        "messageType": 2,
+        "seqNumber": 16232,
+        "timestamp": 329.58905029296875
+    },
+    {
+        "line": " Value:2.3490195",
+        "messageType": 2,
+        "seqNumber": 16233,
+        "timestamp": 329.58929443359375
+    },
+    {
+        "line": "Hue: 0.123821765",
+        "messageType": 2,
+        "seqNumber": 16234,
+        "timestamp": 329.60870361328125
+    },
+    {
+        "line": " Saturation: 0.6461794",
+        "messageType": 2,
+        "seqNumber": 16235,
+        "timestamp": 329.6090087890625
+    },
+    {
+        "line": " Value:2.3607843",
+        "messageType": 2,
+        "seqNumber": 16236,
+        "timestamp": 329.6092529296875
+    },
+    {
+        "line": "Hue: 0.123821765",
+        "messageType": 2,
+        "seqNumber": 16237,
+        "timestamp": 329.62872314453125
+    },
+    {
+        "line": " Saturation: 0.6461794",
+        "messageType": 2,
+        "seqNumber": 16238,
+        "timestamp": 329.62933349609375
+    },
+    {
+        "line": " Value:2.3607843",
+        "messageType": 2,
+        "seqNumber": 16239,
+        "timestamp": 329.629638671875
+    },
+    {
+        "line": "Hue: 0.123821765",
+        "messageType": 2,
+        "seqNumber": 16240,
+        "timestamp": 329.6490478515625
+    },
+    {
+        "line": " Saturation: 0.6461794",
+        "messageType": 2,
+        "seqNumber": 16241,
+        "timestamp": 329.64935302734375
+    },
+    {
+        "line": " Value:2.3607843",
+        "messageType": 2,
+        "seqNumber": 16242,
+        "timestamp": 329.64959716796875
+    },
+    {
+        "line": "Hue: 0.123821765",
+        "messageType": 2,
+        "seqNumber": 16243,
+        "timestamp": 329.669189453125
+    },
+    {
+        "line": " Saturation: 0.6461794",
+        "messageType": 2,
+        "seqNumber": 16244,
+        "timestamp": 329.66949462890625
+    },
+    {
+        "line": " Value:2.3607843",
+        "messageType": 2,
+        "seqNumber": 16245,
+        "timestamp": 329.66973876953125
+    },
+    {
+        "line": "Hue: 0.123821765",
+        "messageType": 2,
+        "seqNumber": 16246,
+        "timestamp": 329.68878173828125
+    },
+    {
+        "line": " Saturation: 0.6461794",
+        "messageType": 2,
+        "seqNumber": 16247,
+        "timestamp": 329.6890869140625
+    },
+    {
+        "line": " Value:2.3607843",
+        "messageType": 2,
+        "seqNumber": 16248,
+        "timestamp": 329.68939208984375
+    },
+    {
+        "line": "Hue: 0.12320676",
+        "messageType": 2,
+        "seqNumber": 16249,
+        "timestamp": 329.708740234375
+    },
+    {
+        "line": " Saturation: 0.647541",
+        "messageType": 2,
+        "seqNumber": 16250,
+        "timestamp": 329.70916748046875
+    },
+    {
+        "line": " Value:2.3921568",
+        "messageType": 2,
+        "seqNumber": 16251,
+        "timestamp": 329.709716796875
+    },
+    {
+        "line": "Hue: 0.12320676",
+        "messageType": 2,
+        "seqNumber": 16252,
+        "timestamp": 329.7288818359375
+    },
+    {
+        "line": " Saturation: 0.647541",
+        "messageType": 2,
+        "seqNumber": 16253,
+        "timestamp": 329.7293701171875
+    },
+    {
+        "line": " Value:2.3921568",
+        "messageType": 2,
+        "seqNumber": 16254,
+        "timestamp": 329.7296142578125
+    },
+    {
+        "line": "Hue: 0.12320676",
+        "messageType": 2,
+        "seqNumber": 16255,
+        "timestamp": 329.74871826171875
+    },
+    {
+        "line": " Saturation: 0.647541",
+        "messageType": 2,
+        "seqNumber": 16256,
+        "timestamp": 329.74908447265625
+    },
+    {
+        "line": " Value:2.3921568",
+        "messageType": 2,
+        "seqNumber": 16257,
+        "timestamp": 329.74932861328125
+    },
+    {
+        "line": "Hue: 0.12320676",
+        "messageType": 2,
+        "seqNumber": 16258,
+        "timestamp": 329.76873779296875
+    },
+    {
+        "line": " Saturation: 0.647541",
+        "messageType": 2,
+        "seqNumber": 16259,
+        "timestamp": 329.76910400390625
+    },
+    {
+        "line": " Value:2.3921568",
+        "messageType": 2,
+        "seqNumber": 16260,
+        "timestamp": 329.76934814453125
+    },
+    {
+        "line": "Hue: 0.12320676",
+        "messageType": 2,
+        "seqNumber": 16261,
+        "timestamp": 329.7886962890625
+    },
+    {
+        "line": " Saturation: 0.647541",
+        "messageType": 2,
+        "seqNumber": 16262,
+        "timestamp": 329.78900146484375
+    },
+    {
+        "line": " Value:2.3921568",
+        "messageType": 2,
+        "seqNumber": 16263,
+        "timestamp": 329.789306640625
+    },
+    {
+        "line": "Hue: 0.12252476",
+        "messageType": 2,
+        "seqNumber": 16264,
+        "timestamp": 329.80859375
+    },
+    {
+        "line": " Saturation: 0.6484751",
+        "messageType": 2,
+        "seqNumber": 16265,
+        "timestamp": 329.8089599609375
+    },
+    {
+        "line": " Value:2.4431372",
+        "messageType": 2,
+        "seqNumber": 16266,
+        "timestamp": 329.8092041015625
+    },
+    {
+        "line": "Hue: 0.12252476",
+        "messageType": 2,
+        "seqNumber": 16267,
+        "timestamp": 329.82916259765625
+    },
+    {
+        "line": " Saturation: 0.6484751",
+        "messageType": 2,
+        "seqNumber": 16268,
+        "timestamp": 329.8294677734375
+    },
+    {
+        "line": " Value:2.4431372",
+        "messageType": 2,
+        "seqNumber": 16269,
+        "timestamp": 329.8297119140625
+    },
+    {
+        "line": "Hue: 0.12252476",
+        "messageType": 2,
+        "seqNumber": 16270,
+        "timestamp": 329.84869384765625
+    },
+    {
+        "line": " Saturation: 0.6484751",
+        "messageType": 2,
+        "seqNumber": 16271,
+        "timestamp": 329.8492431640625
+    },
+    {
+        "line": " Value:2.4431372",
+        "messageType": 2,
+        "seqNumber": 16272,
+        "timestamp": 329.84991455078125
+    },
+    {
+        "line": "Hue: 0.12252476",
+        "messageType": 2,
+        "seqNumber": 16273,
+        "timestamp": 329.86871337890625
+    },
+    {
+        "line": " Saturation: 0.6484751",
+        "messageType": 2,
+        "seqNumber": 16274,
+        "timestamp": 329.8690185546875
+    },
+    {
+        "line": " Value:2.4431372",
+        "messageType": 2,
+        "seqNumber": 16275,
+        "timestamp": 329.86932373046875
+    },
+    {
+        "line": "Hue: 0.12252476",
+        "messageType": 2,
+        "seqNumber": 16276,
+        "timestamp": 329.88873291015625
+    },
+    {
+        "line": " Saturation: 0.6484751",
+        "messageType": 2,
+        "seqNumber": 16277,
+        "timestamp": 329.8890380859375
+    },
+    {
+        "line": " Value:2.4431372",
+        "messageType": 2,
+        "seqNumber": 16278,
+        "timestamp": 329.8892822265625
+    },
+    {
+        "line": "Hue: 0.12195122",
+        "messageType": 2,
+        "seqNumber": 16279,
+        "timestamp": 329.90875244140625
+    },
+    {
+        "line": " Saturation: 0.6507937",
+        "messageType": 2,
+        "seqNumber": 16280,
+        "timestamp": 329.90911865234375
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16281,
+        "timestamp": 329.90936279296875
+    },
+    {
+        "line": "Hue: 0.12195122",
+        "messageType": 2,
+        "seqNumber": 16282,
+        "timestamp": 329.928955078125
+    },
+    {
+        "line": " Saturation: 0.6507937",
+        "messageType": 2,
+        "seqNumber": 16283,
+        "timestamp": 329.92962646484375
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16284,
+        "timestamp": 329.92987060546875
+    },
+    {
+        "line": "Hue: 0.12195122",
+        "messageType": 2,
+        "seqNumber": 16285,
+        "timestamp": 329.94866943359375
+    },
+    {
+        "line": " Saturation: 0.6507937",
+        "messageType": 2,
+        "seqNumber": 16286,
+        "timestamp": 329.94903564453125
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16287,
+        "timestamp": 329.94927978515625
+    },
+    {
+        "line": "Hue: 0.12195122",
+        "messageType": 2,
+        "seqNumber": 16288,
+        "timestamp": 329.96875
+    },
+    {
+        "line": " Saturation: 0.6507937",
+        "messageType": 2,
+        "seqNumber": 16289,
+        "timestamp": 329.96905517578125
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16290,
+        "timestamp": 329.96929931640625
+    },
+    {
+        "line": "Hue: 0.12195122",
+        "messageType": 2,
+        "seqNumber": 16291,
+        "timestamp": 329.98876953125
+    },
+    {
+        "line": " Saturation: 0.6507937",
+        "messageType": 2,
+        "seqNumber": 16292,
+        "timestamp": 329.98907470703125
+    },
+    {
+        "line": " Value:2.4705882",
+        "messageType": 2,
+        "seqNumber": 16293,
+        "timestamp": 329.98931884765625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16294,
+        "timestamp": 330.00872802734375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16295,
+        "timestamp": 330.00909423828125
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16296,
+        "timestamp": 330.00933837890625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16297,
+        "timestamp": 330.02899169921875
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16298,
+        "timestamp": 330.02935791015625
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16299,
+        "timestamp": 330.02960205078125
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16300,
+        "timestamp": 330.04888916015625
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16301,
+        "timestamp": 330.0491943359375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16302,
+        "timestamp": 330.0494384765625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16303,
+        "timestamp": 330.0689697265625
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16304,
+        "timestamp": 330.06939697265625
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16305,
+        "timestamp": 330.06964111328125
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16306,
+        "timestamp": 330.0888671875
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16307,
+        "timestamp": 330.0892333984375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16308,
+        "timestamp": 330.0894775390625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16309,
+        "timestamp": 330.10882568359375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16310,
+        "timestamp": 330.109130859375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16311,
+        "timestamp": 330.109375
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16312,
+        "timestamp": 330.12896728515625
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16313,
+        "timestamp": 330.12933349609375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16314,
+        "timestamp": 330.12957763671875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16315,
+        "timestamp": 330.14898681640625
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16316,
+        "timestamp": 330.14935302734375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16317,
+        "timestamp": 330.14959716796875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16318,
+        "timestamp": 330.16876220703125
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16319,
+        "timestamp": 330.16912841796875
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16320,
+        "timestamp": 330.16937255859375
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16321,
+        "timestamp": 330.18890380859375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16322,
+        "timestamp": 330.189208984375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16323,
+        "timestamp": 330.189453125
+    },
+    {
+        "line": "Hue: 0.121872485",
+        "messageType": 2,
+        "seqNumber": 16324,
+        "timestamp": 330.2088623046875
+    },
+    {
+        "line": " Saturation: 0.6514196",
+        "messageType": 2,
+        "seqNumber": 16325,
+        "timestamp": 330.20916748046875
+    },
+    {
+        "line": " Value:2.4862745",
+        "messageType": 2,
+        "seqNumber": 16326,
+        "timestamp": 330.20941162109375
+    },
+    {
+        "line": "Hue: 0.121872485",
+        "messageType": 2,
+        "seqNumber": 16327,
+        "timestamp": 330.2288818359375
+    },
+    {
+        "line": " Saturation: 0.6514196",
+        "messageType": 2,
+        "seqNumber": 16328,
+        "timestamp": 330.22918701171875
+    },
+    {
+        "line": " Value:2.4862745",
+        "messageType": 2,
+        "seqNumber": 16329,
+        "timestamp": 330.22943115234375
+    },
+    {
+        "line": "Hue: 0.121872485",
+        "messageType": 2,
+        "seqNumber": 16330,
+        "timestamp": 330.2489013671875
+    },
+    {
+        "line": " Saturation: 0.6514196",
+        "messageType": 2,
+        "seqNumber": 16331,
+        "timestamp": 330.24920654296875
+    },
+    {
+        "line": " Value:2.4862745",
+        "messageType": 2,
+        "seqNumber": 16332,
+        "timestamp": 330.24945068359375
+    },
+    {
+        "line": "Hue: 0.121872485",
+        "messageType": 2,
+        "seqNumber": 16333,
+        "timestamp": 330.26898193359375
+    },
+    {
+        "line": " Saturation: 0.6514196",
+        "messageType": 2,
+        "seqNumber": 16334,
+        "timestamp": 330.269287109375
+    },
+    {
+        "line": " Value:2.4862745",
+        "messageType": 2,
+        "seqNumber": 16335,
+        "timestamp": 330.26953125
+    },
+    {
+        "line": "Hue: 0.121872485",
+        "messageType": 2,
+        "seqNumber": 16336,
+        "timestamp": 330.2889404296875
+    },
+    {
+        "line": " Saturation: 0.6514196",
+        "messageType": 2,
+        "seqNumber": 16337,
+        "timestamp": 330.28924560546875
+    },
+    {
+        "line": " Value:2.4862745",
+        "messageType": 2,
+        "seqNumber": 16338,
+        "timestamp": 330.28948974609375
+    },
+    {
+        "line": "Hue: 0.1215781",
+        "messageType": 2,
+        "seqNumber": 16339,
+        "timestamp": 330.30877685546875
+    },
+    {
+        "line": " Saturation: 0.6509434",
+        "messageType": 2,
+        "seqNumber": 16340,
+        "timestamp": 330.3092041015625
+    },
+    {
+        "line": " Value:2.4941177",
+        "messageType": 2,
+        "seqNumber": 16341,
+        "timestamp": 330.30950927734375
+    },
+    {
+        "line": "Hue: 0.1215781",
+        "messageType": 2,
+        "seqNumber": 16342,
+        "timestamp": 330.32867431640625
+    },
+    {
+        "line": " Saturation: 0.6509434",
+        "messageType": 2,
+        "seqNumber": 16343,
+        "timestamp": 330.3291015625
+    },
+    {
+        "line": " Value:2.4941177",
+        "messageType": 2,
+        "seqNumber": 16344,
+        "timestamp": 330.32952880859375
+    },
+    {
+        "line": "Hue: 0.1215781",
+        "messageType": 2,
+        "seqNumber": 16345,
+        "timestamp": 330.34893798828125
+    },
+    {
+        "line": " Saturation: 0.6509434",
+        "messageType": 2,
+        "seqNumber": 16346,
+        "timestamp": 330.3492431640625
+    },
+    {
+        "line": " Value:2.4941177",
+        "messageType": 2,
+        "seqNumber": 16347,
+        "timestamp": 330.3494873046875
+    },
+    {
+        "line": "Hue: 0.1215781",
+        "messageType": 2,
+        "seqNumber": 16348,
+        "timestamp": 330.369140625
+    },
+    {
+        "line": " Saturation: 0.6509434",
+        "messageType": 2,
+        "seqNumber": 16349,
+        "timestamp": 330.36944580078125
+    },
+    {
+        "line": " Value:2.4941177",
+        "messageType": 2,
+        "seqNumber": 16350,
+        "timestamp": 330.36968994140625
+    },
+    {
+        "line": "Hue: 0.1215781",
+        "messageType": 2,
+        "seqNumber": 16351,
+        "timestamp": 330.38885498046875
+    },
+    {
+        "line": " Saturation: 0.6509434",
+        "messageType": 2,
+        "seqNumber": 16352,
+        "timestamp": 330.3892822265625
+    },
+    {
+        "line": " Value:2.4941177",
+        "messageType": 2,
+        "seqNumber": 16353,
+        "timestamp": 330.3895263671875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16354,
+        "timestamp": 330.408935546875
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16355,
+        "timestamp": 330.40960693359375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16356,
+        "timestamp": 330.40985107421875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16357,
+        "timestamp": 330.4287109375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16358,
+        "timestamp": 330.42901611328125
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16359,
+        "timestamp": 330.42926025390625
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16360,
+        "timestamp": 330.4486083984375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16361,
+        "timestamp": 330.44940185546875
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16362,
+        "timestamp": 330.45013427734375
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16363,
+        "timestamp": 330.46881103515625
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16364,
+        "timestamp": 330.4691162109375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16365,
+        "timestamp": 330.46942138671875
+    },
+    {
+        "line": "Hue: 0.1216545",
+        "messageType": 2,
+        "seqNumber": 16366,
+        "timestamp": 330.4886474609375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16367,
+        "timestamp": 330.48895263671875
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16368,
+        "timestamp": 330.48919677734375
+    },
+    {
+        "line": "Hue: 0.12206002",
+        "messageType": 2,
+        "seqNumber": 16369,
+        "timestamp": 330.50872802734375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16370,
+        "timestamp": 330.50909423828125
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16371,
+        "timestamp": 330.50933837890625
+    },
+    {
+        "line": "Hue: 0.12206002",
+        "messageType": 2,
+        "seqNumber": 16372,
+        "timestamp": 330.52874755859375
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16373,
+        "timestamp": 330.529052734375
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16374,
+        "timestamp": 330.52960205078125
+    },
+    {
+        "line": "Hue: 0.12206002",
+        "messageType": 2,
+        "seqNumber": 16375,
+        "timestamp": 330.54864501953125
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16376,
+        "timestamp": 330.54901123046875
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16377,
+        "timestamp": 330.54925537109375
+    },
+    {
+        "line": "Hue: 0.12206002",
+        "messageType": 2,
+        "seqNumber": 16378,
+        "timestamp": 330.56866455078125
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16379,
+        "timestamp": 330.56903076171875
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16380,
+        "timestamp": 330.56927490234375
+    },
+    {
+        "line": "Hue: 0.12206002",
+        "messageType": 2,
+        "seqNumber": 16381,
+        "timestamp": 330.5887451171875
+    },
+    {
+        "line": " Saturation: 0.6503165",
+        "messageType": 2,
+        "seqNumber": 16382,
+        "timestamp": 330.58917236328125
+    },
+    {
+        "line": " Value:2.4784315",
+        "messageType": 2,
+        "seqNumber": 16383,
+        "timestamp": 330.58941650390625
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16384,
+        "timestamp": 330.60888671875
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16385,
+        "timestamp": 330.6092529296875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16386,
+        "timestamp": 330.60943603515625
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16387,
+        "timestamp": 330.628662109375
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16388,
+        "timestamp": 330.62896728515625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16389,
+        "timestamp": 330.62921142578125
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16390,
+        "timestamp": 330.6490478515625
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16391,
+        "timestamp": 330.64935302734375
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16392,
+        "timestamp": 330.64959716796875
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16393,
+        "timestamp": 330.6688232421875
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16394,
+        "timestamp": 330.6695556640625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16395,
+        "timestamp": 330.67022705078125
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16396,
+        "timestamp": 330.68878173828125
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16397,
+        "timestamp": 330.68914794921875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16398,
+        "timestamp": 330.68939208984375
+    },
+    {
+        "line": "Hue: 0.12050078",
+        "messageType": 2,
+        "seqNumber": 16399,
+        "timestamp": 330.70880126953125
+    },
+    {
+        "line": " Saturation: 0.6543779",
+        "messageType": 2,
+        "seqNumber": 16400,
+        "timestamp": 330.7091064453125
+    },
+    {
+        "line": " Value:2.552941",
+        "messageType": 2,
+        "seqNumber": 16401,
+        "timestamp": 330.70941162109375
+    },
+    {
+        "line": "Hue: 0.12050078",
+        "messageType": 2,
+        "seqNumber": 16402,
+        "timestamp": 330.72900390625
+    },
+    {
+        "line": " Saturation: 0.6543779",
+        "messageType": 2,
+        "seqNumber": 16403,
+        "timestamp": 330.72967529296875
+    },
+    {
+        "line": " Value:2.552941",
+        "messageType": 2,
+        "seqNumber": 16404,
+        "timestamp": 330.73040771484375
+    },
+    {
+        "line": "Hue: 0.12050078",
+        "messageType": 2,
+        "seqNumber": 16405,
+        "timestamp": 330.7486572265625
+    },
+    {
+        "line": " Saturation: 0.6543779",
+        "messageType": 2,
+        "seqNumber": 16406,
+        "timestamp": 330.74896240234375
+    },
+    {
+        "line": " Value:2.552941",
+        "messageType": 2,
+        "seqNumber": 16407,
+        "timestamp": 330.74981689453125
+    },
+    {
+        "line": "Hue: 0.12050078",
+        "messageType": 2,
+        "seqNumber": 16408,
+        "timestamp": 330.76873779296875
+    },
+    {
+        "line": " Saturation: 0.6543779",
+        "messageType": 2,
+        "seqNumber": 16409,
+        "timestamp": 330.76904296875
+    },
+    {
+        "line": " Value:2.552941",
+        "messageType": 2,
+        "seqNumber": 16410,
+        "timestamp": 330.76934814453125
+    },
+    {
+        "line": "Hue: 0.12050078",
+        "messageType": 2,
+        "seqNumber": 16411,
+        "timestamp": 330.78863525390625
+    },
+    {
+        "line": " Saturation: 0.6543779",
+        "messageType": 2,
+        "seqNumber": 16412,
+        "timestamp": 330.78900146484375
+    },
+    {
+        "line": " Value:2.552941",
+        "messageType": 2,
+        "seqNumber": 16413,
+        "timestamp": 330.78924560546875
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16414,
+        "timestamp": 330.80889892578125
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16415,
+        "timestamp": 330.80926513671875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16416,
+        "timestamp": 330.80950927734375
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16417,
+        "timestamp": 330.8287353515625
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16418,
+        "timestamp": 330.8291015625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16419,
+        "timestamp": 330.82965087890625
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16420,
+        "timestamp": 330.84869384765625
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16421,
+        "timestamp": 330.84930419921875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16422,
+        "timestamp": 330.84954833984375
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16423,
+        "timestamp": 330.86871337890625
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16424,
+        "timestamp": 330.8690185546875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16425,
+        "timestamp": 330.86932373046875
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16426,
+        "timestamp": 330.88897705078125
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16427,
+        "timestamp": 330.8897705078125
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16428,
+        "timestamp": 330.89044189453125
+    },
+    {
+        "line": "Hue: 0.12103174",
+        "messageType": 2,
+        "seqNumber": 16429,
+        "timestamp": 330.90863037109375
+    },
+    {
+        "line": " Saturation: 0.65318817",
+        "messageType": 2,
+        "seqNumber": 16430,
+        "timestamp": 330.90899658203125
+    },
+    {
+        "line": " Value:2.5215685",
+        "messageType": 2,
+        "seqNumber": 16431,
+        "timestamp": 330.90924072265625
+    },
+    {
+        "line": "Hue: 0.12103174",
+        "messageType": 2,
+        "seqNumber": 16432,
+        "timestamp": 330.92901611328125
+    },
+    {
+        "line": " Saturation: 0.65318817",
+        "messageType": 2,
+        "seqNumber": 16433,
+        "timestamp": 330.92938232421875
+    },
+    {
+        "line": " Value:2.5215685",
+        "messageType": 2,
+        "seqNumber": 16434,
+        "timestamp": 330.92962646484375
+    },
+    {
+        "line": "Hue: 0.12103174",
+        "messageType": 2,
+        "seqNumber": 16435,
+        "timestamp": 330.948974609375
+    },
+    {
+        "line": " Saturation: 0.65318817",
+        "messageType": 2,
+        "seqNumber": 16436,
+        "timestamp": 330.94964599609375
+    },
+    {
+        "line": " Value:2.5215685",
+        "messageType": 2,
+        "seqNumber": 16437,
+        "timestamp": 330.9503173828125
+    },
+    {
+        "line": "Hue: 0.12103174",
+        "messageType": 2,
+        "seqNumber": 16438,
+        "timestamp": 330.96905517578125
+    },
+    {
+        "line": " Saturation: 0.65318817",
+        "messageType": 2,
+        "seqNumber": 16439,
+        "timestamp": 330.96978759765625
+    },
+    {
+        "line": " Value:2.5215685",
+        "messageType": 2,
+        "seqNumber": 16440,
+        "timestamp": 330.970458984375
+    },
+    {
+        "line": "Hue: 0.12103174",
+        "messageType": 2,
+        "seqNumber": 16441,
+        "timestamp": 330.98870849609375
+    },
+    {
+        "line": " Saturation: 0.65318817",
+        "messageType": 2,
+        "seqNumber": 16442,
+        "timestamp": 330.98907470703125
+    },
+    {
+        "line": " Value:2.5215685",
+        "messageType": 2,
+        "seqNumber": 16443,
+        "timestamp": 330.98931884765625
+    },
+    {
+        "line": "Hue: 0.12026296",
+        "messageType": 2,
+        "seqNumber": 16444,
+        "timestamp": 331.0087890625
+    },
+    {
+        "line": " Saturation: 0.6560122",
+        "messageType": 2,
+        "seqNumber": 16445,
+        "timestamp": 331.00909423828125
+    },
+    {
+        "line": " Value:2.5764706",
+        "messageType": 2,
+        "seqNumber": 16446,
+        "timestamp": 331.00933837890625
+    },
+    {
+        "line": "Hue: 0.12026296",
+        "messageType": 2,
+        "seqNumber": 16447,
+        "timestamp": 331.02880859375
+    },
+    {
+        "line": " Saturation: 0.6560122",
+        "messageType": 2,
+        "seqNumber": 16448,
+        "timestamp": 331.02911376953125
+    },
+    {
+        "line": " Value:2.5764706",
+        "messageType": 2,
+        "seqNumber": 16449,
+        "timestamp": 331.02935791015625
+    },
+    {
+        "line": "Hue: 0.12026296",
+        "messageType": 2,
+        "seqNumber": 16450,
+        "timestamp": 331.0489501953125
+    },
+    {
+        "line": " Saturation: 0.6560122",
+        "messageType": 2,
+        "seqNumber": 16451,
+        "timestamp": 331.04931640625
+    },
+    {
+        "line": " Value:2.5764706",
+        "messageType": 2,
+        "seqNumber": 16452,
+        "timestamp": 331.05029296875
+    },
+    {
+        "line": "Hue: 0.12026296",
+        "messageType": 2,
+        "seqNumber": 16453,
+        "timestamp": 331.06866455078125
+    },
+    {
+        "line": " Saturation: 0.6560122",
+        "messageType": 2,
+        "seqNumber": 16454,
+        "timestamp": 331.0689697265625
+    },
+    {
+        "line": " Value:2.5764706",
+        "messageType": 2,
+        "seqNumber": 16455,
+        "timestamp": 331.0692138671875
+    },
+    {
+        "line": "Hue: 0.12026296",
+        "messageType": 2,
+        "seqNumber": 16456,
+        "timestamp": 331.0889892578125
+    },
+    {
+        "line": " Saturation: 0.6560122",
+        "messageType": 2,
+        "seqNumber": 16457,
+        "timestamp": 331.08929443359375
+    },
+    {
+        "line": " Value:2.5764706",
+        "messageType": 2,
+        "seqNumber": 16458,
+        "timestamp": 331.08953857421875
+    },
+    {
+        "line": "Hue: 0.11904762",
+        "messageType": 2,
+        "seqNumber": 16459,
+        "timestamp": 331.10888671875
+    },
+    {
+        "line": " Saturation: 0.657228",
+        "messageType": 2,
+        "seqNumber": 16460,
+        "timestamp": 331.10919189453125
+    },
+    {
+        "line": " Value:2.6313725",
+        "messageType": 2,
+        "seqNumber": 16461,
+        "timestamp": 331.10943603515625
+    },
+    {
+        "line": "Hue: 0.11904762",
+        "messageType": 2,
+        "seqNumber": 16462,
+        "timestamp": 331.12896728515625
+    },
+    {
+        "line": " Saturation: 0.657228",
+        "messageType": 2,
+        "seqNumber": 16463,
+        "timestamp": 331.1292724609375
+    },
+    {
+        "line": " Value:2.6313725",
+        "messageType": 2,
+        "seqNumber": 16464,
+        "timestamp": 331.12982177734375
+    },
+    {
+        "line": "Hue: 0.11904762",
+        "messageType": 2,
+        "seqNumber": 16465,
+        "timestamp": 331.148681640625
+    },
+    {
+        "line": " Saturation: 0.657228",
+        "messageType": 2,
+        "seqNumber": 16466,
+        "timestamp": 331.14898681640625
+    },
+    {
+        "line": " Value:2.6313725",
+        "messageType": 2,
+        "seqNumber": 16467,
+        "timestamp": 331.1492919921875
+    },
+    {
+        "line": "Hue: 0.11904762",
+        "messageType": 2,
+        "seqNumber": 16468,
+        "timestamp": 331.16864013671875
+    },
+    {
+        "line": " Saturation: 0.657228",
+        "messageType": 2,
+        "seqNumber": 16469,
+        "timestamp": 331.16900634765625
+    },
+    {
+        "line": " Value:2.6313725",
+        "messageType": 2,
+        "seqNumber": 16470,
+        "timestamp": 331.16925048828125
+    },
+    {
+        "line": "Hue: 0.11904762",
+        "messageType": 2,
+        "seqNumber": 16471,
+        "timestamp": 331.1890869140625
+    },
+    {
+        "line": " Saturation: 0.657228",
+        "messageType": 2,
+        "seqNumber": 16472,
+        "timestamp": 331.18975830078125
+    },
+    {
+        "line": " Value:2.6313725",
+        "messageType": 2,
+        "seqNumber": 16473,
+        "timestamp": 331.1904296875
+    },
+    {
+        "line": "Hue: 0.119589984",
+        "messageType": 2,
+        "seqNumber": 16474,
+        "timestamp": 331.20867919921875
+    },
+    {
+        "line": " Saturation: 0.65620327",
+        "messageType": 2,
+        "seqNumber": 16475,
+        "timestamp": 331.208984375
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16476,
+        "timestamp": 331.209228515625
+    },
+    {
+        "line": "Hue: 0.119589984",
+        "messageType": 2,
+        "seqNumber": 16477,
+        "timestamp": 331.22869873046875
+    },
+    {
+        "line": " Saturation: 0.65620327",
+        "messageType": 2,
+        "seqNumber": 16478,
+        "timestamp": 331.22900390625
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16479,
+        "timestamp": 331.229248046875
+    },
+    {
+        "line": "Hue: 0.119589984",
+        "messageType": 2,
+        "seqNumber": 16480,
+        "timestamp": 331.24871826171875
+    },
+    {
+        "line": " Saturation: 0.65620327",
+        "messageType": 2,
+        "seqNumber": 16481,
+        "timestamp": 331.2490234375
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16482,
+        "timestamp": 331.249267578125
+    },
+    {
+        "line": "Hue: 0.119589984",
+        "messageType": 2,
+        "seqNumber": 16483,
+        "timestamp": 331.26904296875
+    },
+    {
+        "line": " Saturation: 0.65620327",
+        "messageType": 2,
+        "seqNumber": 16484,
+        "timestamp": 331.26995849609375
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16485,
+        "timestamp": 331.27020263671875
+    },
+    {
+        "line": "Hue: 0.119589984",
+        "messageType": 2,
+        "seqNumber": 16486,
+        "timestamp": 331.2890625
+    },
+    {
+        "line": " Saturation: 0.65620327",
+        "messageType": 2,
+        "seqNumber": 16487,
+        "timestamp": 331.28936767578125
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16488,
+        "timestamp": 331.28961181640625
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16489,
+        "timestamp": 331.30889892578125
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16490,
+        "timestamp": 331.3092041015625
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16491,
+        "timestamp": 331.3094482421875
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16492,
+        "timestamp": 331.3306884765625
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16493,
+        "timestamp": 331.3310546875
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16494,
+        "timestamp": 331.331298828125
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16495,
+        "timestamp": 331.34893798828125
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16496,
+        "timestamp": 331.349365234375
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16497,
+        "timestamp": 331.349609375
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16498,
+        "timestamp": 331.3687744140625
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16499,
+        "timestamp": 331.369140625
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16500,
+        "timestamp": 331.369384765625
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16501,
+        "timestamp": 331.388916015625
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16502,
+        "timestamp": 331.38922119140625
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16503,
+        "timestamp": 331.38946533203125
+    },
+    {
+        "line": "Hue: 0.119696975",
+        "messageType": 2,
+        "seqNumber": 16504,
+        "timestamp": 331.40887451171875
+    },
+    {
+        "line": " Saturation: 0.65769804",
+        "messageType": 2,
+        "seqNumber": 16505,
+        "timestamp": 331.4091796875
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16506,
+        "timestamp": 331.409423828125
+    },
+    {
+        "line": "Hue: 0.119696975",
+        "messageType": 2,
+        "seqNumber": 16507,
+        "timestamp": 331.42901611328125
+    },
+    {
+        "line": " Saturation: 0.65769804",
+        "messageType": 2,
+        "seqNumber": 16508,
+        "timestamp": 331.42938232421875
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16509,
+        "timestamp": 331.42962646484375
+    },
+    {
+        "line": "Hue: 0.119696975",
+        "messageType": 2,
+        "seqNumber": 16510,
+        "timestamp": 331.44891357421875
+    },
+    {
+        "line": " Saturation: 0.65769804",
+        "messageType": 2,
+        "seqNumber": 16511,
+        "timestamp": 331.44921875
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16512,
+        "timestamp": 331.449462890625
+    },
+    {
+        "line": "Hue: 0.119696975",
+        "messageType": 2,
+        "seqNumber": 16513,
+        "timestamp": 331.46868896484375
+    },
+    {
+        "line": " Saturation: 0.65769804",
+        "messageType": 2,
+        "seqNumber": 16514,
+        "timestamp": 331.468994140625
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16515,
+        "timestamp": 331.46923828125
+    },
+    {
+        "line": "Hue: 0.119696975",
+        "messageType": 2,
+        "seqNumber": 16516,
+        "timestamp": 331.489013671875
+    },
+    {
+        "line": " Saturation: 0.65769804",
+        "messageType": 2,
+        "seqNumber": 16517,
+        "timestamp": 331.48931884765625
+    },
+    {
+        "line": " Value:2.6235294",
+        "messageType": 2,
+        "seqNumber": 16518,
+        "timestamp": 331.48956298828125
+    },
+    {
+        "line": "Hue: 0.11947566",
+        "messageType": 2,
+        "seqNumber": 16519,
+        "timestamp": 331.50885009765625
+    },
+    {
+        "line": " Saturation: 0.658284",
+        "messageType": 2,
+        "seqNumber": 16520,
+        "timestamp": 331.5091552734375
+    },
+    {
+        "line": " Value:2.6509805",
+        "messageType": 2,
+        "seqNumber": 16521,
+        "timestamp": 331.5093994140625
+    },
+    {
+        "line": "Hue: 0.11947566",
+        "messageType": 2,
+        "seqNumber": 16522,
+        "timestamp": 331.5286865234375
+    },
+    {
+        "line": " Saturation: 0.658284",
+        "messageType": 2,
+        "seqNumber": 16523,
+        "timestamp": 331.529052734375
+    },
+    {
+        "line": " Value:2.6509805",
+        "messageType": 2,
+        "seqNumber": 16524,
+        "timestamp": 331.529296875
+    },
+    {
+        "line": "Hue: 0.11947566",
+        "messageType": 2,
+        "seqNumber": 16525,
+        "timestamp": 331.549072265625
+    },
+    {
+        "line": " Saturation: 0.658284",
+        "messageType": 2,
+        "seqNumber": 16526,
+        "timestamp": 331.5494384765625
+    },
+    {
+        "line": " Value:2.6509805",
+        "messageType": 2,
+        "seqNumber": 16527,
+        "timestamp": 331.5496826171875
+    },
+    {
+        "line": "Hue: 0.11947566",
+        "messageType": 2,
+        "seqNumber": 16528,
+        "timestamp": 331.56878662109375
+    },
+    {
+        "line": " Saturation: 0.658284",
+        "messageType": 2,
+        "seqNumber": 16529,
+        "timestamp": 331.56915283203125
+    },
+    {
+        "line": " Value:2.6509805",
+        "messageType": 2,
+        "seqNumber": 16530,
+        "timestamp": 331.56951904296875
+    },
+    {
+        "line": "Hue: 0.11947566",
+        "messageType": 2,
+        "seqNumber": 16531,
+        "timestamp": 331.5888671875
+    },
+    {
+        "line": " Saturation: 0.658284",
+        "messageType": 2,
+        "seqNumber": 16532,
+        "timestamp": 331.58917236328125
+    },
+    {
+        "line": " Value:2.6509805",
+        "messageType": 2,
+        "seqNumber": 16533,
+        "timestamp": 331.58941650390625
+    },
+    {
+        "line": "Hue: 0.11975592",
+        "messageType": 2,
+        "seqNumber": 16534,
+        "timestamp": 331.60894775390625
+    },
+    {
+        "line": " Saturation: 0.6571429",
+        "messageType": 2,
+        "seqNumber": 16535,
+        "timestamp": 331.60931396484375
+    },
+    {
+        "line": " Value:2.6078432",
+        "messageType": 2,
+        "seqNumber": 16536,
+        "timestamp": 331.60955810546875
+    },
+    {
+        "line": "Hue: 0.11975592",
+        "messageType": 2,
+        "seqNumber": 16537,
+        "timestamp": 331.62884521484375
+    },
+    {
+        "line": " Saturation: 0.6571429",
+        "messageType": 2,
+        "seqNumber": 16538,
+        "timestamp": 331.6292724609375
+    },
+    {
+        "line": " Value:2.6078432",
+        "messageType": 2,
+        "seqNumber": 16539,
+        "timestamp": 331.6297607421875
+    },
+    {
+        "line": "Hue: 0.11975592",
+        "messageType": 2,
+        "seqNumber": 16540,
+        "timestamp": 331.64892578125
+    },
+    {
+        "line": " Saturation: 0.6571429",
+        "messageType": 2,
+        "seqNumber": 16541,
+        "timestamp": 331.6492919921875
+    },
+    {
+        "line": " Value:2.6078432",
+        "messageType": 2,
+        "seqNumber": 16542,
+        "timestamp": 331.6495361328125
+    },
+    {
+        "line": "Hue: 0.11975592",
+        "messageType": 2,
+        "seqNumber": 16543,
+        "timestamp": 331.66876220703125
+    },
+    {
+        "line": " Saturation: 0.6571429",
+        "messageType": 2,
+        "seqNumber": 16544,
+        "timestamp": 331.6690673828125
+    },
+    {
+        "line": " Value:2.6078432",
+        "messageType": 2,
+        "seqNumber": 16545,
+        "timestamp": 331.6693115234375
+    },
+    {
+        "line": "Hue: 0.11975592",
+        "messageType": 2,
+        "seqNumber": 16546,
+        "timestamp": 331.68878173828125
+    },
+    {
+        "line": " Saturation: 0.6571429",
+        "messageType": 2,
+        "seqNumber": 16547,
+        "timestamp": 331.6890869140625
+    },
+    {
+        "line": " Value:2.6078432",
+        "messageType": 2,
+        "seqNumber": 16548,
+        "timestamp": 331.6893310546875
+    },
+    {
+        "line": "Hue: 0.12096139",
+        "messageType": 2,
+        "seqNumber": 16549,
+        "timestamp": 331.70892333984375
+    },
+    {
+        "line": " Saturation: 0.6527778",
+        "messageType": 2,
+        "seqNumber": 16550,
+        "timestamp": 331.709228515625
+    },
+    {
+        "line": " Value:2.5411766",
+        "messageType": 2,
+        "seqNumber": 16551,
+        "timestamp": 331.70947265625
+    },
+    {
+        "line": "Hue: 0.12096139",
+        "messageType": 2,
+        "seqNumber": 16552,
+        "timestamp": 331.72906494140625
+    },
+    {
+        "line": " Saturation: 0.6527778",
+        "messageType": 2,
+        "seqNumber": 16553,
+        "timestamp": 331.72943115234375
+    },
+    {
+        "line": " Value:2.5411766",
+        "messageType": 2,
+        "seqNumber": 16554,
+        "timestamp": 331.72967529296875
+    },
+    {
+        "line": "Hue: 0.12096139",
+        "messageType": 2,
+        "seqNumber": 16555,
+        "timestamp": 331.74871826171875
+    },
+    {
+        "line": " Saturation: 0.6527778",
+        "messageType": 2,
+        "seqNumber": 16556,
+        "timestamp": 331.7490234375
+    },
+    {
+        "line": " Value:2.5411766",
+        "messageType": 2,
+        "seqNumber": 16557,
+        "timestamp": 331.749267578125
+    },
+    {
+        "line": "Hue: 0.12096139",
+        "messageType": 2,
+        "seqNumber": 16558,
+        "timestamp": 331.76904296875
+    },
+    {
+        "line": " Saturation: 0.6527778",
+        "messageType": 2,
+        "seqNumber": 16559,
+        "timestamp": 331.76934814453125
+    },
+    {
+        "line": " Value:2.5411766",
+        "messageType": 2,
+        "seqNumber": 16560,
+        "timestamp": 331.76959228515625
+    },
+    {
+        "line": "Hue: 0.12096139",
+        "messageType": 2,
+        "seqNumber": 16561,
+        "timestamp": 331.78900146484375
+    },
+    {
+        "line": " Saturation: 0.6527778",
+        "messageType": 2,
+        "seqNumber": 16562,
+        "timestamp": 331.789306640625
+    },
+    {
+        "line": " Value:2.5411766",
+        "messageType": 2,
+        "seqNumber": 16563,
+        "timestamp": 331.78961181640625
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16564,
+        "timestamp": 331.80889892578125
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16565,
+        "timestamp": 331.8092041015625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16566,
+        "timestamp": 331.8094482421875
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16567,
+        "timestamp": 331.828857421875
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16568,
+        "timestamp": 331.8292236328125
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16569,
+        "timestamp": 331.82952880859375
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16570,
+        "timestamp": 331.8489990234375
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16571,
+        "timestamp": 331.84930419921875
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16572,
+        "timestamp": 331.84954833984375
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16573,
+        "timestamp": 331.86883544921875
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16574,
+        "timestamp": 331.869140625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16575,
+        "timestamp": 331.86944580078125
+    },
+    {
+        "line": "Hue: 0.121140145",
+        "messageType": 2,
+        "seqNumber": 16576,
+        "timestamp": 331.88885498046875
+    },
+    {
+        "line": " Saturation: 0.6527132",
+        "messageType": 2,
+        "seqNumber": 16577,
+        "timestamp": 331.88916015625
+    },
+    {
+        "line": " Value:2.5294118",
+        "messageType": 2,
+        "seqNumber": 16578,
+        "timestamp": 331.889404296875
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16579,
+        "timestamp": 331.90863037109375
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16580,
+        "timestamp": 331.9090576171875
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16581,
+        "timestamp": 331.909423828125
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16582,
+        "timestamp": 331.92889404296875
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16583,
+        "timestamp": 331.929443359375
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16584,
+        "timestamp": 331.9298095703125
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16585,
+        "timestamp": 331.94866943359375
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16586,
+        "timestamp": 331.94903564453125
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16587,
+        "timestamp": 331.94927978515625
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16588,
+        "timestamp": 331.96881103515625
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16589,
+        "timestamp": 331.9691162109375
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16590,
+        "timestamp": 331.9693603515625
+    },
+    {
+        "line": "Hue: 0.11981567",
+        "messageType": 2,
+        "seqNumber": 16591,
+        "timestamp": 331.98876953125
+    },
+    {
+        "line": " Saturation: 0.6555891",
+        "messageType": 2,
+        "seqNumber": 16592,
+        "timestamp": 331.9891357421875
+    },
+    {
+        "line": " Value:2.5960784",
+        "messageType": 2,
+        "seqNumber": 16593,
+        "timestamp": 331.98944091796875
+    },
+    {
+        "line": "Hue: 0.11920778",
+        "messageType": 2,
+        "seqNumber": 16594,
+        "timestamp": 332.00872802734375
+    },
+    {
+        "line": " Saturation: 0.6587888",
+        "messageType": 2,
+        "seqNumber": 16595,
+        "timestamp": 332.009033203125
+    },
+    {
+        "line": " Value:2.654902",
+        "messageType": 2,
+        "seqNumber": 16596,
+        "timestamp": 332.00933837890625
+    },
+    {
+        "line": "Hue: 0.11920778",
+        "messageType": 2,
+        "seqNumber": 16597,
+        "timestamp": 332.02874755859375
+    },
+    {
+        "line": " Saturation: 0.6587888",
+        "messageType": 2,
+        "seqNumber": 16598,
+        "timestamp": 332.029052734375
+    },
+    {
+        "line": " Value:2.654902",
+        "messageType": 2,
+        "seqNumber": 16599,
+        "timestamp": 332.030029296875
+    },
+    {
+        "line": "Hue: 0.11920778",
+        "messageType": 2,
+        "seqNumber": 16600,
+        "timestamp": 332.0489501953125
+    },
+    {
+        "line": " Saturation: 0.6587888",
+        "messageType": 2,
+        "seqNumber": 16601,
+        "timestamp": 332.04925537109375
+    },
+    {
+        "line": " Value:2.654902",
+        "messageType": 2,
+        "seqNumber": 16602,
+        "timestamp": 332.04949951171875
+    },
+    {
+        "line": "Hue: 0.11920778",
+        "messageType": 2,
+        "seqNumber": 16603,
+        "timestamp": 332.0687255859375
+    },
+    {
+        "line": " Saturation: 0.6587888",
+        "messageType": 2,
+        "seqNumber": 16604,
+        "timestamp": 332.069091796875
+    },
+    {
+        "line": " Value:2.654902",
+        "messageType": 2,
+        "seqNumber": 16605,
+        "timestamp": 332.0693359375
+    },
+    {
+        "line": "Hue: 0.11920778",
+        "messageType": 2,
+        "seqNumber": 16606,
+        "timestamp": 332.08905029296875
+    },
+    {
+        "line": " Saturation: 0.6587888",
+        "messageType": 2,
+        "seqNumber": 16607,
+        "timestamp": 332.08941650390625
+    },
+    {
+        "line": " Value:2.654902",
+        "messageType": 2,
+        "seqNumber": 16608,
+        "timestamp": 332.08978271484375
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16609,
+        "timestamp": 332.1090087890625
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16610,
+        "timestamp": 332.10968017578125
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16611,
+        "timestamp": 332.1103515625
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16612,
+        "timestamp": 332.12884521484375
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16613,
+        "timestamp": 332.129150390625
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16614,
+        "timestamp": 332.129638671875
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16615,
+        "timestamp": 332.14898681640625
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16616,
+        "timestamp": 332.14935302734375
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16617,
+        "timestamp": 332.14959716796875
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16618,
+        "timestamp": 332.16876220703125
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16619,
+        "timestamp": 332.1690673828125
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16620,
+        "timestamp": 332.1693115234375
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16621,
+        "timestamp": 332.18865966796875
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16622,
+        "timestamp": 332.1890869140625
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16623,
+        "timestamp": 332.1893310546875
+    },
+    {
+        "line": "Hue: 0.11915535",
+        "messageType": 2,
+        "seqNumber": 16624,
+        "timestamp": 332.20880126953125
+    },
+    {
+        "line": " Saturation: 0.6577381",
+        "messageType": 2,
+        "seqNumber": 16625,
+        "timestamp": 332.209228515625
+    },
+    {
+        "line": " Value:2.6352942",
+        "messageType": 2,
+        "seqNumber": 16626,
+        "timestamp": 332.20947265625
+    },
+    {
+        "line": "Hue: 0.11915535",
+        "messageType": 2,
+        "seqNumber": 16627,
+        "timestamp": 332.2286376953125
+    },
+    {
+        "line": " Saturation: 0.6577381",
+        "messageType": 2,
+        "seqNumber": 16628,
+        "timestamp": 332.22900390625
+    },
+    {
+        "line": " Value:2.6352942",
+        "messageType": 2,
+        "seqNumber": 16629,
+        "timestamp": 332.229248046875
+    },
+    {
+        "line": "Hue: 0.11915535",
+        "messageType": 2,
+        "seqNumber": 16630,
+        "timestamp": 332.24871826171875
+    },
+    {
+        "line": " Saturation: 0.6577381",
+        "messageType": 2,
+        "seqNumber": 16631,
+        "timestamp": 332.2490234375
+    },
+    {
+        "line": " Value:2.6352942",
+        "messageType": 2,
+        "seqNumber": 16632,
+        "timestamp": 332.249267578125
+    },
+    {
+        "line": "Hue: 0.11915535",
+        "messageType": 2,
+        "seqNumber": 16633,
+        "timestamp": 332.26873779296875
+    },
+    {
+        "line": " Saturation: 0.6577381",
+        "messageType": 2,
+        "seqNumber": 16634,
+        "timestamp": 332.26910400390625
+    },
+    {
+        "line": " Value:2.6352942",
+        "messageType": 2,
+        "seqNumber": 16635,
+        "timestamp": 332.26934814453125
+    },
+    {
+        "line": "Hue: 0.11915535",
+        "messageType": 2,
+        "seqNumber": 16636,
+        "timestamp": 332.288818359375
+    },
+    {
+        "line": " Saturation: 0.6577381",
+        "messageType": 2,
+        "seqNumber": 16637,
+        "timestamp": 332.2891845703125
+    },
+    {
+        "line": " Value:2.6352942",
+        "messageType": 2,
+        "seqNumber": 16638,
+        "timestamp": 332.2894287109375
+    },
+    {
+        "line": "Hue: 0.119369365",
+        "messageType": 2,
+        "seqNumber": 16639,
+        "timestamp": 332.3087158203125
+    },
+    {
+        "line": " Saturation: 0.6577778",
+        "messageType": 2,
+        "seqNumber": 16640,
+        "timestamp": 332.30902099609375
+    },
+    {
+        "line": " Value:2.6470587",
+        "messageType": 2,
+        "seqNumber": 16641,
+        "timestamp": 332.3094482421875
+    },
+    {
+        "line": "stopping live window mode.",
+        "messageType": 2,
+        "seqNumber": 16642,
+        "timestamp": 332.328125
+    }
+]
