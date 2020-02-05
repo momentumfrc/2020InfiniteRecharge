@@ -26,8 +26,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  //public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  //public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
 
   public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
 
@@ -55,9 +55,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-
-  public Command getAutonomousCommand() { // An ExampleCommand will run in
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
     return driveCommand;
   }
-
 }

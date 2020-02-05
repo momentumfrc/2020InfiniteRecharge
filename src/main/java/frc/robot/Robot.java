@@ -8,12 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.I2C.Port;
-import com.revrobotics.ColorSensorV3;
-import java.awt.Color;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,9 +23,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  private ColorSensorV3 colorsensor = new ColorSensorV3(Port.kOnboard);
-  private float hsv[] = new float[3];
-  private Timer timer = new Timer();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -118,16 +111,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
-
-    Color.RGBtoHSB(255, 0, 0, hsv);
-    System.out.println("RED: Hue: " + hsv[0] + " Saturation: " + hsv[1] + " Value: " + hsv[2]);
-    Color.RGBtoHSB(0, 255, 0, hsv);
-    System.out.println("GREEN: Hue: " + hsv[0] + " Saturation: " + hsv[1] + " Value: " + hsv[2]);
-    Color.RGBtoHSB(0, 0, 255, hsv);
-    System.out.println("BLUE: Hue: " + hsv[0] + " Saturation: " + hsv[1] + " Value: " + hsv[2]);
-
-    timer.reset();
-    timer.start();
   }
 
   /**
@@ -135,50 +118,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    if (timer.hasPeriodPassed(1)) {
-      int blue = colorsensor.getBlue();
-      int green = colorsensor.getGreen();
-      int red = colorsensor.getRed();
-
-      Color.RGBtoHSB(red, green, blue, hsv);
-      System.out.println("R: " + red + " G: " + green + " B: " + blue);
-      System.out.println("Hue: " + hsv[0] + " Saturation: " + hsv[1] + " Value: " + hsv[2]);
-      float hue = hsv[0];
-      final float tolerance = 0.025f;
-      final float kYellow = 0.25f;
-      final float kRed = 0.10f;
-      final float kGreen = 0.36f;
-      final float kCyan = 0.50f;
-      float mindiff = 1f;
-      float diff;
-      String color = "Error";
-
-      diff = Math.abs(hue - kYellow);
-      if (diff < mindiff) {
-        mindiff = diff;
-        color = "Yellow";
-      }
-      diff = Math.abs(hue - kRed);
-      if (diff < mindiff) {
-        mindiff = diff;
-        color = "Red";
-      }
-      diff = Math.abs(hue - kGreen);
-      if (diff < mindiff) {
-        mindiff = diff;
-        color = "Green";
-      }
-      diff = Math.abs(hue - kCyan);
-      if (diff < mindiff) {
-        mindiff = diff;
-        color = "Cyan";
-      }
-      if (mindiff > tolerance) {
-        color = "None";
-      }
-      System.out.println("mindiff: " + mindiff);
-      System.out.println("Detected color: " + color);
-
-    }
   }
 }
