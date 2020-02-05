@@ -1,14 +1,15 @@
-package frc.robot;
+package frc.robot.subsystems;
 
 import java.awt.Color;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
  * A class to facilitate getting one of four colors from the REVRobotics
  * ColorSensorV3
  */
-public class ColorSensing {
+public class ColorSubsystem extends SubsystemBase {
   /**
    * @param hsv The array that is used to contain the output of
    *            java.awt.Color.RGBtoHSB()
@@ -35,11 +36,10 @@ public class ColorSensing {
   // Used to store the return message
   String color;
   // The REVRobotics ColorSensorV3
-  final ColorSensorV3 colorSensor;
+  final ColorSensorV3 colorSensor = new ColorSensorV3(Port.kOnboard);
 
-  public ColorSensing() {
-    // Initializes the colorSensor with the onboard I^2C port on the roboRIO
-    colorSensor = new ColorSensorV3(Port.kOnboard);
+  public void ColorSensing() {
+
   }
 
   public String getColor() {
@@ -88,5 +88,10 @@ public class ColorSensing {
     if (mindiff > tolerance)
       color = "None";
     return color;
+  }
+
+  @Override
+  public void periodic() {
+
   }
 }
