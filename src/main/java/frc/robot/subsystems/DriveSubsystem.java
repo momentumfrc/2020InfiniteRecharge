@@ -46,10 +46,10 @@ public class DriveSubsystem extends SubsystemBase {
    */
   private final double DRIVE_BASE_WIDTH_INCHES = 26;
   /**
-   * @param SPEED_LIMIT_FEET_PER_S The maximum individual wheel speed of the robot
-   *                               in ft/s.
+   * @param SPEED_LIMIT_METERS_PER_S The maximum individual wheel speed of the
+   *                                 robot in ft/s.
    */
-  private final double SPEED_LIMIT_FEET_PER_S = 12;
+  private final double SPEED_LIMIT_METERS_PER_S = 12;
   /**
    * @param TURN_LIMIT_RAD_PER_S The maximum safe angular velocity of the robot,
    *                             in radians per second.
@@ -111,8 +111,7 @@ public class DriveSubsystem extends SubsystemBase {
        * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
        * converted to ft/s.
        */
-      final double speedLimitMs = Units.feetToMeters(SPEED_LIMIT_FEET_PER_S);
-      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -speedLimitMs, speedLimitMs);
+      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
       /**
        * Since turnRequest is from -1 to 1 and we need a value in radians per second
        * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
