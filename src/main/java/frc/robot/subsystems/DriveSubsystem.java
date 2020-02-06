@@ -49,7 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param SPEED_LIMIT_METERS_PER_S The maximum individual wheel speed of the
    *                                 robot in ft/s.
    */
-  private final double SPEED_LIMIT_METERS_PER_S = 12;
+  private final double SPEED_LIMIT_METERS_PER_S = 4;
   /**
    * @param TURN_LIMIT_RAD_PER_S The maximum safe angular velocity of the robot,
    *                             in radians per second.
