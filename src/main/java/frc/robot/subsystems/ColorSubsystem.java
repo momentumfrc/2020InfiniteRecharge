@@ -2,30 +2,27 @@ package frc.robot.subsystems;
 
 import java.awt.Color;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorSensorV3.RawColor;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.ColorOptions;
 
 /**
  * A class to facilitate getting one of four colors from the REVRobotics
  * ColorSensorV3
  */
 public class ColorSubsystem extends SubsystemBase {
-  /**
-   * @param hsv The array that is used to contain the output of
-   *            java.awt.Color.RGBtoHSB()
-   */
-  public float[] hsv = new float[3];
-  // The ints used to store the raw ADC output of the ColorSensorV3
-  public int red, green, blue;
+  // The array that is used to contain the output of java.awt.Color.RGBtoHSB()
+  private final float[] hsv = new float[3];
   // The maximum allowed absolute distance from the constant to ensure an accurate
   // reading
-  final float tolerance = 0.025f;
+  private final float tolerance = 0.025f;
   // The constants that correspond to the average hue (H) of the Control Panel
   // colors.
-  final float kYellow = 0.25f;
-  final float kRed = 0.10f;
-  final float kGreen = 0.35f;
-  final float kCyan = 0.50f;
+  private final float kYellow = 0.25f;
+  private final float kRed = 0.10f;
+  private final float kGreen = 0.35f;
+  private final float kCyan = 0.50f;
   // Used to prevent repeated indexing of hsv[]
   private float hue;
   // A number used to store the minimum difference between the measured value and
@@ -33,60 +30,65 @@ public class ColorSubsystem extends SubsystemBase {
   private float mindiff = 1f;
   // The absolute difference between the measured value and the constants
   private float diff;
-  // Used to store the return message
-  String color;
+
   // The REVRobotics ColorSensorV3
-  final ColorSensorV3 colorSensor = new ColorSensorV3(Port.kOnboard);
+  private final ColorSensorV3 colorSensor = new ColorSensorV3(Port.kOnboard);
 
   public void ColorSensing() {
 
   }
 
-  public String getColor() {
+  /**
+   * 
+   * @return One of four colors on the Control Panel, NONE, or ERROR. Returns one
+   *         of the four colors if in range, NONE if not close enough to any
+   *         color, and ERROR otherwise.
+   */
+  public ColorOptions getColor() {
     // Sets the return string to Error so it is returned if no conditions are
     // fulfilled
-    color = "Error";
+    // Used to store the return message
+    ColorOptions color = ColorOptions.ERROR;
+    // The ints used to store the raw ADC output of the ColorSensorV3
+    int red, green, blue;
+    RawColor rgb = colorSensor.getRawColor();
     // Gets the raw ADC values
-    red = colorSensor.getRed();
-    green = colorSensor.getGreen();
-    blue = colorSensor.getBlue();
+    red = rgb.red;
+    green = rgb.green;
+    blue = rgb.blue;
     // Converts to HSV
     Color.RGBtoHSB(red, green, blue, hsv);
     hue = hsv[0];
     mindiff = 1f;
-    // Gets the difference between the measured value and the first constant
+    // Gets the difference between the measured value and the first constant.
     diff = Math.abs(hue - kYellow);
-    // Checks if the difference is in range
+    // Checks if the current difference is smaller than the previous difference.
+    // This will narrow down to the closest color constant over the 4 if statements.
+    // Setting mindiff to diff ensures that the closest constant will always be
+    // picked at the end, no matter the order.
     if (diff < mindiff) {
       mindiff = diff;
-      color = "Yellow";
+      color = ColorOptions.YELLOW;
     }
-    // Gets the difference between the measured value and the second constant
     diff = Math.abs(hue - kRed);
-    // Checks if the difference is in range
     if (diff < mindiff) {
       mindiff = diff;
-      color = "Red";
+      color = ColorOptions.RED;
     }
-    // Gets the difference between the measured value and the third constant
     diff = Math.abs(hue - kGreen);
-    // I don't really need to tell you what this does, do I?
     if (diff < mindiff) {
       mindiff = diff;
-      color = "Green";
+      color = ColorOptions.GREEN;
     }
-    // I really don't need to tell you what this does.
     diff = Math.abs(hue - kCyan);
-    // I'm not even gonna bother--well, I guess... this checks if the diff is in
-    // range. Happy now?
     if (diff < mindiff) {
       mindiff = diff;
-      color = "Cyan";
+      color = ColorOptions.CYAN;
     }
     // If the smallest difference from any constant is greater than the tolerance,
     // return None.
     if (mindiff > tolerance)
-      color = "None";
+      color = ColorOptions.NONE;
     return color;
   }
 
