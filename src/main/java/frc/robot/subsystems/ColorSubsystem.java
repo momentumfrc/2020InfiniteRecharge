@@ -3,10 +3,9 @@ package frc.robot.subsystems;
 import java.awt.Color;
 import java.util.HashMap;
 
-import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorSensorV3.RawColor;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.datasources.ColorSource;
 import frc.robot.subsystems.ColorOptions;
 
 /**
@@ -21,19 +20,21 @@ public class ColorSubsystem extends SubsystemBase {
   private final float tolerance = 0.025f;
   // A number used to store the minimum difference between the measured value and
   // the constants
-  private float mindiff = 1f;
+  private float mindiff;
 
   // Sets the return string to Error so it is returned if no conditions are
   // fulfilled
   // Used to store the return message
-  private ColorOptions color = ColorOptions.ERROR;
+  private ColorOptions color;
 
   // The REVRobotics ColorSensorV3
-  private final ColorSensorV3 colorSensor = new ColorSensorV3(Port.kOnboard);
+  private final ColorSource colorSource;
 
   private final HashMap<Float, ColorOptions> colorMap = new HashMap<>();
 
-  public void ColorSensing() {
+  public ColorSubsystem(ColorSource source) {
+    colorSource = source;
+
     // The constants that correspond to the average hue (H) of the Control Panel
     // colors.
     final float kYellow = 0.25f;
@@ -57,7 +58,7 @@ public class ColorSubsystem extends SubsystemBase {
     float hue;
     // The ints used to store the raw ADC output of the ColorSensorV3
     int red, green, blue;
-    RawColor rgb = colorSensor.getRawColor();
+    RawColor rgb = colorSource.getColor();
     // Gets the raw ADC values
     red = rgb.red;
     green = rgb.green;
@@ -66,6 +67,7 @@ public class ColorSubsystem extends SubsystemBase {
     Color.RGBtoHSB(red, green, blue, hsv);
     hue = hsv[0];
     mindiff = 1f;
+    color = ColorOptions.ERROR;
 
     colorMap.forEach((k, v) -> {
       // Gets the difference between the measured value and the first constant.
