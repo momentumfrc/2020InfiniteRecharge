@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import java.awt.Color;
+import java.util.HashMap;
+
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorSensorV3.RawColor;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -17,25 +19,31 @@ public class ColorSubsystem extends SubsystemBase {
   // The maximum allowed absolute distance from the constant to ensure an accurate
   // reading
   private final float tolerance = 0.025f;
-  // The constants that correspond to the average hue (H) of the Control Panel
-  // colors.
-  private final float kYellow = 0.25f;
-  private final float kRed = 0.10f;
-  private final float kGreen = 0.35f;
-  private final float kCyan = 0.50f;
-  // Used to prevent repeated indexing of hsv[]
-  private float hue;
   // A number used to store the minimum difference between the measured value and
   // the constants
   private float mindiff = 1f;
-  // The absolute difference between the measured value and the constants
-  private float diff;
+
+  // Sets the return string to Error so it is returned if no conditions are
+  // fulfilled
+  // Used to store the return message
+  private ColorOptions color = ColorOptions.ERROR;
 
   // The REVRobotics ColorSensorV3
   private final ColorSensorV3 colorSensor = new ColorSensorV3(Port.kOnboard);
 
-  public void ColorSensing() {
+  private final HashMap<Float, ColorOptions> colorMap = new HashMap<>();
 
+  public void ColorSensing() {
+    // The constants that correspond to the average hue (H) of the Control Panel
+    // colors.
+    final float kYellow = 0.25f;
+    final float kRed = 0.10f;
+    final float kGreen = 0.35f;
+    final float kCyan = 0.50f;
+    colorMap.put(kYellow, ColorOptions.YELLOW);
+    colorMap.put(kRed, ColorOptions.RED);
+    colorMap.put(kGreen, ColorOptions.GREEN);
+    colorMap.put(kCyan, ColorOptions.CYAN);
   }
 
   /**
@@ -45,10 +53,8 @@ public class ColorSubsystem extends SubsystemBase {
    *         color, and ERROR otherwise.
    */
   public ColorOptions getColor() {
-    // Sets the return string to Error so it is returned if no conditions are
-    // fulfilled
-    // Used to store the return message
-    ColorOptions color = ColorOptions.ERROR;
+    // Used to prevent repeated indexing of hsv[]
+    float hue;
     // The ints used to store the raw ADC output of the ColorSensorV3
     int red, green, blue;
     RawColor rgb = colorSensor.getRawColor();
@@ -60,31 +66,20 @@ public class ColorSubsystem extends SubsystemBase {
     Color.RGBtoHSB(red, green, blue, hsv);
     hue = hsv[0];
     mindiff = 1f;
-    // Gets the difference between the measured value and the first constant.
-    diff = Math.abs(hue - kYellow);
-    // Checks if the current difference is smaller than the previous difference.
-    // This will narrow down to the closest color constant over the 4 if statements.
-    // Setting mindiff to diff ensures that the closest constant will always be
-    // picked at the end, no matter the order.
-    if (diff < mindiff) {
-      mindiff = diff;
-      color = ColorOptions.YELLOW;
-    }
-    diff = Math.abs(hue - kRed);
-    if (diff < mindiff) {
-      mindiff = diff;
-      color = ColorOptions.RED;
-    }
-    diff = Math.abs(hue - kGreen);
-    if (diff < mindiff) {
-      mindiff = diff;
-      color = ColorOptions.GREEN;
-    }
-    diff = Math.abs(hue - kCyan);
-    if (diff < mindiff) {
-      mindiff = diff;
-      color = ColorOptions.CYAN;
-    }
+
+    colorMap.forEach((k, v) -> {
+      // Gets the difference between the measured value and the first constant.
+      // The absolute difference between the measured value and the constants
+      float diff = Math.abs(hue - k);
+      // Checks if the current difference is smaller than the previous difference.
+      // This will narrow down to the closest color constant over the 4 if statements.
+      // Setting mindiff to diff ensures that the closest constant will always be
+      // picked at the end, no matter the order.
+      if (diff < mindiff) {
+        mindiff = diff;
+        color = v;
+      }
+    });
     // If the smallest difference from any constant is greater than the tolerance,
     // return None.
     if (mindiff > tolerance)
