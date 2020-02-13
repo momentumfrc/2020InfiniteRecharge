@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.revrobotics.ColorSensorV3.RawColor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.datasources.ColorSource;
-import frc.robot.subsystems.ColorOptions;
+import frc.robot.utils.ColorOptions;
 
 /**
  * A class to facilitate getting one of four colors from the REVRobotics
