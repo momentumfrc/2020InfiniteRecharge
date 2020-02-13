@@ -1,6 +1,6 @@
 name: Java CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       with:
         java-version: 11.0.4
     - name: Build with Gradle
-      run: bash gradlew build
+      run: ./gradlew build
     - name: Post Slack messages
       uses: pullreminders/slack-action@v1.0.7
       if: github.ref == 'refs/heads/master' && failure()
