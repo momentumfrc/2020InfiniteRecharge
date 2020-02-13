@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import frc.robot.datasources.ColorSource;
 import com.revrobotics.ColorSensorV3.RawColor;
+import frc.robot.utils.ColorOptions;
 
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -39,7 +40,7 @@ public class ColorSubsystemTest {
 
   @Test
   public void testRed() {
-    RawColor rc = new RawColor(255, 153, 0, 0);
+    RawColor rc = new RawColor(0, 0, 0, 0);
     System.out.format("rc: Red:%d Green:%d Blue:%d\n", rc.red, rc.green, rc.blue);
 
     ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
