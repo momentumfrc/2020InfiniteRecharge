@@ -8,13 +8,16 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
-import frc.robot.utils.Utils;
+import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.util.Units;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 
 public class DriveSubsystem extends SubsystemBase {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -22,62 +25,127 @@ public class DriveSubsystem extends SubsystemBase {
   private final WPI_TalonFX leftRear = new WPI_TalonFX(FALCON_DRIVE_LEFT_REAR_CAN_ADDR);
   private final WPI_TalonFX rightFront = new WPI_TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
-  private final DifferentialDrive drive;
 
   private final SensorCollection leftEnc = new SensorCollection(leftFront);
   private final SensorCollection rightEnc = new SensorCollection(rightFront);
 
   private final boolean pidEnabled = false;
 
-  private final PIDController movePID;
-  private final PIDController turnPID;
+  /**
+   * @param ENC_TICKS_PER_METER The number of TalonFX encoder ticks per meter that
+   *                            the robot drives on 6" wheels. Used to input ft/s
+   *                            into WPI_TalonFX.set(VelocityControl, double
+   *                            value), which takes its value in encoder ticks per
+   *                            second.
+   * 
+   */
+  private final double ENC_TICKS_PER_METER = 4278.215;
+  /**
+   * @param DRIVE_BASE_WIDTH_INCHES The number of inches between wheels on the
+   *                                drive base of the robot.
+   */
+  private final double DRIVE_BASE_WIDTH_INCHES = 26;
+  /**
+   * @param SPEED_LIMIT_METERS_PER_S The maximum individual wheel speed of the
+   *                                 robot in ft/s.
+   */
+  private final double SPEED_LIMIT_METERS_PER_S = 4;
+  /**
+   * @param TURN_LIMIT_RAD_PER_S The maximum safe angular velocity of the robot,
+   *                             in radians per second.
+   */
+  private final double TURN_LIMIT_RAD_PER_S = 4 * Math.PI;
+  /**
+   * @param kP The Proportional Gain, used in PID to produce a linear curve.
+   */
+  private final double kP = 1;
+  /**
+   * @param kI The Integral Gain, used in PID to produce a sinoid curve.
+   */
+  private final double kI = 1;
+  /**
+   * @param kD The Differential Gain, used in PID to produce a parabolic curve.
+   */
+  private final double kD = 1;
+  /**
+   * @param kIz The Integral Zone, used in PID to control the maximum value of the
+   *            integral accumulator.
+   */
+  private final int kIz = 1;
+  /**
+   * @param kF The Feed-Forward Gain, used in PID to anticipate future changes in
+   *           error and stabilize a PID curve.
+   */
+  private final double kF = 1;
+
+  private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
+      Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
   public DriveSubsystem() {
     // Slaves the left rear motor to the left front motor
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
-
-    // Initializes the 2 PIDControllers that will generate appropriate motor power
-    // values
-    movePID = new PIDController(1, 1, 1);
-    turnPID = new PIDController(1, 1, 1);
-
-    // Links both master-slave groups
-    drive = new DifferentialDrive(leftFront, rightFront);
-
-    drive.setDeadband(0);
+    // Sets the PID configs for all motors.
+    leftFront.config_kP(0, kP);
+    leftFront.config_kI(0, kI);
+    leftFront.config_kD(0, kD);
+    leftFront.config_IntegralZone(0, kIz);
+    leftFront.config_kF(0, kF);
+    rightFront.config_kP(0, kP);
+    rightFront.config_kI(0, kI);
+    rightFront.config_kD(0, kD);
+    rightFront.config_IntegralZone(0, kIz);
+    rightFront.config_kF(0, kF);
   }
 
-  public void arcadeDrive(double moveRequest, double turnRequest, double speedLimiter) {
-    /*
-     * try(MoPerfMon.Period period =
-     * Robot.perfMon.newPeriod("DriveSubsystem::arcadeDrive")) {
-     */
-
-    // Scales the move and turn targets so they don't exceed the speed limit.
-    moveRequest *= speedLimiter;
-    turnRequest *= speedLimiter;
-
-    // Gets the actual forward/backward motion of the robot.
-    double moveRate = getMoveRate();
-    // Gets the acutal speed difference between left and right sides of the robot.
-    double turnRate = getTurnRate();
-
-    /**
-     * Generates a motor power value that will move the robot where the driver wants
-     * it to go, based on the difference between the current motor rate and the
-     * target.
-     */
-    double move = pidEnabled ? movePID.calculate(moveRate, moveRequest) : moveRequest;
-    double turn = pidEnabled ? turnPID.calculate(turnRate, turnRequest) : turnRequest;
-
-    // Forces the speed limit on the output of the PID controllers.
-    double m_r = Utils.clip(move, -speedLimiter, speedLimiter);
-    double t_r = Utils.clip(turn, -speedLimiter, speedLimiter);
-
-    // Sends the actual drive command that activates the motors.
-    drive.arcadeDrive(m_r, t_r, false);
-    // }
+  /**
+   * @param moveRequest The "requested" forward motion as given by the controller
+   *                    joystick, from -1 to 1.
+   * @param turnRequest The "requested" angular motion as given by the controller
+   *                    joystick, from -1 to 1.
+   */
+  public void drive(final double moveRequest, final double turnRequest) {
+    if (pidEnabled) {
+      /**
+       * Since moveRequest is from -1 to 1 and we need a value in meters per second to
+       * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
+       * converted to ft/s.
+       */
+      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
+      /**
+       * Since turnRequest is from -1 to 1 and we need a value in radians per second
+       * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
+       * limit in radians/second.
+       */
+      final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
+      /**
+       * The object that handles the calculations for how fast each side of the robot
+       * should drive to accomplish the scaled move and turn requests.
+       */
+      final var chassisSpeeds = new ChassisSpeeds(moveReqScaled, 0, turnReqScaled);
+      /**
+       * The object that converts the overall chassis speed into individual wheel
+       * speeds.
+       */
+      final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
+      /**
+       * The variables that store the outputs of the wheel speeds, in meters per
+       * second.
+       */
+      final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
+      final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
+      /**
+       * The variables that store the wheel speeds in TalonFX encoder ticks per
+       * second, as converted from m/s to ft/s.
+       */
+      final double leftETPerS = metersToEncTicks(leftMPerS);
+      final double rightETPerS = metersToEncTicks(rightMPerS);
+      leftFront.set(ControlMode.Velocity, leftETPerS);
+      rightFront.set(ControlMode.Velocity, rightETPerS);
+    } else {
+      leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
+      rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
+    }
   }
 
   public void resetEncoders() {
@@ -85,19 +153,13 @@ public class DriveSubsystem extends SubsystemBase {
     rightEnc.setQuadraturePosition(0, 0);
   }
 
-  public double getMoveRate() {
-    return (leftEnc.getQuadratureVelocity() + rightEnc.getQuadratureVelocity()) / 2; // Averages the speed of both drive
-                                                                                     // sides to get mean forward
-                                                                                     // velocity.
-  }
-
-  public double getTurnRate() {
-    return (leftEnc.getQuadratureVelocity() - rightEnc.getQuadratureVelocity()); // Subtracts the speed of both drive
-                                                                                 // sides to get net turn vector.
-  }
+  /**
+   * Averages the speed of both drive sides to get mean forward velocity
+   */
 
   public void stop() {
-    drive.arcadeDrive(0, 0, false);
+    leftFront.stopMotor();
+    rightFront.stopMotor();
   }
 
   @Override
@@ -105,11 +167,13 @@ public class DriveSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void useOutput(double output, double setpoint) {
-
-  };
-
-  public double getMeasurement() {
-    return 0;
+  /**
+   * 
+   * @param ft The number of meters to be converted to encoder ticks.
+   * @return the number of encoder ticks that correspond to @param ft , assuming
+   *         6-inch wheels.
+   */
+  private double metersToEncTicks(final double m) {
+    return m * ENC_TICKS_PER_METER;
   }
 }
