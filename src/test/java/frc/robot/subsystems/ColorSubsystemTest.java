@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import frc.robot.datasources.ColorSource;
 import com.revrobotics.ColorSensorV3.RawColor;
+import frc.robot.utils.ColorOptions;
 
 import org.junit.Before;
 import static org.junit.Assert.*;
