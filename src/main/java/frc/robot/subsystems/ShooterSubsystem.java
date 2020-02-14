@@ -22,12 +22,15 @@ public class ShooterSubsystem extends SubsystemBase {
    * Initializes the SparkMAX motor controller, assigns it to the CAN address
    * specified, and sets it to the NEO Brushless Motor.
    */
-  private final CANSparkMax shooterMAX = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR,
+  private final CANSparkMax shooterMAXLeft = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_LEFT,
+      CANSparkMaxLowLevel.MotorType.kBrushless);
+  private final CANSparkMax shooterMAXRight = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   /**
    * The built-in PID controller provided by the Spark MAX motor controller.
    */
-  private final CANPIDController shooterPID = new CANPIDController(shooterMAX);
+  private final CANPIDController shooterPIDLeft = new CANPIDController(shooterMAXLeft);
+  private final CANPIDController shooterPIDRight = new CANPIDController(shooterMAXRight);
   /**
    * The target velocity of the NEO Brushless Motor.
    */
@@ -72,16 +75,24 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public ShooterSubsystem() {
     // Applies the previously-declared values to the PIDF controller.
-    shooterPID.setP(kP, 0);
-    shooterPID.setI(kI, 0);
-    shooterPID.setD(kD, 0);
-    shooterPID.setIZone(kIz, 0);
-    shooterPID.setFF(kFF, 0);
-    shooterPID.setOutputRange(-outputRange, outputRange, 0);
+    shooterPIDLeft.setP(kP, 0);
+    shooterPIDRight.setP(kP, 0);
+    shooterPIDLeft.setI(kI, 0);
+    shooterPIDRight.setI(kI, 0);
+    shooterPIDLeft.setD(kD, 0);
+    shooterPIDRight.setD(kD, 0);
+    shooterPIDLeft.setIZone(kIz, 0);
+    shooterPIDRight.setIZone(kIz, 0);
+    shooterPIDLeft.setFF(kFF, 0);
+    shooterPIDRight.setFF(kFF, 0);
+    shooterPIDLeft.setOutputRange(-outputRange, outputRange, 0);
+    shooterPIDRight.setOutputRange(-outputRange, outputRange, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
-    shooterMAX.setIdleMode(IdleMode.kCoast);
-    shooterMAX.setSmartCurrentLimit(currentLimit);
+    shooterMAXLeft.setIdleMode(IdleMode.kCoast);
+    shooterMAXRight.setIdleMode(IdleMode.kCoast);
+    shooterMAXLeft.setSmartCurrentLimit(currentLimit);
+    shooterMAXRight.setSmartCurrentLimit(currentLimit);
   }
 
   /**
@@ -89,7 +100,8 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
-    shooterPID.setReference(shooterSetpoint, ControlType.kVelocity);
+    shooterPIDLeft.setReference(shooterSetpoint, ControlType.kVelocity);
+    shooterPIDLeft.setReference(-shooterSetpoint, ControlType.kVelocity);
   }
 
   /**
@@ -97,7 +109,8 @@ public class ShooterSubsystem extends SubsystemBase {
    * when a button is released.
    */
   public void stopShooter() {
-    shooterMAX.stopMotor();
+    shooterMAXLeft.stopMotor();
+    shooterMAXRight.stopMotor();
   }
 
   public void setSetpoint(double newPoint) {
