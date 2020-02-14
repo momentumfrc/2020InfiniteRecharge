@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * The target velocity of the NEO Brushless Motor.
    */
-  public final double shooterSetpoint = 1.0;
+  private double shooterSetpoint = 1.0;
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
@@ -98,6 +98,10 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   public void stopShooter() {
     shooterMAX.stopMotor();
+  }
+
+  public void setSetpoint(double newPoint) {
+    shooterSetpoint = newPoint;
   }
 
   @Override
