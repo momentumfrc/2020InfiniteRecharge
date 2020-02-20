@@ -93,6 +93,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMAXRight.setIdleMode(IdleMode.kCoast);
     shooterMAXLeft.setSmartCurrentLimit(currentLimit);
     shooterMAXRight.setSmartCurrentLimit(currentLimit);
+    // Sets the left shooter motor to follow the right motor, and be inverted.
+    shooterMAXLeft.follow(shooterMAXRight, true);
   }
 
   /**
@@ -100,8 +102,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
-    shooterPIDLeft.setReference(shooterSetpoint, ControlType.kVelocity);
-    shooterPIDLeft.setReference(-shooterSetpoint, ControlType.kVelocity);
+    shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
   }
 
   /**
