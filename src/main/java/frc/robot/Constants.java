@@ -32,6 +32,9 @@ public final class Constants {
   // SparkMAX Encoder Channels
   public static final int SHOOTER_ENCODER_CHAN_A = 1;
   public static final int SHOOTER_ENCODER_CHAN_B = 2;
+
+  public static final int INTAKE_VICTORSP_PWM_CHAN_LF = 3;
+  public static final int INTAKE_VICTORSP_PWM_CHAN_RT = 4;
   // Pneumatic solenoid addresses
 
   // Brushed PWM addresses

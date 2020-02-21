@@ -7,14 +7,26 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
-  /**
-   * Creates a new ExampleSubsystem.
-   */
-  public IntakeSubsystem() {
+  private final VictorSP intakeSPrt = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_LF);
+  private final VictorSP intakeSPlf = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_RT);
 
+  public IntakeSubsystem() {
+    intakeSPrt.setInverted(true);
+  }
+
+  public void runIntake() {
+    intakeSPrt.set(0.3);
+    intakeSPlf.set(0.3);
+  }
+
+  public void stopIntake() {
+    intakeSPrt.stopMotor();
+    intakeSPlf.stopMotor();
   }
 
   @Override
