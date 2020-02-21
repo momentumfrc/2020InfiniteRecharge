@@ -9,13 +9,16 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final DriveSubsystem drive_subsystem;
+  private final RobotContainer m_container;
 
-  public DriveCommand(DriveSubsystem subsystem) {
+  public DriveCommand(DriveSubsystem subsystem, RobotContainer container) {
     drive_subsystem = subsystem;
+    m_container = container;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -28,6 +31,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    subsystem.drive(Math.min(m_container.mainController.getMoveRequest(), m_container.getSpeedLimiter()), m_container.mainController.getTurnRequest());
   }
 
   // Called once the command ends or is interrupted.
