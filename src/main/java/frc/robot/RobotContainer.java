@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -27,9 +28,10 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  public final IntakeCommand intakeCommand = new IntakeCommand(intakeSubsystem, this);
 
   public final ControllerBase mainController = new ControllerBase();
 
