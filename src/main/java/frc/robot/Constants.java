@@ -26,12 +26,15 @@ public final class Constants {
   public static final int FALCON_DRIVE_RIGHT_REAR_CAN_ADDR = 4;
 
   // SparkMAX CAN addresses
-  public static final int SPARKMAX_SHOOTER_CAN_ADDR = 5;
-  public static final int SPARKMAX_LOADER_CAN_ADDR = 6;
+  public static final int SPARKMAX_SHOOTER_CAN_ADDR_RIGHT = 5;
+  public static final int SPARKMAX_SHOOTER_CAN_ADDR_LEFT = 6;
+  public static final int SPARKMAX_LOADER_CAN_ADDR = 7;
   // SparkMAX Encoder Channels
   public static final int SHOOTER_ENCODER_CHAN_A = 1;
   public static final int SHOOTER_ENCODER_CHAN_B = 2;
   // Pneumatic solenoid addresses
 
   // Brushed PWM addresses
+  public static final int STORAGE_GATE_PWM_CHAN = 1;
+  public static final int STORAGE_MID_PWM_CHAN = 2;
 }
