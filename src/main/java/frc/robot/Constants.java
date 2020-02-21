@@ -36,6 +36,9 @@ public final class Constants {
   public static final int INTAKE_VICTORSP_PWM_CHAN_LF = 3;
   public static final int INTAKE_VICTORSP_PWM_CHAN_RT = 4;
   // Pneumatic solenoid addresses
-
+  public static final int INTAKE_PISTON_PCM_CHAN_LF_F = 1;
+  public static final int INTAKE_PISTON_PCM_CHAN_LF_R = 2;
+  public static final int INTAKE_PISTON_PCM_CHAN_RT_F = 3;
+  public static final int INTAKE_PISTON_PCM_CHAN_RT_R = 4;
   // Brushed PWM addresses
 }

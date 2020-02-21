@@ -45,6 +45,12 @@ public class IntakeCommand extends CommandBase {
     if (m_container.mainController.getIntakePowerCells()) {
       m_subsystem.runIntake();
     }
+    if (m_container.mainController.getRaiseIntake()) {
+      m_subsystem.raiseIntake();
+    }
+    if (m_container.mainController.getLowerIntake()) {
+      m_subsystem.lowerIntake();
+    }
   }
 
   // Called once the command ends or is interrupted.

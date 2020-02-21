@@ -39,6 +39,14 @@ public class ControllerBase implements DriveController {
     return xbox.getBButtonPressed();
   }
 
+  public boolean getRaiseIntake() {
+    return false;
+  }
+
+  public boolean getLowerIntake() {
+    return false;
+  }
+
   public boolean getIntakePowerCells() {
     return f310.getBumperPressed(Hand.kLeft);
   }
