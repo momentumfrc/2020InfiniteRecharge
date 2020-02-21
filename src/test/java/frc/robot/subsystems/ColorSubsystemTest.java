@@ -41,12 +41,10 @@ public class ColorSubsystemTest {
   @Test
   public void testRed() {
     RawColor rc = new RawColor(255, 153, 0, 0);
-    System.out.format("rc: Red:%d Green:%d Blue:%d\n", rc.red, rc.green, rc.blue);
 
     ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
 
     ColorOptions co = cs.getColor();
-    System.out.format("co: %s\n", co.toString());
 
     assertEquals(ColorOptions.RED, co);
   }
@@ -54,12 +52,10 @@ public class ColorSubsystemTest {
   @Test
   public void testGreen() {
     RawColor rc = new RawColor(0, 255, 0, 0);
-    System.out.format("rc: Red:%d Green:%d Blue:%d\n", rc.red, rc.green, rc.blue);
 
     ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
 
     ColorOptions co = cs.getColor();
-    System.out.format("co: %s\n", co.toString());
 
     assertEquals(ColorOptions.GREEN, co);
   }
@@ -67,12 +63,10 @@ public class ColorSubsystemTest {
   @Test
   public void testCyan() {
     RawColor rc = new RawColor(0, 255, 255, 0);
-    System.out.format("rc: Red:%d Green:%d Blue:%d\n", rc.red, rc.green, rc.blue);
 
     ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
 
     ColorOptions co = cs.getColor();
-    System.out.format("co: %s\n", co.toString());
 
     assertEquals(ColorOptions.CYAN, co);
   }
@@ -80,13 +74,50 @@ public class ColorSubsystemTest {
   @Test
   public void testYellow() {
     RawColor rc = new RawColor(153, 255, 0, 0);
-    System.out.format("rc: Red:%d Green:%d Blue:%d\n", rc.red, rc.green, rc.blue);
-
     ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
 
     ColorOptions co = cs.getColor();
-    System.out.format("co: %s\n", co.toString());
 
     assertEquals(ColorOptions.YELLOW, co);
+  }
+
+  @Test
+  public void testPurple() {
+    RawColor rc = new RawColor(255, 0, 255, 0);
+    ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
+
+    ColorOptions co = cs.getColor();
+
+    assertEquals(ColorOptions.NONE, co);
+  }
+
+  @Test
+  public void testAquamarine() {
+    RawColor rc = new RawColor(0, 255, 85, 0);
+    ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
+
+    ColorOptions co = cs.getColor();
+
+    assertEquals(ColorOptions.NONE, co);
+  }
+
+  @Test
+  public void testGold() {
+    RawColor rc = new RawColor(229, 255, 0, 0);
+    ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
+
+    ColorOptions co = cs.getColor();
+
+    assertEquals(ColorOptions.NONE, co);
+  }
+
+  @Test
+  public void testRouge() {
+    RawColor rc = new RawColor(255, 98, 0, 0);
+    ColorSubsystem cs = new ColorSubsystem(new MockColorSource(rc));
+
+    ColorOptions co = cs.getColor();
+
+    assertEquals(ColorOptions.NONE, co);
   }
 }
