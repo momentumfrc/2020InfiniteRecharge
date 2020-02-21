@@ -15,6 +15,9 @@ public class StorageSubsystem extends SubsystemBase {
   public runMid() {
     StorageMid.set(1);
   }
+  public runGate() {
+    StorageGate.set(0.1);
+  }
   public stopMotors() {
     StorageGate.stopMotors();
     StorageMid.stopMotors();
