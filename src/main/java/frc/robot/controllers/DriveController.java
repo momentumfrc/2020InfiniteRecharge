@@ -41,14 +41,7 @@ public interface DriveController {
    * @return Whether the pistons should fire that raise the intake back to its
    *         starting position.
    */
-  abstract public boolean getRaiseIntake();
-
-  /**
-   * 
-   * @return Whether the pistons should fire that lower the intake into its ready
-   *         position.
-   */
-  abstract public boolean getLowerIntake();
+  abstract public boolean getToggleIntake();
 
   /**
    * Gets whether the robot should shoot power cells at the lower port.

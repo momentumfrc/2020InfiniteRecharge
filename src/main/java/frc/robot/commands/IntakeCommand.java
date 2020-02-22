@@ -19,6 +19,8 @@ public class IntakeCommand extends CommandBase {
   private final IntakeSubsystem m_subsystem;
   private RobotContainer m_container;
 
+  private boolean isLowered = false;
+
   /**
    * Creates a new ExampleCommand.
    *
@@ -45,11 +47,13 @@ public class IntakeCommand extends CommandBase {
     if (m_container.mainController.getIntakePowerCells()) {
       m_subsystem.runIntake();
     }
-    if (m_container.mainController.getRaiseIntake()) {
+
+    if (m_container.mainController.getToggleIntake() && isLowered) {
       m_subsystem.raiseIntake();
-    }
-    if (m_container.mainController.getLowerIntake()) {
+      isLowered = false;
+    } else if (m_container.mainController.getToggleIntake() && !isLowered) {
       m_subsystem.lowerIntake();
+      isLowered = true;
     }
   }
 
