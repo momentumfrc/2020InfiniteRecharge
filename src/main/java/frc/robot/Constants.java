@@ -29,6 +29,7 @@ public final class Constants {
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_RIGHT = 5;
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_LEFT = 6;
   public static final int SPARKMAX_LOADER_CAN_ADDR = 7;
+  public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 8;
   // SparkMAX Encoder Channels
   public static final int SHOOTER_ENCODER_CHAN_A = 1;
   public static final int SHOOTER_ENCODER_CHAN_B = 2;
