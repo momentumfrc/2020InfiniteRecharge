@@ -37,4 +37,8 @@ public final class Constants {
   // Brushed PWM addresses
   public static final int STORAGE_GATE_PWM_CHAN = 1;
   public static final int STORAGE_MID_PWM_CHAN = 2;
+
+  // Motor value constants
+  public static final double STORAGE_MID_VAL = 1;
+  public static final double STORAGE_GATE_VAL = 0.1;
 }
