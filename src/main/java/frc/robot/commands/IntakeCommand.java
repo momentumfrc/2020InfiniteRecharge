@@ -12,17 +12,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 /**
- * An example command that uses an example subsystem.
+ * A command that uses the IntakeSubsystem.
  */
 public class IntakeCommand extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final IntakeSubsystem m_subsystem;
-  private RobotContainer m_container;
-
-  private boolean isLowered = false;
+  private final RobotContainer m_container;
 
   /**
-   * Creates a new ExampleCommand.
+   * Creates a new IntakeCommand.
    *
    * @param subsystem The subsystem used by this command.
    * @param container The instance(or mock) of RobotContainer used by this
@@ -45,22 +42,22 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void execute() {
     if (m_container.mainController.getIntakePowerCells()) {
-      m_subsystem.runIntake();
+      m_subsystem.runIntake(true);
     }
 
-    if (m_container.mainController.getToggleIntake() && isLowered) {
+    if (m_container.mainController.getToggleIntake() && m_subsystem.isLowered) {
       m_subsystem.raiseIntake();
-      isLowered = false;
-    } else if (m_container.mainController.getToggleIntake() && !isLowered) {
+      m_subsystem.isLowered = false;
+    } else if (m_container.mainController.getToggleIntake() && !m_subsystem.isLowered) {
       m_subsystem.lowerIntake();
-      isLowered = true;
+      m_subsystem.isLowered = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stopIntake();
+    m_subsystem.runIntake(false);
   }
 
   // Returns true when the command should end.

@@ -16,37 +16,43 @@ public class IntakeSubsystem extends SubsystemBase {
   private final VictorSP intakeSPrt = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_LF);
   private final VictorSP intakeSPlf = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_RT);
 
-  private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_F,
-      Constants.INTAKE_PISTON_PCM_CHAN_LF_R);
-  private final DoubleSolenoid intakePistonR = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_RT_F,
-      Constants.INTAKE_PISTON_PCM_CHAN_RT_R);
+  private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
+      Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
+  private final DoubleSolenoid intakePistonR = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_RT_DEPLOY,
+      Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
+
+  public boolean isLowered = false;
+  private boolean runIntake = false;
+
+  private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
+  private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
 
   public IntakeSubsystem() {
     intakeSPrt.setInverted(true);
   }
 
-  public void runIntake() {
-    intakeSPrt.set(0.3);
-    intakeSPlf.set(0.3);
-  }
-
-  public void stopIntake() {
-    intakeSPrt.stopMotor();
-    intakeSPlf.stopMotor();
+  public void runIntake(boolean run) {
+    runIntake = run;
   }
 
   public void raiseIntake() {
-    intakePistonL.set(DoubleSolenoid.Value.kForward);
-    intakePistonR.set(DoubleSolenoid.Value.kForward);
+    intakePistonL.set(deploy);
+    intakePistonR.set(deploy);
+    isLowered = false;
   }
 
   public void lowerIntake() {
-    intakePistonL.set(DoubleSolenoid.Value.kReverse);
-    intakePistonR.set(DoubleSolenoid.Value.kReverse);
+    intakePistonL.set(stow);
+    intakePistonR.set(stow);
+    isLowered = true;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    if (runIntake) {
+      intakeSPrt.set(0.3);
+      intakeSPlf.set(0.3);
+    }
   }
 }
