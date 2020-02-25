@@ -39,11 +39,7 @@ public class ControllerBase implements DriveController {
     return xbox.getBButtonPressed();
   }
 
-  public boolean getRaiseIntake() {
-    return false;
-  }
-
-  public boolean getLowerIntake() {
+  public boolean getToggleIntake() {
     return false;
   }
 
