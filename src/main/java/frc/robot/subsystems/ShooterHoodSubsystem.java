@@ -32,6 +32,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
   private boolean reliableZero;
   private boolean enableLimit;
+  private boolean isDeployed = false;
 
   private double minVel = 0;
   private double maxVel = 0;
@@ -65,16 +66,18 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     enableLimit = false;
   }
 
-  public void raiseHood() {
+  public void deployHood() {
     while (hoodPos < maxHoodPos) {
       hoodPID.setReference(-0.1, ControlType.kSmartMotion, 0);
     }
+    isDeployed = true;
   }
 
-  public void lowerHood() {
+  public void stowHood() {
     while (!hoodLimitSwitch.get()) {
       hoodPID.setReference(0.1, ControlType.kSmartMotion, 0);
     }
+    isDeployed = false;
   }
 
   public double getHoodPos() {
