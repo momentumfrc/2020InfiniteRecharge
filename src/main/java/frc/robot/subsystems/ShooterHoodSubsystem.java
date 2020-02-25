@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANDigitalInput;
@@ -29,10 +31,12 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   private double hoodPos;
   private boolean reliableZero;
+  private boolean enableLimit;
 
-  private double minVel;
-  private double maxVel;
-  private double maxAcc;
+  private double minVel = 0;
+  private double maxVel = 0;
+  private double maxAcc = 0;
+  private double maxHoodPos;
 
   public ShooterHoodSubsystem() {
     hoodPID.setP(kP);
@@ -42,22 +46,43 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPID.setFF(kFF);
     hoodPID.setOutputRange(kMinOutput, kMaxOutput);
     hoodLimitSwitch.enableLimitSwitch(true);
+
+    hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
+    hoodPID.setSmartMotionMaxVelocity(maxVel, 0);
+    hoodPID.setSmartMotionMaxAccel(maxAcc, 0);
+    hoodPID.setSmartMotionMinOutputVelocity(minVel, 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
+
+    hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
+    hoodLimitSwitch.enableLimitSwitch(enableLimit);
+
+    hoodNEO.setIdleMode(IdleMode.kCoast);
   }
 
-  public void moveHood(double moveRequest) {
+  public void moveHood(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
+    hoodPID.setReference(posRequest, ControlType.kSmartMotion, 0);
+    enableLimit = false;
   }
 
   public void raiseHood() {
-
+    while (hoodPos < maxHoodPos) {
+      hoodPID.setReference(-0.1, ControlType.kSmartMotion, 0);
+    }
   }
 
   public void lowerHood() {
-
+    while (!hoodLimitSwitch.get()) {
+      hoodPID.setReference(0.1, ControlType.kSmartMotion, 0);
+    }
   }
 
-  public void getHoodPos() {
+  public double getHoodPos() {
+    return hoodPos;
+  }
 
+  public void stopHood() {
+    hoodNEO.set(0);
   }
 
   @Override
