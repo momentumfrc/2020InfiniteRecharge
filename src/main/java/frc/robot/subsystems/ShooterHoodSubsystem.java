@@ -32,7 +32,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
   private boolean reliableZero;
   private boolean enableLimit;
-  private boolean isDeployed = false;
+  public boolean isDeployed = false;
 
   private double minVel = 0;
   private double maxVel = 0;
