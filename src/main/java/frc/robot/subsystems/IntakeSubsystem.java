@@ -23,6 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean isLowered = false;
   private boolean runIntake = false;
+  private boolean reverseIntake = false;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
@@ -31,8 +32,20 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeSPrt.setInverted(true);
   }
 
-  public void runIntake(boolean run) {
+  public void runIntake(boolean run, boolean reverse) {
     runIntake = run;
+    reverseIntake = reverse;
+  }
+
+  public void reverseIntake() {
+    reverseIntake = !reverseIntake;
+  }
+
+  public void toggleIntakeDeploy() {
+    if (isLowered)
+      raiseIntake();
+    else
+      lowerIntake();
   }
 
   public void raiseIntake() {
@@ -50,9 +63,12 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if (runIntake) {
+    if (runIntake && !reverseIntake) {
       intakeSPrt.set(0.3);
       intakeSPlf.set(0.3);
+    } else if (runIntake && reverseIntake) {
+      intakeSPlf.set(-0.3);
+      intakeSPrt.set(-0.3);
     }
   }
 }

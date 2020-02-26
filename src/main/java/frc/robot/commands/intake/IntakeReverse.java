@@ -5,30 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 
 /**
  * A command that uses the IntakeSubsystem.
  */
-public class IntakeCommand extends CommandBase {
+public class IntakeReverse extends CommandBase {
   private final IntakeSubsystem m_subsystem;
-  private final RobotContainer m_container;
 
   /**
    * Creates a new IntakeCommand.
    *
    * @param subsystem The subsystem used by this command.
-   * @param container The instance(or mock) of RobotContainer used by this
-   *                  command.
    * 
    */
-  public IntakeCommand(IntakeSubsystem subsystem, RobotContainer container) {
+  public IntakeReverse(IntakeSubsystem subsystem) {
     m_subsystem = subsystem;
-    m_container = container;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -41,28 +36,18 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_container.mainController.getIntakePowerCells()) {
-      m_subsystem.runIntake(true);
-    }
-
-    if (m_container.mainController.getToggleIntake() && m_subsystem.isLowered) {
-      m_subsystem.raiseIntake();
-      m_subsystem.isLowered = false;
-    } else if (m_container.mainController.getToggleIntake() && !m_subsystem.isLowered) {
-      m_subsystem.lowerIntake();
-      m_subsystem.isLowered = true;
-    }
+    m_subsystem.reverseIntake();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.runIntake(false);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
