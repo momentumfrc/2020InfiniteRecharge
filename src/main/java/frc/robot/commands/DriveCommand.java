@@ -31,7 +31,9 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.drive(Math.min(m_container.mainController.getMoveRequest(), m_container.getSpeedLimiter()), m_container.mainController.getTurnRequest());
+    drive_subsystem.drive(
+        Math.min(m_container.mainController.getMoveRequest(), m_container.mainController.getSpeedLimiter()),
+        m_container.mainController.getTurnRequest());
   }
 
   // Called once the command ends or is interrupted.

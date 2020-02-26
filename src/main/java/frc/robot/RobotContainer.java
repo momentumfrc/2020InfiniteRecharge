@@ -29,7 +29,7 @@ public class RobotContainer {
   public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
 
-  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem, this);
 
   public final ControllerBase mainController = new ControllerBase();
 
