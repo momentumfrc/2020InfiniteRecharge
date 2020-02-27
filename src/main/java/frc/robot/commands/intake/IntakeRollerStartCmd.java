@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * A command that uses the IntakeSubsystem.
  */
-public class IntakePistonToggle extends CommandBase {
+public class IntakeRollerStartCmd extends CommandBase {
   private final IntakeSubsystem m_subsystem;
 
   /**
@@ -22,7 +22,7 @@ public class IntakePistonToggle extends CommandBase {
    * @param subsystem The subsystem used by this command.
    * 
    */
-  public IntakePistonToggle(IntakeSubsystem subsystem) {
+  public IntakeRollerStartCmd(IntakeSubsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -36,7 +36,7 @@ public class IntakePistonToggle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.toggleIntakeDeploy();
+    m_subsystem.runIntake(true, false);
   }
 
   // Called once the command ends or is interrupted.

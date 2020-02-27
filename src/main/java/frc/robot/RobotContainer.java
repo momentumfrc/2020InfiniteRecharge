@@ -13,11 +13,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.intake.IntakePistonToggle;
-import frc.robot.commands.intake.IntakeReverse;
-import frc.robot.commands.intake.IntakeRoller;
-import frc.robot.commands.intake.IntakeRollerStop;
-
+import frc.robot.commands.intake.IntakePistonCmd;
+import frc.robot.commands.intake.IntakeReverseCmd;
+import frc.robot.commands.intake.IntakeRollerStartCmd;
+import frc.robot.commands.intake.IntakeRollerStopCmd;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -41,10 +40,10 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
-  private final IntakeRoller intakeRoller = new IntakeRoller(intakeSubsystem);
-  private final IntakeRollerStop intakeRollerStop = new IntakeRollerStop(intakeSubsystem);
-  private final IntakeReverse intakeReverse = new IntakeReverse(intakeSubsystem);
-  private final IntakePistonToggle intakePistonToggleCmd = new IntakePistonToggle(intakeSubsystem);
+  private final IntakeRollerStartCmd intakeRollerStartCmd = new IntakeRollerStartCmd(intakeSubsystem);
+  private final IntakeRollerStopCmd intakeRollerStopCmd = new IntakeRollerStopCmd(intakeSubsystem);
+  private final IntakeReverseCmd intakeReverseCmd = new IntakeReverseCmd(intakeSubsystem);
+  private final IntakePistonCmd intakePistonCmd = new IntakePistonCmd(intakeSubsystem);
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
@@ -70,9 +69,9 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    intakeRollerFwdButton.whenPressed(intakeRoller).whenReleased(intakeRollerStop);
-    intakeRollerFwdRevToggle.whenPressed(intakeReverse);
-    intakePistonToggle.whenPressed(intakePistonToggleCmd);
+    intakeRollerFwdButton.whenPressed(intakeRollerStartCmd).whenReleased(intakeRollerStopCmd);
+    intakeRollerFwdRevToggle.whenPressed(intakeReverseCmd);
+    intakePistonToggle.whenPressed(intakePistonCmd);
   }
 
   /**
