@@ -20,7 +20,7 @@ import frc.robot.commands.intake.IntakeRollerStopCmd;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-
+import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -54,12 +54,15 @@ public class RobotContainer {
   private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
+  private final MoPrefs moPrefs = new MoPrefs();
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    moPrefs.safeForPrefs();
   }
 
   /**
