@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.Constants;
+import frc.robot.utils.MoPrefs;
 
 public class IntakeSubsystem extends SubsystemBase {
   private final VictorSP intakeSPrt = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_LF);
@@ -24,7 +25,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean isLowered = false;
   private boolean runIntake = false;
   private boolean reverseIntake = false;
-  private final double rollerSetpoint = 0.3;
+  private double rollerSetpoint;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
@@ -64,15 +65,12 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if (runIntake && !reverseIntake) {
-      intakeSPrt.set(rollerSetpoint);
-      intakeSPlf.set(rollerSetpoint);
-    } else if (runIntake && reverseIntake) {
-      intakeSPlf.set(-rollerSetpoint);
-      intakeSPrt.set(-rollerSetpoint);
-    } else {
-      intakeSPlf.set(0);
-      intakeSPrt.set(0);
-    }
+    rollerSetpoint = 0;
+    if (runIntake)
+      rollerSetpoint = MoPrefs.getIntakeRollerSetpoint();
+    if (reverseIntake)
+      rollerSetpoint *= -1;
+    intakeSPlf.set(rollerSetpoint);
+    intakeSPrt.set(rollerSetpoint);
   }
 }
