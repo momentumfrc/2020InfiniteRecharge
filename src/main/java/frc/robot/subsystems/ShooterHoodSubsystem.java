@@ -33,6 +33,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
   public boolean isDeployed = false;
   private boolean deploy = false;
+  private boolean reliableZero;
 
   private double minVel = 0;
   private double maxVel = 1;
@@ -56,6 +57,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
     hoodNEO.setIdleMode(IdleMode.kBrake);
+
+    reliableZero = false;
+    stopHood();
   }
 
   public void moveHood(double posRequest) {
@@ -84,10 +88,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPos = hoodEncoder.getPosition();
     if (hoodLimitSwitch.get()) {
       zeroHood();
+      reliableZero = true;
     }
+
     double hoodSetpoint = 0;
-    if (deploy)
+
+    if (deploy && reliableZero)
       hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
+    
     hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
   }
 
