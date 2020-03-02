@@ -28,7 +28,6 @@ public final class Constants {
   // SparkMAX CAN addresses
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_RIGHT = 5;
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_LEFT = 6;
-  public static final int SPARKMAX_LOADER_CAN_ADDR = 7;
   public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 3;
   // SparkMAX Encoder Channels
 
@@ -38,7 +37,7 @@ public final class Constants {
   public static final int INTAKE_PISTON_PCM_CHAN_RT_DEPLOY = 2;
   public static final int INTAKE_PISTON_PCM_CHAN_RT_STOW = 3;
   // Brushed PWM addresses
-   public static final int INTAKE_VICTORSP_PWM_CHAN = 0;
+  public static final int INTAKE_VICTORSP_PWM_CHAN = 0;
 
   // LEDs
   public static final int ADDRESSABLE_LED_PWM_ADDRESS = 5;

@@ -33,7 +33,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
   public boolean isDeployed = false;
   private boolean deploy = false;
-  private boolean stow = false;
 
   private double minVel = 0;
   private double maxVel = 1;
@@ -66,11 +65,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   public void deployHood() {
     deploy = true;
-    stow = false;
   }
 
   public void stowHood() {
-    stow = true;
     deploy = false;
   }
 
@@ -91,7 +88,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     double hoodSetpoint = 0;
     if (deploy)
       hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
-    if (stow)
+    else
       hoodSetpoint = 0;
     hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
 
