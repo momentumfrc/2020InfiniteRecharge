@@ -14,8 +14,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final VictorSP intakeSPrt = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_LF);
-  private final VictorSP intakeSPlf = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN_RT);
+  private final VictorSP intakeSP = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN);
 
   private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
       Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
@@ -31,12 +30,14 @@ public class IntakeSubsystem extends SubsystemBase {
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
 
   public IntakeSubsystem() {
-    intakeSPrt.setInverted(true);
   }
 
-  public void runIntake(boolean run, boolean reverse) {
-    runIntake = run;
-    reverseIntake = reverse;
+  public void runIntake() {
+    runIntake = true;
+  }
+
+  public void stopIntake() {
+    runIntake = false;
   }
 
   public void reverseIntake() {
@@ -70,7 +71,6 @@ public class IntakeSubsystem extends SubsystemBase {
       rollerSetpoint = MoPrefs.getIntakeRollerSetpoint();
     if (reverseIntake)
       rollerSetpoint *= -1;
-    intakeSPlf.set(rollerSetpoint);
-    intakeSPrt.set(rollerSetpoint);
+    intakeSP.set(rollerSetpoint);
   }
 }

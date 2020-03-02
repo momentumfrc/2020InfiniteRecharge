@@ -13,10 +13,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.intake.IntakePistonCmd;
-import frc.robot.commands.intake.IntakeReverseCmd;
-import frc.robot.commands.intake.IntakeRollerStartCmd;
-import frc.robot.commands.intake.IntakeRollerStopCmd;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -24,6 +20,7 @@ import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -40,10 +37,6 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   private final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
-  private final IntakeRollerStartCmd intakeRollerStartCmd = new IntakeRollerStartCmd(intakeSubsystem);
-  private final IntakeRollerStopCmd intakeRollerStopCmd = new IntakeRollerStopCmd(intakeSubsystem);
-  private final IntakeReverseCmd intakeReverseCmd = new IntakeReverseCmd(intakeSubsystem);
-  private final IntakePistonCmd intakePistonCmd = new IntakePistonCmd(intakeSubsystem);
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
@@ -54,15 +47,13 @@ public class RobotContainer {
   private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
-  private final MoPrefs moPrefs = new MoPrefs();
-
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    moPrefs.safeForPrefs();
+    MoPrefs.safeForPrefs();
   }
 
   /**
@@ -72,9 +63,10 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    intakeRollerFwdButton.whenPressed(intakeRollerStartCmd).whenReleased(intakeRollerStopCmd);
-    intakeRollerFwdRevToggle.whenPressed(intakeReverseCmd);
-    intakePistonToggle.whenPressed(intakePistonCmd);
+    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
+        .whenReleased(new InstantCommand(intakeSubsystem::stopIntake, intakeSubsystem));
+    intakeRollerFwdRevToggle.whenPressed(new InstantCommand(intakeSubsystem::reverseIntake, intakeSubsystem));
+    intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
   }
 
   /**
