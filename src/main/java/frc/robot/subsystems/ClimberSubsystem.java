@@ -23,8 +23,15 @@ public class ClimberSubsystem extends SubsystemBase {
   private static final double CLIMB_STOW = -1;
   private static final double CLIMB = 1;
 
+  private boolean reliableZero;
+
   public ClimberSubsystem() {
+    reliableZero = false;
     stop();
+  }
+
+  public boolean isStowed() {
+    return limit.get();
   }
 
   public void stop() {
@@ -32,14 +39,14 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void stow() {
-    if (limit.get())
+    if (isStowed())
       stop();
     else
       climberSP.set(CLIMB_STOW);
   }
 
   public void climb() {
-    if (encoder.get() > MoPrefs.getClimberEncoderLimit())
+    if (!reliableZero || encoder.get() > MoPrefs.getClimberEncoderLimit())
       stop();
     else
       climberSP.set(CLIMB);
@@ -48,7 +55,9 @@ public class ClimberSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if (limit.get())
+    if (limit.get()) {
       encoder.reset();
+      reliableZero = true;
+    }
   }
 }
