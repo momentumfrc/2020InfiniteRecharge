@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.controllers.ControllerBase;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +29,8 @@ public class RobotContainer {
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+
+  public final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
 

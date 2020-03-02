@@ -35,4 +35,8 @@ public final class Constants {
   // Pneumatic solenoid addresses
 
   // Brushed PWM addresses
+
+  // LEDs
+  public static final int ADDRESSABLE_LED_PWM_ADDRESS = 3;
+  public static final int ADDRESSABLE_LED_LENGTH = 50;
 }
