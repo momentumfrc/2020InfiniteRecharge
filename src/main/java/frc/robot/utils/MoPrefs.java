@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Preferences;
 public class MoPrefs {
   static final double INTAKE_ROLLER_SETPOINT = 0.3;
   static final int CLIMBER_ENCODER_LIMIT = 10000;
+  static final double SHOOTER_HOOD_SETPOINT = 15;
 
   private static boolean safePrefs = false;
 
@@ -40,5 +41,9 @@ public class MoPrefs {
 
   public static double getClimberEncoderLimit() {
     return getDouble("CLIMBER_ENCODER_LIMIT", CLIMBER_ENCODER_LIMIT);
+  }
+
+  public static double getShooterHoodSetpoint() {
+    return getDouble("SHOOTER_HOOD_SETPOINT", SHOOTER_HOOD_SETPOINT);
   }
 }
