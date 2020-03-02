@@ -11,6 +11,7 @@ import com.revrobotics.CANDigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
+import frc.robot.utils.MoPrefs;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
   private CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
@@ -30,14 +31,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double allowedErr = 0;
 
   private double hoodPos;
-  private boolean reliableZero;
-  private boolean enableLimit;
   public boolean isDeployed = false;
+  private boolean deploy = false;
+  private boolean stow = false;
 
   private double minVel = 0;
-  private double maxVel = 0;
-  private double maxAcc = 0;
-  private double maxHoodPos;
+  private double maxVel = 1;
+  private double maxAcc = 0.1;
 
   public ShooterHoodSubsystem() {
     hoodPID.setP(kP);
@@ -55,29 +55,23 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPID.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
 
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
-    hoodLimitSwitch.enableLimitSwitch(enableLimit);
 
-    hoodNEO.setIdleMode(IdleMode.kCoast);
+    hoodNEO.setIdleMode(IdleMode.kBrake);
   }
 
   public void moveHood(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
     hoodPID.setReference(posRequest, ControlType.kSmartMotion, 0);
-    enableLimit = false;
   }
 
   public void deployHood() {
-    while (hoodPos < maxHoodPos) {
-      hoodPID.setReference(-0.1, ControlType.kSmartMotion, 0);
-    }
-    isDeployed = true;
+    deploy = true;
+    stow = false;
   }
 
   public void stowHood() {
-    while (!hoodLimitSwitch.get()) {
-      hoodPID.setReference(0.1, ControlType.kSmartMotion, 0);
-    }
-    isDeployed = false;
+    stow = true;
+    deploy = false;
   }
 
   public double getHoodPos() {
@@ -94,11 +88,17 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     if (hoodLimitSwitch.get()) {
       zeroHood();
     }
+    double hoodSetpoint = 0;
+    if (deploy)
+      hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
+    if (stow)
+      hoodSetpoint = 0;
+    hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
+
   }
 
   private void zeroHood() {
     setHoodPos(0);
-    reliableZero = true;
   }
 
   private void setHoodPos(int newPos) {

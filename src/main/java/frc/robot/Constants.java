@@ -29,10 +29,9 @@ public final class Constants {
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_RIGHT = 5;
   public static final int SPARKMAX_SHOOTER_CAN_ADDR_LEFT = 6;
   public static final int SPARKMAX_LOADER_CAN_ADDR = 7;
-  public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 8;
+  public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 3;
   // SparkMAX Encoder Channels
-  public static final int SHOOTER_ENCODER_CHAN_A = 1;
-  public static final int SHOOTER_ENCODER_CHAN_B = 2;
+
   // Pneumatic solenoid addresses
   public static final int INTAKE_PISTON_PCM_CHAN_LF_DEPLOY = 0;
   public static final int INTAKE_PISTON_PCM_CHAN_LF_STOW = 1;
