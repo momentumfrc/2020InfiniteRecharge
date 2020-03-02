@@ -88,10 +88,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     double hoodSetpoint = 0;
     if (deploy)
       hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
-    else
-      hoodSetpoint = 0;
     hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
-
   }
 
   private void zeroHood() {
