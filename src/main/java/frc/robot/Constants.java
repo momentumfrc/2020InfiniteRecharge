@@ -46,9 +46,13 @@ public final class Constants {
   public static final int SHOOTER_VICTORSP_PWM_CHAN = 2;
   public static final int CONTROLPANEL_VICTORSP_PWM_CHAN = 3;
   public static final int CLIMBER_VICTORSP_PWM_CHAN = 4;
+  public static final int ADDRESSABLE_LED_PWM_ADDRESS = 5;
 
   // DIO channels
   public static final int CLIMBER_LIMIT_SWITCH = 0;
   public static final int CLIMBER_ENCODER_A_CHAN = 1;
   public static final int CLIMBER_ENCODER_B_CHAN = 2;
+
+  // LEDs
+  public static final int ADDRESSABLE_LED_LENGTH = 50;
 }
