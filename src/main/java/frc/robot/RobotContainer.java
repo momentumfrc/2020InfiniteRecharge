@@ -44,7 +44,6 @@ public class RobotContainer {
 
   public final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
-  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
