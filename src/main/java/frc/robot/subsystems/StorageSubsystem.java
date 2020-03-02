@@ -4,37 +4,32 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.Constants;
+import frc.robot.utils.MoPrefs;
 
 public class StorageSubsystem extends SubsystemBase {
-  private final VictorSP StorageGate;
-  private final VictorSP StorageMid;
+  private final VictorSP storage;
 
-  private boolean runMid = false;
-  private boolean runGate = false;
+  private double speed;
 
   public StorageSubsystem() {
-    StorageMid = new VictorSP(Constants.STORAGE_MID_PWM_CHAN);
-    StorageGate = new VictorSP(Constants.STORAGE_GATE_PWM_CHAN);
+    storage = new VictorSP(Constants.STORAGE_VICTORSP_PWM_CHAN);
+    stop();
   }
 
-  public void runMid(boolean run) {
-    runMid = run;
+  public void run() {
+    speed = MoPrefs.getStorageSpeed();
   }
 
-  public void runGate(boolean run) {
-    runGate = run;
+  public void reverse() {
+    speed = -MoPrefs.getStorageSpeed();
   }
 
-  public void stopAll() {
-    runMid = false;
-    runGate = false;
+  public void stop() {
+    speed = 0;
   }
 
   @Override
   public void periodic() {
-    if (runMid)
-      StorageMid.set(Constants.STORAGE_MID_VAL);
-    if (runGate)
-      StorageGate.set(Constants.STORAGE_GATE_VAL);
+    storage.set(speed);
   }
 }
