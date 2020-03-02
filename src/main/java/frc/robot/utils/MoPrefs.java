@@ -3,8 +3,10 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.Preferences;
 
 public class MoPrefs {
-  public static final double INTAKE_ROLLER_SETPOINT = 0.3;
-  public static final double SHOOTER_HOOD_SETPOINT = 15;
+  static final double INTAKE_ROLLER_SETPOINT = 0.3;
+  static final int CLIMBER_ENCODER_LIMIT = 10000;
+  static final double SHOOTER_HOOD_SETPOINT = 15;
+
   private static boolean safePrefs = false;
 
   public static void safeForPrefs() {
@@ -35,6 +37,10 @@ public class MoPrefs {
 
   public static double getIntakeRollerSetpoint() {
     return getDouble("INTAKE_ROLLER_SETPOINT", INTAKE_ROLLER_SETPOINT);
+  }
+
+  public static double getClimberEncoderLimit() {
+    return getDouble("CLIMBER_ENCODER_LIMIT", CLIMBER_ENCODER_LIMIT);
   }
 
   public static double getShooterHoodSetpoint() {

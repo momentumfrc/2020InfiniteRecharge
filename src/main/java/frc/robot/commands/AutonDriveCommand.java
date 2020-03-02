@@ -10,11 +10,10 @@ package frc.robot.commands;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveCommand extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+public class AutonDriveCommand extends CommandBase {
   private final DriveSubsystem drive_subsystem;
 
-  public DriveCommand(DriveSubsystem subsystem) {
+  public AutonDriveCommand(DriveSubsystem subsystem) {
     drive_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
