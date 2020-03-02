@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
@@ -40,6 +41,8 @@ public class RobotContainer {
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
+
+  public final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
