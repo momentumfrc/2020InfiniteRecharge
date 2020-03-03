@@ -7,47 +7,48 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.DriveSubsystem;
-
-import org.usfirst.frc.team4999.utils.Utils;
+import frc.robot.subsystems.ConditionedDriveSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-import frc.robot.RobotContainer;
 import frc.robot.controllers.ControllerBase;
 
 public class DriveCommand extends CommandBase {
-  private final DriveSubsystem m_subsystem;
   private final ControllerBase m_controller;
+  private final ConditionedDriveSubsystem m_cdss;
 
-  public DriveCommand(DriveSubsystem subsystem, ControllerBase controller) {
-    m_subsystem = subsystem;
+  public DriveCommand(ConditionedDriveSubsystem cdss, ControllerBase controller) {
     m_controller = controller;
+    m_cdss = cdss;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(cdss);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    stop();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(Utils.map(m_controller.getMoveRequest(), -1, 1, -m_controller.getSpeedLimiter(),
-        m_controller.getSpeedLimiter()), m_controller.getTurnRequest());
+    m_cdss.mapToLimit(m_controller.getMoveRequest(), m_controller.getTurnRequest());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stop();
+    stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  private void stop() {
+    m_cdss.mapToLimit(0, 0);
   }
 }
