@@ -8,17 +8,21 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
+
+import org.usfirst.frc.team4999.utils.Utils;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 import frc.robot.RobotContainer;
+import frc.robot.controllers.ControllerBase;
 
 public class DriveCommand extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final DriveSubsystem drive_subsystem;
-  private final RobotContainer m_container;
+  private final DriveSubsystem m_subsystem;
+  private final ControllerBase m_controller;
 
-  public DriveCommand(DriveSubsystem subsystem, RobotContainer container) {
-    drive_subsystem = subsystem;
-    m_container = container;
+  public DriveCommand(DriveSubsystem subsystem, ControllerBase controller) {
+    m_subsystem = subsystem;
+    m_controller = controller;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -31,15 +35,14 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drive_subsystem.drive(
-        Math.min(m_container.mainController.getMoveRequest(), m_container.mainController.getSpeedLimiter()),
-        m_container.mainController.getTurnRequest());
+    m_subsystem.drive(Utils.map(m_controller.getMoveRequest(), -1, 1, -m_controller.getSpeedLimiter(),
+        m_controller.getSpeedLimiter()), m_controller.getTurnRequest());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drive_subsystem.stop();
+    m_subsystem.stop();
   }
 
   // Returns true when the command should end.
