@@ -16,7 +16,7 @@ public class ConditionedDriveSubsystem extends SubsystemBase {
   }
 
   public void incSpeedLimit() {
-    spd_limit_index += 1;
+    spd_limit_index++;
     if (spd_limit_index > 5)
       spd_limit_index = 0;
     spd_limit = spd_limits[spd_limit_index];
