@@ -8,9 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.AutonDriveCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.DriveCommand;
 
 /**
@@ -22,7 +21,7 @@ import frc.robot.commands.DriveCommand;
  */
 public class Robot extends TimedRobot {
 
-  private AutonDriveCommand autonDriveCommand;
+  private ParallelCommandGroup autonCommandGroup;
   private DriveCommand teleopDriveCommand;
 
   private RobotContainer m_robotContainer;
@@ -77,11 +76,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    autonCommandGroup = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    // schedule the autonomous command
+    if (autonCommandGroup != null) {
+      autonCommandGroup.schedule();
     }
   }
 
@@ -98,8 +97,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (autonDriveCommand != null) {
-      autonDriveCommand.cancel();
+    if (autonCommandGroup != null) {
+      autonCommandGroup.cancel();
     }
     teleopDriveCommand.schedule(false);
 

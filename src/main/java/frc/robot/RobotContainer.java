@@ -94,7 +94,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public ParallelCommandGroup getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
   }
