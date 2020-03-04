@@ -29,9 +29,7 @@ public class ConditionedDriveSubsystem extends DriveSubsystem {
   }
 
   public void decSpeedLimit() {
-    --spd_limit_index;
-    if (spd_limit_index > 0)
-      spd_limit_index = 0;
+    spd_limit_index = Math.max(--spd_limit_index, 0);
     spd_limit = spd_limits[spd_limit_index];
   }
 
