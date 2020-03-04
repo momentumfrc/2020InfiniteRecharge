@@ -7,19 +7,17 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ConditionedDriveSubsystem;
-
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import frc.robot.controllers.ControllerBase;
 
 public class DriveCommand extends CommandBase {
   private final ControllerBase m_controller;
-  private final ConditionedDriveSubsystem m_cdss;
+  private final DriveSubsystem m_subsystem;
 
-  public DriveCommand(ConditionedDriveSubsystem cdss, ControllerBase controller) {
+  public DriveCommand(DriveSubsystem cdss, ControllerBase controller) {
     m_controller = controller;
-    m_cdss = cdss;
+    m_subsystem = cdss;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(cdss);
   }
@@ -33,7 +31,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_cdss.mapToLimit(m_controller.getMoveRequest(), m_controller.getTurnRequest());
+    m_subsystem.drive(m_controller.getMoveRequest(), m_controller.getTurnRequest());
   }
 
   // Called once the command ends or is interrupted.
@@ -49,6 +47,6 @@ public class DriveCommand extends CommandBase {
   }
 
   private void stop() {
-    m_cdss.mapToLimit(0, 0);
+    m_subsystem.drive(0, 0);
   }
 }

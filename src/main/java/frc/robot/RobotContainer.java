@@ -16,7 +16,7 @@ import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ConditionedDriveSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -37,11 +37,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final ConditionedDriveSubsystem cDriveSubsystem = new ConditionedDriveSubsystem(driveSubsystem);
+  private final ConditionedDriveSubsystem driveSubsystem = new ConditionedDriveSubsystem(falconDriveSubsystem);
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
@@ -50,8 +50,8 @@ public class RobotContainer {
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  public final DriveCommand driveCommand = new DriveCommand(cDriveSubsystem, mainController);
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(driveSubsystem);
+  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem, mainController);
+  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
   private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
