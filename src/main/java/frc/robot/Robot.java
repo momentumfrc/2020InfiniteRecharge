@@ -9,8 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.DriveCommand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,9 +18,6 @@ import frc.robot.commands.DriveCommand;
  * project.
  */
 public class Robot extends TimedRobot {
-
-  private ParallelCommandGroup autonCommandGroup;
-  private DriveCommand teleopDriveCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -76,11 +71,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autonCommandGroup = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command
-    if (autonCommandGroup != null) {
-      autonCommandGroup.schedule();
+    if (m_robotContainer.getAutonomousCommand() != null) {
+      m_robotContainer.getAutonomousCommand().schedule();
     }
   }
 
@@ -97,10 +91,10 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (autonCommandGroup != null) {
-      autonCommandGroup.cancel();
+    if (m_robotContainer.getAutonomousCommand() != null) {
+      m_robotContainer.getAutonomousCommand().cancel();
     }
-    teleopDriveCommand.schedule(false);
+    m_robotContainer.getDriveCommand().schedule(false);
 
   }
 
