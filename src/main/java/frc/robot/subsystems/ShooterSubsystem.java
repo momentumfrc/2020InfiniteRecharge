@@ -14,8 +14,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
+import edu.wpi.first.wpilibj.VictorSP;
 
 import frc.robot.Constants;
+import frc.robot.utils.MoPrefs;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -26,6 +28,7 @@ public class ShooterSubsystem extends SubsystemBase {
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax shooterMAXRight = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
+  private final VictorSP shooterGate = new VictorSP(Constants.SHOOTER_VICTORSP_PWM_CHAN);
   /**
    * The built-in PID controller provided by the Spark MAX motor controller.
    */
@@ -73,6 +76,12 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
+  private boolean runGate;
+  private boolean reverseGate;
+  private boolean runShooter;
+
+  private double gateSetpoint;
+
   public ShooterSubsystem() {
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
@@ -102,7 +111,31 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
-    shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
+    if (runShooter)
+      shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
+  }
+
+  public void runGate() {
+    runGate = true;
+  }
+
+  public void stopGate() {
+    runGate = false;
+  }
+
+  public void reverseGate() {
+    reverseGate = !reverseGate;
+  }
+
+  public void runShooter() {
+    runShooter = true;
+  }
+
+  public void stopAll() {
+    runGate = false;
+    shooterMAXLeft.set(0);
+    shooterMAXRight.set(0);
+    runShooter = false;
   }
 
   /**
@@ -114,12 +147,14 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMAXRight.stopMotor();
   }
 
-  public void setSetpoint(double newPoint) {
-    shooterSetpoint = newPoint;
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    gateSetpoint = 0;
+    if (runGate)
+      gateSetpoint = MoPrefs.getShooterGateSetpoint();
+    if (reverseGate)
+      gateSetpoint *= -1;
+    shooterGate.set(gateSetpoint);
   }
 }

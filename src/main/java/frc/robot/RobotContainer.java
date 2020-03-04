@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.ShooterStartCmd;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -41,6 +43,7 @@ public class RobotContainer {
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(driveSubsystem);
+  private final ShooterStartCmd shooterStartCmd = new ShooterStartCmd(shooterSubsystem);
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
@@ -49,12 +52,14 @@ public class RobotContainer {
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
   private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
+
+  private final JoystickButton shooterShoot = new JoystickButton(f310, 5); // Right bumper
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -83,6 +88,8 @@ public class RobotContainer {
 
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+
+    shooterShoot.whenPressed(shooterStartCmd);
   }
 
   /**
