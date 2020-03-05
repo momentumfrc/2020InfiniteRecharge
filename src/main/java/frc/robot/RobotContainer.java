@@ -90,7 +90,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Intake
-    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem));
+    intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem));
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     // Storage
