@@ -15,12 +15,15 @@ import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.DriveConditioner;
+import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.conditioners.CurvesConditioner;
+import frc.robot.subsystems.conditioners.DeadzoneConditioner;
+import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
 import frc.robot.utils.JoystickAnalogButton;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
@@ -46,7 +49,11 @@ public class RobotContainer {
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
 
-  private final DriveConditioner driveConditioner = new DriveConditioner();
+  private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
+  private final ReverseConditioner reverseConditioner = new ReverseConditioner();
+
+  private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
+      new CurvesConditioner(), reverseConditioner, speedLimitConditioner);
 
   private final XboxController xbox = new XboxController(0);
   private final LogitechF310 f310 = new LogitechF310(2);
@@ -57,6 +64,8 @@ public class RobotContainer {
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
+  private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
+      new AutoStowClimberCommand(climberSubsystem));
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2); // B
@@ -70,6 +79,8 @@ public class RobotContainer {
 
   private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value); // Y
   private final JoystickButton spdLimitDec = new JoystickButton(xbox, XboxController.Button.kA.value); // A
+
+  private final JoystickButton reverseRobot = new JoystickButton(xbox, XboxController.Button.kB.value);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -106,8 +117,10 @@ public class RobotContainer {
     purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem));
 
     // Drive
-    spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
-    spdLimitDec.whenPressed(new InstantCommand(driveConditioner::decSpeedLimit));
+    spdLimitInc.whenPressed(new InstantCommand(speedLimitConditioner::incSpeedLimit));
+    spdLimitDec.whenPressed(new InstantCommand(speedLimitConditioner::decSpeedLimit));
+
+    reverseRobot.whenPressed(new InstantCommand(reverseConditioner::toggleReversed));
   }
 
   /**
@@ -117,7 +130,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
+    return autonomousCommand;
   }
 
   public Command getTeleopCommand() {
