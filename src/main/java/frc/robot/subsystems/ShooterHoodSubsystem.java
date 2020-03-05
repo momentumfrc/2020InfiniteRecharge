@@ -30,9 +30,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double kMinOutput = -0.3;
   private final double allowedErr = 0;
 
+  private final double SAFE_STOW_SPEED = -0.1;
+
   private double hoodPos;
-  public boolean isDeployed = false;
-  private boolean deploy = false;
   private boolean reliableZero;
 
   private double minVel = 0;
@@ -68,11 +68,17 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public void deployHood() {
-    deploy = true;
+    if (reliableZero)
+      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kSmartMotion, 0);
+    else
+      hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public void stowHood() {
-    deploy = false;
+    if (reliableZero)
+      hoodPID.setReference(0, ControlType.kSmartMotion, 0);
+    else
+      hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public double getHoodPos() {
@@ -84,10 +90,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public boolean getFullyDeployed() {
-    boolean isFullyDeployed = false;
-    if (hoodEncoder.getPosition() >= MoPrefs.getShooterHoodFullyDeployedPos())
-      isFullyDeployed = true;
-    return isFullyDeployed;
+    return Math.abs(getHoodPos() - MoPrefs.getShooterHoodSetpoint()) < MoPrefs.getShooterHoodPositionTolerance();
   }
 
   @Override
@@ -97,13 +100,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
       zeroHood();
       reliableZero = true;
     }
-
-    double hoodSetpoint = 0;
-
-    if (deploy && reliableZero)
-      hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
-
-    hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
   }
 
   private void zeroHood() {
