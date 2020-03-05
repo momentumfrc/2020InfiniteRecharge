@@ -14,8 +14,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
+import edu.wpi.first.wpilibj.VictorSP;
 
 import frc.robot.Constants;
+import frc.robot.utils.MoPrefs;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -26,15 +28,12 @@ public class ShooterSubsystem extends SubsystemBase {
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax shooterMAXRight = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
+  private final VictorSP shooterGate = new VictorSP(Constants.SHOOTER_VICTORSP_PWM_CHAN);
   /**
    * The built-in PID controller provided by the Spark MAX motor controller.
    */
   private final CANPIDController shooterPIDLeft = new CANPIDController(shooterMAXLeft);
   private final CANPIDController shooterPIDRight = new CANPIDController(shooterMAXRight);
-  /**
-   * The target velocity of the NEO Brushless Motor.
-   */
-  private double shooterSetpoint = 1.0;
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
@@ -73,7 +72,12 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
-  public ShooterSubsystem() {
+  private ShooterHoodSubsystem shooterHood;
+
+  public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
+
+    this.shooterHood = shooterHood;
+
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
     shooterPIDRight.setP(kP, 0);
@@ -102,24 +106,39 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
-    shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
+    // extend hood
+    // fast shooter wheel
+    // run gate if both of "" are good
+    shooterHood.deployHood();
+    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
+    if (shooterHood.getFullyDeployed()
+        && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
+      shooterGate.set(MoPrefs.getShooterGateSetpoint());
+    } else {
+      shooterGate.set(0);
+    }
   }
 
-  /**
-   * Stops the shooter motor. Note: the NEO is set to Coast. Intended to be called
-   * when a button is released.
-   */
-  public void stopShooter() {
-    shooterMAXLeft.stopMotor();
-    shooterMAXRight.stopMotor();
+  public void idle() {
+    // stow hood
+    // stop gate
+    // slow shooter wheel
+    shooterHood.stowHood();
+    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterGate.stopMotor();
   }
 
-  public void setSetpoint(double newPoint) {
-    shooterSetpoint = newPoint;
+  public void purge() {
+    // stow hood
+    // reverse gate
+    // reverse shooter wheel
+    shooterHood.stowHood();
+    shooterPIDRight.setReference(-MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterGate.set(-MoPrefs.getShooterGateSetpoint());
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+
   }
 }
