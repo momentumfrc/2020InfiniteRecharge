@@ -35,6 +35,7 @@ public class IntakeSubsystem extends SubsystemBase {
     if (isLowered) {
       newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(), -MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
+      lastPower = newPower;
     } else
       intakeSP.stopMotor();
   }
@@ -44,6 +45,7 @@ public class IntakeSubsystem extends SubsystemBase {
     if (isLowered) {
       newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
+      lastPower = newPower;
     } else
       intakeSP.stopMotor();
   }
@@ -56,14 +58,14 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void raiseIntake() {
-    intakePistonL.set(deploy);
-    intakePistonR.set(deploy);
+    intakePistonL.set(stow);
+    intakePistonR.set(stow);
     isLowered = false;
   }
 
   public void lowerIntake() {
-    intakePistonL.set(stow);
-    intakePistonR.set(stow);
+    intakePistonL.set(deploy);
+    intakePistonR.set(deploy);
     isLowered = true;
   }
 
