@@ -15,6 +15,7 @@ public class MoPrefs {
   static final double SHOOTER_GATE_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_IDLE = 0.2;
+  static final double STORAGE_SPEED = 0.5;
 
   private static boolean safePrefs = false;
 
@@ -74,5 +75,9 @@ public class MoPrefs {
 
   public static double getIntakeRollerAccRamp() {
     return getDouble("INTAKE_ROLLER_ACC_RAMP", INTAKE_ROLLER_ACC_RAMP);
+  }
+  
+  public static double getStorageSpeed() {
+   return getDouble("STORAGE_SPEED", STORAGE_SPEED); 
   }
 }
