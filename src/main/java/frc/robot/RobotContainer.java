@@ -56,7 +56,6 @@ public class RobotContainer {
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
-  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
   private final JoystickButton storageStart = new JoystickButton(f310, 10); // Pick a button and update number
@@ -79,6 +78,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Set default commands as needed
+    intakeSubsystem.setDefaultCommand(new InstantCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
   }
 
@@ -90,9 +90,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Intake
-    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
-        .whenReleased(new InstantCommand(intakeSubsystem::stopIntake, intakeSubsystem));
-    intakeRollerFwdRevToggle.whenPressed(new InstantCommand(intakeSubsystem::reverseIntake, intakeSubsystem));
+    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem));
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     // Storage

@@ -32,16 +32,18 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
   }
 
+  public void idle() {
+    if (isLowered)
+      intakeSP.set(-MoPrefs.getIntakeRollerSetpoint());
+    else
+      intakeSP.stopMotor();
+  }
+
   public void runIntake() {
-    runIntake = true;
-  }
-
-  public void stopIntake() {
-    runIntake = false;
-  }
-
-  public void reverseIntake() {
-    reverseIntake = !reverseIntake;
+    if (isLowered)
+      intakeSP.set(MoPrefs.getIntakeRollerSetpoint());
+    else
+      intakeSP.stopMotor();
   }
 
   public void toggleIntakeDeploy() {
@@ -66,11 +68,5 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    rollerSetpoint = 0;
-    if (runIntake)
-      rollerSetpoint = MoPrefs.getIntakeRollerSetpoint();
-    if (reverseIntake)
-      rollerSetpoint *= -1;
-    intakeSP.set(rollerSetpoint);
   }
 }
