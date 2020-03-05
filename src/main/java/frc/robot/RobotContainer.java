@@ -19,8 +19,9 @@ import frc.robot.subsystems.DriveConditioner;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
+import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.StorageSubsystem;
+import frc.robot.utils.JoystickAnalogButton;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
@@ -39,10 +40,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private final StorageSubsystem storageSubsystem = new StorageSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
+
   private final DriveConditioner driveConditioner = new DriveConditioner();
 
   private XboxController xbox = new XboxController(0);
@@ -52,22 +54,21 @@ public class RobotContainer {
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
-  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
+  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 3/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
-  private final JoystickButton storageStart = new JoystickButton(f310, 10); // Pick a button and update number
-  private final JoystickButton storageStop = new JoystickButton(f310, 10); // Pick a button and update number
-  private final JoystickButton storageReverse = new JoystickButton(f310, 10); // Pick a button and update number
+  private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
+  private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickButton climberStow = new JoystickButton(f310, 10); // Pick a button and update number
-  private final JoystickButton climberClimb = new JoystickButton(f310, 10); // Pick a button and update number
+  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 3); // Right trigger
+  private final JoystickButton purge = new JoystickButton(xbox, 5); // Left bumper
 
-  private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
-  private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
+  private final JoystickButton spdLimitInc = new JoystickButton(xbox, 4); // Y
+  private final JoystickButton spdLimitDec = new JoystickButton(xbox, 1); // A
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -80,6 +81,7 @@ public class RobotContainer {
 
     // Set default commands as needed
     climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
+    shooterSubsystem.setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem));
   }
 
   /**
@@ -89,24 +91,16 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Intake
     intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
         .whenReleased(new InstantCommand(intakeSubsystem::stopIntake, intakeSubsystem));
     intakeRollerFwdRevToggle.whenPressed(new InstantCommand(intakeSubsystem::reverseIntake, intakeSubsystem));
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
-    // Storage
-    storageStart.whenPressed(new InstantCommand(storageSubsystem::run, storageSubsystem));
-    storageStop.whenPressed(new InstantCommand(storageSubsystem::stop, storageSubsystem));
-    storageReverse.whenPressed(new InstantCommand(storageSubsystem::reverse, storageSubsystem));
-
-    // Shooter
-
-    // Control Panel
-
-    // Climber
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+
+    shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem));
+    purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem));
 
     // Drive
     spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
@@ -123,7 +117,7 @@ public class RobotContainer {
     return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
   }
 
-  public Command getDriveCommand() {
+  public Command getTeleopCommand() {
     return driveCommand;
   }
 }
