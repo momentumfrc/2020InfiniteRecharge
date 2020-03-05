@@ -54,12 +54,11 @@ public class RobotContainer {
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
-  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 3/* X */);
-  private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
+  private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2); // B
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
@@ -80,6 +79,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Set default commands as needed
+    intakeSubsystem.setDefaultCommand(new InstantCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
     shooterSubsystem.setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem));
   }
@@ -91,9 +91,8 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
-        .whenReleased(new InstantCommand(intakeSubsystem::stopIntake, intakeSubsystem));
-    intakeRollerFwdRevToggle.whenPressed(new InstantCommand(intakeSubsystem::reverseIntake, intakeSubsystem));
+    // Intake
+    intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem));
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));

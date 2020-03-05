@@ -22,9 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
       Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
 
   public boolean isLowered = false;
-  private boolean runIntake = false;
-  private boolean reverseIntake = false;
-  private double rollerSetpoint;
+  private double lastPower;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
@@ -32,16 +30,22 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
   }
 
+  public void idle() {
+    double newPower;
+    if (isLowered) {
+      newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(), -MoPrefs.getIntakeRollerSetpoint());
+      intakeSP.set(newPower);
+    } else
+      intakeSP.stopMotor();
+  }
+
   public void runIntake() {
-    runIntake = true;
-  }
-
-  public void stopIntake() {
-    runIntake = false;
-  }
-
-  public void reverseIntake() {
-    reverseIntake = !reverseIntake;
+    double newPower;
+    if (isLowered) {
+      newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
+      intakeSP.set(newPower);
+    } else
+      intakeSP.stopMotor();
   }
 
   public void toggleIntakeDeploy() {
@@ -66,11 +70,5 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    rollerSetpoint = 0;
-    if (runIntake)
-      rollerSetpoint = MoPrefs.getIntakeRollerSetpoint();
-    if (reverseIntake)
-      rollerSetpoint *= -1;
-    intakeSP.set(rollerSetpoint);
   }
 }
