@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -19,8 +18,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-
-  private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -74,11 +71,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    // schedule the autonomous command
+    if (m_robotContainer.getAutonomousCommand() != null) {
+      m_robotContainer.getAutonomousCommand().schedule();
     }
   }
 
@@ -95,10 +91,10 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (m_robotContainer.getAutonomousCommand() != null) {
+      m_robotContainer.getAutonomousCommand().cancel();
     }
-    m_robotContainer.getTeleopCommand().schedule();
+    m_robotContainer.getTeleopCommand().schedule(false);
   }
 
   /**
