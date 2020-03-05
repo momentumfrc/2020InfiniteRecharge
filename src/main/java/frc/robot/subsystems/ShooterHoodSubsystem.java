@@ -57,6 +57,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
     hoodNEO.setIdleMode(IdleMode.kBrake);
+    // The Hood needs to run in the negative direction *towards* the limit switch
+    // If it runs the wrong way, flip this invert setting.
+    hoodNEO.setInverted(false);
 
     reliableZero = false;
     stopHood();

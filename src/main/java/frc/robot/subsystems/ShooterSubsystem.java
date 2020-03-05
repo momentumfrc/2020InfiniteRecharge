@@ -97,6 +97,12 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMAXRight.setIdleMode(IdleMode.kCoast);
     shooterMAXLeft.setSmartCurrentLimit(currentLimit);
     shooterMAXRight.setSmartCurrentLimit(currentLimit);
+
+    // The shooter should idle and run in the positive direction for normal
+    // operation.
+    // Flip this invert setting if it runs backwards.
+    shooterMAXRight.setInverted(false);
+
     // Sets the left shooter motor to follow the right motor, and be inverted.
     shooterMAXLeft.follow(shooterMAXRight, true);
   }
