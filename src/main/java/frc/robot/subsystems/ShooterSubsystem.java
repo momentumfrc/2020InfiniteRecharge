@@ -117,7 +117,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot() {
     // extend hood
     // fast shooter wheel
-    // run gate
+    // run gate if both of "" are good
 
     if (runShooter)
       shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
