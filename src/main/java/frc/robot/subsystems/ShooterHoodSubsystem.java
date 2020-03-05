@@ -83,6 +83,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
+  public boolean getFullyDeployed() {
+    boolean isFullyDeployed = false;
+    if (hoodEncoder.getPosition() >= MoPrefs.getShooterHoodFullyDeployedPos())
+      isFullyDeployed = true;
+    return isFullyDeployed;
+  }
+
   @Override
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
@@ -95,7 +102,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
     if (deploy && reliableZero)
       hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
-    
+
     hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
   }
 

@@ -48,21 +48,7 @@ public interface DriveController {
    * 
    * @return whether the robot should shoot power cells at the lower port.
    */
-  public boolean getShootPowerCellsLow();
-
-  /**
-   * Gets whether the robot should shoot power cells at the outer port.
-   * 
-   * @return whether the robot should shoot power cells at the outer port.
-   */
-  public boolean getShootPowerCellsOuter();
-
-  /**
-   * Gets whether the robot should shoot power cells at the inner port.
-   * 
-   * @return whether the robot should shoot power cells at the inner port.
-   */
-  public boolean getShootPowerCellsInner();
+  public double getShootPowerCells();
 
   /**
    * Gets whether the robot should attempt the Rotation Control objective.
