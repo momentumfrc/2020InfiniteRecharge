@@ -35,10 +35,6 @@ public class ShooterSubsystem extends SubsystemBase {
   private final CANPIDController shooterPIDLeft = new CANPIDController(shooterMAXLeft);
   private final CANPIDController shooterPIDRight = new CANPIDController(shooterMAXRight);
   /**
-   * The target velocity of the NEO Brushless Motor.
-   */
-  private double shooterSetpoint = 1.0;
-  /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
    * by this value.
@@ -75,11 +71,6 @@ public class ShooterSubsystem extends SubsystemBase {
    * amps.
    */
   private final int currentLimit = 40;
-
-  private double runGate;
-  private boolean runShooter;
-
-  private double gateSetpoint;
 
   private ShooterHoodSubsystem shooterHood;
 
@@ -118,47 +109,34 @@ public class ShooterSubsystem extends SubsystemBase {
     // extend hood
     // fast shooter wheel
     // run gate if both of "" are good
-
-    if (runShooter)
-      shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
+    shooterHood.deployHood();
+    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
+    if (shooterHood.getFullyDeployed()
+        && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
+      shooterGate.set(MoPrefs.getShooterGateSetpoint());
+    }
   }
 
   public void idle() {
     // stow hood
     // stop gate
     // slow shooter wheel
+    shooterHood.stowHood();
+    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterGate.stopMotor();
   }
 
   public void purge() {
     // stow hood
     // reverse gate
     // reverse shooter wheel
-    runGate = -1;
-  }
-
-  public void stopAll() {
-    runGate = 0;
-    shooterMAXRight.set(0);
-    runShooter = false;
-  }
-
-  /**
-   * Stops the shooter motor. Note: the NEO is set to Coast. Intended to be called
-   * when a button is released.
-   */
-  public void stopShooter() {
-    shooterMAXLeft.stopMotor();
-    shooterMAXRight.stopMotor();
+    shooterHood.stowHood();
+    shooterPIDRight.setReference(-MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterGate.set(-MoPrefs.getShooterGateSetpoint());
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    gateSetpoint = 0;
-    if (runGate)
-      gateSetpoint = MoPrefs.getShooterGateSetpoint();
-    if (reverseGate)
-      gateSetpoint *= -1;
-    shooterGate.set(gateSetpoint);
+
   }
 }

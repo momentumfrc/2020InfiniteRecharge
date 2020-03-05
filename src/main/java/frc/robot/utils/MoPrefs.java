@@ -8,6 +8,7 @@ public class MoPrefs {
   static final double SHOOTER_HOOD_SETPOINT = 15;
   static final double SHOOTER_GATE_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
+  static final double SHOOTER_FLYWHEEL_IDLE = 0.2;
   static final double SHOOTER_HOOD_FULLY_DEPLOYED_POS = 13;
 
   private static boolean safePrefs = false;
@@ -60,5 +61,9 @@ public class MoPrefs {
 
   public static double getShooterHoodFullyDeployedPos() {
     return getDouble("SHOOTER_HOOD_FULLY_DEPLOYED_POS", SHOOTER_HOOD_FULLY_DEPLOYED_POS);
+  }
+
+  public static double getShooterFlywheelIdle() {
+    return getDouble("SHOOTER_FLYWHEEL_IDLE", SHOOTER_FLYWHEEL_IDLE);
   }
 }

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
-import frc.robot.commands.ShooterStartCmd;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveConditioner;
@@ -41,12 +40,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
 
-  private final ShooterStartCmd shooterStartCmd = new ShooterStartCmd(shooterSubsystem);
   private final DriveConditioner driveConditioner = new DriveConditioner();
 
   private XboxController xbox = new XboxController(0);
@@ -67,6 +65,7 @@ public class RobotContainer {
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
   private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 6); // Right trigger
+  private final JoystickButton purge = new JoystickButton(xbox, 13); // Left bumper
 
   private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
   private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
@@ -101,6 +100,7 @@ public class RobotContainer {
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
 
     shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem));
+    purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem));
 
     // Drive
     spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
