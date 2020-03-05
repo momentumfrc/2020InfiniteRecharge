@@ -31,7 +31,7 @@ public class DriveConditioner {
   }
 
   public void decSpeedLimit() {
-    spd_limit_index = Math.max(--spd_limit_index, 0);
+    spd_limit_index = Math.max(spd_limit_index - 1, 0);
     spd_limit = spd_limits[spd_limit_index];
   }
 

@@ -153,9 +153,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
-   * Averages the speed of both drive sides to get mean forward velocity
+   * Stops both motors.
    */
-
   public void stop() {
     leftFront.stopMotor();
     rightFront.stopMotor();
