@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
-import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.ShooterStartCmd;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
+import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
@@ -41,6 +41,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
 
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(driveSubsystem);
   private final ShooterStartCmd shooterStartCmd = new ShooterStartCmd(shooterSubsystem);
@@ -89,7 +90,9 @@ public class RobotContainer {
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
 
-    shooterShoot.whenPressed(shooterStartCmd);
+    shooterShoot.whenPressed(new InstantCommand(shooterHoodSubsystem::deployHood))
+        .whenPressed(shooterSubsystem::runGate).whenReleased(new InstantCommand(shooterSubsystem::stopGate))
+        .whenReleased(new InstantCommand(shooterHoodSubsystem::stowHood));
   }
 
   /**
@@ -100,5 +103,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
+  }
+
+  public Command getTeleopCommand() {
+    return new ParallelCommandGroup(shooterStartCmd);
   }
 }

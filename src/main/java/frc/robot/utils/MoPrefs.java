@@ -54,6 +54,6 @@ public class MoPrefs {
   }
 
   public static double getShooterFlywheelSetpoint() {
-    return getDuoble("SHOOTER_FLYWHEEL_SETPOINT", SHOOTER_FLYWHEEL_SETPOINT);
+    return getDouble("SHOOTER_FLYWHEEL_SETPOINT", SHOOTER_FLYWHEEL_SETPOINT);
   }
 }

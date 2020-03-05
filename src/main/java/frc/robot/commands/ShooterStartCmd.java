@@ -1,9 +1,9 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShooterStartCmd extends CommandBase {
+public class ShooterStartCmd extends InstantCommand {
   private final ShooterSubsystem m_subsystem;
 
   public ShooterStartCmd(ShooterSubsystem subsystem) {
@@ -17,7 +17,6 @@ public class ShooterStartCmd extends CommandBase {
   public void initialize() {
     m_subsystem.runShooter();
     m_subsystem.shoot();
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -28,16 +27,5 @@ public class ShooterStartCmd extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    stop();
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
-
-  private void stop() {
-    m_subsystem.stopAll();
   }
 }
