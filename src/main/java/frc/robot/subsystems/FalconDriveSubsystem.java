@@ -57,20 +57,20 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * @param kP The Proportional Gain, used in PID to produce a linear curve.
    */
-  private final double kP = 1;
+  private final double kP = 0;
   /**
    * @param kI The Integral Gain, used in PID to produce a sinoid curve.
    */
-  private final double kI = 1;
+  private final double kI = 0;
   /**
    * @param kD The Differential Gain, used in PID to produce a parabolic curve.
    */
-  private final double kD = 1;
+  private final double kD = 0;
   /**
    * @param kIz The Integral Zone, used in PID to control the maximum value of the
    *            integral accumulator.
    */
-  private final int kIz = 1;
+  private final int kIz = 0;
   /**
    * @param kF The Feed-Forward Gain, used in PID to anticipate future changes in
    *           error and stabilize a PID curve.
