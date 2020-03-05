@@ -67,8 +67,8 @@ public class RobotContainer {
   private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 3); // Right trigger
   private final JoystickButton purge = new JoystickButton(xbox, 5); // Left bumper
 
-  private final JoystickButton spdLimitInc = new JoystickButton(f310, 4); // Y
-  private final JoystickButton spdLimitDec = new JoystickButton(f310, 1); // A
+  private final JoystickButton spdLimitInc = new JoystickButton(xbox, 4); // Y
+  private final JoystickButton spdLimitDec = new JoystickButton(xbox, 1); // A
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
