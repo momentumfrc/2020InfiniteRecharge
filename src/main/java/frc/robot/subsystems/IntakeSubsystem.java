@@ -22,9 +22,6 @@ public class IntakeSubsystem extends SubsystemBase {
       Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
 
   public boolean isLowered = false;
-  private boolean runIntake = false;
-  private boolean reverseIntake = false;
-  private double rollerSetpoint;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
