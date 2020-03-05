@@ -6,8 +6,8 @@ public class MoPrefs {
   static final double INTAKE_ROLLER_SETPOINT = 0.3;
   static final int CLIMBER_ENCODER_LIMIT = 10000;
   static final double SHOOTER_HOOD_SETPOINT = 15;
-  static final double SHOOTER_GATE_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
+  static final double SHOOTER_GATE_SETPOINT = 1;
 
   private static boolean safePrefs = false;
 
@@ -47,13 +47,5 @@ public class MoPrefs {
 
   public static double getShooterHoodSetpoint() {
     return getDouble("SHOOTER_HOOD_SETPOINT", SHOOTER_HOOD_SETPOINT);
-  }
-
-  public static double getShooterGateSetpoint() {
-    return getDouble("SHOOTER_GATE_SETPOINT", SHOOTER_GATE_SETPOINT);
-  }
-
-  public static double getShooterFlywheelSetpoint() {
-    return getDuoble("SHOOTER_FLYWHEEL_SETPOINT", SHOOTER_FLYWHEEL_SETPOINT);
   }
 }
