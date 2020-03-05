@@ -30,7 +30,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double kMinOutput = -0.3;
   private final double allowedErr = 0;
 
-  private final double SAFE_STOW_SPEED = 0.1;
+  private final double SAFE_STOW_SPEED = -0.1;
 
   private double hoodPos;
   private boolean reliableZero;
