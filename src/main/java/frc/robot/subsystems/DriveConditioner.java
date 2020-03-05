@@ -2,23 +2,25 @@ package frc.robot.subsystems;
 
 import org.usfirst.frc.team4999.utils.Utils;
 
-public class ConditionedDriveSubsystem extends DriveSubsystem {
+public class DriveConditioner {
   private double spd_limit;
   private final double[] spd_limits = { 0.25, 0.33333, 0.5, 0.66666, 0.75, 1 };
   private int spd_limit_index;
-  private FalconDriveSubsystem m_subsystem;
 
-  public ConditionedDriveSubsystem(FalconDriveSubsystem subsystem) {
+  public DriveConditioner() {
     spd_limit_index = spd_limits.length - 1;
-    m_subsystem = subsystem;
   }
 
   public void setSpeedLimit(double limit) {
     spd_limit = limit;
   }
 
-  public void drive(double moveRequest, double turnRequest) {
-    m_subsystem.drive(Utils.map(moveRequest, -1, 1, -spd_limit, spd_limit), turnRequest);
+  public double conditionMove(double moveRequest) {
+    return Utils.map(moveRequest, -1, 1, -spd_limit, spd_limit);
+  }
+
+  public double conditionTurn(double turnRequest) {
+    return turnRequest;
   }
 
   public void incSpeedLimit() {

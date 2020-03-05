@@ -15,7 +15,7 @@ import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.ConditionedDriveSubsystem;
+import frc.robot.subsystems.DriveConditioner;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -41,7 +41,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final ConditionedDriveSubsystem driveSubsystem = new ConditionedDriveSubsystem(falconDriveSubsystem);
+  private final DriveConditioner driveConditioner = new DriveConditioner();
 
   private XboxController xbox = new XboxController(0);
   private LogitechF310 f310 = new LogitechF310(2);
@@ -50,7 +50,7 @@ public class RobotContainer {
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem, mainController);
+  public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
