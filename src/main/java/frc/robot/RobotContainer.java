@@ -66,6 +66,9 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 10); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 10); // Pick a button and update number
 
+  private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
+  private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -104,6 +107,10 @@ public class RobotContainer {
     // Climber
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+
+    // Drive
+    spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
+    spdLimitDec.whenPressed(new InstantCommand(driveConditioner::decSpeedLimit));
   }
 
   /**
