@@ -58,8 +58,6 @@ public class RobotContainer {
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
-
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
