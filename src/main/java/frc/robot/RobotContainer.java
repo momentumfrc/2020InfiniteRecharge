@@ -22,6 +22,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.utils.JoystickAnalogButton;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
@@ -45,7 +46,6 @@ public class RobotContainer {
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
 
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(driveSubsystem);
   private final ShooterStartCmd shooterStartCmd = new ShooterStartCmd(shooterSubsystem);
   private final DriveConditioner driveConditioner = new DriveConditioner();
 
@@ -60,14 +60,13 @@ public class RobotContainer {
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
   private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickButton shooterShoot = new JoystickButton(f310, 5); // Right bumper
+  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 6); // Right trigger
 
   private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
   private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
@@ -83,6 +82,7 @@ public class RobotContainer {
 
     // Set default commands as needed
     climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
+    shooterSubsystem.setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem));
   }
 
   /**
@@ -100,9 +100,7 @@ public class RobotContainer {
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
 
-    shooterShoot.whenPressed(new InstantCommand(shooterHoodSubsystem::deployHood))
-        .whenPressed(shooterSubsystem::runGate).whenReleased(new InstantCommand(shooterSubsystem::stopGate))
-        .whenReleased(new InstantCommand(shooterHoodSubsystem::stowHood));
+    shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem));
 
     // Drive
     spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));

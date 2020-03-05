@@ -52,8 +52,8 @@ public class ControllerBase implements DriveController {
     return f310.getBumperPressed(Hand.kLeft);
   }
 
-  public double getShootPowerCells() {
-    return xbox.getTriggerAxis(Hand.kRight);
+  public boolean getShootPowerCells() {
+    return Utils.deadzone(xbox.getTriggerAxis(Hand.kRight), DEADZONE) > 0;
   }
 
   public boolean getPurgePowerCells() {

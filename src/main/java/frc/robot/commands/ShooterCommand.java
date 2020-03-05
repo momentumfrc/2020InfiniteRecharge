@@ -14,6 +14,8 @@ public class ShooterCommand extends CommandBase {
     m_subsystem = subsystem;
     m_controller = controller;
     m_hood_subsystem = hoodSubsystem;
+
+    addRequirements(subsystem, hoodSubsystem);
   }
 
   @Override
@@ -26,18 +28,18 @@ public class ShooterCommand extends CommandBase {
 
   @Override
   public void execute() {
-    if (m_controller.getShootPowerCells() > 0) {
+    if (m_controller.getPurgePowerCells()) {
+      m_hood_subsystem.stowHood();
+      m_subsystem.reverseGate();
+      m_subsystem.runGate();
+    } else if (m_controller.getShootPowerCells()) {
       m_hood_subsystem.deployHood();
       while (!m_hood_subsystem.getFullyDeployed()) {
       }
       m_subsystem.runGate();
-    } else if (m_controller.getShootPowerCells() == 0) {
+    } else if (!m_controller.getShootPowerCells()) {
       m_hood_subsystem.stowHood();
       m_subsystem.stopGate();
-    } else if (m_controller.getPurgePowerCells()) {
-      m_hood_subsystem.stowHood();
-      m_subsystem.reverseGate();
-      m_subsystem.runGate();
     }
   }
 

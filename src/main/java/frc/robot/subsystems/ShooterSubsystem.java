@@ -76,13 +76,17 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
-  private boolean runGate;
-  private boolean reverseGate;
+  private double runGate;
   private boolean runShooter;
 
   private double gateSetpoint;
 
-  public ShooterSubsystem() {
+  private ShooterHoodSubsystem shooterHood;
+
+  public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
+
+    this.shooterHood = shooterHood;
+
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
     shooterPIDRight.setP(kP, 0);
@@ -111,29 +115,29 @@ public class ShooterSubsystem extends SubsystemBase {
    * the NEO's velocity. Intended to be called when a button is pressed.
    */
   public void shoot() {
+    // extend hood
+    // fast shooter wheel
+    // run gate
+
     if (runShooter)
       shooterPIDRight.setReference(shooterSetpoint, ControlType.kVelocity);
   }
 
-  public void runGate() {
-    runGate = true;
+  public void idle() {
+    // stow hood
+    // stop gate
+    // slow shooter wheel
   }
 
-  public void stopGate() {
-    runGate = false;
-  }
-
-  public void reverseGate() {
-    reverseGate = !reverseGate;
-  }
-
-  public void runShooter() {
-    runShooter = true;
+  public void purge() {
+    // stow hood
+    // reverse gate
+    // reverse shooter wheel
+    runGate = -1;
   }
 
   public void stopAll() {
-    runGate = false;
-    shooterMAXLeft.set(0);
+    runGate = 0;
     shooterMAXRight.set(0);
     runShooter = false;
   }

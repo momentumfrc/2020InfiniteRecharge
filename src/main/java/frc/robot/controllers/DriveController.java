@@ -16,39 +16,11 @@ public interface DriveController {
   public double getTurnRequest();
 
   /**
-   * Gets the maximum speed the robot should drive at.
-   * 
-   * @return the speed limit.
-   */
-  public double getSpeedLimiter();
-
-  /**
-   * Gets whether the robot should invert drive directions.
-   * 
-   * @return drive inversion boolean.
-   */
-  public boolean getReverseDirection();
-
-  /**
-   * Gets whether the robot should intake power cells.
-   * 
-   * @return whether the robot should intake power cells.
-   */
-  public boolean getIntakePowerCells();
-
-  /**
-   * 
-   * @return Whether the pistons should fire that raise the intake back to its
-   *         starting position.
-   */
-  public boolean getToggleIntake();
-
-  /**
    * Gets whether the robot should shoot power cells at the lower port.
    * 
    * @return whether the robot should shoot power cells at the lower port.
    */
-  public double getShootPowerCells();
+  public boolean getShootPowerCells();
 
   /**
    * Gets whether the robot should attempt the Rotation Control objective.
