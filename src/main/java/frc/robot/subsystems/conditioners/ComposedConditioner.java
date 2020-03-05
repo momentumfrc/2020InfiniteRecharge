@@ -11,8 +11,8 @@ public class ComposedConditioner implements DriveConditioner {
   @Override
   public double conditionMove(double moveRequest) {
     double value = moveRequest;
-    for (int i = 0; i < conditioners.length; i++) {
-      value = conditioners[i].conditionMove(value);
+    for (DriveConditioner cond : conditioners) {
+      value = cond.conditionMove(value);
     }
     return value;
   }
@@ -20,8 +20,8 @@ public class ComposedConditioner implements DriveConditioner {
   @Override
   public double conditionTurn(double turnRequest) {
     double value = turnRequest;
-    for (int i = 0; i < conditioners.length; i++) {
-      value = conditioners[i].conditionTurn(value);
+    for (DriveConditioner cond : conditioners) {
+      value = cond.conditionTurn(value);
     }
     return value;
   }
