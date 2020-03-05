@@ -28,6 +28,7 @@ import frc.robot.controllers.ControllerBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -63,11 +64,12 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 3); // Right trigger
-  private final JoystickButton purge = new JoystickButton(xbox, 5); // Left bumper
+  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox,
+      XboxController.Axis.kRightTrigger.value); // Right trigger
+  private final JoystickButton purge = new JoystickButton(xbox, XboxController.Button.kBumperLeft.value); // Left bumper
 
-  private final JoystickButton spdLimitInc = new JoystickButton(xbox, 4); // Y
-  private final JoystickButton spdLimitDec = new JoystickButton(xbox, 1); // A
+  private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value); // Y
+  private final JoystickButton spdLimitDec = new JoystickButton(xbox, XboxController.Button.kA.value); // A
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -79,10 +81,9 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Set default commands as needed
-    intakeSubsystem.setDefaultCommand(new InstantCommand(intakeSubsystem::idle, intakeSubsystem));
-    climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
-    shooterSubsystem
-        .setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem, shooterHoodSubsystem));
+    intakeSubsystem.setDefaultCommand(new RunCommand(intakeSubsystem::idle, intakeSubsystem));
+    climberSubsystem.setDefaultCommand(new RunCommand(climberSubsystem::stop, climberSubsystem));
+    shooterSubsystem.setDefaultCommand(new RunCommand(shooterSubsystem::idle, shooterSubsystem, shooterHoodSubsystem));
   }
 
   /**

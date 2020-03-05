@@ -14,12 +14,12 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
-  private CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
+  private final CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
       CANSparkMaxLowLevel.MotorType.kBrushless);
-  private CANDigitalInput hoodLimitSwitch = hoodNEO
+  private final CANDigitalInput hoodLimitSwitch = hoodNEO
       .getReverseLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen);
-  private CANEncoder hoodEncoder = hoodNEO.getEncoder();
-  private CANPIDController hoodPID;
+  private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
+  private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
   private final double kP = 5e-5;
   private final double kI = 1e-6;
