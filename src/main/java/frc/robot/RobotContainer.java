@@ -47,14 +47,14 @@ public class RobotContainer {
 
   private final DriveConditioner driveConditioner = new DriveConditioner();
 
-  private XboxController xbox = new XboxController(0);
-  private LogitechF310 f310 = new LogitechF310(2);
+  private final XboxController xbox = new XboxController(0);
+  private final LogitechF310 f310 = new LogitechF310(2);
 
-  public final LEDSubsystem ledSubsystem = new LEDSubsystem();
+  private final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
+  private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
@@ -81,7 +81,8 @@ public class RobotContainer {
     // Set default commands as needed
     intakeSubsystem.setDefaultCommand(new InstantCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
-    shooterSubsystem.setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem));
+    shooterSubsystem
+        .setDefaultCommand(new InstantCommand(shooterSubsystem::idle, shooterSubsystem, shooterHoodSubsystem));
   }
 
   /**
@@ -98,8 +99,10 @@ public class RobotContainer {
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
 
-    shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem));
-    purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem));
+    shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem, shooterHoodSubsystem));
+    // Purge should also reverse storage and intake. Need to work out best way to do
+    // that.
+    purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem));
 
     // Drive
     spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
