@@ -63,11 +63,12 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 3); // Right trigger
-  private final JoystickButton purge = new JoystickButton(xbox, 5); // Left bumper
+  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox,
+      XboxController.Axis.kRightTrigger.value); // Right trigger
+  private final JoystickButton purge = new JoystickButton(xbox, XboxController.Button.kBumperLeft.value); // Left bumper
 
-  private final JoystickButton spdLimitInc = new JoystickButton(xbox, 4); // Y
-  private final JoystickButton spdLimitDec = new JoystickButton(xbox, 1); // A
+  private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value); // Y
+  private final JoystickButton spdLimitDec = new JoystickButton(xbox, XboxController.Button.kA.value); // A
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
