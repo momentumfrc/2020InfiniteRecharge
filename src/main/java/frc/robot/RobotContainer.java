@@ -57,6 +57,8 @@ public class RobotContainer {
 
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
+  private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
+      new AutoStowClimberCommand(climberSubsystem));
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2); // B
@@ -114,7 +116,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
+    return autonomousCommand;
   }
 
   public Command getTeleopCommand() {
