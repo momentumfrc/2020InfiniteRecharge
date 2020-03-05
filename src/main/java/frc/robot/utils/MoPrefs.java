@@ -3,7 +3,12 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.Preferences;
 
 public class MoPrefs {
-  static final double INTAKE_ROLLER_SETPOINT = 0.3;
+  static final double INTAKE_ROLLER_SETPOINT = 1.0;
+  /**
+   * The maximum accleration of the intake roller, in motor setpoint per scheduler
+   * cycle.
+   */
+  static final double INTAKE_ROLLER_ACC_RAMP = 0.1;
   static final int CLIMBER_ENCODER_LIMIT = 10000;
   static final double SHOOTER_HOOD_SETPOINT = 15;
   static final double STORAGE_SETPOINT = 1.0;
@@ -50,5 +55,9 @@ public class MoPrefs {
 
   public static double getStorageSpeed() {
     return getDouble("STORAGE_SPEED_SETPOINT", STORAGE_SETPOINT);
+  }
+
+  public static double getIntakeRollerAccRamp() {
+    return getDouble("INTAKE_ROLLER_ACC_RAMP", INTAKE_ROLLER_ACC_RAMP);
   }
 }

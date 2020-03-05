@@ -22,8 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
       Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
 
   public boolean isLowered = false;
-  private double newPower;
-  private double oldPower;
+  private double lastPower;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
@@ -32,16 +31,18 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void idle() {
+    double newPower;
     if (isLowered) {
-      newPower = Math.max(oldPower - 0.1, -MoPrefs.getIntakeRollerSetpoint());
+      newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(), -MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
     } else
       intakeSP.stopMotor();
   }
 
   public void runIntake() {
+    double newPower;
     if (isLowered) {
-      newPower = Math.min(oldPower + 0.1, MoPrefs.getIntakeRollerSetpoint());
+      newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
     } else
       intakeSP.stopMotor();
