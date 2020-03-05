@@ -7,8 +7,8 @@ import org.usfirst.frc.team4999.controllers.LogitechF310;
 import org.usfirst.frc.team4999.utils.Utils;
 
 public class ControllerBase implements DriveController {
-  protected XboxController xbox = new XboxController(0);
-  protected LogitechF310 f310 = new LogitechF310(2);
+  protected final XboxController xbox;
+  protected final LogitechF310 f310;
 
   static final double DEADZONE = 0.1;
   static final double MOVE_CURVE = 2;
@@ -16,6 +16,11 @@ public class ControllerBase implements DriveController {
 
   static final double[] SPEEDS = { .125, .25, .375, .5, .625, .875, 1 };
   int currentSpeed = SPEEDS.length - 1;
+
+  public ControllerBase(XboxController xbox, LogitechF310 f310) {
+    this.xbox = xbox;
+    this.f310 = f310;
+  }
 
   public double getMoveRequest() {
     double moveRequest = -xbox.getY(XboxController.Hand.kLeft);
@@ -37,6 +42,10 @@ public class ControllerBase implements DriveController {
 
   public boolean getReverseDirection() {
     return xbox.getBButtonPressed();
+  }
+
+  public boolean getToggleIntake() {
+    return false;
   }
 
   public boolean getIntakePowerCells() {

@@ -7,14 +7,27 @@
 
 package frc.robot;
 
+import org.usfirst.frc.team4999.controllers.LogitechF310;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoStowClimberCommand;
+import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.DriveConditioner;
+import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
+import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
+
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -25,20 +38,48 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  public final IntakeSubsystem IntakeSubsystem = new IntakeSubsystem();
+  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final StorageSubsystem storageSubsystem = new StorageSubsystem();
+  private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+  private final DriveConditioner driveConditioner = new DriveConditioner();
 
-  public final DriveCommand driveCommand = new DriveCommand(driveSubsystem);
+  private XboxController xbox = new XboxController(0);
+  private LogitechF310 f310 = new LogitechF310(2);
 
-  public final ControllerBase mainController = new ControllerBase();
+  public final LEDSubsystem ledSubsystem = new LEDSubsystem();
+
+  private final ControllerBase mainController = new ControllerBase(xbox, f310);
+
+  public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
+  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
+
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4/* LeftBumper */);
+  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
+  private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
+
+  private final JoystickButton storageStart = new JoystickButton(f310, 10); // Pick a button and update number
+  private final JoystickButton storageStop = new JoystickButton(f310, 10); // Pick a button and update number
+  private final JoystickButton storageReverse = new JoystickButton(f310, 10); // Pick a button and update number
+
+  private final JoystickButton climberStow = new JoystickButton(f310, 10); // Pick a button and update number
+  private final JoystickButton climberClimb = new JoystickButton(f310, 10); // Pick a button and update number
+
+  private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
+  private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    MoPrefs.safeForPrefs();
+
     // Configure the button bindings
     configureButtonBindings();
+
+    // Set default commands as needed
+    climberSubsystem.setDefaultCommand(new InstantCommand(climberSubsystem::stop, climberSubsystem));
   }
 
   /**
@@ -48,6 +89,28 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // Intake
+    intakeRollerFwdButton.whenPressed(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
+        .whenReleased(new InstantCommand(intakeSubsystem::stopIntake, intakeSubsystem));
+    intakeRollerFwdRevToggle.whenPressed(new InstantCommand(intakeSubsystem::reverseIntake, intakeSubsystem));
+    intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
+
+    // Storage
+    storageStart.whenPressed(new InstantCommand(storageSubsystem::run, storageSubsystem));
+    storageStop.whenPressed(new InstantCommand(storageSubsystem::stop, storageSubsystem));
+    storageReverse.whenPressed(new InstantCommand(storageSubsystem::reverse, storageSubsystem));
+
+    // Shooter
+
+    // Control Panel
+
+    // Climber
+    climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
+    climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+
+    // Drive
+    spdLimitInc.whenPressed(new InstantCommand(driveConditioner::incSpeedLimit));
+    spdLimitDec.whenPressed(new InstantCommand(driveConditioner::decSpeedLimit));
   }
 
   /**
@@ -57,6 +120,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+    return new ParallelCommandGroup(autonDriveCommand, new AutoStowClimberCommand(climberSubsystem));
+  }
+
+  public Command getDriveCommand() {
     return driveCommand;
   }
 }

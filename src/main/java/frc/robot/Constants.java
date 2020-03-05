@@ -26,12 +26,29 @@ public final class Constants {
   public static final int FALCON_DRIVE_RIGHT_REAR_CAN_ADDR = 4;
 
   // SparkMAX CAN addresses
-  public static final int SPARKMAX_SHOOTER_CAN_ADDR = 5;
-  public static final int SPARKMAX_LOADER_CAN_ADDR = 6;
-  // SparkMAX Encoder Channels
-  public static final int SHOOTER_ENCODER_CHAN_A = 1;
-  public static final int SHOOTER_ENCODER_CHAN_B = 2;
+  public static final int SPARKMAX_SHOOTER_CAN_ADDR_RIGHT = 5;
+  public static final int SPARKMAX_SHOOTER_CAN_ADDR_LEFT = 6;
+  public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 3;
+
   // Pneumatic solenoid addresses
+  public static final int INTAKE_PISTON_PCM_CHAN_LF_DEPLOY = 0;
+  public static final int INTAKE_PISTON_PCM_CHAN_LF_STOW = 1;
+  public static final int INTAKE_PISTON_PCM_CHAN_RT_DEPLOY = 2;
+  public static final int INTAKE_PISTON_PCM_CHAN_RT_STOW = 3;
 
   // Brushed PWM addresses
+  public static final int INTAKE_VICTORSP_PWM_CHAN = 0;
+  public static final int STORAGE_VICTORSP_PWM_CHAN = 1;
+  public static final int SHOOTER_VICTORSP_PWM_CHAN = 2;
+  public static final int CONTROLPANEL_VICTORSP_PWM_CHAN = 3;
+  public static final int CLIMBER_VICTORSP_PWM_CHAN = 4;
+  public static final int ADDRESSABLE_LED_PWM_CHAN = 5;
+
+  // DIO channels
+  public static final int CLIMBER_LIMIT_SWITCH = 0;
+  public static final int CLIMBER_ENCODER_A_CHAN = 1;
+  public static final int CLIMBER_ENCODER_B_CHAN = 2;
+
+  // LEDs
+  public static final int ADDRESSABLE_LED_LENGTH = 50;
 }
