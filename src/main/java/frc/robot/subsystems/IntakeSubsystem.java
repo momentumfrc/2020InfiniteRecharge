@@ -33,7 +33,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void idle() {
     if (isLowered) {
-      newPower = Math.max(oldPower - 0.04, -MoPrefs.getIntakeRollerSetpoint());
+      newPower = Math.max(oldPower - 0.1, -MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
     } else
       intakeSP.stopMotor();
@@ -41,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void runIntake() {
     if (isLowered) {
-      newPower = Math.min(oldPower + 0.04, MoPrefs.getIntakeRollerSetpoint());
+      newPower = Math.min(oldPower + 0.1, MoPrefs.getIntakeRollerSetpoint());
       intakeSP.set(newPower);
     } else
       intakeSP.stopMotor();
