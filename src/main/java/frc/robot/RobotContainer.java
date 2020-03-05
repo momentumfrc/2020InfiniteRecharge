@@ -58,17 +58,17 @@ public class RobotContainer {
   public final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
 
-  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 0/* X */);
+  private final JoystickButton intakeRollerFwdRevToggle = new JoystickButton(f310, 3/* X */);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2/* B */);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 6); // Right trigger
-  private final JoystickButton purge = new JoystickButton(xbox, 13); // Left bumper
+  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox, 3); // Right trigger
+  private final JoystickButton purge = new JoystickButton(xbox, 5); // Left bumper
 
-  private final JoystickButton spdLimitInc = new JoystickButton(f310, 10);
-  private final JoystickButton spdLimitDec = new JoystickButton(f310, 10);
+  private final JoystickButton spdLimitInc = new JoystickButton(f310, 4); // Y
+  private final JoystickButton spdLimitDec = new JoystickButton(f310, 1); // A
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

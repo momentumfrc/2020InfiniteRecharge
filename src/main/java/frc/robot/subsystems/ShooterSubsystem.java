@@ -114,6 +114,8 @@ public class ShooterSubsystem extends SubsystemBase {
     if (shooterHood.getFullyDeployed()
         && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
+    } else {
+      shooterGate.set(0);
     }
   }
 

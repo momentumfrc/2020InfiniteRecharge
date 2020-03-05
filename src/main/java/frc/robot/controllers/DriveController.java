@@ -16,13 +16,6 @@ public interface DriveController {
   public double getTurnRequest();
 
   /**
-   * Gets whether the robot should shoot power cells at the lower port.
-   * 
-   * @return whether the robot should shoot power cells at the lower port.
-   */
-  public boolean getShootPowerCells();
-
-  /**
    * Gets whether the robot should attempt the Rotation Control objective.
    * 
    * @return whether the robot should attempt the Rotation Control objective.
