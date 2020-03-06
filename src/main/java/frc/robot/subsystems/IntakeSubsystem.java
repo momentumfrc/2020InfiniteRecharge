@@ -9,12 +9,22 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import org.usfirst.frc.team4999.utils.MoPDP;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.SafeSP;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final VictorSP intakeSP = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN);
+
+  private final double SAFE_SPEED = 0;
+  private final int SAFE_COOLDOWN_MS = 1000;
+  private final double UNSAFE_CURRENT_LIMIT = 30; // amperes
+  private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
+
+  private final VictorSP intakeSP;
 
   private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
       Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
@@ -27,7 +37,9 @@ public class IntakeSubsystem extends SubsystemBase {
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
 
-  public IntakeSubsystem() {
+  public IntakeSubsystem(MoPDP pdp) {
+    intakeSP = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
+        .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
   }
 
   public void idle() {
