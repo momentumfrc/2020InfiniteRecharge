@@ -86,6 +86,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // These should always be opposites
     // If the robot drives backwards, flip both
     leftFront.setInverted(true);
+    leftRear.setInverted(true);
     rightFront.setInverted(false);
 
     // Set the braking mode
@@ -154,7 +155,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       rightFront.set(ControlMode.Velocity, rightETPerS);
     } else {
       leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
-      rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
+      rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
     }
   }
 

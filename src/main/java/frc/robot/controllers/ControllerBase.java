@@ -20,6 +20,10 @@ public class ControllerBase implements DriveController {
     return moveRequest;
   }
 
+  public double getShootPowerCells() {
+    return Utils.deadzone(xbox.getTriggerAxis(Hand.kRight), 0.2);
+  }
+
   public double getTurnRequest() {
     double turnRequest = xbox.getX(XboxController.Hand.kRight);
     return turnRequest;

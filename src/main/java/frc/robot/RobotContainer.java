@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
@@ -71,6 +72,8 @@ public class RobotContainer {
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
   private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
       new AutoStowClimberCommand(climberSubsystem));
+  private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, shooterHoodSubsystem,
+      mainController);
 
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value); // B
@@ -99,7 +102,7 @@ public class RobotContainer {
     // Set default commands as needed
     intakeSubsystem.setDefaultCommand(new RunCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new RunCommand(climberSubsystem::stop, climberSubsystem));
-    shooterSubsystem.setDefaultCommand(new RunCommand(shooterSubsystem::idle, shooterSubsystem, shooterHoodSubsystem));
+    shooterSubsystem.setDefaultCommand(shooterCommand);
   }
 
   /**
@@ -116,7 +119,8 @@ public class RobotContainer {
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
 
-    shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot, shooterSubsystem, shooterHoodSubsystem));
+    // shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot,
+    // shooterSubsystem, shooterHoodSubsystem));
     // Purge should also reverse storage and intake. Need to work out best way to do
     // that.
     purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem));

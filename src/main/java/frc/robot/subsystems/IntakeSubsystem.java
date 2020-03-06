@@ -25,6 +25,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
 
   private final VictorSP intakeSP;
+  private final VictorSP intakeSP2;
 
   private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
       Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
@@ -40,26 +41,31 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem(MoPDP pdp) {
     intakeSP = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
         .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
+    intakeSP2 = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN_2, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
+        .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
   }
 
   public void idle() {
     double newPower;
-    if (isLowered) {
-      newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(), -MoPrefs.getIntakeRollerSetpoint());
-      intakeSP.set(newPower);
-      lastPower = newPower;
-    } else
-      intakeSP.stopMotor();
+    // if (isLowered) {
+    // newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(),
+    // -MoPrefs.getIntakeRollerSetpoint());
+    // intakeSP.set(newPower);
+    // intakeSP2.set(-newPower);
+    // lastPower = newPower;
+    // } else
+    intakeSP.stopMotor();
   }
 
   public void runIntake() {
     double newPower;
-    if (isLowered) {
-      newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
-      intakeSP.set(newPower);
-      lastPower = newPower;
-    } else
-      intakeSP.stopMotor();
+    // if (isLowered) {
+    newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
+    intakeSP.set(newPower);
+    intakeSP2.set(-newPower);
+    lastPower = newPower;
+    // } else
+    // intakeSP.stopMotor();
   }
 
   public void toggleIntakeDeploy() {
