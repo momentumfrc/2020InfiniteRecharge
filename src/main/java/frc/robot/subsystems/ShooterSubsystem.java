@@ -18,15 +18,16 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.SimmableCANSparkMax;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
    * Initializes the SparkMAX motor controller, assigns it to the CAN address
    * specified, and sets it to the NEO Brushless Motor.
    */
-  private final CANSparkMax shooterMAXLeft = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_LEFT,
+  private final CANSparkMax shooterMAXLeft = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_LEFT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
-  private final CANSparkMax shooterMAXRight = new CANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
+  private final CANSparkMax shooterMAXRight = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final VictorSP shooterGate = new VictorSP(Constants.SHOOTER_VICTORSP_PWM_CHAN);
   /**
