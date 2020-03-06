@@ -12,14 +12,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.SimmableCANSparkMax;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
-  private CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
+  private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
       CANSparkMaxLowLevel.MotorType.kBrushless);
-  private CANDigitalInput hoodLimitSwitch = hoodNEO
+  private final CANDigitalInput hoodLimitSwitch = hoodNEO
       .getReverseLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen);
-  private CANEncoder hoodEncoder = hoodNEO.getEncoder();
-  private CANPIDController hoodPID;
+  private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
+  private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
   private final double kP = 5e-5;
   private final double kI = 1e-6;
@@ -30,9 +31,10 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double kMinOutput = -0.3;
   private final double allowedErr = 0;
 
+  private final double SAFE_STOW_SPEED = -0.1;
+
   private double hoodPos;
-  public boolean isDeployed = false;
-  private boolean deploy = false;
+  private boolean reliableZero;
 
   private double minVel = 0;
   private double maxVel = 1;
@@ -56,6 +58,12 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
     hoodNEO.setIdleMode(IdleMode.kBrake);
+    // The Hood needs to run in the negative direction *towards* the limit switch
+    // If it runs the wrong way, flip this invert setting.
+    hoodNEO.setInverted(false);
+
+    reliableZero = false;
+    stopHood();
   }
 
   public void moveHood(double posRequest) {
@@ -64,11 +72,17 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public void deployHood() {
-    deploy = true;
+    if (reliableZero)
+      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kSmartMotion, 0);
+    else
+      hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public void stowHood() {
-    deploy = false;
+    if (reliableZero)
+      hoodPID.setReference(0, ControlType.kSmartMotion, 0);
+    else
+      hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public double getHoodPos() {
@@ -79,16 +93,17 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
+  public boolean getFullyDeployed() {
+    return Math.abs(getHoodPos() - MoPrefs.getShooterHoodSetpoint()) < MoPrefs.getShooterHoodPositionTolerance();
+  }
+
   @Override
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
     if (hoodLimitSwitch.get()) {
       zeroHood();
+      reliableZero = true;
     }
-    double hoodSetpoint = 0;
-    if (deploy)
-      hoodSetpoint = MoPrefs.getShooterHoodSetpoint();
-    hoodPID.setReference(hoodSetpoint, ControlType.kSmartMotion, 0);
   }
 
   private void zeroHood() {

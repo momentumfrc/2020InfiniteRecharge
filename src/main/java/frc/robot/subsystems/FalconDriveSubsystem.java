@@ -12,6 +12,7 @@ import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
@@ -81,6 +82,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
   public FalconDriveSubsystem() {
+    // Invert one side of the robot
+    // These should always be opposites
+    // If the robot drives backwards, flip both
+    leftFront.setInverted(true);
+    rightFront.setInverted(false);
+
+    // Set the braking mode
+    leftFront.setNeutralMode(NeutralMode.Brake);
+    rightFront.setNeutralMode(NeutralMode.Brake);
+
     // Slaves the left rear motor to the left front motor
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
