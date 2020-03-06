@@ -44,6 +44,10 @@ public final class Constants {
   public static final int CLIMBER_VICTORSP_PWM_CHAN = 4;
   public static final int ADDRESSABLE_LED_PWM_ADDRESS = 5;
 
+  // PDP Channels
+  public static final int INTAKE_VICTORSP_PDP_CHAN = 2;
+  public static final int STORAGE_VICTORSP_PDP_CHAN = 4;
+
   // DIO channels
   public static final int CLIMBER_LIMIT_SWITCH = 0;
   public static final int CLIMBER_ENCODER_A_CHAN = 1;

@@ -8,6 +8,7 @@
 package frc.robot;
 
 import org.usfirst.frc.team4999.controllers.LogitechF310;
+import org.usfirst.frc.team4999.utils.MoPDP;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
@@ -21,6 +22,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.conditioners.CurvesConditioner;
 import frc.robot.subsystems.conditioners.DeadzoneConditioner;
 import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
@@ -42,12 +44,15 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final MoPDP powerDistributionPanel = new MoPDP();
+
   // The robot's subsystems and commands are defined here...
   private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
-  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
+  private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
 
   private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
@@ -67,11 +72,11 @@ public class RobotContainer {
   private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
       new AutoStowClimberCommand(climberSubsystem));
 
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, 4); // Left bumper
-  private final JoystickButton intakePistonToggle = new JoystickButton(f310, 2); // B
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
+  private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value); // B
 
-  private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
-  private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
+  private final JoystickButton climberStow = new JoystickButton(f310, 7); // TODO Pick a button and update number
+  private final JoystickButton climberClimb = new JoystickButton(f310, 8); // TODO Pick a button and update number
 
   private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox,
       XboxController.Axis.kRightTrigger.value); // Right trigger
