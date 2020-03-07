@@ -25,16 +25,16 @@ public class ShooterSubsystem extends SubsystemBase {
    * Initializes the SparkMAX motor controller, assigns it to the CAN address
    * specified, and sets it to the NEO Brushless Motor.
    */
-  private final CANSparkMax shooterMAXLeft = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_LEFT,
+  private final CANSparkMax follower_shooterMAXLeft = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_LEFT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
-  private final CANSparkMax shooterMAXRight = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
+  private final CANSparkMax leader_shooterMAXRight = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_CAN_ADDR_RIGHT,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final VictorSP shooterGate = new VictorSP(Constants.SHOOTER_VICTORSP_PWM_CHAN);
   /**
    * The built-in PID controller provided by the Spark MAX motor controller.
    */
-  private final CANPIDController shooterPIDLeft = new CANPIDController(shooterMAXLeft);
-  private final CANPIDController shooterPIDRight = new CANPIDController(shooterMAXRight);
+  private final CANPIDController shooterPIDLeft = follower_shooterMAXLeft.getPIDController();
+  private final CANPIDController shooterPIDRight = leader_shooterMAXRight.getPIDController();
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
@@ -93,18 +93,18 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterPIDRight.setOutputRange(-outputRange, outputRange, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
-    shooterMAXLeft.setIdleMode(IdleMode.kCoast);
-    shooterMAXRight.setIdleMode(IdleMode.kCoast);
-    shooterMAXLeft.setSmartCurrentLimit(currentLimit);
-    shooterMAXRight.setSmartCurrentLimit(currentLimit);
+    follower_shooterMAXLeft.setIdleMode(IdleMode.kCoast);
+    leader_shooterMAXRight.setIdleMode(IdleMode.kCoast);
+    follower_shooterMAXLeft.setSmartCurrentLimit(currentLimit);
+    leader_shooterMAXRight.setSmartCurrentLimit(currentLimit);
 
     // The shooter should idle and run in the positive direction for normal
     // operation.
     // Flip this invert setting if it runs backwards.
-    shooterMAXRight.setInverted(false);
+    leader_shooterMAXRight.setInverted(false);
 
     // Sets the left shooter motor to follow the right motor, and be inverted.
-    shooterMAXLeft.follow(shooterMAXRight, true);
+    follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
   }
 
   /**
@@ -116,9 +116,9 @@ public class ShooterSubsystem extends SubsystemBase {
     // fast shooter wheel
     // run gate if both of "" are good
     shooterHood.deployHood();
-    shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
+    leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
     if (shooterHood.getFullyDeployed()
-        && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
+        && MoPrefs.getShooterFlywheelSetpoint() - leader_shooterMAXRight.getEncoder().getVelocity() < 0.1) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
       shooterGate.set(0);
@@ -130,7 +130,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterHood.stowHood();
-    shooterMAXRight.stopMotor();
+    leader_shooterMAXRight.stopMotor();
     // ControlType.kVelocity);
     shooterGate.stopMotor();
   }
@@ -140,8 +140,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // reverse gate
     // reverse shooter wheel
     shooterHood.stowHood();
-    shooterPIDRight.setReference(-MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
-    shooterGate.set(-MoPrefs.getShooterGateSetpoint());
+    shooterPIDRight.setReference(-1 * MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
   @Override

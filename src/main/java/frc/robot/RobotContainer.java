@@ -127,8 +127,8 @@ public class RobotContainer {
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     // -------------------------------------Climber----------------------------------------------
-    climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
-    climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+    climberStow.whileHeld(new RunCommand(climberSubsystem::stow, climberSubsystem));
+    climberClimb.whileHeld(new RunCommand(climberSubsystem::climb, climberSubsystem));
 
     // --------------------------------------Drive--------------------------------------------------
     spdLimitInc.whenPressed(speedLimitConditioner::incSpeedLimit);
@@ -139,11 +139,13 @@ public class RobotContainer {
 
     // shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot,
     // shooterSubsystem, shooterHoodSubsystem));
-    // Purge should also reverse storage and intake. Need to work out best way to do
-    // that.
-    purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem));
 
-    storageButton.whileHeld(storageSubsystem::run, storageSubsystem);
+    // Purge also reverses storage and intake
+    purge.whileHeld(new RunCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem))
+        .whileHeld(new RunCommand(intakeSubsystem::runIntakeRvs, intakeSubsystem))
+        .whileHeld(new RunCommand(storageSubsystem::reverse, storageSubsystem));
+
+    storageButton.whileHeld(new RunCommand(storageSubsystem::run, storageSubsystem));
   }
 
   /**
