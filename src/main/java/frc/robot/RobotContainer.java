@@ -57,6 +57,7 @@ public class RobotContainer {
 
   // ----------------------------------------Buttons------------------------------------------------
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
+  private final JoystickButton intakeRollerRvsButton = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // TODO Pick a button and update number
@@ -121,8 +122,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // -------------------------------------Intake-------------------------------------------------
-    intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
-        .whenReleased(new InstantCommand(intakeSubsystem::idle, intakeSubsystem));
+    intakeRollerFwdButton.whileHeld(new RunCommand(intakeSubsystem::runIntakeFwd, intakeSubsystem));
+    intakeRollerRvsButton.whileHeld(new RunCommand(intakeSubsystem::runIntakeRvs, intakeSubsystem));
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     // -------------------------------------Climber----------------------------------------------

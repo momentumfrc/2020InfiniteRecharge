@@ -44,6 +44,7 @@ public class IntakeSubsystem extends SubsystemBase {
         .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
     intakeSP2 = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN_2, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
         .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
+
     intakeSP.setInverted(true);
     intakeSP2.setInverted(false);
   }
@@ -52,8 +53,12 @@ public class IntakeSubsystem extends SubsystemBase {
     setMotorsWithoutRamp(0);
   }
 
-  public void runIntake() {
+  public void runIntakeFwd() {
     setMotorsWithRamp(MoPrefs.getIntakeRollerSetpoint());
+  }
+
+  public void runIntakeRvs() {
+    setMotorsWithRamp(-1 * MoPrefs.getIntakeRollerSetpoint());
   }
 
   private void setMotorsWithRamp(double power) {
