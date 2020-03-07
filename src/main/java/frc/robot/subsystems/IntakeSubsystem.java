@@ -61,8 +61,8 @@ public class IntakeSubsystem extends SubsystemBase {
     double newPower;
     // if (isLowered) {
     newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
-    intakeSP.set(newPower);
-    intakeSP2.set(-newPower);
+    intakeSP.set(-newPower);
+    intakeSP2.set(newPower);
     lastPower = newPower;
     // } else
     // intakeSP.stopMotor();

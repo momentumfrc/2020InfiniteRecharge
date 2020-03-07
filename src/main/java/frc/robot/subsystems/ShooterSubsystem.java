@@ -116,9 +116,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // fast shooter wheel
     // run gate if both of "" are good
     shooterHood.deployHood();
-    shooterPIDLeft.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
-    shooterPIDRight.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
-    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
+    shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
     if (shooterHood.getFullyDeployed()
         && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
@@ -132,9 +130,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterHood.stowHood();
-    shooterPIDLeft.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
-    shooterPIDRight.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
-    shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    shooterMAXRight.stopMotor();
+    // ControlType.kVelocity);
     shooterGate.stopMotor();
   }
 

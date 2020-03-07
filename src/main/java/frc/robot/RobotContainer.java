@@ -118,7 +118,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Intake
-    intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem));
+    intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
+        .whenReleased(intakeSubsystem::idle, intakeSubsystem);
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));

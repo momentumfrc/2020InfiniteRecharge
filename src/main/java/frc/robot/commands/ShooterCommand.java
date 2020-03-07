@@ -25,11 +25,9 @@ public class ShooterCommand extends CommandBase {
   public void execute() {
     if (m_controller.getBoolShoot()) {
       m_subsystem.shoot();
-    } // else if (m_controller.getShootPowerCells() == 0) {
-      // m_subsystem.idle();
-    // } // else if (m_controller.getPurgePowerCells()) {
-    // m_subsystem.purge();
-    // }
+    } else {
+      m_subsystem.idle();
+    }
   }
 
   @Override
