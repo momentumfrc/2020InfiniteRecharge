@@ -73,6 +73,10 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
+  private final boolean enablePID = false;
+
+  private final boolean maintainFlywheelAtIdle = false;
+
   private ShooterHoodSubsystem shooterHood;
 
   public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
@@ -108,10 +112,13 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shoot() {
-    // extend hood
     // fast shooter wheel
     // run gate if both of "" are good
-    leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
+    if (enablePID) {
+      shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
+    } else {
+      leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
+    }
     if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed()
         && MoPrefs.getShooterFlywheelSetpoint() - leader_shooterMAXRight.getEncoder().getVelocity() < 0.1) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
@@ -121,18 +128,35 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void idle() {
-    // stow hood
     // stop gate
     // slow shooter wheel
-    leader_shooterMAXRight.stopMotor();
     shooterGate.stopMotor();
+
+    if (maintainFlywheelAtIdle) {
+      if (enablePID) {
+        shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+      } else {
+        leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelIdle());
+      }
+    } else {
+      if (enablePID) {
+        shooterPIDRight.setReference(0, ControlType.kVelocity);
+      } else {
+        leader_shooterMAXRight.stopMotor();
+      }
+    }
   }
 
   public void purge() {
     // stow hood
     // reverse gate
     // reverse shooter wheel
-    shooterPIDRight.setReference(-1 * MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    if (enablePID) {
+      shooterPIDRight.setReference(-1 * MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
+    } else {
+      leader_shooterMAXRight.set(-1 * MoPrefs.getShooterFlywheelIdle());
+    }
+
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
