@@ -10,12 +10,12 @@ public class MoPrefs {
    */
   static final double INTAKE_ROLLER_ACC_RAMP = 0.1;
   static final int CLIMBER_ENCODER_LIMIT = 10;
-  static final double SHOOTER_HOOD_SETPOINT = 15;
-  static final double SHOOTER_HOOD_POSITION_TOLERANCE = 0.01;
+  static final double SHOOTER_HOOD_SETPOINT = 1000;
+  static final double SHOOTER_HOOD_POSITION_TOLERANCE = 50;
   static final double SHOOTER_GATE_SETPOINT = 1;
-  static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
+  static final double SHOOTER_FLYWHEEL_SETPOINT = 4500;
   static final double SHOOTER_FLYWHEEL_IDLE = 0.2;
-  static final double STORAGE_SPEED = 0.5;
+  static final double STORAGE_SPEED = 0.75;
 
   private static boolean safePrefs = false;
 

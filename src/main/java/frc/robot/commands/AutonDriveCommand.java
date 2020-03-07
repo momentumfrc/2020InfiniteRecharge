@@ -8,13 +8,19 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Limelight.LimelightData;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonDriveCommand extends CommandBase {
   private final DriveSubsystem drive_subsystem;
+  private final Limelight limelight;
 
-  public AutonDriveCommand(DriveSubsystem subsystem) {
+  private boolean met;
+
+  public AutonDriveCommand(DriveSubsystem subsystem, Limelight llight) {
     drive_subsystem = subsystem;
+    limelight = llight;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -27,6 +33,25 @@ public class AutonDriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    LimelightData data = limelight.getData();
+    double turnRequest;
+    double moveRequest;
+    double distance;
+
+    if (data.valid()) {
+      turnRequest = 0; // Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -1.0, 1.0);
+      moveRequest = 0; // Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
+      distance = data.dist();
+      met = false; // data.targetMet();
+
+    } else {
+      turnRequest = 0;
+      moveRequest = 0;
+      distance = 0;
+      met = false;
+    }
+    System.out.format("Target Distance:%.02f\n", distance);
+    drive_subsystem.drive(moveRequest, turnRequest);
   }
 
   // Called once the command ends or is interrupted.

@@ -21,6 +21,7 @@ import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
@@ -57,6 +58,7 @@ public class RobotContainer {
 
   private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
+  private final Limelight limelight = new Limelight();
 
   private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
       new CurvesConditioner(), reverseConditioner, speedLimitConditioner);
@@ -69,7 +71,7 @@ public class RobotContainer {
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem);
+  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
   private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
       new AutoStowClimberCommand(climberSubsystem));
   private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, shooterHoodSubsystem,
@@ -90,6 +92,8 @@ public class RobotContainer {
 
   private final JoystickButton reverseRobot = new JoystickButton(xbox, XboxController.Button.kB.value);
 
+  private final JoystickButton storageButton = new JoystickButton(f310, LogitechF310.Button.kX.value);
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -102,7 +106,8 @@ public class RobotContainer {
     // Set default commands as needed
     intakeSubsystem.setDefaultCommand(new RunCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new RunCommand(climberSubsystem::stop, climberSubsystem));
-    shooterSubsystem.setDefaultCommand(shooterCommand);
+    // shooterSubsystem.setDefaultCommand(shooterCommand);
+    storageSubsystem.setDefaultCommand(new RunCommand(storageSubsystem::stop, storageSubsystem));
   }
 
   /**
@@ -130,6 +135,8 @@ public class RobotContainer {
     spdLimitDec.whenPressed(new InstantCommand(speedLimitConditioner::decSpeedLimit));
 
     reverseRobot.whenPressed(new InstantCommand(reverseConditioner::toggleReversed));
+
+    storageButton.whileHeld(new InstantCommand(storageSubsystem::run, storageSubsystem));
   }
 
   /**
@@ -144,5 +151,9 @@ public class RobotContainer {
 
   public Command getTeleopCommand() {
     return driveCommand;
+  }
+
+  public Command getShooterCommand() {
+    return shooterCommand;
   }
 }

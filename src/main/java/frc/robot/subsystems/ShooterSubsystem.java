@@ -40,13 +40,13 @@ public class ShooterSubsystem extends SubsystemBase {
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private final double kP = 5e-5;
+  private final double kP = 1;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private final double kI = 1e-6;
+  private final double kI = 0;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
@@ -62,7 +62,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private final double kFF = 0.000156;
+  private final double kFF = 0.00156;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
@@ -88,8 +88,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterPIDRight.setD(kD, 0);
     shooterPIDLeft.setIZone(kIz, 0);
     shooterPIDRight.setIZone(kIz, 0);
-    shooterPIDLeft.setFF(kFF, 0);
-    shooterPIDRight.setFF(kFF, 0);
+
     shooterPIDLeft.setOutputRange(-outputRange, outputRange, 0);
     shooterPIDRight.setOutputRange(-outputRange, outputRange, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
@@ -117,6 +116,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // fast shooter wheel
     // run gate if both of "" are good
     shooterHood.deployHood();
+    shooterPIDLeft.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
+    shooterPIDRight.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
     shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
     if (shooterHood.getFullyDeployed()
         && MoPrefs.getShooterFlywheelSetpoint() - shooterMAXRight.getEncoder().getVelocity() < 0.1) {
@@ -131,6 +132,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterHood.stowHood();
+    shooterPIDLeft.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
+    shooterPIDRight.setFF(kFF * MoPrefs.getShooterFlywheelSetpoint(), 0);
     shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
     shooterGate.stopMotor();
   }
