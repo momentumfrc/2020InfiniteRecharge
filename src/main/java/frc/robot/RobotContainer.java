@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
@@ -36,6 +35,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -63,8 +63,7 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // TODO Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // TODO Pick a button and update number
 
-  private final JoystickAnalogButton shooterShoot = new JoystickAnalogButton(xbox,
-      XboxController.Axis.kRightTrigger.value); // Right trigger
+  private final JoystickButton shooterShoot = new JoystickButton(xbox, XboxController.Button.kBumperRight.value);
   private final JoystickButton purge = new JoystickButton(xbox, XboxController.Button.kBumperLeft.value); // Left bumper
 
   private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value); // Y
@@ -95,8 +94,11 @@ public class RobotContainer {
       new AutoStowClimberCommand(climberSubsystem));
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
-  private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, shooterHoodSubsystem,
-      mainController);
+
+  private final Command shootCommand = new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
+      .withInterrupt(() -> shooterHoodSubsystem.getFullyDeployed() && shooterHoodSubsystem.hasReliableZero())
+      .andThen(new RunCommand(shooterSubsystem::shoot, shooterSubsystem)
+          .alongWith(new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)));
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -110,7 +112,8 @@ public class RobotContainer {
     // Set default commands as needed
     intakeSubsystem.setDefaultCommand(new RunCommand(intakeSubsystem::idle, intakeSubsystem));
     climberSubsystem.setDefaultCommand(new RunCommand(climberSubsystem::stop, climberSubsystem));
-    // shooterSubsystem.setDefaultCommand(shooterCommand);
+    shooterSubsystem.setDefaultCommand(new RunCommand(shooterSubsystem::idle, shooterSubsystem));
+    shooterHoodSubsystem.setDefaultCommand(new RunCommand(shooterHoodSubsystem::stowHood, shooterHoodSubsystem));
     storageSubsystem.setDefaultCommand(new RunCommand(storageSubsystem::stop, storageSubsystem));
   }
 
@@ -134,6 +137,9 @@ public class RobotContainer {
     spdLimitInc.whenPressed(speedLimitConditioner::incSpeedLimit);
     spdLimitDec.whenPressed(speedLimitConditioner::decSpeedLimit);
     reverseRobot.whenPressed(reverseConditioner::toggleReversed);
+
+    // --------------------------------------Shooter-----------------------------------------------
+    shooterShoot.whileHeld(shootCommand);
 
     // --------------------------------------Storage------------------------------------------------
 
@@ -159,9 +165,5 @@ public class RobotContainer {
 
   public Command getTeleopCommand() {
     return driveCommand;
-  }
-
-  public Command getShooterCommand() {
-    return shooterCommand;
   }
 }

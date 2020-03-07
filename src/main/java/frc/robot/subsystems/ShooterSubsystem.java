@@ -107,17 +107,12 @@ public class ShooterSubsystem extends SubsystemBase {
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
   }
 
-  /**
-   * Passes a preset velocity to the SparkMAX PIDF controller and lets it manage
-   * the NEO's velocity. Intended to be called when a button is pressed.
-   */
   public void shoot() {
     // extend hood
     // fast shooter wheel
     // run gate if both of "" are good
-    shooterHood.deployHood();
     leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
-    if (shooterHood.getFullyDeployed()
+    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed()
         && MoPrefs.getShooterFlywheelSetpoint() - leader_shooterMAXRight.getEncoder().getVelocity() < 0.1) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
@@ -129,9 +124,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // stow hood
     // stop gate
     // slow shooter wheel
-    shooterHood.stowHood();
     leader_shooterMAXRight.stopMotor();
-    // ControlType.kVelocity);
     shooterGate.stopMotor();
   }
 
@@ -139,7 +132,6 @@ public class ShooterSubsystem extends SubsystemBase {
     // stow hood
     // reverse gate
     // reverse shooter wheel
-    shooterHood.stowHood();
     shooterPIDRight.setReference(-1 * MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }

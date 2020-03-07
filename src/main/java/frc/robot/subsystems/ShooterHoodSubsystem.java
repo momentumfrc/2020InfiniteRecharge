@@ -93,6 +93,10 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
+  public boolean hasReliableZero() {
+    return reliableZero;
+  }
+
   public boolean getFullyDeployed() {
     return Math.abs(getHoodPos() - MoPrefs.getShooterHoodSetpoint()) < MoPrefs.getShooterHoodPositionTolerance();
   }

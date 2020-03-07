@@ -24,10 +24,6 @@ public class ControllerBase implements DriveController {
     return Utils.deadzone(xbox.getTriggerAxis(Hand.kRight), 0.2);
   }
 
-  public boolean getBoolShoot() {
-    return xbox.getBumper(Hand.kLeft);
-  }
-
   public double getTurnRequest() {
     double turnRequest = xbox.getX(XboxController.Hand.kRight);
     return turnRequest;
