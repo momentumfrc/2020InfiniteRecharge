@@ -15,6 +15,7 @@ import org.usfirst.frc.team4999.utils.MoPDP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoUtils;
 import frc.robot.utils.SafeSP;
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -43,29 +44,29 @@ public class IntakeSubsystem extends SubsystemBase {
         .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
     intakeSP2 = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN_2, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
         .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
+    intakeSP.setInverted(true);
+    intakeSP2.setInverted(false);
   }
 
   public void idle() {
-    double newPower;
-    // if (isLowered) {
-    // newPower = Math.max(lastPower - MoPrefs.getIntakeRollerAccRamp(),
-    // -MoPrefs.getIntakeRollerSetpoint());
-    // intakeSP.set(newPower);
-    // intakeSP2.set(-newPower);
-    // lastPower = newPower;
-    // } else
-    intakeSP.stopMotor();
+    setMotorsWithoutRamp(0);
   }
 
   public void runIntake() {
-    double newPower;
-    // if (isLowered) {
-    newPower = Math.min(lastPower + MoPrefs.getIntakeRollerAccRamp(), MoPrefs.getIntakeRollerSetpoint());
-    intakeSP.set(-newPower);
-    intakeSP2.set(newPower);
-    lastPower = newPower;
-    // } else
-    // intakeSP.stopMotor();
+    setMotorsWithRamp(MoPrefs.getIntakeRollerSetpoint());
+  }
+
+  private void setMotorsWithRamp(double power) {
+    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.getIntakeRollerAccRamp());
+    lastPower = currPower;
+    intakeSP.set(currPower);
+    intakeSP2.set(currPower);
+  }
+
+  private void setMotorsWithoutRamp(double power) {
+    lastPower = power;
+    intakeSP.set(power);
+    intakeSP2.set(power);
   }
 
   public void toggleIntakeDeploy() {
