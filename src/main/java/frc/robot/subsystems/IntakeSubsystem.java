@@ -47,6 +47,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
     intakeSP.setInverted(true);
     intakeSP2.setInverted(false);
+
+    raiseIntake();
   }
 
   public void idle() {
