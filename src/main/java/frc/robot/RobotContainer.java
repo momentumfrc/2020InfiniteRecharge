@@ -46,39 +46,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  // ---------------------------------------Components----------------------------------------
   private final MoPDP powerDistributionPanel = new MoPDP();
-
-  // The robot's subsystems and commands are defined here...
-  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
-  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
-  private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
-  private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
-
-  private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
-  private final ReverseConditioner reverseConditioner = new ReverseConditioner();
   private final Limelight limelight = new Limelight();
 
-  private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
-      new CurvesConditioner(), reverseConditioner, speedLimitConditioner);
-
+  // ----------------------------------------Joysticks-----------------------------------------
   private final XboxController xbox = new XboxController(0);
   private final LogitechF310 f310 = new LogitechF310(2);
-
-  private final LEDSubsystem ledSubsystem = new LEDSubsystem();
-
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
-  private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
-      new AutoStowClimberCommand(climberSubsystem));
-  private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, shooterHoodSubsystem,
-      mainController);
-
+  // ----------------------------------------Buttons------------------------------------------------
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
-  private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value); // B
+  private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // TODO Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // TODO Pick a button and update number
@@ -93,6 +72,30 @@ public class RobotContainer {
   private final JoystickButton reverseRobot = new JoystickButton(xbox, XboxController.Button.kB.value);
 
   private final JoystickButton storageButton = new JoystickButton(f310, LogitechF310.Button.kX.value);
+
+  // ----------------------------------------Conditioners--------------------------------------
+  private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
+  private final ReverseConditioner reverseConditioner = new ReverseConditioner();
+  private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
+      new CurvesConditioner(), reverseConditioner, speedLimitConditioner);
+
+  // ---------------------------------------Subsystems----------------------------------------
+  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
+  private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
+  private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
+  private final LEDSubsystem ledSubsystem = new LEDSubsystem();
+
+  // ---------------------------------------Commands--------------------------------------------
+  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
+  private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
+      new AutoStowClimberCommand(climberSubsystem));
+
+  private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
+  private final ShooterCommand shooterCommand = new ShooterCommand(shooterSubsystem, shooterHoodSubsystem,
+      mainController);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -117,13 +120,21 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Intake
+    // -------------------------------------Intake-------------------------------------------------
     intakeRollerFwdButton.whileHeld(new InstantCommand(intakeSubsystem::runIntake, intakeSubsystem))
         .whenReleased(intakeSubsystem::idle, intakeSubsystem);
     intakePistonToggle.whenPressed(new InstantCommand(intakeSubsystem::toggleIntakeDeploy, intakeSubsystem));
 
+    // -------------------------------------Climber----------------------------------------------
     climberStow.whileHeld(new InstantCommand(climberSubsystem::stow, climberSubsystem));
     climberClimb.whileHeld(new InstantCommand(climberSubsystem::climb, climberSubsystem));
+
+    // --------------------------------------Drive--------------------------------------------------
+    spdLimitInc.whenPressed(speedLimitConditioner::incSpeedLimit);
+    spdLimitDec.whenPressed(speedLimitConditioner::decSpeedLimit);
+    reverseRobot.whenPressed(reverseConditioner::toggleReversed);
+
+    // --------------------------------------Storage------------------------------------------------
 
     // shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot,
     // shooterSubsystem, shooterHoodSubsystem));
@@ -131,13 +142,7 @@ public class RobotContainer {
     // that.
     purge.whenPressed(new InstantCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem));
 
-    // Drive
-    spdLimitInc.whenPressed(new InstantCommand(speedLimitConditioner::incSpeedLimit));
-    spdLimitDec.whenPressed(new InstantCommand(speedLimitConditioner::decSpeedLimit));
-
-    reverseRobot.whenPressed(new InstantCommand(reverseConditioner::toggleReversed));
-
-    storageButton.whileHeld(new InstantCommand(storageSubsystem::run, storageSubsystem));
+    storageButton.whileHeld(storageSubsystem::run, storageSubsystem);
   }
 
   /**
@@ -146,7 +151,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
     return autonomousCommand;
   }
 
