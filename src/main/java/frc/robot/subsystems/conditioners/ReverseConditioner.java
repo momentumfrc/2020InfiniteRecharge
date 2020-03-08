@@ -1,7 +1,7 @@
 package frc.robot.subsystems.conditioners;
 
 public class ReverseConditioner implements DriveConditioner {
-  private boolean reversed = false;
+  private boolean reversed = true;
 
   public boolean isReversed() {
     return reversed;

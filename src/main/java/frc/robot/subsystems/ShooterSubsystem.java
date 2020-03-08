@@ -119,8 +119,19 @@ public class ShooterSubsystem extends SubsystemBase {
     } else {
       leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
     }
-    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed()
-        && MoPrefs.getShooterFlywheelSetpoint() - leader_shooterMAXRight.getEncoder().getVelocity() < 0.1) {
+    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed() && MoPrefs.getShooterFlywheelSetpoint()
+        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance()) {
+      shooterGate.set(MoPrefs.getShooterGateSetpoint());
+    } else {
+      shooterGate.set(0);
+    }
+  }
+
+  public void shootWallAuto() {
+    leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
+    shooterHood.moveHood(67);
+    if (shooterHood.hasReliableZero() && MoPrefs.getShooterFlywheelSetpoint()
+        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance()) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
       shooterGate.set(0);

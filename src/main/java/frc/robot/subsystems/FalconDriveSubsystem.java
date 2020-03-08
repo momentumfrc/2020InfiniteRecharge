@@ -154,7 +154,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       leftFront.set(ControlMode.Velocity, leftETPerS);
       rightFront.set(ControlMode.Velocity, rightETPerS);
     } else {
-      leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
+      leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
       rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
     }
   }

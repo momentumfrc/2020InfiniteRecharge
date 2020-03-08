@@ -3,8 +3,8 @@ package frc.robot.subsystems.conditioners;
 import org.usfirst.frc.team4999.utils.Utils;
 
 public class CurvesConditioner implements DriveConditioner {
-  private final double move_curve = 2;
-  private final double turn_curve = 2;
+  private final double move_curve = 1;
+  private final double turn_curve = 1;
 
   @Override
   public double conditionMove(double moveRequest) {

@@ -4,18 +4,16 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class MoPrefs {
   static final double INTAKE_ROLLER_SETPOINT = -0.125;
-  /**
-   * The maximum accleration of the intake roller, in motor setpoint per scheduler
-   * cycle.
-   */
   static final double INTAKE_ROLLER_ACC_RAMP = 0.1;
   static final int CLIMBER_ENCODER_LIMIT = 10;
-  static final double SHOOTER_HOOD_SETPOINT = 1000;
-  static final double SHOOTER_HOOD_POSITION_TOLERANCE = 50;
+  static final double SHOOTER_HOOD_SETPOINT = 100;
+  static final double SHOOTER_HOOD_POSITION_TOLERANCE = 2;
   static final double SHOOTER_GATE_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_IDLE = 0.2;
   static final double STORAGE_SPEED = 0.75;
+  static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
+  static final double AUTO_CHOOSER = 0;
 
   private static boolean safePrefs = false;
 
@@ -58,7 +56,7 @@ public class MoPrefs {
   }
 
   public static double getShooterHoodPositionTolerance() {
-    return getDouble("SHOOTER_HOOD_POSITION_TOLERANCE", SHOOTER_HOOD_POSITION_TOLERANCE);
+    return 2;
   }
 
   public static double getShooterGateSetpoint() {
@@ -74,10 +72,18 @@ public class MoPrefs {
   }
 
   public static double getIntakeRollerAccRamp() {
-    return getDouble("INTAKE_ROLLER_ACC_RAMP", INTAKE_ROLLER_ACC_RAMP);
+    return 0.1;
   }
 
   public static double getStorageSpeed() {
     return getDouble("STORAGE_SPEED", STORAGE_SPEED);
+  }
+
+  public static double getShooterFlywheelTolerance() {
+    return getDouble("FLYWHEEL_TOLER", SHOOTER_FLYWHEEL_TOLERANCE);
+  }
+
+  public static double getAutoChooser() {
+    return getDouble("AUTO_CHOOSER", AUTO_CHOOSER);
   }
 }

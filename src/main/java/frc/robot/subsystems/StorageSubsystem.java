@@ -22,7 +22,7 @@ public class StorageSubsystem extends SubsystemBase {
   public StorageSubsystem(MoPDP pdp) {
     storage = new SafeSP(Constants.STORAGE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
         .MakeOvercurrentMonitor(Constants.STORAGE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
-    storage.setInverted(true);
+    storage.setInverted(false);
   }
 
   public void run() {

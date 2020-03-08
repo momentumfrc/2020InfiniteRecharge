@@ -8,27 +8,30 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANDigitalInput;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class ShooterHoodSubsystem extends SubsystemBase {
-  private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
+  private final CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANDigitalInput hoodLimitSwitch = hoodNEO
       .getReverseLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen);
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private final double kP = 5e-5;
+  private final double kP = 0.15;
   private final double kI = 1e-6;
   private final double kD = 0;
   private final double kIz = 0;
-  private final double kFF = 0.000156;
-  private final double kMaxOutput = 0.3;
-  private final double kMinOutput = -0.3;
+  private final double kFF = 0;
+  private final double kMaxOutput = 0.6;
+  private final double kMinOutput = -0.6;
   private final double allowedErr = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
@@ -64,7 +67,15 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
     reliableZero = false;
     stopHood();
+
+    CommandScheduler.getInstance().registerSubsystem(this);
   }
+
+  /*
+   * public void raiseShotAngle() { ++hoodSetpoint; }
+   * 
+   * public void lowerShotAngle() { --hoodSetpoint; }
+   */
 
   public void moveHood(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
@@ -73,14 +84,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   public void deployHood() {
     if (reliableZero)
-      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kSmartMotion, 0);
+      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
     else
       hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public void stowHood() {
     if (reliableZero)
-      hoodPID.setReference(0, ControlType.kSmartMotion, 0);
+      hoodPID.setReference(0, ControlType.kPosition, 0);
     else
       hoodNEO.set(SAFE_STOW_SPEED);
   }
@@ -104,9 +115,12 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
-    if (hoodLimitSwitch.get()) {
-      zeroHood();
-      reliableZero = true;
+    SmartDashboard.putNumber("pose", hoodPos);
+    if (!reliableZero) {
+      if (hoodLimitSwitch.get()) {
+        zeroHood();
+        reliableZero = true;
+      }
     }
   }
 
