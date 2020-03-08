@@ -14,6 +14,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
+
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import frc.robot.Constants;
@@ -78,10 +80,14 @@ public class ShooterSubsystem extends SubsystemBase {
   private final boolean maintainFlywheelAtIdle = false;
 
   private ShooterHoodSubsystem shooterHood;
+  private Limelight limelight;
 
-  public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
+  public ShooterSubsystem(ShooterHoodSubsystem shooterHood, Limelight llight) {
 
     this.shooterHood = shooterHood;
+    limelight = llight;
+
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
@@ -114,6 +120,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot() {
     // fast shooter wheel
     // run gate if both of "" are good
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+
     if (enablePID) {
       shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
     } else {
@@ -128,6 +136,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shootWallAuto() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+
     leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
     shooterHood.moveHood(67);
     if (shooterHood.hasReliableZero() && MoPrefs.getShooterFlywheelSetpoint()
@@ -142,6 +152,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterGate.stopMotor();
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
     if (maintainFlywheelAtIdle) {
       if (enablePID) {

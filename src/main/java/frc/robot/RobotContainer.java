@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveToWall;
 import frc.robot.commands.ShootFromWall;
 import frc.robot.commands.ShootFromLine;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -87,10 +88,10 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
+  private final Limelight limelight = new Limelight();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, limelight);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
   private final LEDSubsystem ledSubsystem = new LEDSubsystem();
-  private final Limelight limelight = new Limelight();
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
@@ -98,7 +99,7 @@ public class RobotContainer {
       storageSubsystem);
   private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
       new AutoStowClimberCommand(climberSubsystem));
-  private final ShootFromLine driveToWall = new ShootFromLine(falconDriveSubsystem, shooterSubsystem, storageSubsystem);
+  private final DriveToWall driveToWall = new DriveToWall(falconDriveSubsystem, shooterSubsystem, storageSubsystem);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
 
@@ -108,7 +109,7 @@ public class RobotContainer {
           .alongWith(new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)));
 
   private final ShootFromLine shootFromLine = new ShootFromLine(falconDriveSubsystem, shooterSubsystem,
-      storageSubsystem);
+      storageSubsystem, intakeSubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

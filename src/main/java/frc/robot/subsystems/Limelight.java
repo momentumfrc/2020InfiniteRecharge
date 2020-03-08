@@ -53,6 +53,8 @@ public class Limelight extends SubsystemBase {
       wv.setDouble(valid);
       wa.setDouble(slope);
       wv.setDouble(dist);
+
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
 
     public double dist() {
