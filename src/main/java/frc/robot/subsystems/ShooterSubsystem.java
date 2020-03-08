@@ -80,12 +80,10 @@ public class ShooterSubsystem extends SubsystemBase {
   private final boolean maintainFlywheelAtIdle = false;
 
   private ShooterHoodSubsystem shooterHood;
-  private Limelight limelight;
 
-  public ShooterSubsystem(ShooterHoodSubsystem shooterHood, Limelight llight) {
+  public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
 
     this.shooterHood = shooterHood;
-    limelight = llight;
 
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
@@ -135,7 +133,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
   }
 
-  public void shootWallAuto() {
+  public void shootAuto() {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
     leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());

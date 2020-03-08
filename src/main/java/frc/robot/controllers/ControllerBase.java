@@ -29,4 +29,11 @@ public class ControllerBase implements DriveController {
     return turnRequest;
   }
 
+  public boolean getIncHoodPos() {
+    return xbox.getPOV() == 180;
+  }
+
+  public boolean getDecHoodPos() {
+    return xbox.getPOV() == 0;
+  }
 }

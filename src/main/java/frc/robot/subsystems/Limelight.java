@@ -19,7 +19,7 @@ public class Limelight extends SubsystemBase {
   public static final double Y_ERR = 0;
 
   private static final double CAMERA_ANGLE = 56.5;
-  private static final double CAMERA_HEIGHT = 12;
+  private static final double CAMERA_HEIGHT = 23.6;
   private static final double TARGET_HEIGHT = 84;
   private static NetworkTableEntry wx, wy, wv, wa, wd;
 
