@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private final double SAFE_SPEED = 0;
   private final int SAFE_COOLDOWN_MS = 1000;
-  private final double UNSAFE_CURRENT_LIMIT = 15; // amperes
+  private final double UNSAFE_CURRENT_LIMIT = 20; // amperes
   private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
 
   private final VictorSP intakeSP;

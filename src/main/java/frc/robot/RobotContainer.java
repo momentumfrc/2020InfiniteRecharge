@@ -12,6 +12,8 @@ import org.usfirst.frc.team4999.utils.MoPDP;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
@@ -51,6 +53,12 @@ import frc.robot.commands.ShootFromLine;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  // --------------------------------------Shuffleboard----------------------------------------
+  public static final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
+  public static final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
+  public static final ShuffleboardTab testTab = Shuffleboard.getTab("Test Tune");
+  public static final ShuffleboardTab limelightTab = Shuffleboard.getTab("Limelight");
+
   // ---------------------------------------Components----------------------------------------
   private final MoPDP powerDistributionPanel = new MoPDP();
 
@@ -88,7 +96,7 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
-  private final Limelight limelight = new Limelight();
+  private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
   private final LEDSubsystem ledSubsystem = new LEDSubsystem();
@@ -97,8 +105,9 @@ public class RobotContainer {
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
   private final ShootFromWall shootFromWall = new ShootFromWall(falconDriveSubsystem, shooterSubsystem,
       storageSubsystem);
-  private final Command autonomousCommand = new ParallelCommandGroup(autonDriveCommand,
-      new AutoStowClimberCommand(climberSubsystem));
+  // private final Command autonomousCommand = new
+  // ParallelCommandGroup(autonDriveCommand,
+  // new AutoStowClimberCommand(climberSubsystem));
   private final DriveToWall driveToWall = new DriveToWall(falconDriveSubsystem, shooterSubsystem, storageSubsystem);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
@@ -109,7 +118,7 @@ public class RobotContainer {
           .alongWith(new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)));
 
   private final ShootFromLine shootFromLine = new ShootFromLine(falconDriveSubsystem, shooterSubsystem,
-      storageSubsystem, intakeSubsystem);
+      storageSubsystem, intakeSubsystem, shooterHoodSubsystem);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

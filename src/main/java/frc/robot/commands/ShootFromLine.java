@@ -6,6 +6,7 @@ import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterHoodSubsystem;
 
 public class ShootFromLine extends CommandBase {
   private final FalconDriveSubsystem m_drive;
@@ -14,13 +15,13 @@ public class ShootFromLine extends CommandBase {
   private final IntakeSubsystem m_intake;
 
   public ShootFromLine(FalconDriveSubsystem subsystem, ShooterSubsystem shooter, StorageSubsystem storage,
-      IntakeSubsystem intake) {
+      IntakeSubsystem intake, ShooterHoodSubsystem hood) {
     m_drive = subsystem;
     m_shooter = shooter;
     m_storage = storage;
     m_intake = intake;
 
-    addRequirements(subsystem, shooter, storage, intake);
+    addRequirements(subsystem, shooter, storage, intake, hood);
   }
 
   @Override
@@ -31,10 +32,10 @@ public class ShootFromLine extends CommandBase {
   @Override
   public void execute() {
     double time = Timer.getMatchTime();
-    m_intake.lowerIntake();
-    if (time > 5) {
+    m_intake.raiseIntake();
+    if (13 > time && time > 5) {
       m_storage.run();
-      m_shooter.shoot();
+      m_shooter.shootAuto();
     } else if (time < 5) {
       m_drive.drive(0.25, 0);
       m_storage.stop();
