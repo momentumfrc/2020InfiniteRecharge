@@ -29,8 +29,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double kD = 0;
   private final double kIz = 0;
   private final double kFF = 0;
-  private final double kMaxOutput = 0.6;
-  private final double kMinOutput = -0.6;
+  private final double kMaxOutput = 1.0;
+  private final double kMinOutput = -1.0;
   private final double allowedErr = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
@@ -78,7 +78,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   public void moveHood(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
-    hoodPID.setReference(posRequest, ControlType.kSmartMotion, 0);
+    hoodPID.setReference(posRequest, ControlType.kPosition, 0);
   }
 
   public void deployHood() {

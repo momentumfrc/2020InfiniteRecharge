@@ -10,6 +10,9 @@ package frc.robot.commands;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Limelight.LimelightData;
+
+import org.usfirst.frc.team4999.utils.Utils;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonDriveCommand extends CommandBase {
@@ -39,7 +42,7 @@ public class AutonDriveCommand extends CommandBase {
     double distance;
 
     if (data.valid()) {
-      turnRequest = 0; // Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -1.0, 1.0);
+      turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -0.25, 0.25);
       moveRequest = 0; // Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
       distance = data.dist();
       met = false; // data.targetMet();

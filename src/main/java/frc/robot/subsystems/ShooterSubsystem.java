@@ -17,7 +17,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.VictorSP;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
@@ -42,7 +42,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private final double kP = 1;
+  private final double kP = 5e-2;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
@@ -75,7 +75,7 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
-  private final boolean enablePID = false;
+  private final boolean enablePID = true;
 
   private final boolean maintainFlywheelAtIdle = false;
 
@@ -85,7 +85,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     this.shooterHood = shooterHood;
 
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
@@ -118,7 +118,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot() {
     // fast shooter wheel
     // run gate if both of "" are good
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
     if (enablePID) {
       shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
@@ -131,14 +131,16 @@ public class ShooterSubsystem extends SubsystemBase {
     } else {
       shooterGate.set(0);
     }
+
   }
 
   public void shootAuto() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    shooterHood.deployHood();
 
     leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
-    shooterHood.moveHood(67);
-    if (shooterHood.hasReliableZero() && MoPrefs.getShooterFlywheelSetpoint()
+
+    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed() && MoPrefs.getShooterFlywheelSetpoint()
         - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance()) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
@@ -150,7 +152,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterGate.stopMotor();
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
     if (maintainFlywheelAtIdle) {
       if (enablePID) {
@@ -182,6 +184,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-
+    SmartDashboard.putNumber("Flywheel Speed", leader_shooterMAXRight.getEncoder().getVelocity());
   }
 }
