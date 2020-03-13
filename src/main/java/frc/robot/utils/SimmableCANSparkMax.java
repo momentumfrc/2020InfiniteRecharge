@@ -125,7 +125,7 @@ public class SimmableCANSparkMax extends CANSparkMax {
         }
         return m_encoderCount.get();
       } else {
-        return super.getPosition();
+        return super.getVelocity();
       }
     }
 
