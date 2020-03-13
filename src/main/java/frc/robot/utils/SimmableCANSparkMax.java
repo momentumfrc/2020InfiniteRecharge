@@ -120,10 +120,10 @@ public class SimmableCANSparkMax extends CANSparkMax {
     @Override
     public double getVelocity() {
       if (m_simDevice != null) {
-        if (m_encoderCount == null) {
-          m_encoderCount = m_simDevice.createDouble("Encoder Vel", false, 0);
+        if (m_encoderVelocity == null) {
+          m_encoderVelocity = m_simDevice.createDouble("Encoder Vel", false, 0);
         }
-        return m_encoderCount.get();
+        return m_encoderVelocity.get();
       } else {
         return super.getVelocity();
       }
