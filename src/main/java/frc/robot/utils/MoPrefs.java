@@ -10,6 +10,7 @@ public class MoPrefs {
   static final double SHOOTER_HOOD_POSITION_TOLERANCE = 2;
   static final double SHOOTER_GATE_SETPOINT = 1;
   static final double SHOOTER_FLYWHEEL_SETPOINT = 1;
+  static final double SHOOTER_PID_SETPOINT = 4500;
   static final double SHOOTER_FLYWHEEL_IDLE = 0.2;
   static final double STORAGE_SPEED = 0.75;
   static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
@@ -85,5 +86,9 @@ public class MoPrefs {
 
   public static double getAutoChooser() {
     return getDouble("AUTO_CHOOSER", AUTO_CHOOSER);
+  }
+
+  public static double getShooterPIDSetpoint() {
+    return getDouble("Shooter PID Setpoint", SHOOTER_PID_SETPOINT);
   }
 }

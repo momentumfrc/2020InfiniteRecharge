@@ -113,9 +113,15 @@ public class RobotContainer {
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
 
   private final Command shootCommand = new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
-      .withInterrupt(() -> shooterHoodSubsystem.getFullyDeployed() && shooterHoodSubsystem.hasReliableZero())
-      .andThen(new RunCommand(shooterSubsystem::shoot, shooterSubsystem)
-          .alongWith(new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)));
+      .alongWith(new RunCommand(shooterSubsystem::shoot, shooterSubsystem));
+
+  // private final Command shootCommand = new
+  // RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
+  // .withInterrupt(() -> shooterHoodSubsystem.getFullyDeployed() &&
+  // shooterHoodSubsystem.hasReliableZero())
+  // .andThen(new RunCommand(shooterSubsystem::shoot, shooterSubsystem)
+  // .alongWith(new RunCommand(shooterHoodSubsystem::deployHood,
+  // shooterHoodSubsystem)));
 
   private final ShootFromLine shootFromLine = new ShootFromLine(falconDriveSubsystem, shooterSubsystem,
       storageSubsystem, intakeSubsystem, shooterHoodSubsystem);

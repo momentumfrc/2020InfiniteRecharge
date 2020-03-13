@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
@@ -16,6 +17,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
@@ -37,18 +39,19 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final CANPIDController shooterPIDLeft = follower_shooterMAXLeft.getPIDController();
   private final CANPIDController shooterPIDRight = leader_shooterMAXRight.getPIDController();
+  private final CANEncoder shooterEncoder = leader_shooterMAXRight.getEncoder();
   /**
    * The Proportial Gain of the SparkMAX PIDF controller The weight of the
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private final double kP = 5e-2;
+  private final double kP = 5e-5;// 0.107;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private final double kI = 0;
+  private final double kI = 1e-6;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
@@ -64,11 +67,11 @@ public class ShooterSubsystem extends SubsystemBase {
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private final double kFF = 0.00156;
+  private final double kFF = 0.000156;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
-  private final double outputRange = 0.3;
+  private final double outputRange = 1;
   /**
    * The maximum current the motor controller is allowed to feed to the motor, in
    * amps.
@@ -79,9 +82,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final boolean maintainFlywheelAtIdle = false;
 
-  private ShooterHoodSubsystem shooterHood;
+  private final ShooterHoodSubsystem shooterHood;
 
-  public ShooterSubsystem(ShooterHoodSubsystem shooterHood) {
+  private double lastPos = 0;
+  private double lastTime = 0;
+  private double currVelocity = 0;
+
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood) {
 
     this.shooterHood = shooterHood;
 
@@ -96,6 +103,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterPIDRight.setD(kD, 0);
     shooterPIDLeft.setIZone(kIz, 0);
     shooterPIDRight.setIZone(kIz, 0);
+    shooterPIDLeft.setFF(kFF, 0);
+    shooterPIDRight.setFF(kFF, 0);
 
     shooterPIDLeft.setOutputRange(-outputRange, outputRange, 0);
     shooterPIDRight.setOutputRange(-outputRange, outputRange, 0);
@@ -113,6 +122,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
+
+    lastPos = shooterEncoder.getPosition();
+    lastTime = Timer.getFPGATimestamp();
   }
 
   public void shoot() {
@@ -121,12 +133,15 @@ public class ShooterSubsystem extends SubsystemBase {
     // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
     if (enablePID) {
-      shooterPIDRight.setReference(MoPrefs.getShooterFlywheelSetpoint(), ControlType.kVelocity);
+      shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
     } else {
       leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
     }
-    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed() && MoPrefs.getShooterFlywheelSetpoint()
-        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance()) {
+
+    final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
+    final boolean shooterWheelReady = MoPrefs.getShooterFlywheelSetpoint()
+        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance();
+    if (shooterHoodReady && shooterWheelReady) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
       shooterGate.set(0);
@@ -182,8 +197,27 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
+  private void updateVelocity() {
+    double currPos = shooterEncoder.getPosition();
+    double currTime = Timer.getFPGATimestamp();
+    double dPos = currPos - lastPos;
+    double dT = currTime - lastTime;
+    lastPos = currPos;
+    lastTime = currTime;
+    currVelocity = dPos / dT * 60;
+  }
+
+  /**
+   * @return the currVelocity
+   */
+  public double getCurrVelocity() {
+    return currVelocity;
+  }
+
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Flywheel Speed", leader_shooterMAXRight.getEncoder().getVelocity());
+    updateVelocity();
+    SmartDashboard.putNumber("Flywheel Speed", getCurrVelocity());
+    SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
   }
 }
