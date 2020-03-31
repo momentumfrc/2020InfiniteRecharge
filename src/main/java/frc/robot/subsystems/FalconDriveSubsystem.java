@@ -13,7 +13,6 @@ import org.usfirst.frc.team4999.utils.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.SensorCollection;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
@@ -25,9 +24,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final WPI_TalonFX leftRear = new WPI_TalonFX(FALCON_DRIVE_LEFT_REAR_CAN_ADDR);
   private final WPI_TalonFX rightFront = new WPI_TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
-
-  private final SensorCollection leftEnc = new SensorCollection(leftFront);
-  private final SensorCollection rightEnc = new SensorCollection(rightFront);
 
   private final boolean pidEnabled = false;
 

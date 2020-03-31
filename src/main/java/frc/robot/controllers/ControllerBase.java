@@ -1,10 +1,8 @@
 package frc.robot.controllers;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import org.usfirst.frc.team4999.controllers.LogitechF310;
-import org.usfirst.frc.team4999.utils.Utils;
 
 public class ControllerBase implements DriveController {
   protected final XboxController xbox;

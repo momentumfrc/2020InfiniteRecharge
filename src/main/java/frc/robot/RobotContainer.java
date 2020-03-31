@@ -11,7 +11,6 @@ import org.usfirst.frc.team4999.controllers.LogitechF310;
 import org.usfirst.frc.team4999.utils.MoPDP;
 
 import frc.robot.choosers.AutoChooser;
-import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.ClimberSubsystem;
