@@ -41,13 +41,19 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   private final double ENC_TICKS_PER_METER = 4278.215;
   /**
+   * The maximum acceleration allowed by the Motion Magic control mode, in encoder
+   * ticks per 100 ms per second. For example, a value of ~420 for this is roughly
+   * equivalent to 1 m/s^2.
+   */
+  private final int ACCELERATION_LIMIT = 854;
+  /**
    * @param DRIVE_BASE_WIDTH_INCHES The number of inches between wheels on the
    *                                drive base of the robot.
    */
   private final double DRIVE_BASE_WIDTH_INCHES = 26;
   /**
    * @param SPEED_LIMIT_METERS_PER_S The maximum individual wheel speed of the
-   *                                 robot in ft/s.
+   *                                 robot in m/s.
    */
   private final double SPEED_LIMIT_METERS_PER_S = 4;
   /**
@@ -56,25 +62,27 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   private final double TURN_LIMIT_RAD_PER_S = 4 * Math.PI;
   /**
-   * @param kP The Proportional Gain, used in PID to produce a linear curve.
+   * The Proportional Gain, used in PID to ramp velocity in relation to error.
    */
   private final double kP = 0;
   /**
-   * @param kI The Integral Gain, used in PID to produce a sinoid curve.
+   * The Integral Gain, used in PID to correct steady-state error and combat
+   * friction.
    */
   private final double kI = 0;
   /**
-   * @param kD The Differential Gain, used in PID to produce a parabolic curve.
+   * The Differential Gain, used in PID to dampen the output of the PID controller
+   * to reduce oscillations.
    */
   private final double kD = 0;
   /**
-   * @param kIz The Integral Zone, used in PID to control the maximum value of the
-   *            integral accumulator.
+   * The Integral Zone, used in PID to control the maximum value of the integral
+   * accumulator.
    */
   private final int kIz = 0;
   /**
-   * @param kF The Feed-Forward Gain, used in PID to anticipate future changes in
-   *           error and stabilize a PID curve.
+   * The Feed-Forward Gain, used in PID to anticipate future changes in error and
+   * stabilize a PID curve.
    */
   private final double kF = 1;
 
@@ -102,11 +110,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftFront.config_kD(0, kD);
     leftFront.config_IntegralZone(0, kIz);
     leftFront.config_kF(0, kF);
+    leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.config_kP(0, kP);
     rightFront.config_kI(0, kI);
     rightFront.config_kD(0, kD);
     rightFront.config_IntegralZone(0, kIz);
     rightFront.config_kF(0, kF);
+    rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
   }
 
   /**
@@ -120,7 +130,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       /**
        * Since moveRequest is from -1 to 1 and we need a value in meters per second to
        * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
-       * converted to ft/s.
+       * converted to m/s.
        */
       final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
       /**
@@ -147,21 +157,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
       /**
        * The variables that store the wheel speeds in TalonFX encoder ticks per
-       * second, as converted from m/s to ft/s.
+       * second, as converted from m/s to encoder ticks/s.
        */
       final double leftETPerS = metersToEncTicks(leftMPerS);
       final double rightETPerS = metersToEncTicks(rightMPerS);
-      leftFront.set(ControlMode.Velocity, leftETPerS);
-      rightFront.set(ControlMode.Velocity, rightETPerS);
+      leftFront.set(ControlMode.MotionMagic, leftETPerS);
+      rightFront.set(ControlMode.MotionMagic, rightETPerS);
     } else {
       leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
       rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
     }
-  }
-
-  public void resetEncoders() {
-    leftEnc.setQuadraturePosition(0, 0); // Resets both encoders so they count from zero.
-    rightEnc.setQuadraturePosition(0, 0);
   }
 
   /**
@@ -174,8 +179,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   /**
    * 
-   * @param ft The number of meters to be converted to encoder ticks.
-   * @return the number of encoder ticks that correspond to @param ft , assuming
+   * @param m The number of meters to be converted to encoder ticks.
+   * @return the number of encoder ticks that correspond to @param m , assuming
    *         6-inch wheels.
    */
   private double metersToEncTicks(final double m) {

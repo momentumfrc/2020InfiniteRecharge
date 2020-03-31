@@ -15,6 +15,8 @@ public class DriveToWall extends CommandBase {
     m_subsystem = subsystem;
     m_shooter = shooter;
     m_storage = storage;
+
+    addRequirements(subsystem, shooter, storage);
   }
 
   @Override

@@ -21,6 +21,8 @@ public class AutonDriveCommand extends CommandBase {
 
   private boolean met;
 
+  private double maxTurnRequest = 0.25;
+
   public AutonDriveCommand(DriveSubsystem subsystem, Limelight llight) {
     drive_subsystem = subsystem;
     limelight = llight;
@@ -42,7 +44,7 @@ public class AutonDriveCommand extends CommandBase {
     double distance;
 
     if (data.valid()) {
-      turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -0.25, 0.25);
+      turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -maxTurnRequest, maxTurnRequest);
       moveRequest = 0; // Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
       distance = data.dist();
       met = false; // data.targetMet();

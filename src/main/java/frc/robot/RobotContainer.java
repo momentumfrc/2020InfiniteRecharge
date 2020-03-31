@@ -10,10 +10,7 @@ package frc.robot;
 import org.usfirst.frc.team4999.controllers.LogitechF310;
 import org.usfirst.frc.team4999.utils.MoPDP;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import frc.robot.choosers.AutoChooser;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
@@ -32,18 +29,21 @@ import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.conditioners.CurvesConditioner;
 import frc.robot.subsystems.conditioners.DeadzoneConditioner;
 import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
-import frc.robot.utils.JoystickAnalogButton;
+import frc.robot.utils.MatchTimer;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ShootFromLine;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -53,11 +53,13 @@ import frc.robot.commands.ShootFromLine;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  // --------------------------------------Utilities-------------------------------------------
+  private final MatchTimer matchTimer;
   // --------------------------------------Shuffleboard----------------------------------------
-  public static final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
-  public static final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
-  public static final ShuffleboardTab testTab = Shuffleboard.getTab("Test Tune");
-  public static final ShuffleboardTab limelightTab = Shuffleboard.getTab("Limelight");
+  private final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
+  private final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
+  private final ShuffleboardTab testTab = Shuffleboard.getTab("Test Tune");
+  private final ShuffleboardTab limelightTab = Shuffleboard.getTab("Limelight");
 
   // ---------------------------------------Components----------------------------------------
   private final MoPDP powerDistributionPanel = new MoPDP();
@@ -84,7 +86,6 @@ public class RobotContainer {
   private final JoystickButton reverseRobot = new JoystickButton(xbox, XboxController.Button.kB.value);
 
   private final JoystickButton storageButton = new JoystickButton(f310, LogitechF310.Button.kX.value);
-
   // ----------------------------------------Conditioners--------------------------------------
   private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
@@ -113,18 +114,20 @@ public class RobotContainer {
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
 
   private final Command shootCommand = new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
-      .alongWith(new RunCommand(shooterSubsystem::shoot, shooterSubsystem));
+      .alongWith(new RunCommand(shooterSubsystem::shoot, shooterSubsystem))
+      .alongWith(new RunCommand(limelight::lightsOn, limelight));
 
-  // private final Command shootCommand = new
-  // RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
-  // .withInterrupt(() -> shooterHoodSubsystem.getFullyDeployed() &&
-  // shooterHoodSubsystem.hasReliableZero())
-  // .andThen(new RunCommand(shooterSubsystem::shoot, shooterSubsystem)
-  // .alongWith(new RunCommand(shooterHoodSubsystem::deployHood,
-  // shooterHoodSubsystem)));
+  private final Command shootIdleAutoCommand = new RunCommand(shooterSubsystem::idle, shooterSubsystem)
+      .alongWith(new RunCommand(shooterHoodSubsystem::stowHood, shooterHoodSubsystem));
 
   private final ShootFromLine shootFromLine = new ShootFromLine(falconDriveSubsystem, shooterSubsystem,
       storageSubsystem, intakeSubsystem, shooterHoodSubsystem);
+
+  private final Command autoShootFromLine = new FunctionalCommand(shooterSubsystem::getCurrVelocity,
+      shooterSubsystem::shoot, shooterSubsystem::idle, () -> matchTimer.getAfterTime(5) == true, shooterSubsystem);
+  // ----------------------------------------Choosers------------------------------------------
+  private final AutoChooser autoChooser = new AutoChooser(matchTab, autonDriveCommand, driveToWall, shootFromLine,
+      shootFromWall);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -186,7 +189,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return shootFromLine;
+    return autoChooser.getSelected();
   }
 
   public Command getTeleopCommand() {

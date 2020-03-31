@@ -66,8 +66,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
     reliableZero = false;
     stopHood();
-
-    CommandScheduler.getInstance().registerSubsystem(this);
   }
 
   /*

@@ -11,9 +11,9 @@ import frc.robot.utils.SafeSP;
 
 public class StorageSubsystem extends SubsystemBase {
 
-  private final double SAFE_SPEED = 1;
-  private final int SAFE_COOLDOWN_MS = 0;
-  private final double UNSAFE_CURRENT_LIMIT = 30; // amperes
+  private final double SAFE_SPEED = 0.8;
+  private final int SAFE_COOLDOWN_MS = 200;
+  private final double UNSAFE_CURRENT_LIMIT = 25; // amperes
   private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
 
   private final VictorSP storage;
@@ -31,7 +31,7 @@ public class StorageSubsystem extends SubsystemBase {
   }
 
   public void reverse() {
-    speed = -1 * MoPrefs.getStorageSpeed();
+    speed = -MoPrefs.getStorageSpeed();
     storage.set(speed);
   }
 

@@ -92,8 +92,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     this.shooterHood = shooterHood;
 
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
-
     // Applies the previously-declared values to the PIDF controller.
     shooterPIDLeft.setP(kP, 0);
     shooterPIDRight.setP(kP, 0);
@@ -130,7 +128,6 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot() {
     // fast shooter wheel
     // run gate if both of "" are good
-    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
     if (enablePID) {
       shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
@@ -150,7 +147,6 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shootAuto() {
-    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     shooterHood.deployHood();
 
     leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
@@ -167,7 +163,6 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterGate.stopMotor();
-    // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
 
     if (maintainFlywheelAtIdle) {
       if (enablePID) {

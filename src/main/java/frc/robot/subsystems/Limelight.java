@@ -47,6 +47,14 @@ public class Limelight extends SubsystemBase {
     return lastData;
   }
 
+  public void lightsOff() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+  }
+
+  public void lightsOn() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+  }
+
   @Override
   public void periodic() {
     lastData = new LimelightData(validEntry.getDouble(0), xCoordEntry.getDouble(0), yCoordEntry.getDouble(0));

@@ -57,7 +57,7 @@ public class MoPrefs {
   }
 
   public static double getShooterHoodPositionTolerance() {
-    return 2;
+    return getDouble("SHOOTER_HOOD_POS_TOLERANCE", SHOOTER_HOOD_POSITION_TOLERANCE);
   }
 
   public static double getShooterGateSetpoint() {
@@ -73,7 +73,7 @@ public class MoPrefs {
   }
 
   public static double getIntakeRollerAccRamp() {
-    return 0.1;
+    return getDouble("INTAKE_ROLLER_ACC_RAMP", INTAKE_ROLLER_ACC_RAMP);
   }
 
   public static double getStorageSpeed() {
