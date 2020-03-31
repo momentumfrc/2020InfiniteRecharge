@@ -14,9 +14,6 @@ import frc.robot.choosers.AutoChooser;
 import frc.robot.commands.AutoStowClimberCommand;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.DriveToWall;
-import frc.robot.commands.ShootFromWall;
-import frc.robot.commands.ShootFromLine;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
@@ -29,7 +26,6 @@ import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.conditioners.CurvesConditioner;
 import frc.robot.subsystems.conditioners.DeadzoneConditioner;
 import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
-import frc.robot.utils.MatchTimer;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
 
@@ -38,10 +34,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -54,7 +48,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // --------------------------------------Utilities-------------------------------------------
-  private final MatchTimer matchTimer;
+  // private final MatchTimer matchTimer;
   // --------------------------------------Shuffleboard----------------------------------------
   private final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
   private final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
@@ -104,27 +98,28 @@ public class RobotContainer {
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  private final ShootFromWall shootFromWall = new ShootFromWall(falconDriveSubsystem, shooterSubsystem,
-      storageSubsystem);
   // private final Command autonomousCommand = new
   // ParallelCommandGroup(autonDriveCommand,
   // new AutoStowClimberCommand(climberSubsystem));
-  private final DriveToWall driveToWall = new DriveToWall(falconDriveSubsystem, shooterSubsystem, storageSubsystem);
-
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
 
   private final Command shootCommand = new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
       .alongWith(new RunCommand(shooterSubsystem::shoot, shooterSubsystem))
       .alongWith(new RunCommand(limelight::lightsOn, limelight));
 
-  private final Command shootIdleAutoCommand = new RunCommand(shooterSubsystem::idle, shooterSubsystem)
-      .alongWith(new RunCommand(shooterHoodSubsystem::stowHood, shooterHoodSubsystem));
+  private final Command shootFromLine = new ParallelCommandGroup(
+      new RunCommand(shooterSubsystem::shoot, shooterSubsystem).withTimeout(10),
+      new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem).withTimeout(10),
+      new RunCommand(intakeSubsystem::runIntakeFwd, intakeSubsystem).withTimeout(10)
+          .andThen(new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0), falconDriveSubsystem)));
 
-  private final ShootFromLine shootFromLine = new ShootFromLine(falconDriveSubsystem, shooterSubsystem,
-      storageSubsystem, intakeSubsystem, shooterHoodSubsystem);
+  private final Command shootFromWall = new ParallelCommandGroup(
+      new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5).andThen(
+          new RunCommand(shooterSubsystem::shoot, shooterSubsystem),
+          new RunCommand(() -> shooterHoodSubsystem.moveHood(60), shooterHoodSubsystem),
+          new RunCommand(storageSubsystem::run, storageSubsystem)));
 
-  private final Command autoShootFromLine = new FunctionalCommand(shooterSubsystem::getCurrVelocity,
-      shooterSubsystem::shoot, shooterSubsystem::idle, () -> matchTimer.getAfterTime(5) == true, shooterSubsystem);
+  private final Command driveToWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5);
   // ----------------------------------------Choosers------------------------------------------
   private final AutoChooser autoChooser = new AutoChooser(matchTab, autonDriveCommand, driveToWall, shootFromLine,
       shootFromWall);
