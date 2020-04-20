@@ -16,7 +16,6 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
@@ -83,10 +82,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final ShooterHoodSubsystem shooterHood;
 
-  private double lastPos = 0;
-  private double lastTime = 0;
-  private double currVelocity = 0;
-
   public ShooterSubsystem(final ShooterHoodSubsystem shooterHood) {
 
     this.shooterHood = shooterHood;
@@ -119,9 +114,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
-
-    lastPos = shooterEncoder.getPosition();
-    lastTime = Timer.getFPGATimestamp();
   }
 
   public void shoot() {
@@ -191,27 +183,9 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
-  private void updateVelocity() {
-    double currPos = shooterEncoder.getPosition();
-    double currTime = Timer.getFPGATimestamp();
-    double dPos = currPos - lastPos;
-    double dT = currTime - lastTime;
-    lastPos = currPos;
-    lastTime = currTime;
-    currVelocity = dPos / dT * 60;
-  }
-
-  /**
-   * @return the currVelocity
-   */
-  public double getCurrVelocity() {
-    return currVelocity;
-  }
-
   @Override
   public void periodic() {
-    updateVelocity();
-    SmartDashboard.putNumber("Flywheel Speed", getCurrVelocity());
+    SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
     SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
   }
 }

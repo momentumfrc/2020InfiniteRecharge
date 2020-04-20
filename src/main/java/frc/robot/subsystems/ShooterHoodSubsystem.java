@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
-
+import frc.robot.utils.SimmableCANSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
-  private final CANSparkMax hoodNEO = new CANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
+  private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
       CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANDigitalInput hoodLimitSwitch = hoodNEO
       .getReverseLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen);
