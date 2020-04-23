@@ -84,6 +84,8 @@ sonarqube {
     property "sonar.projectKey", "momentumfrc_2020InfiniteRecharge"
     property "sonar.organization", "momentumfrc"
     property "sonar.host.url", "https://sonarcloud.io"
+
+    property "sonar.exclusions", "src/java/frc/robot/Robot.java, src/java/frc/robot/Main.java"
     
     property "sonar.projectName", "2020InfiniteRecharge"
     property "sonar.links.homepage", "https://github.com/momentumfrc/2020InfiniteRecharge"
