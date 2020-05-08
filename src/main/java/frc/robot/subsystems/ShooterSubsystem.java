@@ -18,8 +18,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import org.usfirst.frc.team4999.utils.Utils;
 
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
@@ -79,13 +82,12 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private final int currentLimit = 40;
 
-  private final boolean enablePID = true;
-
-  private final boolean maintainFlywheelAtIdle = false;
+  private boolean enablePID = true;
+  private final ShuffleboardTab tab;
 
   private final ShooterHoodSubsystem shooterHood;
 
-  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood) {
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
 
     this.shooterHood = shooterHood;
 
@@ -117,6 +119,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
+
+    this.tab = tab;
   }
 
   public void shoot() {
@@ -130,7 +134,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
-    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterFlywheelSetpoint() - getCurrVelocity()) < MoPrefs
+    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
         .getShooterFlywheelTolerance();
     if (shooterHoodReady && shooterWheelReady) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
@@ -144,29 +148,26 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop gate
     // slow shooter wheel
     shooterGate.stopMotor();
-
-    if (maintainFlywheelAtIdle) {
-      if (enablePID) {
-        shooterPIDRight.setReference(MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
-      } else {
-        leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelIdle());
-      }
-    } else {
-      leader_shooterMAXRight.stopMotor();
-    }
+    leader_shooterMAXRight.stopMotor();
   }
 
   public void purge() {
     // stow hood
     // reverse gate
     // reverse shooter wheel
-    leader_shooterMAXRight.set(-MoPrefs.getShooterFlywheelIdle());
-    shooterGate.set(-MoPrefs.getShooterGateSetpoint());
+    leader_shooterMAXRight.set(-0.2);
+    shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
     SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
+
+    NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
+        .getEntry();
+    shooterPIDchooser.addListener(notice -> {
+      enablePID = notice.value.getBoolean();
+    }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 }

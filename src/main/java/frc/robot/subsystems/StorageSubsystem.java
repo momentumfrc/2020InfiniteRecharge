@@ -26,8 +26,7 @@ public class StorageSubsystem extends SubsystemBase {
   }
 
   public void run() {
-    speed = MoPrefs.getStorageSpeed();
-    storage.set(speed);
+    storage.set(MoPrefs.getStorageSpeed());
   }
 
   public void reverse() {

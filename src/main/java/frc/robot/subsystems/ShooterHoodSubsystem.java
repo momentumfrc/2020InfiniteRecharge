@@ -72,7 +72,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
    * public void lowerShotAngle() { --hoodSetpoint; }
    */
 
-  public void moveHood(double posRequest) {
+  public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
     hoodPID.setReference(posRequest, ControlType.kPosition, 0);
   }

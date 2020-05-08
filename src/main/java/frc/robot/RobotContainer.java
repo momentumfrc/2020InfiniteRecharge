@@ -27,10 +27,11 @@ import frc.robot.subsystems.conditioners.DeadzoneConditioner;
 import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
-
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -91,7 +92,7 @@ public class RobotContainer {
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem);
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
   private final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
@@ -115,7 +116,7 @@ public class RobotContainer {
   private final Command shootFromWall = new ParallelCommandGroup(
       new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5).andThen(
           new RunCommand(shooterSubsystem::shoot, shooterSubsystem),
-          new RunCommand(() -> shooterHoodSubsystem.moveHood(60), shooterHoodSubsystem),
+          new RunCommand(() -> shooterHoodSubsystem.setHoodPosition(60), shooterHoodSubsystem),
           new RunCommand(storageSubsystem::run, storageSubsystem)));
 
   private final Command driveToWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5);
