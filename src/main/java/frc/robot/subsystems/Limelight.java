@@ -76,7 +76,7 @@ public class Limelight extends SubsystemBase {
       this.yCoord = yAngle;
 
       double height = Constants.TARGET_HEIGHT - Constants.CAMERA_HEIGHT;
-      double slope = Math.tan(Math.toRadians(Constants.CAMERA_ANGLE) + Math.toRadians(yAngle));
+      double slope = Math.tan(Math.toRadians(Constants.CAMERA_ANGLE + yAngle));
       if (slope > 0) {
         dist = height / slope;
       } else {

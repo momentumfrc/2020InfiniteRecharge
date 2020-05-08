@@ -121,17 +121,27 @@ public class ShooterSubsystem extends SubsystemBase {
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
 
     this.tab = tab;
+
+    NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
+        .getEntry();
+    shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
   public void shoot() {
     // fast shooter wheel
+    // deploy hood
     // run gate if both of "" are good
-    double dumbSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
+
+    // 5500 RPM is the approximate max free speed of the shooter flywheel.
+    double openLoopSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
     if (enablePID) {
       shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
     } else {
-      leader_shooterMAXRight.set(dumbSetpoint);
+      leader_shooterMAXRight.set(openLoopSetpoint);
     }
+
+    shooterHood.deployHood();
 
     final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
     final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
@@ -141,7 +151,29 @@ public class ShooterSubsystem extends SubsystemBase {
     } else {
       shooterGate.set(0);
     }
+  }
 
+  public void shootFromWall() {
+    // fast flywheel
+    // deploy hood at lower angle
+    // run gate if both of "" are good
+    double openLoopSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
+    if (enablePID) {
+      shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
+    } else {
+      leader_shooterMAXRight.set(openLoopSetpoint);
+    }
+
+    shooterHood.setHoodPosition(MoPrefs.getShootFromWallHoodSetpoint());
+
+    final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
+    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
+        .getShooterFlywheelTolerance();
+    if (shooterHoodReady && shooterWheelReady) {
+      shooterGate.set(MoPrefs.getShooterGateSetpoint());
+    } else {
+      shooterGate.set(0);
+    }
   }
 
   public void idle() {
@@ -163,10 +195,5 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
     SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
-
-    NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
-        .getEntry();
-    shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 }

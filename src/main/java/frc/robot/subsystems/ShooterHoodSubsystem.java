@@ -40,6 +40,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double maxVel = 1;
   private double maxAcc = 0.1;
 
+  private double currSetpoint;
+
   public ShooterHoodSubsystem() {
     hoodPID.setP(kP);
     hoodPID.setI(kI);
@@ -69,12 +71,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
     hoodPID.setReference(posRequest, ControlType.kPosition, 0);
+    currSetpoint = posRequest;
   }
 
   public void deployHood() {
-    if (reliableZero)
+    if (reliableZero) {
       hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
-    else
+      currSetpoint = MoPrefs.getShooterHoodSetpoint();
+    } else
       hoodNEO.set(SAFE_STOW_SPEED);
   }
 
@@ -98,7 +102,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public boolean getFullyDeployed() {
-    return Math.abs(getHoodPos() - MoPrefs.getShooterHoodSetpoint()) < MoPrefs.getShooterHoodPositionTolerance();
+    return Math.abs(getHoodPos() - currSetpoint) < MoPrefs.getShooterHoodPositionTolerance();
   }
 
   @Override

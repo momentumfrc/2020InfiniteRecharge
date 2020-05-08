@@ -12,7 +12,8 @@ public class MoPrefs {
   static final double SHOOTER_PID_SETPOINT = 4500;
   static final double STORAGE_SPEED = 0.75;
   static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
-  static final double AUTO_CHOOSER = 0;
+  static final double SHOOT_FROM_WALL_HOOD_SETPOINT = 60; // The encoder setpoint that will reliably hit the Outer Port
+                                                          // when the robot is sitting up against the Power Port.
 
   private static boolean safePrefs = false;
 
@@ -74,11 +75,11 @@ public class MoPrefs {
     return getDouble("FLYWHEEL_TOLER", SHOOTER_FLYWHEEL_TOLERANCE);
   }
 
-  public static double getAutoChooser() {
-    return getDouble("AUTO_CHOOSER", AUTO_CHOOSER);
-  }
-
   public static double getShooterPIDSetpoint() {
     return getDouble("Shooter PID Setpoint", SHOOTER_PID_SETPOINT);
+  }
+
+  public static double getShootFromWallHoodSetpoint() {
+    return getDouble("Shoot From Wall Hood Setpoint", SHOOT_FROM_WALL_HOOD_SETPOINT);
   }
 }
