@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants;
+
 public class Limelight extends SubsystemBase {
   private final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   private final NetworkTableEntry xCoordEntry = table.getEntry("tx");
@@ -25,9 +27,6 @@ public class Limelight extends SubsystemBase {
   public static final double X_ERR = 0;
   public static final double Y_ERR = 0;
 
-  private static final double CAMERA_ANGLE = 56.5;
-  private static final double CAMERA_HEIGHT = 23.6;
-  private static final double TARGET_HEIGHT = 84;
   private static NetworkTableEntry wx, wy, wv, wa, wd;
   private LimelightData lastData;
 
@@ -71,8 +70,8 @@ public class Limelight extends SubsystemBase {
       this.xCoord = xAngle;
       this.yCoord = yAngle;
 
-      double height = TARGET_HEIGHT - CAMERA_HEIGHT;
-      double slope = Math.tan(CAMERA_ANGLE + yAngle);
+      double height = Constants.TARGET_HEIGHT - Constants.CAMERA_HEIGHT;
+      double slope = Math.tan(Math.toRadians(Constants.CAMERA_ANGLE) + Math.toRadians(yAngle));
       if (slope > 0) {
         dist = height / slope;
       } else {
@@ -108,10 +107,8 @@ public class Limelight extends SubsystemBase {
 
     public boolean targetMet() {
       if (valid()) {
-        double x = Math.abs(xCoord());
-        double y = Math.abs(yCoord());
         double d = Math.abs(dist() - DIST_ERR);
-        if (x <= X_ERR && y <= Y_ERR && d <= TARGET_DIST) {
+        if (d <= TARGET_DIST) {
           return true;
         }
       }

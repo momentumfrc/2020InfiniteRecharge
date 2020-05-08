@@ -28,8 +28,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final double kD = 0;
   private final double kIz = 0;
   private final double kFF = 0;
-  private final double kMaxOutput = 1.0;
-  private final double kMinOutput = -1.0;
+  private final double kOutputRange = 1.0;
   private final double allowedErr = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
@@ -47,7 +46,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPID.setD(kD);
     hoodPID.setIZone(kIz);
     hoodPID.setFF(kFF);
-    hoodPID.setOutputRange(kMinOutput, kMaxOutput);
+    hoodPID.setOutputRange(-kOutputRange, kOutputRange);
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
@@ -112,11 +111,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
     SmartDashboard.putNumber("pose", hoodPos);
-    if (!reliableZero) {
-      if (hoodLimitSwitch.get()) {
-        zeroHood();
-        reliableZero = true;
-      }
+    if (hoodLimitSwitch.get()) {
+      zeroHood();
+      reliableZero = true;
     }
   }
 

@@ -91,7 +91,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // If the robot drives backwards, flip both
     leftFront.setInverted(true);
     leftRear.setInverted(true);
-    rightFront.setInverted(false);
 
     // Set the braking mode
     leftFront.setNeutralMode(NeutralMode.Brake);

@@ -16,6 +16,9 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+
+import org.usfirst.frc.team4999.utils.Utils;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
@@ -119,35 +122,22 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot() {
     // fast shooter wheel
     // run gate if both of "" are good
-
+    double dumbSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
     if (enablePID) {
       shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
     } else {
-      leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
+      leader_shooterMAXRight.set(dumbSetpoint);
     }
 
     final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
-    final boolean shooterWheelReady = MoPrefs.getShooterFlywheelSetpoint()
-        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance();
+    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterFlywheelSetpoint() - getCurrVelocity()) < MoPrefs
+        .getShooterFlywheelTolerance();
     if (shooterHoodReady && shooterWheelReady) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
       shooterGate.set(0);
     }
 
-  }
-
-  public void shootAuto() {
-    shooterHood.deployHood();
-
-    leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelSetpoint());
-
-    if (shooterHood.hasReliableZero() && shooterHood.getFullyDeployed() && MoPrefs.getShooterFlywheelSetpoint()
-        - leader_shooterMAXRight.getEncoder().getVelocity() < MoPrefs.getShooterFlywheelTolerance()) {
-      shooterGate.set(MoPrefs.getShooterGateSetpoint());
-    } else {
-      shooterGate.set(0);
-    }
   }
 
   public void idle() {
@@ -162,11 +152,7 @@ public class ShooterSubsystem extends SubsystemBase {
         leader_shooterMAXRight.set(MoPrefs.getShooterFlywheelIdle());
       }
     } else {
-      if (enablePID) {
-        shooterPIDRight.setReference(0, ControlType.kVelocity);
-      } else {
-        leader_shooterMAXRight.stopMotor();
-      }
+      leader_shooterMAXRight.stopMotor();
     }
   }
 
@@ -174,13 +160,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // stow hood
     // reverse gate
     // reverse shooter wheel
-    if (enablePID) {
-      shooterPIDRight.setReference(-1 * MoPrefs.getShooterFlywheelIdle(), ControlType.kVelocity);
-    } else {
-      leader_shooterMAXRight.set(-1 * MoPrefs.getShooterFlywheelIdle());
-    }
-
-    shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
+    leader_shooterMAXRight.set(-MoPrefs.getShooterFlywheelIdle());
+    shooterGate.set(-MoPrefs.getShooterGateSetpoint());
   }
 
   @Override

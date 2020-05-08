@@ -28,10 +28,8 @@ public class IntakeSubsystem extends SubsystemBase {
   private final VictorSP intakeSP;
   private final VictorSP intakeSP2;
 
-  private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
-      Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
-  private final DoubleSolenoid intakePistonR = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_RT_DEPLOY,
-      Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
+  private final DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_DEPLOY,
+      Constants.INTAKE_PISTON_PCM_CHAN_STOW);
 
   public boolean isLowered = false;
   private double lastPower;
@@ -84,14 +82,12 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void raiseIntake() {
-    intakePistonL.set(stow);
-    intakePistonR.set(stow);
+    intakePiston.set(stow);
     isLowered = false;
   }
 
   public void lowerIntake() {
-    intakePistonL.set(deploy);
-    intakePistonR.set(deploy);
+    intakePiston.set(deploy);
     isLowered = true;
   }
 

@@ -31,10 +31,8 @@ public final class Constants {
   public static final int SPARKMAX_SHOOTER_HOOD_CAN_ADDR = 3;
 
   // Pneumatic solenoid addresses
-  public static final int INTAKE_PISTON_PCM_CHAN_LF_DEPLOY = 0;
-  public static final int INTAKE_PISTON_PCM_CHAN_LF_STOW = 1;
-  public static final int INTAKE_PISTON_PCM_CHAN_RT_DEPLOY = 2;
-  public static final int INTAKE_PISTON_PCM_CHAN_RT_STOW = 3;
+  public static final int INTAKE_PISTON_PCM_CHAN_DEPLOY = 0;
+  public static final int INTAKE_PISTON_PCM_CHAN_STOW = 1;
 
   // Brushed PWM addresses
   public static final int INTAKE_VICTORSP_PWM_CHAN = 0;
@@ -56,4 +54,10 @@ public final class Constants {
 
   // LEDs
   public static final int ADDRESSABLE_LED_LENGTH = 50;
+
+  // Limelight constants
+  public static final double CAMERA_ANGLE = 56.5;
+  public static final double CAMERA_HEIGHT = 23.6;
+  public static final double TARGET_HEIGHT = 84;
+
 }
