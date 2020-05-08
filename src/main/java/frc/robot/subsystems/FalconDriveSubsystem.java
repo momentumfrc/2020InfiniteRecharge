@@ -41,7 +41,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * ticks per 100 ms per second. For example, a value of ~420 for this is roughly
    * equivalent to 1 m/s^2.
    */
-  private final int ACCELERATION_LIMIT = 854;
+  private static final int ACCELERATION_LIMIT = 854;
   /**
    * @param DRIVE_BASE_WIDTH_INCHES The number of inches between wheels on the
    *                                drive base of the robot.

@@ -27,11 +27,10 @@ import frc.robot.subsystems.conditioners.DeadzoneConditioner;
 import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
 import frc.robot.utils.MoPrefs;
 import frc.robot.controllers.ControllerBase;
-import edu.wpi.first.networktables.NetworkTableEntry;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -47,8 +46,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // --------------------------------------Utilities-------------------------------------------
-  // private final MatchTimer matchTimer;
   // --------------------------------------Shuffleboard----------------------------------------
   private final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
   private final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
@@ -98,9 +95,7 @@ public class RobotContainer {
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  // private final Command autonomousCommand = new
-  // ParallelCommandGroup(autonDriveCommand,
-  // new AutoStowClimberCommand(climberSubsystem));
+
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
 
   private final Command shootCommand = new RunCommand(shooterHoodSubsystem::deployHood, shooterHoodSubsystem)
@@ -166,9 +161,6 @@ public class RobotContainer {
     shooterShoot.whileHeld(shootCommand);
 
     // --------------------------------------Storage------------------------------------------------
-
-    // shooterShoot.whenPressed(new InstantCommand(shooterSubsystem::shoot,
-    // shooterSubsystem, shooterHoodSubsystem));
 
     // Purge also reverses storage and intake
     purge.whileHeld(new RunCommand(shooterSubsystem::purge, shooterSubsystem, shooterHoodSubsystem))

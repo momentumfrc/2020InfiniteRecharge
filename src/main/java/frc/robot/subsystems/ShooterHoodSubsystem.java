@@ -23,13 +23,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private final double kP = 0.15;
-  private final double kI = 1e-6;
-  private final double kD = 0;
-  private final double kIz = 0;
-  private final double kFF = 0;
-  private final double kOutputRange = 1.0;
-  private final double allowedErr = 0;
+  private static final double kP = 0.15;
+  private static final double kI = 1e-6;
+  private static final double kD = 0;
+  private static final double kIz = 0;
+  private static final double kFF = 0;
+  private static final double kOutputRange = 1.0;
+  private static final double allowedErr = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
 
@@ -65,12 +65,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     reliableZero = false;
     stopHood();
   }
-
-  /*
-   * public void raiseShotAngle() { ++hoodSetpoint; }
-   * 
-   * public void lowerShotAngle() { --hoodSetpoint; }
-   */
 
   public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.

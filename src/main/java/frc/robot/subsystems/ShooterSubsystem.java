@@ -49,38 +49,38 @@ public class ShooterSubsystem extends SubsystemBase {
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private final double kP = 5e-5;// 0.107;
+  private static final double kP = 5e-5;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private final double kI = 1e-6;
+  private static final double kI = 1e-6;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
    * by this value.
    */
-  private final double kD = 0;
+  private static final double kD = 0;
   /**
    * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
    * will reset once it hits this value.
    */
-  private final double kIz = 0;
+  private static final double kIz = 0;
   /**
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private final double kFF = 0.000156;
+  private static final double kFF = 0.000156;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
-  private final double outputRange = 1;
+  private static final double outputRange = 1;
   /**
    * The maximum current the motor controller is allowed to feed to the motor, in
    * amps.
    */
-  private final int currentLimit = 40;
+  private static final int currentLimit = 40;
 
   private boolean enablePID = true;
   private final ShuffleboardTab tab;
@@ -166,8 +166,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
         .getEntry();
-    shooterPIDchooser.addListener(notice -> {
-      enablePID = notice.value.getBoolean();
-    }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+    shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 }

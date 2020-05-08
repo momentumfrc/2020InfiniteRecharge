@@ -39,7 +39,6 @@ public final class Constants {
   public static final int INTAKE_VICTORSP_PWM_CHAN_2 = 1;
   public static final int STORAGE_VICTORSP_PWM_CHAN = 2;
   public static final int SHOOTER_VICTORSP_PWM_CHAN = 3;
-  // public static final int CONTROLPANEL_VICTORSP_PWM_CHAN = 3;
   public static final int CLIMBER_VICTORSP_PWM_CHAN = 4;
   public static final int ADDRESSABLE_LED_PWM_ADDRESS = 5;
 

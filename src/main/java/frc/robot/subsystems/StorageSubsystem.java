@@ -41,5 +41,6 @@ public class StorageSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    // Nothing to do, so don't do anything
   }
 }

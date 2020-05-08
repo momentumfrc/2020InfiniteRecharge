@@ -27,7 +27,12 @@ public class Limelight extends SubsystemBase {
   public static final double X_ERR = 0;
   public static final double Y_ERR = 0;
 
-  private static NetworkTableEntry wx, wy, wv, wa, wd;
+  private NetworkTableEntry wx;
+  private NetworkTableEntry wy;
+  private NetworkTableEntry wv;
+  private NetworkTableEntry wa;
+  private NetworkTableEntry wd;
+
   private LimelightData lastData;
 
   public Limelight(ShuffleboardTab tab, ShuffleboardTab matchTab, int col, int row) {
@@ -47,11 +52,11 @@ public class Limelight extends SubsystemBase {
   }
 
   public void lightsOff() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    table.getEntry("ledMode").setNumber(1);
   }
 
   public void lightsOn() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    table.getEntry("ledMode").setNumber(3);
   }
 
   @Override
@@ -86,7 +91,6 @@ public class Limelight extends SubsystemBase {
       wa.setDouble(slope);
       wd.setDouble(dist);
 
-      // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     }
 
     public double dist() {
