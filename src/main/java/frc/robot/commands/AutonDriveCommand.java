@@ -45,9 +45,9 @@ public class AutonDriveCommand extends CommandBase {
 
     if (data.valid()) {
       turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -maxTurnRequest, maxTurnRequest);
-      moveRequest = 0; // Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
+      moveRequest = Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
       distance = data.dist();
-      met = false; // data.targetMet();
+      met = data.targetMet();
 
     } else {
       turnRequest = 0;
@@ -56,7 +56,7 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
-    drive_subsystem.drive(moveRequest, turnRequest);
+    drive_subsystem.drive(moveRequest * 0, turnRequest);
   }
 
   // Called once the command ends or is interrupted.

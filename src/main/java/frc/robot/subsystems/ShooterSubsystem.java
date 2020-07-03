@@ -49,38 +49,38 @@ public class ShooterSubsystem extends SubsystemBase {
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private static final double kP = 5e-5;
+  private static final double K_P = 5e-5;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private static final double kI = 1e-6;
+  private static final double K_I = 1e-6;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
    * by this value.
    */
-  private static final double kD = 0;
+  private static final double K_D = 0;
   /**
    * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
    * will reset once it hits this value.
    */
-  private static final double kIz = 0;
+  private static final double K_IZ = 0;
   /**
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private static final double kFF = 0.000156;
+  private static final double K_FF = 0.000156;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
-  private static final double outputRange = 1;
+  private static final double PID_OUTPUT_RANGE = 1;
   /**
    * The maximum current the motor controller is allowed to feed to the motor, in
    * amps.
    */
-  private static final int currentLimit = 40;
+  private static final int CURRENT_LIMIT = 40;
 
   private boolean enablePID = true;
   private final ShuffleboardTab tab;
@@ -92,25 +92,25 @@ public class ShooterSubsystem extends SubsystemBase {
     this.shooterHood = shooterHood;
 
     // Applies the previously-declared values to the PIDF controller.
-    shooterPIDLeft.setP(kP, 0);
-    shooterPIDRight.setP(kP, 0);
-    shooterPIDLeft.setI(kI, 0);
-    shooterPIDRight.setI(kI, 0);
-    shooterPIDLeft.setD(kD, 0);
-    shooterPIDRight.setD(kD, 0);
-    shooterPIDLeft.setIZone(kIz, 0);
-    shooterPIDRight.setIZone(kIz, 0);
-    shooterPIDLeft.setFF(kFF, 0);
-    shooterPIDRight.setFF(kFF, 0);
+    shooterPIDLeft.setP(K_P, 0);
+    shooterPIDRight.setP(K_P, 0);
+    shooterPIDLeft.setI(K_I, 0);
+    shooterPIDRight.setI(K_I, 0);
+    shooterPIDLeft.setD(K_D, 0);
+    shooterPIDRight.setD(K_D, 0);
+    shooterPIDLeft.setIZone(K_IZ, 0);
+    shooterPIDRight.setIZone(K_IZ, 0);
+    shooterPIDLeft.setFF(K_FF, 0);
+    shooterPIDRight.setFF(K_FF, 0);
 
-    shooterPIDLeft.setOutputRange(-outputRange, outputRange, 0);
-    shooterPIDRight.setOutputRange(-outputRange, outputRange, 0);
+    shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
+    shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
     follower_shooterMAXLeft.setIdleMode(IdleMode.kCoast);
     leader_shooterMAXRight.setIdleMode(IdleMode.kCoast);
-    follower_shooterMAXLeft.setSmartCurrentLimit(currentLimit);
-    leader_shooterMAXRight.setSmartCurrentLimit(currentLimit);
+    follower_shooterMAXLeft.setSmartCurrentLimit(CURRENT_LIMIT);
+    leader_shooterMAXRight.setSmartCurrentLimit(CURRENT_LIMIT);
 
     // The shooter should idle and run in the positive direction for normal
     // operation.

@@ -14,9 +14,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class FalconDriveSubsystem extends DriveSubsystem {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -25,17 +29,14 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final WPI_TalonFX rightFront = new WPI_TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
 
-  private final boolean pidEnabled = false;
+  private boolean enablePID = false;
 
   /**
-   * @param ENC_TICKS_PER_METER The number of TalonFX encoder ticks per meter that
-   *                            the robot drives on 6" wheels. Used to input ft/s
-   *                            into WPI_TalonFX.set(VelocityControl, double
-   *                            value), which takes its value in encoder ticks per
-   *                            second.
-   * 
+   * The number of TalonFX encoder ticks per meter that the robot drives on 6"
+   * wheels. Used to input ft/s into WPI_TalonFX.set(VelocityControl, double
+   * value), which takes its value in encoder ticks per second.
    */
-  private final double ENC_TICKS_PER_METER = 4278.215;
+  private static final double ENC_TICKS_PER_METER = 4278.215;
   /**
    * The maximum acceleration allowed by the Motion Magic control mode, in encoder
    * ticks per 100 ms per second. For example, a value of ~420 for this is roughly
@@ -43,49 +44,46 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   private static final int ACCELERATION_LIMIT = 854;
   /**
-   * @param DRIVE_BASE_WIDTH_INCHES The number of inches between wheels on the
-   *                                drive base of the robot.
+   * The number of inches between wheels on the drive base of the robot.
    */
-  private final double DRIVE_BASE_WIDTH_INCHES = 26;
+  private static final double DRIVE_BASE_WIDTH_INCHES = 26;
   /**
-   * @param SPEED_LIMIT_METERS_PER_S The maximum individual wheel speed of the
-   *                                 robot in m/s.
+   * The maximum individual wheel speed of the robot in m/s.
    */
-  private final double SPEED_LIMIT_METERS_PER_S = 4;
+  private static final double SPEED_LIMIT_METERS_PER_S = 4;
   /**
-   * @param TURN_LIMIT_RAD_PER_S The maximum safe angular velocity of the robot,
-   *                             in radians per second.
+   * The maximum safe angular velocity of the robot, in radians per second.
    */
-  private final double TURN_LIMIT_RAD_PER_S = 4 * Math.PI;
+  private static final double TURN_LIMIT_RAD_PER_S = 4 * Math.PI;
   /**
    * The Proportional Gain, used in PID to ramp velocity in relation to error.
    */
-  private final double kP = 0;
+  private static final double K_P = 0;
   /**
    * The Integral Gain, used in PID to correct steady-state error and combat
    * friction.
    */
-  private final double kI = 0;
+  private static final double K_I = 0;
   /**
    * The Differential Gain, used in PID to dampen the output of the PID controller
    * to reduce oscillations.
    */
-  private final double kD = 0;
+  private static final double K_D = 0;
   /**
    * The Integral Zone, used in PID to control the maximum value of the integral
    * accumulator.
    */
-  private final int kIz = 0;
+  private static final int K_IZ = 0;
   /**
    * The Feed-Forward Gain, used in PID to anticipate future changes in error and
    * stabilize a PID curve.
    */
-  private final double kF = 1;
+  private static final double K_FF = 1;
 
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
-  public FalconDriveSubsystem() {
+  public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
     // These should always be opposites
     // If the robot drives backwards, flip both
@@ -102,18 +100,22 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
     // Sets the PID configs for all motors.
-    leftFront.config_kP(0, kP);
-    leftFront.config_kI(0, kI);
-    leftFront.config_kD(0, kD);
-    leftFront.config_IntegralZone(0, kIz);
-    leftFront.config_kF(0, kF);
+    leftFront.config_kP(0, K_P);
+    leftFront.config_kI(0, K_I);
+    leftFront.config_kD(0, K_D);
+    leftFront.config_IntegralZone(0, K_IZ);
+    leftFront.config_kF(0, K_FF);
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
-    rightFront.config_kP(0, kP);
-    rightFront.config_kI(0, kI);
-    rightFront.config_kD(0, kD);
-    rightFront.config_IntegralZone(0, kIz);
-    rightFront.config_kF(0, kF);
+    rightFront.config_kP(0, K_P);
+    rightFront.config_kI(0, K_I);
+    rightFront.config_kD(0, K_D);
+    rightFront.config_IntegralZone(0, K_IZ);
+    rightFront.config_kF(0, K_FF);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
+
+    NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch).getEntry();
+    drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
   /**
@@ -123,7 +125,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    *                    joystick, from -1 to 1.
    */
   public void drive(final double moveRequest, final double turnRequest) {
-    if (pidEnabled) {
+    if (enablePID) {
       /**
        * Since moveRequest is from -1 to 1 and we need a value in meters per second to
        * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as

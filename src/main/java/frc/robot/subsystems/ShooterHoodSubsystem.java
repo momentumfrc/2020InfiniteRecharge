@@ -23,13 +23,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private static final double kP = 0.15;
-  private static final double kI = 1e-6;
-  private static final double kD = 0;
-  private static final double kIz = 0;
-  private static final double kFF = 0;
-  private static final double kOutputRange = 1.0;
-  private static final double allowedErr = 0;
+  private static final double K_P = 0.15;
+  private static final double K_I = 1e-6;
+  private static final double K_D = 0;
+  private static final double K_IZ = 0;
+  private static final double K_FF = 0;
+  private static final double PID_OUTPUT_RANGE = 1.0;
+  private static final double ALLOWED_ERROR = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
 
@@ -43,19 +43,19 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double currSetpoint;
 
   public ShooterHoodSubsystem() {
-    hoodPID.setP(kP);
-    hoodPID.setI(kI);
-    hoodPID.setD(kD);
-    hoodPID.setIZone(kIz);
-    hoodPID.setFF(kFF);
-    hoodPID.setOutputRange(-kOutputRange, kOutputRange);
+    hoodPID.setP(K_P);
+    hoodPID.setI(K_I);
+    hoodPID.setD(K_D);
+    hoodPID.setIZone(K_IZ);
+    hoodPID.setFF(K_FF);
+    hoodPID.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE);
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
     hoodPID.setSmartMotionMaxVelocity(maxVel, 0);
     hoodPID.setSmartMotionMaxAccel(maxAcc, 0);
     hoodPID.setSmartMotionMinOutputVelocity(minVel, 0);
-    hoodPID.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(ALLOWED_ERROR, 0);
 
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
@@ -78,8 +78,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     if (reliableZero) {
       hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
       currSetpoint = MoPrefs.getShooterHoodSetpoint();
-    } else
+    } else {
       hoodNEO.set(SAFE_STOW_SPEED);
+    }
   }
 
   public void stowHood() {
