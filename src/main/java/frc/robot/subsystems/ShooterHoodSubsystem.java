@@ -76,8 +76,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   public void deployHood() {
     if (reliableZero) {
-      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
       currSetpoint = MoPrefs.getShooterHoodSetpoint();
+      hoodPID.setReference(currSetpoint, ControlType.kPosition, 0);
     } else {
       hoodNEO.set(SAFE_STOW_SPEED);
     }

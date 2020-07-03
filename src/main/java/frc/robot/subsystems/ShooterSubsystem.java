@@ -81,6 +81,10 @@ public class ShooterSubsystem extends SubsystemBase {
    * amps.
    */
   private static final int CURRENT_LIMIT = 40;
+  /**
+   * The (rough) maximum free speed of the shooter flywheel, in RPM.
+   */
+  private static final int MAX_FREE_SPEED = 5500;
 
   private boolean enablePID = true;
   private final ShuffleboardTab tab;
@@ -128,46 +132,24 @@ public class ShooterSubsystem extends SubsystemBase {
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
-  public void shoot() {
+  public void shoot(double hoodSetpoint) {
     // fast shooter wheel
     // deploy hood
     // run gate if both of "" are good
 
-    // 5500 RPM is the approximate max free speed of the shooter flywheel.
-    double openLoopSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
+    double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
+
+    double openLoopSetpoint = getOpenLoopSetpoint(pidSetpoint);
     if (enablePID) {
-      shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
+      shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
     } else {
       leader_shooterMAXRight.set(openLoopSetpoint);
     }
 
-    shooterHood.deployHood();
+    shooterHood.setHoodPosition(hoodSetpoint);
 
     final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
-    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
-        .getShooterFlywheelTolerance();
-    if (shooterHoodReady && shooterWheelReady) {
-      shooterGate.set(MoPrefs.getShooterGateSetpoint());
-    } else {
-      shooterGate.set(0);
-    }
-  }
-
-  public void shootFromWall() {
-    // fast flywheel
-    // deploy hood at lower angle
-    // run gate if both of "" are good
-    double openLoopSetpoint = Utils.map(MoPrefs.getShooterPIDSetpoint(), -5500, 5500, -1, 1);
-    if (enablePID) {
-      shooterPIDRight.setReference(MoPrefs.getShooterPIDSetpoint(), ControlType.kVelocity);
-    } else {
-      leader_shooterMAXRight.set(openLoopSetpoint);
-    }
-
-    shooterHood.setHoodPosition(MoPrefs.getShootFromWallHoodSetpoint());
-
-    final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
-    final boolean shooterWheelReady = Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
+    final boolean shooterWheelReady = Math.abs(pidSetpoint - shooterEncoder.getVelocity()) < MoPrefs
         .getShooterFlywheelTolerance();
     if (shooterHoodReady && shooterWheelReady) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
@@ -178,17 +160,20 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void idle() {
     // stop gate
-    // slow shooter wheel
+    // stop shooter wheel
     shooterGate.stopMotor();
     leader_shooterMAXRight.stopMotor();
   }
 
   public void purge() {
-    // stow hood
     // reverse gate
     // reverse shooter wheel
     leader_shooterMAXRight.set(-0.2);
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
+  }
+
+  private double getOpenLoopSetpoint(double closedLoopSetpoint) {
+    return Utils.map(MoPrefs.getShooterPIDSetpoint(), -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
   }
 
   @Override
