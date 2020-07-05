@@ -56,7 +56,8 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
-    drive_subsystem.drive(moveRequest * 0, turnRequest);
+    // Don't move forward, for safety reasons.
+    drive_subsystem.drive(0, turnRequest);
   }
 
   // Called once the command ends or is interrupted.
