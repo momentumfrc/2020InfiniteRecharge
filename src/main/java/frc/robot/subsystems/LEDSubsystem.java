@@ -7,7 +7,6 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.animations.*;
 
 import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
 import static frc.robot.Constants.*;
 

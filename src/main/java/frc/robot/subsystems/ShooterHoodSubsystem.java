@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
@@ -22,14 +23,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private final double kP = 5e-5;
-  private final double kI = 1e-6;
-  private final double kD = 0;
-  private final double kIz = 0;
-  private final double kFF = 0.000156;
-  private final double kMaxOutput = 0.3;
-  private final double kMinOutput = -0.3;
-  private final double allowedErr = 0;
+  private static final double K_P = 0.15;
+  private static final double K_I = 1e-6;
+  private static final double K_D = 0;
+  private static final double K_IZ = 0;
+  private static final double K_FF = 0;
+  private static final double PID_OUTPUT_RANGE = 1.0;
+  private static final double ALLOWED_ERROR = 0;
 
   private final double SAFE_STOW_SPEED = -0.1;
 
@@ -40,47 +40,52 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double maxVel = 1;
   private double maxAcc = 0.1;
 
+  private double currSetpoint;
+
   public ShooterHoodSubsystem() {
-    hoodPID.setP(kP);
-    hoodPID.setI(kI);
-    hoodPID.setD(kD);
-    hoodPID.setIZone(kIz);
-    hoodPID.setFF(kFF);
-    hoodPID.setOutputRange(kMinOutput, kMaxOutput);
+    hoodPID.setP(K_P);
+    hoodPID.setI(K_I);
+    hoodPID.setD(K_D);
+    hoodPID.setIZone(K_IZ);
+    hoodPID.setFF(K_FF);
+    hoodPID.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE);
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
     hoodPID.setSmartMotionMaxVelocity(maxVel, 0);
     hoodPID.setSmartMotionMaxAccel(maxAcc, 0);
     hoodPID.setSmartMotionMinOutputVelocity(minVel, 0);
-    hoodPID.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(ALLOWED_ERROR, 0);
 
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
     hoodNEO.setIdleMode(IdleMode.kBrake);
     // The Hood needs to run in the negative direction *towards* the limit switch
     // If it runs the wrong way, flip this invert setting.
-    hoodNEO.setInverted(false);
+    hoodNEO.setInverted(true);
 
     reliableZero = false;
     stopHood();
   }
 
-  public void moveHood(double posRequest) {
+  public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
-    hoodPID.setReference(posRequest, ControlType.kSmartMotion, 0);
+    hoodPID.setReference(posRequest, ControlType.kPosition, 0);
+    currSetpoint = posRequest;
   }
 
   public void deployHood() {
-    if (reliableZero)
-      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kSmartMotion, 0);
-    else
+    if (reliableZero) {
+      currSetpoint = MoPrefs.getShooterHoodSetpoint();
+      hoodPID.setReference(currSetpoint, ControlType.kPosition, 0);
+    } else {
       hoodNEO.set(SAFE_STOW_SPEED);
+    }
   }
 
   public void stowHood() {
     if (reliableZero)
-      hoodPID.setReference(0, ControlType.kSmartMotion, 0);
+      hoodPID.setReference(0, ControlType.kPosition, 0);
     else
       hoodNEO.set(SAFE_STOW_SPEED);
   }
@@ -93,13 +98,18 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
+  public boolean hasReliableZero() {
+    return reliableZero;
+  }
+
   public boolean getFullyDeployed() {
-    return Math.abs(getHoodPos() - MoPrefs.getShooterHoodSetpoint()) < MoPrefs.getShooterHoodPositionTolerance();
+    return Math.abs(getHoodPos() - currSetpoint) < MoPrefs.getShooterHoodPositionTolerance();
   }
 
   @Override
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
+    SmartDashboard.putNumber("pose", hoodPos);
     if (hoodLimitSwitch.get()) {
       zeroHood();
       reliableZero = true;

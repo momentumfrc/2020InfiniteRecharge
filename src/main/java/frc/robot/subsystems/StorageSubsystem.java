@@ -11,9 +11,9 @@ import frc.robot.utils.SafeSP;
 
 public class StorageSubsystem extends SubsystemBase {
 
-  private final double SAFE_SPEED = 0;
-  private final int SAFE_COOLDOWN_MS = 1000;
-  private final double UNSAFE_CURRENT_LIMIT = 30; // amperes
+  private final double SAFE_SPEED = 0.8;
+  private final int SAFE_COOLDOWN_MS = 200;
+  private final double UNSAFE_CURRENT_LIMIT = 25; // amperes
   private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
 
   private final VictorSP storage;
@@ -22,23 +22,25 @@ public class StorageSubsystem extends SubsystemBase {
   public StorageSubsystem(MoPDP pdp) {
     storage = new SafeSP(Constants.STORAGE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
         .MakeOvercurrentMonitor(Constants.STORAGE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
-    stop();
+    storage.setInverted(false);
   }
 
   public void run() {
-    speed = MoPrefs.getStorageSpeed();
+    storage.set(MoPrefs.getStorageSpeed());
   }
 
   public void reverse() {
     speed = -MoPrefs.getStorageSpeed();
+    storage.set(speed);
   }
 
   public void stop() {
     speed = 0;
+    storage.set(speed);
   }
 
   @Override
   public void periodic() {
-    storage.set(speed);
+    // Nothing to do, so don't do anything
   }
 }
