@@ -87,7 +87,6 @@ public class ShooterSubsystem extends SubsystemBase {
   private static final int MAX_FREE_SPEED = 5500;
 
   private boolean enablePID = true;
-  private final ShuffleboardTab tab;
 
   private final ShooterHoodSubsystem shooterHood;
 
@@ -123,8 +122,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
-
-    this.tab = tab;
 
     NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
         .getEntry();

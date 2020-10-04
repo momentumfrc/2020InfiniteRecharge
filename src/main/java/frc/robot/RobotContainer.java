@@ -17,7 +17,6 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -48,7 +47,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // --------------------------------------Shuffleboard----------------------------------------
   private final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
-  private final ShuffleboardTab outreachTab = Shuffleboard.getTab("Outreach");
   private final ShuffleboardTab testTab = Shuffleboard.getTab("Test Tune");
   private final ShuffleboardTab limelightTab = Shuffleboard.getTab("Limelight");
 
@@ -91,7 +89,6 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
-  private final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
