@@ -17,6 +17,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -89,6 +90,8 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
+
+  private final LEDSubsystem leds = new LEDSubsystem();
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
