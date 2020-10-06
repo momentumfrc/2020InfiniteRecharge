@@ -15,6 +15,10 @@ public class MoPrefs {
   static final double SHOOT_FROM_WALL_HOOD_SETPOINT = 60; // The encoder setpoint that will reliably hit the Outer Port
                                                           // when the robot is sitting up against the Power Port.
 
+  private MoPrefs() {
+    throw new IllegalStateException("MoPrefs should be static");
+  }
+
   private static boolean safePrefs = false;
 
   public static void safeForPrefs() {

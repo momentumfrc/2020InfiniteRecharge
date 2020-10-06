@@ -136,11 +136,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
     double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
 
-    double openLoopSetpoint = getOpenLoopSetpoint(pidSetpoint);
     if (enablePID) {
       shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
     } else {
-      leader_shooterMAXRight.set(openLoopSetpoint);
+      leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
     }
 
     shooterHood.setHoodPosition(hoodSetpoint);
@@ -169,8 +168,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
-  private double getOpenLoopSetpoint(double closedLoopSetpoint) {
-    return Utils.map(MoPrefs.getShooterPIDSetpoint(), -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
+  private double getOpenLoopSetpoint(double openLoopSetpoint) {
+    return Utils.map(openLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
   }
 
   @Override
