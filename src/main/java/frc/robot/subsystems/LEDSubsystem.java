@@ -7,7 +7,6 @@ import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.animations.*;
 
 import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
 import static frc.robot.Constants.*;
 
@@ -31,7 +30,7 @@ public class LEDSubsystem {
   public LEDSubsystem() {
 
     try {
-      display = new AddressableLEDDisplay(ADDRESSABLE_LED_PWM_CHAN, ADDRESSABLE_LED_LENGTH);
+      display = new AddressableLEDDisplay(ADDRESSABLE_LED_PWM_ADDRESS, ADDRESSABLE_LED_LENGTH);
       animator = new Animator(display);
       coordinator = new AnimationCoordinator(animator);
 

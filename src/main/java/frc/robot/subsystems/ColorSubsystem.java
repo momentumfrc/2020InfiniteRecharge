@@ -89,8 +89,9 @@ public class ColorSubsystem extends SubsystemBase {
     return color;
   }
 
-  @Override
-  public void periodic() {
-
-  }
+  /*
+   * @Override public void periodic() {
+   * 
+   * }
+   */
 }

@@ -74,7 +74,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command
     if (m_robotContainer.getAutonomousCommand() != null) {
-      m_robotContainer.getAutonomousCommand().schedule();
+      m_robotContainer.getAutonomousCommand().schedule(false);
     }
   }
 
@@ -94,8 +94,7 @@ public class Robot extends TimedRobot {
     if (m_robotContainer.getAutonomousCommand() != null) {
       m_robotContainer.getAutonomousCommand().cancel();
     }
-    m_robotContainer.getDriveCommand().schedule(false);
-
+    m_robotContainer.getTeleopCommand().schedule(false);
   }
 
   /**

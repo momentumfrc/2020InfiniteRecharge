@@ -7,17 +7,17 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.DriveConditioner;
+import frc.robot.subsystems.conditioners.DriveConditioner;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.controllers.ControllerBase;
+import frc.robot.controllers.DriveController;
 
 public class DriveCommand extends CommandBase {
-  private final ControllerBase m_controller;
+  private final DriveController m_controller;
   private final DriveSubsystem m_subsystem;
   private final DriveConditioner m_conditioner;
 
-  public DriveCommand(DriveSubsystem subsystem, ControllerBase controller, DriveConditioner conditioner) {
+  public DriveCommand(DriveSubsystem subsystem, DriveController controller, DriveConditioner conditioner) {
     m_controller = controller;
     m_subsystem = subsystem;
     m_conditioner = conditioner;

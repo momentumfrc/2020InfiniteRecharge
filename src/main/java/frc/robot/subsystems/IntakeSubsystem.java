@@ -9,39 +9,69 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import org.usfirst.frc.team4999.utils.MoPDP;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoUtils;
+import frc.robot.utils.SafeSP;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final VictorSP intakeSP = new VictorSP(Constants.INTAKE_VICTORSP_PWM_CHAN);
 
-  private final DoubleSolenoid intakePistonL = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_LF_DEPLOY,
-      Constants.INTAKE_PISTON_PCM_CHAN_LF_STOW);
-  private final DoubleSolenoid intakePistonR = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_RT_DEPLOY,
-      Constants.INTAKE_PISTON_PCM_CHAN_RT_STOW);
+  private final double SAFE_SPEED = 0;
+  private final int SAFE_COOLDOWN_MS = 1000;
+  private final double UNSAFE_CURRENT_LIMIT = 20; // amperes
+  private final int UNSAFE_CURRENT_TIMEOUT_MS = 1000;
+
+  private final VictorSP intakeSP;
+  private final VictorSP intakeSP2;
+
+  private final DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.INTAKE_PISTON_PCM_CHAN_DEPLOY,
+      Constants.INTAKE_PISTON_PCM_CHAN_STOW);
 
   public boolean isLowered = false;
-  private boolean runIntake = false;
-  private boolean reverseIntake = false;
-  private double rollerSetpoint;
+  private double lastPower;
 
   private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
   private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
 
-  public IntakeSubsystem() {
+  public IntakeSubsystem(MoPDP pdp) {
+    intakeSP = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
+        .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
+    intakeSP2 = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN_2, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
+        .MakeOvercurrentMonitor(Constants.INTAKE_VICTORSP_PDP_CHAN, UNSAFE_CURRENT_LIMIT, UNSAFE_CURRENT_TIMEOUT_MS));
+
+    intakeSP.setInverted(false);
+    intakeSP2.setInverted(true);
+
+    raiseIntake();
   }
 
-  public void runIntake() {
-    runIntake = true;
+  public void idle() {
+    setMotorsWithoutRamp(0);
   }
 
-  public void stopIntake() {
-    runIntake = false;
+  public void runIntakeFwd() {
+    setMotorsWithRamp(MoPrefs.getIntakeRollerSetpoint());
   }
 
-  public void reverseIntake() {
-    reverseIntake = !reverseIntake;
+  public void runIntakeRvs() {
+    setMotorsWithRamp(-1 * MoPrefs.getIntakeRollerSetpoint());
+  }
+
+  private void setMotorsWithRamp(double power) {
+    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.getIntakeRollerAccRamp());
+    lastPower = currPower;
+    intakeSP.set(currPower);
+    intakeSP2.set(currPower);
+  }
+
+  private void setMotorsWithoutRamp(double power) {
+    lastPower = power;
+    intakeSP.set(power);
+    intakeSP2.set(power);
   }
 
   public void toggleIntakeDeploy() {
@@ -52,25 +82,17 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void raiseIntake() {
-    intakePistonL.set(deploy);
-    intakePistonR.set(deploy);
+    intakePiston.set(stow);
     isLowered = false;
   }
 
   public void lowerIntake() {
-    intakePistonL.set(stow);
-    intakePistonR.set(stow);
+    intakePiston.set(deploy);
     isLowered = true;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    rollerSetpoint = 0;
-    if (runIntake)
-      rollerSetpoint = MoPrefs.getIntakeRollerSetpoint();
-    if (reverseIntake)
-      rollerSetpoint *= -1;
-    intakeSP.set(rollerSetpoint);
   }
 }
