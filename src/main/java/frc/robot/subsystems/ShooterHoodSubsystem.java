@@ -98,18 +98,24 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
-  public boolean hasReliableZero() {
+  private boolean hasReliableZero() {
     return reliableZero;
   }
 
-  public boolean getFullyDeployed() {
+  private boolean isFullyDeployed() {
     return Math.abs(getHoodPos() - currSetpoint) < MoPrefs.getShooterHoodPositionTolerance();
+  }
+
+  public boolean isHoodReady() {
+    return hasReliableZero() && isFullyDeployed();
   }
 
   @Override
   public void periodic() {
     hoodPos = hoodEncoder.getPosition();
-    SmartDashboard.putNumber("pose", hoodPos);
+    SmartDashboard.putNumber("Shooter hood pos", hoodPos);
+    SmartDashboard.putBoolean("Hood has reliable zero?", hasReliableZero());
+    SmartDashboard.putBoolean("Hood fully deployed?", isFullyDeployed());
     if (hoodLimitSwitch.get()) {
       zeroHood();
       reliableZero = true;
