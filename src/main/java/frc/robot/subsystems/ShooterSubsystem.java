@@ -144,10 +144,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     shooterHood.setHoodPosition(hoodSetpoint);
 
-    final boolean shooterHoodReady = shooterHood.hasReliableZero() && shooterHood.getFullyDeployed();
-    final boolean shooterWheelReady = Math.abs(pidSetpoint - shooterEncoder.getVelocity()) < MoPrefs
-        .getShooterFlywheelTolerance();
-    if (shooterHoodReady && shooterWheelReady) {
+    if (shooterHood.isHoodReady() && isFlywheelReady()) {
       shooterGate.set(MoPrefs.getShooterGateSetpoint());
     } else {
       shooterGate.set(0);
@@ -172,9 +169,15 @@ public class ShooterSubsystem extends SubsystemBase {
     return Utils.map(openLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
   }
 
+  private boolean isFlywheelReady() {
+    return Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
+        .getShooterFlywheelTolerance();
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
     SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
+    SmartDashboard.putBoolean("Flywheel ready?", isFlywheelReady());
   }
 }
