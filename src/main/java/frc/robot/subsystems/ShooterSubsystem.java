@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import java.util.Map;
+
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
@@ -23,7 +25,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
@@ -49,29 +50,29 @@ public class ShooterSubsystem extends SubsystemBase {
    * proportional path against the differential and integral paths is controlled
    * by this value.
    */
-  private static final double K_P = 5e-5;
+  private double kP = 5e-5;
   /**
    * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
    * path against the proportional and differential paths is controlled by this
    * value.
    */
-  private static final double K_I = 1e-6;
+  private double kI = 1e-6;
   /**
    * The Differential Gain of the SparkMAX PIDF controller. The weight of the
    * differential path against the proportional and integral paths is controlled
    * by this value.
    */
-  private static final double K_D = 0;
+  private double kD = 0;
   /**
    * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
    * will reset once it hits this value.
    */
-  private static final double K_IZ = 0;
+  private double kIZ = 0;
   /**
    * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
    * feed-forward loop as compared to the PID loop is controlled by this value.
    */
-  private static final double K_FF = 0.000156;
+  private double kFF = 0.000156;
   /**
    * Scales the output of the SparkMAX PIDF controller.
    */
@@ -86,25 +87,36 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private static final int MAX_FREE_SPEED = 5500;
 
+  private double setpoint;
+
   private boolean enablePID = true;
 
   private final ShooterHoodSubsystem shooterHood;
+
+  private NetworkTableEntry flywheelSpeed;
+  private NetworkTableEntry isFlywheelReady;
+  private NetworkTableEntry shooterSetpoint;
+  private NetworkTableEntry kPSlider;
+  private NetworkTableEntry kISlider;
+  private NetworkTableEntry kIZSlider;
+  private NetworkTableEntry kDSlider;
+  private NetworkTableEntry kFFSlider;
 
   public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
 
     this.shooterHood = shooterHood;
 
     // Applies the previously-declared values to the PIDF controller.
-    shooterPIDLeft.setP(K_P, 0);
-    shooterPIDRight.setP(K_P, 0);
-    shooterPIDLeft.setI(K_I, 0);
-    shooterPIDRight.setI(K_I, 0);
-    shooterPIDLeft.setD(K_D, 0);
-    shooterPIDRight.setD(K_D, 0);
-    shooterPIDLeft.setIZone(K_IZ, 0);
-    shooterPIDRight.setIZone(K_IZ, 0);
-    shooterPIDLeft.setFF(K_FF, 0);
-    shooterPIDRight.setFF(K_FF, 0);
+    shooterPIDLeft.setP(kP, 0);
+    shooterPIDRight.setP(kP, 0);
+    shooterPIDLeft.setI(kI, 0);
+    shooterPIDRight.setI(kI, 0);
+    shooterPIDLeft.setD(kD, 0);
+    shooterPIDRight.setD(kD, 0);
+    shooterPIDLeft.setIZone(kIZ, 0);
+    shooterPIDRight.setIZone(kIZ, 0);
+    shooterPIDLeft.setFF(kFF, 0);
+    shooterPIDRight.setFF(kFF, 0);
 
     shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
@@ -125,7 +137,39 @@ public class ShooterSubsystem extends SubsystemBase {
 
     NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
         .getEntry();
+
     shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    // Configures a Shuffleboard widget for flywheel speed. It will display as a
+    // read-only dial with a minimum value of -6000, a maximum of 6000, and the
+    // speed displayed as text below.
+    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kDial)
+        .withProperties(Map.of("Min", -6000, "Max", 6000, "Show value", true)).getEntry();
+
+    // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
+    // certain tolerance of the setpoint. See isFlywheelReady().
+    isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+
+    shooterSetpoint = tab.addPersistent("Shooter Setpoint", 4500).withWidget(BuiltInWidgets.kTextView).getEntry();
+    shooterSetpoint.addListener(notice -> setpoint = notice.value.getDouble(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kPSlider = tab.addPersistent("kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kISlider = tab.addPersistent("kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kIZSlider = tab.addPersistent("kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kIZSlider.addListener(notice -> kIZ = notice.value.getDouble(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kDSlider = tab.addPersistent("kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kFFSlider = tab.addPersistent("kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
@@ -134,7 +178,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // deploy hood
     // run gate if both of "" are good
 
-    double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
+    double pidSetpoint = setpoint;
 
     if (enablePID) {
       shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
@@ -165,8 +209,13 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
   }
 
-  private double getOpenLoopSetpoint(double openLoopSetpoint) {
-    return Utils.map(openLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
+  /**
+   * 
+   * @param closedLoopSetpoint The PID setpoint, in RPM
+   * @return A number between -1 and 1 to be used for openloop motor control
+   */
+  private double getOpenLoopSetpoint(double closedLoopSetpoint) {
+    return Utils.map(closedLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
   }
 
   private boolean isFlywheelReady() {
@@ -176,8 +225,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
-    SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
-    SmartDashboard.putBoolean("Flywheel ready?", isFlywheelReady());
+    flywheelSpeed.setDouble(shooterEncoder.getVelocity());
+    isFlywheelReady.setBoolean(isFlywheelReady());
   }
 }
