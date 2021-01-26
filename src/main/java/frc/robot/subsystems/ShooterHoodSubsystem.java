@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
@@ -42,7 +44,11 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   private double currSetpoint;
 
-  public ShooterHoodSubsystem() {
+  private NetworkTableEntry hoodPosNumberBar;
+  private NetworkTableEntry hasReliableZero;
+  private NetworkTableEntry isFullyDeployed;
+
+  public ShooterHoodSubsystem(ShuffleboardTab tab) {
     hoodPID.setP(K_P);
     hoodPID.setI(K_I);
     hoodPID.setD(K_D);
@@ -66,6 +72,10 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
     reliableZero = false;
     stopHood();
+
+    hoodPosNumberBar = tab.add("Hood Pos", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
+    hasReliableZero = tab.add("Has reliable zero?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+    isFullyDeployed = tab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
   }
 
   public void setHoodPosition(double posRequest) {
@@ -112,14 +122,19 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    hoodPos = hoodEncoder.getPosition();
-    SmartDashboard.putNumber("Shooter hood pos", hoodPos);
-    SmartDashboard.putBoolean("Hood has reliable zero?", hasReliableZero());
-    SmartDashboard.putBoolean("Hood fully deployed?", isFullyDeployed());
     if (hoodLimitSwitch.get()) {
       zeroHood();
       reliableZero = true;
     }
+    // Gets the position, in rotations, from the encoder, and passes it to a
+    // Shuffleboard widget
+    hoodPosNumberBar.setDouble(hoodEncoder.getPosition());
+    // Gets whether the hood has touched the limit switch, and passes it to a
+    // Shuffleboard widget
+    hasReliableZero.setBoolean(hasReliableZero());
+    // Gets whether the hood is within an acceptable distance of the setpoint, and
+    // passes it to a Shuffleboard widget
+    isFullyDeployed.setBoolean(isFullyDeployed());
   }
 
   private void zeroHood() {

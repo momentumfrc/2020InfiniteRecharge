@@ -83,6 +83,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
+  private NetworkTableEntry leftDriveVelocity;
+  private NetworkTableEntry rightDriveVelocity;
+
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
     // These should always be opposites
@@ -116,6 +119,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch).getEntry();
     drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    leftDriveVelocity = tab.add("Drive Velocity (L), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    rightDriveVelocity = tab.add("Drive Velocity (R), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
   }
 
   /**
@@ -184,5 +190,21 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   private double metersToEncTicks(final double m) {
     return m * ENC_TICKS_PER_METER;
+  }
+
+  /**
+   * 
+   * @param et The number of encoder ticks to be converted to meters.
+   * @return The number of meters that correspond to @param m , assuming 6-inch
+   *         wheels.
+   */
+  private double encTicksToMeters(final double et) {
+    return et / ENC_TICKS_PER_METER;
+  }
+
+  @Override
+  public void periodic() {
+    leftDriveVelocity.setDouble(encTicksToMeters(leftFront.getSensorCollection().getIntegratedSensorVelocity()));
+    rightDriveVelocity.setDouble(encTicksToMeters(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
   }
 }

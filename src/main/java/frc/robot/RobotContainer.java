@@ -83,10 +83,10 @@ public class RobotContainer {
       new CurvesConditioner(), reverseConditioner, speedLimitConditioner);
 
   // ---------------------------------------Subsystems----------------------------------------
-  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(testTab);
+  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab);
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem();
+  private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem(matchTab);
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
