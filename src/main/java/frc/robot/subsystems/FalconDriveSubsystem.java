@@ -58,33 +58,38 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * The Proportional Gain, used in PID to ramp velocity in relation to error.
    */
-  private static final double K_P = 0;
+  private double kP = 0;
   /**
    * The Integral Gain, used in PID to correct steady-state error and combat
    * friction.
    */
-  private static final double K_I = 0;
+  private double kI = 0;
   /**
    * The Differential Gain, used in PID to dampen the output of the PID controller
    * to reduce oscillations.
    */
-  private static final double K_D = 0;
+  private double kD = 0;
   /**
    * The Integral Zone, used in PID to control the maximum value of the integral
    * accumulator.
    */
-  private static final int K_IZ = 0;
+  private int kIZ = 0;
   /**
    * The Feed-Forward Gain, used in PID to anticipate future changes in error and
    * stabilize a PID curve.
    */
-  private static final double K_FF = 1;
+  private double kFF = 1;
 
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
   private NetworkTableEntry leftDriveVelocity;
   private NetworkTableEntry rightDriveVelocity;
+  private NetworkTableEntry kPSlider;
+  private NetworkTableEntry kISlider;
+  private NetworkTableEntry kIZSlider;
+  private NetworkTableEntry kDSlider;
+  private NetworkTableEntry kFFSlider;
 
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
@@ -94,26 +99,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftRear.setInverted(false);
     rightFront.setInverted(true);
     rightRear.setInverted(true);
-
     // Set the braking mode
     leftFront.setNeutralMode(NeutralMode.Brake);
     rightFront.setNeutralMode(NeutralMode.Brake);
-
     // Slaves the left rear motor to the left front motor
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
     // Sets the PID configs for all motors.
-    leftFront.config_kP(0, K_P);
-    leftFront.config_kI(0, K_I);
-    leftFront.config_kD(0, K_D);
-    leftFront.config_IntegralZone(0, K_IZ);
-    leftFront.config_kF(0, K_FF);
+    updatePIDConstants();
+    // Sets the acceleration limit for all motors.
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
-    rightFront.config_kP(0, K_P);
-    rightFront.config_kI(0, K_I);
-    rightFront.config_kD(0, K_D);
-    rightFront.config_IntegralZone(0, K_IZ);
-    rightFront.config_kF(0, K_FF);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
 
     NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch).getEntry();
@@ -122,6 +117,23 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
     leftDriveVelocity = tab.add("Drive Velocity (L), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
     rightDriveVelocity = tab.add("Drive Velocity (R), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+
+    kPSlider = tab.addPersistent("kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kISlider = tab.addPersistent("kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kIZSlider = tab.addPersistent("kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kIZSlider.addListener(notice -> kIZ = (int) notice.value.getDouble(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kDSlider = tab.addPersistent("kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    kFFSlider = tab.addPersistent("kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
+        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
   /**
@@ -202,9 +214,25 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return et / ENC_TICKS_PER_METER;
   }
 
+  // Since the Shuffleboard widgets have listeners, all the PID constants are
+  // updated in the original variables.
+  private void updatePIDConstants() {
+    leftFront.config_kP(0, kP);
+    leftFront.config_kI(0, kI);
+    leftFront.config_kD(0, kD);
+    leftFront.config_IntegralZone(0, kIZ);
+    leftFront.config_kF(0, kFF);
+    rightFront.config_kP(0, kP);
+    rightFront.config_kI(0, kI);
+    rightFront.config_kD(0, kD);
+    rightFront.config_IntegralZone(0, kIZ);
+    rightFront.config_kF(0, kFF);
+  }
+
   @Override
   public void periodic() {
     leftDriveVelocity.setDouble(encTicksToMeters(leftFront.getSensorCollection().getIntegratedSensorVelocity()));
     rightDriveVelocity.setDouble(encTicksToMeters(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
+    updatePIDConstants();
   }
 }

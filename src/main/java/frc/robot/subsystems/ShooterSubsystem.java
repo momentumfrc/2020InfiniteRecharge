@@ -223,9 +223,23 @@ public class ShooterSubsystem extends SubsystemBase {
         .getShooterFlywheelTolerance();
   }
 
+  private void updatePIDConstants() {
+    shooterPIDLeft.setP(kP, 0);
+    shooterPIDRight.setP(kP, 0);
+    shooterPIDLeft.setI(kI, 0);
+    shooterPIDRight.setI(kI, 0);
+    shooterPIDLeft.setD(kD, 0);
+    shooterPIDRight.setD(kD, 0);
+    shooterPIDLeft.setIZone(kIZ, 0);
+    shooterPIDRight.setIZone(kIZ, 0);
+    shooterPIDLeft.setFF(kFF, 0);
+    shooterPIDRight.setFF(kFF, 0);
+  }
+
   @Override
   public void periodic() {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
+    updatePIDConstants();
   }
 }
