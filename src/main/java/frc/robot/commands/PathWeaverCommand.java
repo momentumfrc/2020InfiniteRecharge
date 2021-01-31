@@ -19,4 +19,20 @@ public class PathWeaverCommand extends CommandBase {
       DriverStation.reportError("Unable to open trajectory: " + TRAJECTORY_PATH, e.getStackTrace());
     }
   }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+
+  }
+
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 }
