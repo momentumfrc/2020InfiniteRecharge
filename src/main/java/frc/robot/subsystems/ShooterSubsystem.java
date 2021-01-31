@@ -107,16 +107,7 @@ public class ShooterSubsystem extends SubsystemBase {
     this.shooterHood = shooterHood;
 
     // Applies the previously-declared values to the PIDF controller.
-    shooterPIDLeft.setP(kP, 0);
-    shooterPIDRight.setP(kP, 0);
-    shooterPIDLeft.setI(kI, 0);
-    shooterPIDRight.setI(kI, 0);
-    shooterPIDLeft.setD(kD, 0);
-    shooterPIDRight.setD(kD, 0);
-    shooterPIDLeft.setIZone(kIZ, 0);
-    shooterPIDRight.setIZone(kIZ, 0);
-    shooterPIDLeft.setFF(kFF, 0);
-    shooterPIDRight.setFF(kFF, 0);
+    updatePIDConstants();
 
     shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
@@ -142,10 +133,9 @@ public class ShooterSubsystem extends SubsystemBase {
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
     // Configures a Shuffleboard widget for flywheel speed. It will display as a
-    // read-only dial with a minimum value of -6000, a maximum of 6000, and the
-    // speed displayed as text below.
-    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kDial)
-        .withProperties(Map.of("Min", -6000, "Max", 6000, "Show value", true)).getEntry();
+    // graph of the flywheel speed from the last 20 seconds.
+    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kGraph)
+        .withProperties(Map.of("Visible time", 20)).getEntry();
 
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().
