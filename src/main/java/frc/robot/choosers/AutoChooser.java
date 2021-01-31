@@ -8,14 +8,13 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 public class AutoChooser extends SendableChooser<Command> {
   private static final String NAME = "AUTONOMOUS";
 
-  public AutoChooser(ShuffleboardTab tab, Command visionDrive, Command driveToWall, Command shootFromLine,
-      Command shootFromWall) {
+  public AutoChooser(ShuffleboardTab tab, Command defaultCommand, Command... commands) {
     super();
 
-    setDefaultOption("Drive To Wall", driveToWall);
-    addOption("Vision Drive", visionDrive);
-    addOption("Shoot From Line", shootFromLine);
-    addOption("Shoot From Wall", shootFromWall);
+    setDefaultOption(defaultCommand.getName(), defaultCommand);
+    for (Command command : commands) {
+      addOption(command.getName(), command);
+    }
 
     tab.add(NAME, this).withWidget(BuiltInWidgets.kSplitButtonChooser);
   }

@@ -13,6 +13,7 @@ import org.usfirst.frc.team4999.utils.MoPDP;
 import frc.robot.choosers.AutoChooser;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.PathWeaverCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.conditioners.*;
 import frc.robot.subsystems.FalconDriveSubsystem;
@@ -95,6 +96,7 @@ public class RobotContainer {
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
+  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand();
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
@@ -117,7 +119,7 @@ public class RobotContainer {
   private final Command driveToWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5);
   // ----------------------------------------Choosers------------------------------------------
   private final AutoChooser autoChooser = new AutoChooser(matchTab, autonDriveCommand, driveToWall, shootFromLine,
-      shootFromWall);
+      shootFromWall, pathWeaverCommand);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
