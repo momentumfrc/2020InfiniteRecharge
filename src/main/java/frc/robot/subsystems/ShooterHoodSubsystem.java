@@ -80,6 +80,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPID.setReference(posRequest, ControlType.kPosition, 0);
   }
 
+  // Raises the hood to its setpoint using position PID.
   public void deployHood() {
     if (reliableZero) {
       hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
@@ -88,6 +89,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     }
   }
 
+  // Lowers the shooter hood until it hits the limit switch.
   public void stowHood() {
     if (reliableZero)
       hoodPID.setReference(0, ControlType.kPosition, 0);
@@ -104,10 +106,15 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   private boolean hasReliableZero() {
+    // If the hood has hit the limit switch, and therefore has been zeroed, return
+    // true. Otherwise, return false.
     return reliableZero;
   }
 
   private boolean isFullyDeployed() {
+    // If the current position is in within +-positionTolerance of the setpoint,
+    // return true
+    // Otherwise, return false
     return Math.abs(MoPrefs.getShooterHoodSetpoint() - getHoodPos()) < MoPrefs.getShooterHoodPositionTolerance();
   }
 
@@ -132,6 +139,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     isFullyDeployed.setBoolean(isFullyDeployed());
   }
 
+  // Resets the encoder to 0.
   private void zeroHood() {
     hoodEncoder.setPosition(0);
   }

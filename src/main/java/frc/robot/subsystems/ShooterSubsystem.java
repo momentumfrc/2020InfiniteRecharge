@@ -9,8 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import java.util.Map;
-
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
@@ -212,15 +210,10 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private void updatePIDConstants() {
-    shooterPIDLeft.setP(kP, 0);
     shooterPIDRight.setP(kP, 0);
-    shooterPIDLeft.setI(kI, 0);
     shooterPIDRight.setI(kI, 0);
-    shooterPIDLeft.setD(kD, 0);
     shooterPIDRight.setD(kD, 0);
-    shooterPIDLeft.setIZone(kIZ, 0);
     shooterPIDRight.setIZone(kIZ, 0);
-    shooterPIDLeft.setFF(kFF, 0);
     shooterPIDRight.setFF(kFF, 0);
   }
 
