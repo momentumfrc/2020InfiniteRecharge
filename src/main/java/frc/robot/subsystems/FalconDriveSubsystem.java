@@ -166,6 +166,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
+  /**
+   * Drives the robot, according to a ChassisSpeeds object from a
+   * RamseteController.
+   * 
+   * @param chassisSpeeds The desired forward/backward and rotational movement, in
+   *                      m/s and rad/s, respectively.
+   */
   public void drive(ChassisSpeeds chassisSpeeds) {
     // Converts chassis speeds (the whole robot) into per-side speeds.
     final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
@@ -199,7 +206,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * 
    * @param et The number of encoder ticks to be converted to meters.
-   * @return The number of meters that correspond to @param m , assuming 6-inch
+   * @return The number of meters that correspond to @param et , assuming 6-inch
    *         wheels.
    */
   private double encTicksToMeters(final double et) {

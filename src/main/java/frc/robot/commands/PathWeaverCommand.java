@@ -13,6 +13,7 @@ public class PathWeaverCommand extends CommandBase {
   private Trajectory trajectory;
 
   public PathWeaverCommand() {
+    // Loads the PathWeaver trajectory into memory.
     try {
       trajectory = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(TRAJECTORY_PATH));
     } catch (IOException e) {
@@ -23,7 +24,8 @@ public class PathWeaverCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    // TODO Get a Trajectory.State from the loaded trajectory, pass it to a
+    // RamseteController, and pass the output to the drive subsystem.
   }
 
   @Override
