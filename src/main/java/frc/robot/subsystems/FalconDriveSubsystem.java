@@ -166,19 +166,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
-  private double[] chassisSpeedsToEncoderTicks(ChassisSpeeds chassisSpeeds) {
-    final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
-    final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
-    final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
-    final double leftETPerS = metersToEncTicks(leftMPerS);
-    final double rightETPerS = metersToEncTicks(rightMPerS);
-    return new double[] { leftETPerS, rightETPerS };
-  }
-
   public void drive(ChassisSpeeds chassisSpeeds) {
-    double[] wheelSpeeds = chassisSpeedsToEncoderTicks(chassisSpeeds);
-    leftFront.set(ControlMode.MotionMagic, wheelSpeeds[0]);
-    rightFront.set(ControlMode.MotionMagic, wheelSpeeds[1]);
+    // Converts chassis speeds (the whole robot) into per-side speeds.
+    final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
+    // Converts the individual side speeds in m/s to encoder ticks per second
+    final double leftETPerS = metersToEncTicks(wheelSpeeds.leftMetersPerSecond);
+    final double rightETPerS = metersToEncTicks(wheelSpeeds.rightMetersPerSecond);
+    // Feeds the encoder ticks per second setpoint into the Talon FX PID
+    // controllers.
+    leftFront.set(ControlMode.MotionMagic, leftETPerS);
+    rightFront.set(ControlMode.MotionMagic, rightETPerS);
   }
 
   /**
