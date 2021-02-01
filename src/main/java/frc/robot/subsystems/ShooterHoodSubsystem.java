@@ -35,7 +35,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   private final double SAFE_STOW_SPEED = -0.1;
 
-  private double hoodPos;
   private boolean reliableZero;
 
   private double minVel = 0;
@@ -109,8 +108,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   private boolean isFullyDeployed() {
-    return MoPrefs.getShooterHoodSetpoint() - MoPrefs.getShooterHoodPositionTolerance() < getHoodPos()
-        && getHoodPos() < MoPrefs.getShooterHoodSetpoint() + MoPrefs.getShooterHoodPositionTolerance();
+    return Math.abs(MoPrefs.getShooterHoodSetpoint() - getHoodPos()) < MoPrefs.getShooterHoodPositionTolerance();
   }
 
   public boolean isHoodReady() {
@@ -135,10 +133,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   private void zeroHood() {
-    setHoodPos(0);
-  }
-
-  private void setHoodPos(int newPos) {
-    hoodEncoder.setPosition(newPos);
+    hoodEncoder.setPosition(0);
   }
 }
