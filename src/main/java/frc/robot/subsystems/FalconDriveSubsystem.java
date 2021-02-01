@@ -157,33 +157,28 @@ public class FalconDriveSubsystem extends DriveSubsystem {
        */
       final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
       /**
-       * The object that handles the calculations for how fast each side of the robot
-       * should drive to accomplish the scaled move and turn requests.
+       * Calls the overload of this method, since all conversion is done.
        */
-      final var chassisSpeeds = new ChassisSpeeds(moveReqScaled, 0, turnReqScaled);
-      /**
-       * The object that converts the overall chassis speed into individual wheel
-       * speeds.
-       */
-      final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
-      /**
-       * The variables that store the outputs of the wheel speeds, in meters per
-       * second.
-       */
-      final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
-      final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
-      /**
-       * The variables that store the wheel speeds in TalonFX encoder ticks per
-       * second, as converted from m/s to encoder ticks/s.
-       */
-      final double leftETPerS = metersToEncTicks(leftMPerS);
-      final double rightETPerS = metersToEncTicks(rightMPerS);
-      leftFront.set(ControlMode.MotionMagic, leftETPerS);
-      rightFront.set(ControlMode.MotionMagic, rightETPerS);
+      drive(new ChassisSpeeds(moveReqScaled, 0, turnReqScaled));
     } else {
       leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
       rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
     }
+  }
+
+  private double[] chassisSpeedsToEncoderTicks(ChassisSpeeds chassisSpeeds) {
+    final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
+    final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
+    final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
+    final double leftETPerS = metersToEncTicks(leftMPerS);
+    final double rightETPerS = metersToEncTicks(rightMPerS);
+    return new double[] { leftETPerS, rightETPerS };
+  }
+
+  public void drive(ChassisSpeeds chassisSpeeds) {
+    double[] wheelSpeeds = chassisSpeedsToEncoderTicks(chassisSpeeds);
+    leftFront.set(ControlMode.MotionMagic, wheelSpeeds[0]);
+    rightFront.set(ControlMode.MotionMagic, wheelSpeeds[1]);
   }
 
   /**
