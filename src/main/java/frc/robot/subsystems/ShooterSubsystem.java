@@ -134,8 +134,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Configures a Shuffleboard widget for flywheel speed. It will display as a
     // graph of the flywheel speed from the last 20 seconds.
-    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kGraph)
-        .withProperties(Map.of("Visible time", 20)).getEntry();
+    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
 
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().
@@ -145,20 +144,20 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterSetpoint.addListener(notice -> setpoint = notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kPSlider = tab.addPersistent("kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kPSlider = tab.addPersistent("Shooter kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
     kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kISlider = tab.addPersistent("kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kISlider = tab.addPersistent("Shooter kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
     kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kIZSlider = tab.addPersistent("kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kIZSlider = tab.addPersistent("Shooter kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
     kIZSlider.addListener(notice -> kIZ = notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kDSlider = tab.addPersistent("kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kDSlider = tab.addPersistent("Shooter kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
     kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kFFSlider = tab.addPersistent("kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kFFSlider = tab.addPersistent("Shooter kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
     kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
@@ -209,8 +208,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private boolean isFlywheelReady() {
-    return Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
-        .getShooterFlywheelTolerance();
+    return Math.abs(setpoint - shooterEncoder.getVelocity()) < MoPrefs.getShooterFlywheelTolerance();
   }
 
   private void updatePIDConstants() {
@@ -231,5 +229,7 @@ public class ShooterSubsystem extends SubsystemBase {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
     updatePIDConstants();
+
+    setpoint = shooterSetpoint.getDouble(4500);
   }
 }

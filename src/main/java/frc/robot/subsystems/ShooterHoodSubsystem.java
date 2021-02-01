@@ -42,8 +42,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double maxVel = 1;
   private double maxAcc = 0.1;
 
-  private double currSetpoint;
-
   private NetworkTableEntry hoodPosNumberBar;
   private NetworkTableEntry hasReliableZero;
   private NetworkTableEntry isFullyDeployed;
@@ -81,13 +79,11 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
     hoodPID.setReference(posRequest, ControlType.kPosition, 0);
-    currSetpoint = posRequest;
   }
 
   public void deployHood() {
     if (reliableZero) {
-      currSetpoint = MoPrefs.getShooterHoodSetpoint();
-      hoodPID.setReference(currSetpoint, ControlType.kPosition, 0);
+      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
     } else {
       hoodNEO.set(SAFE_STOW_SPEED);
     }
@@ -101,7 +97,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public double getHoodPos() {
-    return hoodPos;
+    return hoodEncoder.getPosition();
   }
 
   public void stopHood() {
@@ -113,7 +109,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   private boolean isFullyDeployed() {
-    return Math.abs(getHoodPos() - currSetpoint) < MoPrefs.getShooterHoodPositionTolerance();
+    return MoPrefs.getShooterHoodSetpoint() - MoPrefs.getShooterHoodPositionTolerance() < getHoodPos()
+        && getHoodPos() < MoPrefs.getShooterHoodSetpoint() + MoPrefs.getShooterHoodPositionTolerance();
   }
 
   public boolean isHoodReady() {
@@ -128,7 +125,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     }
     // Gets the position, in rotations, from the encoder, and passes it to a
     // Shuffleboard widget
-    hoodPosNumberBar.setDouble(hoodEncoder.getPosition());
+    hoodPosNumberBar.setDouble(getHoodPos());
     // Gets whether the hood has touched the limit switch, and passes it to a
     // Shuffleboard widget
     hasReliableZero.setBoolean(hasReliableZero());

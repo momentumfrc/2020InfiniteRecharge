@@ -35,7 +35,7 @@ public class DriveCommand extends CommandBase {
   @Override
   public void execute() {
     m_subsystem.drive(m_conditioner.conditionMove(m_controller.getMoveRequest()),
-        m_conditioner.conditionTurn(m_controller.getTurnRequest()));
+        m_conditioner.conditionTurn(-m_controller.getTurnRequest()));
   }
 
   // Called once the command ends or is interrupted.

@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FalconDriveSubsystem extends DriveSubsystem {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -91,6 +92,11 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private NetworkTableEntry kDSlider;
   private NetworkTableEntry kFFSlider;
 
+  private double moveReqScaled;
+  private double turnReqScaled;
+  private double leftETPerS;
+  private double leftMPerS;
+
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
     // These should always be opposites
@@ -118,20 +124,20 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftDriveVelocity = tab.add("Drive Velocity (L), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
     rightDriveVelocity = tab.add("Drive Velocity (R), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
 
-    kPSlider = tab.addPersistent("kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kPSlider = tab.addPersistent("Drive kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
     kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kISlider = tab.addPersistent("kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kISlider = tab.addPersistent("Drive kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
     kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kIZSlider = tab.addPersistent("kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kIZSlider = tab.addPersistent("Drive kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
     kIZSlider.addListener(notice -> kIZ = (int) notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kDSlider = tab.addPersistent("kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kDSlider = tab.addPersistent("Drive kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
     kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    kFFSlider = tab.addPersistent("kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
+    kFFSlider = tab.addPersistent("Drive kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
     kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
@@ -149,13 +155,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
        * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
        * converted to m/s.
        */
-      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
+      moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
       /**
        * Since turnRequest is from -1 to 1 and we need a value in radians per second
        * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
        * limit in radians/second.
        */
-      final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
+      turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
       /**
        * The object that handles the calculations for how fast each side of the robot
        * should drive to accomplish the scaled move and turn requests.
@@ -170,13 +176,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
        * The variables that store the outputs of the wheel speeds, in meters per
        * second.
        */
-      final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
+      leftMPerS = wheelSpeeds.leftMetersPerSecond;
       final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
       /**
        * The variables that store the wheel speeds in TalonFX encoder ticks per
        * second, as converted from m/s to encoder ticks/s.
        */
-      final double leftETPerS = metersToEncTicks(leftMPerS);
+      leftETPerS = metersToEncTicks(leftMPerS);
       final double rightETPerS = metersToEncTicks(rightMPerS);
       leftFront.set(ControlMode.MotionMagic, leftETPerS);
       rightFront.set(ControlMode.MotionMagic, rightETPerS);
@@ -234,5 +240,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftDriveVelocity.setDouble(encTicksToMeters(leftFront.getSensorCollection().getIntegratedSensorVelocity()));
     rightDriveVelocity.setDouble(encTicksToMeters(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
     updatePIDConstants();
+    SmartDashboard.putNumber("moveReqScaled", moveReqScaled);
+    SmartDashboard.putNumber("turnReqScaled", turnReqScaled);
+    SmartDashboard.putNumber("leftETPerS", leftETPerS);
+    SmartDashboard.putNumber("leftMPerS", leftMPerS);
   }
 }
