@@ -14,6 +14,11 @@ public class MoPrefs {
   static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
   static final double SHOOT_FROM_WALL_HOOD_SETPOINT = 60; // The encoder setpoint that will reliably hit the Outer Port
                                                           // when the robot is sitting up against the Power Port.
+  static final double SHOOTER_KP = 0.00005;
+  static final double SHOOTER_KI = 0.000001;
+  static final double SHOOTER_KD = 0;
+  static final double SHOOTER_KIZ = 0.0000001;
+  static final double SHOOTER_KFF = 0.00000156;
 
   private MoPrefs() {
     throw new IllegalStateException("MoPrefs should be static");
@@ -85,5 +90,25 @@ public class MoPrefs {
 
   public static double getShootFromWallHoodSetpoint() {
     return getDouble("Shoot From Wall Hood Setpoint", SHOOT_FROM_WALL_HOOD_SETPOINT);
+  }
+
+  public static double getShooterKP() {
+    return getDouble("SHOOTER_KP", SHOOTER_KP);
+  }
+
+  public static double getShooterKI() {
+    return getDouble("SHOOTER_KI", SHOOTER_KI);
+  }
+
+  public static double getShooterKD() {
+    return getDouble("SHOOTER_KD", SHOOTER_KD);
+  }
+
+  public static double getShooterKIZ() {
+    return getDouble("SHOOTER_KIZ", SHOOTER_KIZ);
+  }
+
+  public static double getShooterKFF() {
+    return getDouble("SHOOTER_KFF", SHOOTER_KFF);
   }
 }

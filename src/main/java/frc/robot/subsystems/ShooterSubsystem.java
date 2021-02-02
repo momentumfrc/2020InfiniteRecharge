@@ -44,34 +44,6 @@ public class ShooterSubsystem extends SubsystemBase {
   private final CANPIDController shooterPIDRight = leader_shooterMAXRight.getPIDController();
   private final CANEncoder shooterEncoder = leader_shooterMAXRight.getEncoder();
   /**
-   * The Proportial Gain of the SparkMAX PIDF controller The weight of the
-   * proportional path against the differential and integral paths is controlled
-   * by this value.
-   */
-  private double kP = 5e-5;
-  /**
-   * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
-   * path against the proportional and differential paths is controlled by this
-   * value.
-   */
-  private double kI = 1e-6;
-  /**
-   * The Differential Gain of the SparkMAX PIDF controller. The weight of the
-   * differential path against the proportional and integral paths is controlled
-   * by this value.
-   */
-  private double kD = 0;
-  /**
-   * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
-   * will reset once it hits this value.
-   */
-  private double kIZ = 0;
-  /**
-   * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
-   * feed-forward loop as compared to the PID loop is controlled by this value.
-   */
-  private double kFF = 0.000156;
-  /**
    * Scales the output of the SparkMAX PIDF controller.
    */
   private static final double PID_OUTPUT_RANGE = 1;
@@ -134,23 +106,6 @@ public class ShooterSubsystem extends SubsystemBase {
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().
     isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
-
-    kPSlider = tab.addPersistent("Shooter kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kISlider = tab.addPersistent("Shooter kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kIZSlider = tab.addPersistent("Shooter kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kIZSlider.addListener(notice -> kIZ = notice.value.getDouble(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kDSlider = tab.addPersistent("Shooter kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kFFSlider = tab.addPersistent("Shooter kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
   }
 
   public void shoot(double hoodSetpoint) {
@@ -204,11 +159,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private void updatePIDConstants() {
-    shooterPIDRight.setP(kP, 0);
-    shooterPIDRight.setI(kI, 0);
-    shooterPIDRight.setD(kD, 0);
-    shooterPIDRight.setIZone(kIZ, 0);
-    shooterPIDRight.setFF(kFF, 0);
+    shooterPIDRight.setP(MoPrefs.getShooterKP(), 0);
+    shooterPIDRight.setI(MoPrefs.getShooterKI(), 0);
+    shooterPIDRight.setD(MoPrefs.getShooterKD(), 0);
+    shooterPIDRight.setIZone(MoPrefs.getShooterKIZ(), 0);
+    shooterPIDRight.setFF(MoPrefs.getShooterKFF(), 0);
   }
 
   @Override
