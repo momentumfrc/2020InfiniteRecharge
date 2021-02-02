@@ -81,7 +81,7 @@ public class RobotContainer {
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
   private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
       new CurvesConditioner(), reverseConditioner, speedLimitConditioner,
-      new FunctionalConditioner((mr) -> mr, (tr) -> -tr));
+      new FunctionalConditioner(mr -> mr, tr -> -tr));
 
   // ---------------------------------------Subsystems----------------------------------------
   private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab);

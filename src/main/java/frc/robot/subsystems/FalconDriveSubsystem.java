@@ -64,11 +64,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private NetworkTableEntry leftDriveVelocity;
   private NetworkTableEntry rightDriveVelocity;
 
-  private double moveReqScaled;
-  private double turnReqScaled;
-  private double leftETPerS;
-  private double leftMPerS;
-
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
     // These should always be opposites
@@ -110,13 +105,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
        * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
        * converted to m/s.
        */
-      moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
+      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
       /**
        * Since turnRequest is from -1 to 1 and we need a value in radians per second
        * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
        * limit in radians/second.
        */
-      turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
+      final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
       /**
        * The object that handles the calculations for how fast each side of the robot
        * should drive to accomplish the scaled move and turn requests.
@@ -131,13 +126,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
        * The variables that store the outputs of the wheel speeds, in meters per
        * second.
        */
-      leftMPerS = wheelSpeeds.leftMetersPerSecond;
+      final double leftMPerS = wheelSpeeds.leftMetersPerSecond;
       final double rightMPerS = wheelSpeeds.rightMetersPerSecond;
       /**
        * The variables that store the wheel speeds in TalonFX encoder ticks per
        * second, as converted from m/s to encoder ticks/s.
        */
-      leftETPerS = metersToEncTicks(leftMPerS);
+      final double leftETPerS = metersToEncTicks(leftMPerS);
       final double rightETPerS = metersToEncTicks(rightMPerS);
       leftFront.set(ControlMode.MotionMagic, leftETPerS);
       rightFront.set(ControlMode.MotionMagic, rightETPerS);
