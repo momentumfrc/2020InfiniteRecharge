@@ -83,9 +83,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * The (rough) maximum free speed of the shooter flywheel, in RPM.
    */
-  private static final int MAX_FREE_SPEED = 5500;
-
-  private double setpoint;
+  private static final int MAX_FREE_SPEED = 5700;
 
   private boolean enablePID = true;
 
@@ -93,7 +91,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
-  private NetworkTableEntry shooterSetpoint;
   private NetworkTableEntry kPSlider;
   private NetworkTableEntry kISlider;
   private NetworkTableEntry kIZSlider;
@@ -138,10 +135,6 @@ public class ShooterSubsystem extends SubsystemBase {
     // certain tolerance of the setpoint. See isFlywheelReady().
     isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
 
-    shooterSetpoint = tab.addPersistent("Shooter Setpoint", 4500).withWidget(BuiltInWidgets.kTextView).getEntry();
-    shooterSetpoint.addListener(notice -> setpoint = notice.value.getDouble(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
     kPSlider = tab.addPersistent("Shooter kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
     kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
@@ -165,7 +158,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // deploy hood
     // run gate if both of "" are good
 
-    double pidSetpoint = setpoint;
+    double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
 
     if (enablePID) {
       shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
@@ -206,7 +199,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private boolean isFlywheelReady() {
-    return Math.abs(setpoint - shooterEncoder.getVelocity()) < MoPrefs.getShooterFlywheelTolerance();
+    return Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
+        .getShooterFlywheelTolerance();
   }
 
   private void updatePIDConstants() {
@@ -222,7 +216,5 @@ public class ShooterSubsystem extends SubsystemBase {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
     updatePIDConstants();
-
-    setpoint = shooterSetpoint.getDouble(4500);
   }
 }
