@@ -132,7 +132,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     // Configures a Shuffleboard widget for flywheel speed. It will display as a
     // graph of the flywheel speed from the last 20 seconds.
-    flywheelSpeed = tab.add("Flywheel Speed (RPM)", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
+    flywheelSpeed = tab.add("Flywheel Speed", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
 
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().

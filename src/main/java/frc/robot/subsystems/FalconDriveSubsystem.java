@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
+
 import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -121,8 +122,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    leftDriveVelocity = tab.add("Drive Velocity (L), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
-    rightDriveVelocity = tab.add("Drive Velocity (R), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    leftDriveVelocity = tab.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    rightDriveVelocity = tab.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
 
     kPSlider = tab.addPersistent("Drive kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
     kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
