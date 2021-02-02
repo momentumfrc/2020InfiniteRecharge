@@ -45,6 +45,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private NetworkTableEntry hasReliableZero;
   private NetworkTableEntry isFullyDeployed;
 
+  private double hoodPos;
+
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
     hoodPID.setP(K_P);
     hoodPID.setI(K_I);
@@ -98,7 +100,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   }
 
   public double getHoodPos() {
-    return hoodEncoder.getPosition();
+    return hoodPos;
   }
 
   public void stopHood() {
@@ -128,6 +130,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
       zeroHood();
       reliableZero = true;
     }
+    hoodPos = hoodEncoder.getPosition();
     // Gets the position, in rotations, from the encoder, and passes it to a
     // Shuffleboard widget
     hoodPosNumberBar.setDouble(getHoodPos());
