@@ -63,11 +63,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
-  private NetworkTableEntry kPSlider;
-  private NetworkTableEntry kISlider;
-  private NetworkTableEntry kIZSlider;
-  private NetworkTableEntry kDSlider;
-  private NetworkTableEntry kFFSlider;
 
   public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
 
