@@ -25,14 +25,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private static final double K_P = 0.15;
-  private static final double K_I = 1e-6;
-  private static final double K_D = 0;
-  private static final double K_IZ = 0;
-  private static final double K_FF = 0;
-  private static final double PID_OUTPUT_RANGE = 1.0;
-  private static final double ALLOWED_ERROR = 0;
-
   private final double SAFE_STOW_SPEED = -0.1;
 
   private boolean reliableZero;
@@ -48,19 +40,13 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
 
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
-    hoodPID.setP(K_P);
-    hoodPID.setI(K_I);
-    hoodPID.setD(K_D);
-    hoodPID.setIZone(K_IZ);
-    hoodPID.setFF(K_FF);
-    hoodPID.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE);
+    updatePidConstants();
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
     hoodPID.setSmartMotionMaxVelocity(maxVel, 0);
     hoodPID.setSmartMotionMaxAccel(maxAcc, 0);
     hoodPID.setSmartMotionMinOutputVelocity(minVel, 0);
-    hoodPID.setSmartMotionAllowedClosedLoopError(ALLOWED_ERROR, 0);
 
     hoodNEO.getForwardLimitSwitch(CANDigitalInput.LimitSwitchPolarity.kNormallyOpen).enableLimitSwitch(false);
 
@@ -124,12 +110,31 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     return hasReliableZero() && isFullyDeployed();
   }
 
+  /**
+   * Update PID constants from MoPrefs
+   */
+  private void updatePidConstants() {
+    hoodPID.setP(MoPrefs.getHoodKP());
+    hoodPID.setI(MoPrefs.getHoodKI());
+    hoodPID.setD(MoPrefs.getHoodKD());
+    hoodPID.setIZone(MoPrefs.getHoodKIZ());
+    hoodPID.setFF(MoPrefs.getHoodKFF());
+    double outRange = MoPrefs.getHoodOutRange();
+    hoodPID.setOutputRange(-outRange, outRange);
+    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.getHoodAllowedErr(), 0);
+  }
+
   @Override
   public void periodic() {
+    // If the hood hits the limit switch, reset the encoder and let everything else
+    // know that the zero is reliable
     if (hoodLimitSwitch.get()) {
       zeroHood();
       reliableZero = true;
     }
+    updatePidConstants();
+    // Updates the recorded position periodically so that things like isHoodReady()
+    // can access it without polling the encoder too many times.
     hoodPos = hoodEncoder.getPosition();
     // Gets the position, in rotations, from the encoder, and passes it to a
     // Shuffleboard widget

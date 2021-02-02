@@ -29,6 +29,15 @@ public class MoPrefs {
   static final double DRIVE_KIZ = 0.0000001;
   static final double DRIVE_KFF = 0.00000156;
 
+  // PID constants for the shooter hood
+  static final double HOOD_KP = 0.15;
+  static final double HOOD_KI = 1e-6;
+  static final double HOOD_KD = 0;
+  static final double HOOD_KIZ = 0;
+  static final double HOOD_KFF = 0;
+  static final double HOOD_ALLOWED_ERR = 2;
+  static final double HOOD_OUT_RANGE = 1;
+
   private MoPrefs() {
     throw new IllegalStateException("MoPrefs should be static");
   }
@@ -139,5 +148,33 @@ public class MoPrefs {
 
   public static double getDriveKFF() {
     return getDouble("DRIVE_KFF", DRIVE_KFF);
+  }
+
+  public static double getHoodKP() {
+    return getDouble("HOOD_KP", HOOD_KP);
+  }
+
+  public static double getHoodKI() {
+    return getDouble("HOOD_KI", HOOD_KI);
+  }
+
+  public static double getHoodKD() {
+    return getDouble("HOOD_KD", HOOD_KD);
+  }
+
+  public static double getHoodKIZ() {
+    return getDouble("HOOD_KIZ", HOOD_KIZ);
+  }
+
+  public static double getHoodKFF() {
+    return getDouble("HOOD_KFF", HOOD_KFF);
+  }
+
+  public static double getHoodAllowedErr() {
+    return getDouble("HOOD_ALLOWED_ERR", HOOD_ALLOWED_ERR);
+  }
+
+  public static double getHoodOutRange() {
+    return getDouble("HOOD_OUT_RANGE", HOOD_OUT_RANGE);
   }
 }
