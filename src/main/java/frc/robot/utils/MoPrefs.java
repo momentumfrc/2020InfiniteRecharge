@@ -14,11 +14,20 @@ public class MoPrefs {
   static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
   static final double SHOOT_FROM_WALL_HOOD_SETPOINT = 60; // The encoder setpoint that will reliably hit the Outer Port
                                                           // when the robot is sitting up against the Power Port.
+
+  // PID constants for the shooter flywheel
   static final double SHOOTER_KP = 0.00005;
   static final double SHOOTER_KI = 0.000001;
   static final double SHOOTER_KD = 0;
   static final double SHOOTER_KIZ = 0.0000001;
   static final double SHOOTER_KFF = 0.00000156;
+
+  // PID constants for the drivetrain
+  static final double DRIVE_KP = 0.00005;
+  static final double DRIVE_KI = 0.000001;
+  static final double DRIVE_KD = 0;
+  static final double DRIVE_KIZ = 0.0000001;
+  static final double DRIVE_KFF = 0.00000156;
 
   private MoPrefs() {
     throw new IllegalStateException("MoPrefs should be static");
@@ -110,5 +119,25 @@ public class MoPrefs {
 
   public static double getShooterKFF() {
     return getDouble("SHOOTER_KFF", SHOOTER_KFF);
+  }
+
+  public static double getDriveKP() {
+    return getDouble("DRIVE_KP", DRIVE_KP);
+  }
+
+  public static double getDriveKI() {
+    return getDouble("DRIVE_KI", DRIVE_KI);
+  }
+
+  public static double getDriveKD() {
+    return getDouble("DRIVE_KD", DRIVE_KD);
+  }
+
+  public static double getDriveKIZ() {
+    return getDouble("DRIVE_KIZ", DRIVE_KIZ);
+  }
+
+  public static double getDriveKFF() {
+    return getDouble("DRIVE_KFF", DRIVE_KFF);
   }
 }
