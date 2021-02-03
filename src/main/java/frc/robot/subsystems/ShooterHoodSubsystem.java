@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -71,7 +72,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   // Raises the hood to its setpoint using position PID.
   public void deployHood() {
     if (reliableZero) {
-      hoodPID.setReference(MoPrefs.getShooterHoodSetpoint(), ControlType.kPosition, 0);
+      hoodPID.setReference(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT), ControlType.kPosition, 0);
     } else {
       hoodNEO.set(SAFE_STOW_SPEED);
     }
@@ -103,7 +104,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     // If the current position is in within +-positionTolerance of the setpoint,
     // return true
     // Otherwise, return false
-    return Math.abs(MoPrefs.getShooterHoodSetpoint() - getHoodPos()) < MoPrefs.getShooterHoodPositionTolerance();
+    return Math.abs(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT) - getHoodPos()) < MoPrefs
+        .get(MoPrefsKey.SHOOTER_HOOD_POSITION_TOLERANCE);
   }
 
   public boolean isHoodReady() {
