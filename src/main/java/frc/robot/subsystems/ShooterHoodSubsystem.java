@@ -116,14 +116,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
    * Update PID constants from MoPrefs
    */
   private void updatePidConstants() {
-    hoodPID.setP(MoPrefs.getHoodKP());
-    hoodPID.setI(MoPrefs.getHoodKI());
-    hoodPID.setD(MoPrefs.getHoodKD());
-    hoodPID.setIZone(MoPrefs.getHoodKIZ());
-    hoodPID.setFF(MoPrefs.getHoodKFF());
-    double outRange = MoPrefs.getHoodOutRange();
+    hoodPID.setP(MoPrefs.get(MoPrefsKey.HOOD_KP));
+    hoodPID.setI(MoPrefs.get(MoPrefsKey.HOOD_KI));
+    hoodPID.setD(MoPrefs.get(MoPrefsKey.HOOD_KD));
+    hoodPID.setIZone(MoPrefs.get(MoPrefsKey.HOOD_KIZ));
+    hoodPID.setFF(MoPrefs.get(MoPrefsKey.HOOD_KFF));
+    double outRange = MoPrefs.get(MoPrefsKey.HOOD_OUT_RANGE);
     hoodPID.setOutputRange(-outRange, outRange);
-    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.getHoodAllowedErr(), 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.get(MoPrefsKey.HOOD_ALLOWED_ERR), 0);
   }
 
   @Override

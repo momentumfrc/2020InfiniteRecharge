@@ -155,11 +155,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private void updatePIDConstants() {
-    shooterPIDRight.setP(MoPrefs.getShooterKP(), 0);
-    shooterPIDRight.setI(MoPrefs.getShooterKI(), 0);
-    shooterPIDRight.setD(MoPrefs.getShooterKD(), 0);
-    shooterPIDRight.setIZone(MoPrefs.getShooterKIZ(), 0);
-    shooterPIDRight.setFF(MoPrefs.getShooterKFF(), 0);
+    shooterPIDRight.setP(MoPrefs.get(MoPrefsKey.SHOOTER_KP), 0);
+    shooterPIDRight.setI(MoPrefs.get(MoPrefsKey.SHOOTER_KI), 0);
+    shooterPIDRight.setD(MoPrefs.get(MoPrefsKey.SHOOTER_KD), 0);
+    shooterPIDRight.setIZone(MoPrefs.get(MoPrefsKey.SHOOTER_KIZ), 0);
+    shooterPIDRight.setFF(MoPrefs.get(MoPrefsKey.SHOOTER_KFF), 0);
   }
 
   @Override

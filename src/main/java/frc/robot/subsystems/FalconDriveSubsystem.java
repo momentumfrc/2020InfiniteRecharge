@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
@@ -172,11 +173,11 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   // Updates the PID constants stored in each Talon FX from MoPrefs
   private void updatePIDConstants() {
-    double kP = MoPrefs.getDriveKP();
-    double kI = MoPrefs.getDriveKI();
-    double kD = MoPrefs.getDriveKD();
-    int kIZ = (int) MoPrefs.getDriveKIZ();
-    double kFF = MoPrefs.getDriveKFF();
+    double kP = MoPrefs.get(MoPrefsKey.DRIVE_KP);
+    double kI = MoPrefs.get(MoPrefsKey.DRIVE_KI);
+    double kD = MoPrefs.get(MoPrefsKey.DRIVE_KD);
+    int kIZ = (int) MoPrefs.get(MoPrefsKey.DRIVE_KIZ);
+    double kFF = MoPrefs.get(MoPrefsKey.DRIVE_KFF);
     leftFront.config_kP(0, kP);
     leftFront.config_kI(0, kI);
     leftFront.config_kD(0, kD);
