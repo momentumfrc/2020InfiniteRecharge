@@ -15,7 +15,7 @@ public class ControllerBase implements DriveController {
   }
 
   public double getMoveRequest() {
-    double moveRequest = -xbox.getY(GenericHID.Hand.kLeft);
+    double moveRequest = -xbox.getY(GenericHID.Hand.kLeft); // Inverted, because +Y is down on most game controllers.
     return moveRequest;
   }
 

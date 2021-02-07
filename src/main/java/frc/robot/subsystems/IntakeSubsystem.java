@@ -17,6 +17,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoUtils;
 import frc.robot.utils.SafeSP;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -54,15 +55,15 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void runIntakeFwd() {
-    setMotorsWithRamp(MoPrefs.getIntakeRollerSetpoint());
+    setMotorsWithRamp(MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   public void runIntakeRvs() {
-    setMotorsWithRamp(-1 * MoPrefs.getIntakeRollerSetpoint());
+    setMotorsWithRamp(-1 * MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   private void setMotorsWithRamp(double power) {
-    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.getIntakeRollerAccRamp());
+    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_ACC_RAMP));
     lastPower = currPower;
     intakeSP.set(currPower);
     intakeSP2.set(currPower);

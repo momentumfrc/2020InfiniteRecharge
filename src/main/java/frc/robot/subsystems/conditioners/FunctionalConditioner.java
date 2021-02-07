@@ -7,6 +7,14 @@ public class FunctionalConditioner implements DriveConditioner {
   private DoubleUnaryOperator moveOperator;
   private DoubleUnaryOperator turnOperator;
 
+  /**
+   * A conditioner for use with lambdas.
+   * 
+   * Example: new FunctionalConditioner((mr) -> mr, (tr) -> -tr));
+   * 
+   * @param moveOperator MoveRequest operation
+   * @param turnOperator TurnRequest operation
+   */
   public FunctionalConditioner(DoubleUnaryOperator moveOperator, DoubleUnaryOperator turnOperator) {
     this.moveOperator = moveOperator;
     this.turnOperator = turnOperator;

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SafeSP;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 public class StorageSubsystem extends SubsystemBase {
 
@@ -26,11 +27,11 @@ public class StorageSubsystem extends SubsystemBase {
   }
 
   public void run() {
-    storage.set(MoPrefs.getStorageSpeed());
+    storage.set(MoPrefs.get(MoPrefsKey.STORAGE_SPEED));
   }
 
   public void reverse() {
-    speed = -MoPrefs.getStorageSpeed();
+    speed = -MoPrefs.get(MoPrefsKey.STORAGE_SPEED);
     storage.set(speed);
   }
 

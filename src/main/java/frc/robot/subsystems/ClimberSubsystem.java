@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 public class ClimberSubsystem extends SubsystemBase {
   private final VictorSP climberSP = new VictorSP(Constants.CLIMBER_VICTORSP_PWM_CHAN);
@@ -46,7 +47,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void climb() {
-    if (!reliableZero || encoder.get() > MoPrefs.getClimberEncoderLimit())
+    if (!reliableZero || encoder.get() > MoPrefs.get(MoPrefsKey.CLIMBER_ENCODER_LIMIT))
       stop();
     else
       climberSP.set(CLIMB);

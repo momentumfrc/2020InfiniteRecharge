@@ -8,12 +8,15 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
+
 import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
+import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -57,30 +60,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * The maximum safe angular velocity of the robot, in radians per second.
    */
   private static final double TURN_LIMIT_RAD_PER_S = 4 * Math.PI;
-  /**
-   * The Proportional Gain, used in PID to ramp velocity in relation to error.
-   */
-  private double kP = 0;
-  /**
-   * The Integral Gain, used in PID to correct steady-state error and combat
-   * friction.
-   */
-  private double kI = 0;
-  /**
-   * The Differential Gain, used in PID to dampen the output of the PID controller
-   * to reduce oscillations.
-   */
-  private double kD = 0;
-  /**
-   * The Integral Zone, used in PID to control the maximum value of the integral
-   * accumulator.
-   */
-  private int kIZ = 0;
-  /**
-   * The Feed-Forward Gain, used in PID to anticipate future changes in error and
-   * stabilize a PID curve.
-   */
-  private double kFF = 1;
 
   private static final double GEAR_RATIO = 1 / 10.75;
 
@@ -91,11 +70,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private NetworkTableEntry leftDriveVelocity;
   private NetworkTableEntry rightDriveVelocity;
-  private NetworkTableEntry kPSlider;
-  private NetworkTableEntry kISlider;
-  private NetworkTableEntry kIZSlider;
-  private NetworkTableEntry kDSlider;
-  private NetworkTableEntry kFFSlider;
 
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
@@ -121,25 +95,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    leftDriveVelocity = tab.add("Drive Velocity (L), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
-    rightDriveVelocity = tab.add("Drive Velocity (R), m/s", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
-
-    kPSlider = tab.addPersistent("kP", 5e-5).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kPSlider.addListener(notice -> kP = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kISlider = tab.addPersistent("kI", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kISlider.addListener(notice -> kI = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kIZSlider = tab.addPersistent("kIZ", 1e-6).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kIZSlider.addListener(notice -> kIZ = (int) notice.value.getDouble(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kDSlider = tab.addPersistent("kD", 0).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kDSlider.addListener(notice -> kD = notice.value.getDouble(), EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    kFFSlider = tab.addPersistent("kFF", 0.000156).withWidget(BuiltInWidgets.kTextView).getEntry();
-    kFFSlider.addListener(notice -> kFF = notice.value.getDouble(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+    leftDriveVelocity = tab.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    rightDriveVelocity = tab.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
   }
 
   /**
@@ -222,9 +179,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return et / ENC_TICKS_PER_METER;
   }
 
-  // Since the Shuffleboard widgets have listeners, all the PID constants are
-  // updated in the original variables.
+  // Updates the PID constants stored in each Talon FX from MoPrefs
   private void updatePIDConstants() {
+    double kP = MoPrefs.get(MoPrefsKey.DRIVE_KP);
+    double kI = MoPrefs.get(MoPrefsKey.DRIVE_KI);
+    double kD = MoPrefs.get(MoPrefsKey.DRIVE_KD);
+    int kIZ = (int) MoPrefs.get(MoPrefsKey.DRIVE_KIZ);
+    double kFF = MoPrefs.get(MoPrefsKey.DRIVE_KFF);
     leftFront.config_kP(0, kP);
     leftFront.config_kI(0, kI);
     leftFront.config_kD(0, kD);
