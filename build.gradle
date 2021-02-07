@@ -90,6 +90,13 @@ plugins.withType(JacocoPlugin) {
   tasks["test"].finalizedBy 'jacocoTestReport'
 }
 
+test {
+  testLogging {
+    events "failed"
+    exceptionFormat "full"
+  }
+}
+
 sonarqube {
   properties {
     property "sonar.projectKey", "momentumfrc_2020InfiniteRecharge"
