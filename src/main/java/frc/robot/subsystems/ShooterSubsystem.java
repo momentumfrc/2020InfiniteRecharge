@@ -69,9 +69,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     this.shooterHood = shooterHood;
 
-    // Applies the previously-declared values to the PIDF controller.
-    updatePIDConstants();
-
     shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up

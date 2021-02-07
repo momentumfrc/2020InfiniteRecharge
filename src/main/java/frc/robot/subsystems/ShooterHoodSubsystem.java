@@ -41,7 +41,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodPos;
 
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
-    updatePidConstants();
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);

@@ -85,8 +85,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // Slaves the left rear motor to the left front motor
     leftRear.follow(leftFront);
     rightRear.follow(rightFront);
-    // Sets the PID configs for all motors.
-    updatePIDConstants();
     // Sets the acceleration limit for all motors.
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
