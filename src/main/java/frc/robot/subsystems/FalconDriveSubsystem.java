@@ -35,7 +35,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   /**
    * The number of TalonFX encoder ticks per meter that the robot drives on 6"
-   * wheels. Used to input ft/s into WPI_TalonFX.set(VelocityControl, double
+   * wheels. Used to input m/s into WPI_TalonFX.set(VelocityControl, double
    * value), which takes its value in encoder ticks per 100ms.
    */
   private static final double ENC_TICKS_PER_METER = 4278.215;
@@ -84,7 +84,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private static final double GEAR_RATIO = 1 / 10.75;
 
-  private static final double WHEEL_DIAMETER = 0.1524; // Meters
+  private static final double WHEEL_DIAMETER = 0.1524; // meters
 
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
@@ -242,12 +242,21 @@ public class FalconDriveSubsystem extends DriveSubsystem {
         getWheelVelocity(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
   }
 
+  /**
+   * 
+   * @param leftVel  Left side encoder velocity, in Talon FX encoder ticks per
+   *                 100ms
+   * @param rightVel Right side encoder velocity, in Talon FX encoder ticks per
+   *                 100ms
+   * @return a Pose2d representing the motion of the robot
+   */
   public Pose2d generatePose(double leftVel, double rightVel) {
     leftVel = getWheelVelocity(leftVel);
-    rightVel = getWheelVelocity(rightVel);
+    rightVel = -getWheelVelocity(rightVel); // The right side encoder is inverted, but we want forward to be positive
+                                            // for both sides
     double x = (leftVel + rightVel) / 2; // Averages the two velocities to get the robot velocity
     double y = 0; // Not a holonomic drive
-    double rot = (leftVel + rightVel) * 2 /* Rotations to radians CF, since pi cancels */
+    double rot = (leftVel - rightVel) * 2 /* Rotations to radians CF, since pi cancels */
         / (DRIVE_BASE_WIDTH_INCHES * 0.0254/* inch to meter */);
     return new Pose2d(x, y, new Rotation2d(rot));
   }
@@ -259,10 +268,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   public double getWheelVelocity(double encoderVelocity) {
     double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it per
                                                      // second
-    double metersPerSecond = encTicksToMeters(encTicksPerSecond); // Talon FX outputs in encoder ticks, but we want it
-                                                                  // in meters
-    return Math.PI * metersPerSecond * GEAR_RATIO; // Don't need to factor in the wheel diameter because it's already
-                                                   // accounted for in encTicksToMeters()
+    double rotationsPerSecond = encTicksPerSecond / 2048; // 2048 encoder ticks = 1 rotation
+
+    return rotationsPerSecond * GEAR_RATIO * WHEEL_DIAMETER * Math.PI;
   }
 
   @Override

@@ -96,7 +96,7 @@ public class RobotContainer {
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand();
+  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
@@ -118,7 +118,7 @@ public class RobotContainer {
 
   private final Command driveToWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5);
   // ----------------------------------------Choosers------------------------------------------
-  private final AutoChooser autoChooser = new AutoChooser(matchTab, autonDriveCommand, driveToWall, shootFromLine,
+  private final AutoChooser autoChooser = new AutoChooser(matchTab, shootFromLine, driveToWall, autonDriveCommand,
       shootFromWall, pathWeaverCommand);
 
   /**
