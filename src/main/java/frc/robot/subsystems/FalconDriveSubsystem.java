@@ -16,6 +16,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
@@ -34,7 +36,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * The number of TalonFX encoder ticks per meter that the robot drives on 6"
    * wheels. Used to input ft/s into WPI_TalonFX.set(VelocityControl, double
-   * value), which takes its value in encoder ticks per second.
+   * value), which takes its value in encoder ticks per 100ms.
    */
   private static final double ENC_TICKS_PER_METER = 4278.215;
   /**
@@ -79,6 +81,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * stabilize a PID curve.
    */
   private double kFF = 1;
+
+  private static final double GEAR_RATIO = 1 / 10.75;
+
+  private static final double WHEEL_DIAMETER = 0.1524; // Meters
 
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
@@ -177,8 +183,11 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // Converts chassis speeds (the whole robot) into per-side speeds.
     final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
     // Converts the individual side speeds in m/s to encoder ticks per second
-    final double leftETPerS = metersToEncTicks(wheelSpeeds.leftMetersPerSecond);
-    final double rightETPerS = metersToEncTicks(wheelSpeeds.rightMetersPerSecond);
+    double leftETPerS = metersToEncTicks(wheelSpeeds.leftMetersPerSecond);
+    double rightETPerS = metersToEncTicks(wheelSpeeds.rightMetersPerSecond);
+    // Divides the side speeds by 10 to convert them to encoder ticks per 100ms
+    leftETPerS *= 0.1;
+    rightETPerS *= 0.1;
     // Feeds the encoder ticks per second setpoint into the Talon FX PID
     // controllers.
     leftFront.set(ControlMode.MotionMagic, leftETPerS);
@@ -226,6 +235,34 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     rightFront.config_kD(0, kD);
     rightFront.config_IntegralZone(0, kIZ);
     rightFront.config_kF(0, kFF);
+  }
+
+  public Pose2d getPose() {
+    return generatePose(getWheelVelocity(leftFront.getSensorCollection().getIntegratedSensorVelocity()),
+        getWheelVelocity(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
+  }
+
+  public Pose2d generatePose(double leftVel, double rightVel) {
+    leftVel = getWheelVelocity(leftVel);
+    rightVel = getWheelVelocity(rightVel);
+    double x = (leftVel + rightVel) / 2; // Averages the two velocities to get the robot velocity
+    double y = 0; // Not a holonomic drive
+    double rot = (leftVel + rightVel) * 2 /* Rotations to radians CF, since pi cancels */
+        / (DRIVE_BASE_WIDTH_INCHES * 0.0254/* inch to meter */);
+    return new Pose2d(x, y, new Rotation2d(rot));
+  }
+
+  /**
+   * @param encoderVelocity Input velocity in Talon FX encoder ticks per 100ms
+   * @return Velocity of the drive wheels in meters per second
+   */
+  public double getWheelVelocity(double encoderVelocity) {
+    double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it per
+                                                     // second
+    double metersPerSecond = encTicksToMeters(encTicksPerSecond); // Talon FX outputs in encoder ticks, but we want it
+                                                                  // in meters
+    return Math.PI * metersPerSecond * GEAR_RATIO; // Don't need to factor in the wheel diameter because it's already
+                                                   // accounted for in encTicksToMeters()
   }
 
   @Override
