@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -108,7 +109,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // deploy hood
     // run gate if both of "" are good
 
-    double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
+    double pidSetpoint = MoPrefs.get(MoPrefsKey.SHOOTER_PID_SETPOINT);
 
     if (enablePID) {
       shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
@@ -119,7 +120,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterHood.setHoodPosition(hoodSetpoint);
 
     if (shooterHood.isHoodReady() && isFlywheelReady()) {
-      shooterGate.set(MoPrefs.getShooterGateSetpoint());
+      shooterGate.set(MoPrefs.get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
     } else {
       shooterGate.set(0);
     }
@@ -136,7 +137,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // reverse gate
     // reverse shooter wheel
     leader_shooterMAXRight.set(-0.2);
-    shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
+    shooterGate.set(-1 * MoPrefs.get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
   }
 
   /**
@@ -149,16 +150,16 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private boolean isFlywheelReady() {
-    return Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
-        .getShooterFlywheelTolerance();
+    return Math.abs(MoPrefs.get(MoPrefsKey.SHOOTER_PID_SETPOINT) - shooterEncoder.getVelocity()) < MoPrefs
+        .get(MoPrefsKey.SHOOTER_FLYWHEEL_TOLERANCE);
   }
 
   private void updatePIDConstants() {
-    shooterPIDRight.setP(MoPrefs.getShooterKP(), 0);
-    shooterPIDRight.setI(MoPrefs.getShooterKI(), 0);
-    shooterPIDRight.setD(MoPrefs.getShooterKD(), 0);
-    shooterPIDRight.setIZone(MoPrefs.getShooterKIZ(), 0);
-    shooterPIDRight.setFF(MoPrefs.getShooterKFF(), 0);
+    shooterPIDRight.setP(MoPrefs.get(MoPrefsKey.SHOOTER_KP), 0);
+    shooterPIDRight.setI(MoPrefs.get(MoPrefsKey.SHOOTER_KI), 0);
+    shooterPIDRight.setD(MoPrefs.get(MoPrefsKey.SHOOTER_KD), 0);
+    shooterPIDRight.setIZone(MoPrefs.get(MoPrefsKey.SHOOTER_KIZ), 0);
+    shooterPIDRight.setFF(MoPrefs.get(MoPrefsKey.SHOOTER_KFF), 0);
   }
 
   @Override
