@@ -29,9 +29,6 @@ public class FalconDriveSubsystemTest {
   public void testPoseGen() {
     // Represents the robot turning in place
     Pose2d pose = m_subsystem.generatePose(2048, -2048);
-    System.out.println("Rot: " + pose.getRotation().getRadians());
-    System.out.println("X: " + pose.getX());
-    System.out.println("Y: " + pose.getY());
 
     // Shouldn't be moving forward
     assertEquals(0, pose.getX(), TEST_DELTA);
@@ -41,6 +38,5 @@ public class FalconDriveSubsystemTest {
 
     // Rotation should equate to about 2.7 radians per second
     assertEquals(2.698, pose.getRotation().getRadians(), TEST_DELTA);
-
   }
 }

@@ -11,6 +11,7 @@ import org.usfirst.frc.team4999.controllers.LogitechF310;
 import org.usfirst.frc.team4999.utils.MoPDP;
 
 import frc.robot.choosers.AutoChooser;
+import frc.robot.choosers.PathChooser;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.PathWeaverCommand;
@@ -95,10 +96,12 @@ public class RobotContainer {
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
 
   private final LEDSubsystem leds = new LEDSubsystem();
+  // ---------------------------------------Chooser---------------------------------------------
+  private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.path");
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem);
+  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.

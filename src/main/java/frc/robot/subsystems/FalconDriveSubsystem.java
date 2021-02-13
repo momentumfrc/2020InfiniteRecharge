@@ -65,6 +65,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private static final double WHEEL_DIAMETER = 0.1524; // meters
 
+  private static final double DRIVE_BASE_WIDTH_METERS = Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES);
+
+  private static final double TALON_FX_ENC_TICKS_PER_ROTATION = 2048;
+
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
@@ -200,8 +204,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   public Pose2d getPose() {
-    return generatePose(getWheelVelocity(leftFront.getSensorCollection().getIntegratedSensorVelocity()),
-        getWheelVelocity(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
+    return generatePose(leftFront.getSensorCollection().getIntegratedSensorVelocity(),
+        rightFront.getSensorCollection().getIntegratedSensorVelocity());
   }
 
   /**
@@ -218,7 +222,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     double x = (leftVel + rightVel) / 2; // Averages the two velocities to get the robot velocity
     double y = 0; // Not a holonomic drive
     double rot = (leftVel - rightVel) * 2 /* Rotations to radians CF, since pi cancels */
-        / (DRIVE_BASE_WIDTH_INCHES * 0.0254/* inch to meter */);
+        / (DRIVE_BASE_WIDTH_METERS);
     return new Pose2d(x, y, new Rotation2d(rot));
   }
 
@@ -229,7 +233,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   public double getWheelVelocity(double encoderVelocity) {
     double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it per
                                                      // second
-    double rotationsPerSecond = encTicksPerSecond / 2048; // 2048 encoder ticks = 1 rotation
+    double rotationsPerSecond = encTicksPerSecond / TALON_FX_ENC_TICKS_PER_ROTATION; // 2048 encoder ticks = 1 rotation
 
     return rotationsPerSecond * GEAR_RATIO * WHEEL_DIAMETER * Math.PI;
   }
