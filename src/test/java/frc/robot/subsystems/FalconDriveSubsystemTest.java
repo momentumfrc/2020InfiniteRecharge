@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class FalconDriveSubsystemTest {
   private final FalconDriveSubsystem m_subsystem;
@@ -13,7 +12,7 @@ public class FalconDriveSubsystemTest {
   private static final double TEST_DELTA = 1e-2;
 
   public FalconDriveSubsystemTest() {
-    m_subsystem = new FalconDriveSubsystem(Shuffleboard.getTab("test"));
+    m_subsystem = new FalconDriveSubsystem(null);
   }
 
   @Test
@@ -30,12 +29,18 @@ public class FalconDriveSubsystemTest {
   public void testPoseGen() {
     // Represents the robot turning in place
     Pose2d pose = m_subsystem.generatePose(2048, -2048);
-    System.out.println(pose.getRotation().getRadians());
+    System.out.println("Rot: " + pose.getRotation().getRadians());
+    System.out.println("X: " + pose.getX());
+    System.out.println("Y: " + pose.getY());
+
     // Shouldn't be moving forward
-    assertEquals(pose.getX(), 0, TEST_DELTA);
+    assertEquals(0, pose.getX(), TEST_DELTA);
+
     // Robot shouldn't be able to slide sideways
-    assertEquals(pose.getY(), 0, TEST_DELTA);
+    assertEquals(0, pose.getY(), TEST_DELTA);
+
     // Rotation should equate to about 2.7 radians per second
-    assertEquals(pose.getRotation().getRadians(), 2.698, TEST_DELTA);
+    assertEquals(2.698, pose.getRotation().getRadians(), TEST_DELTA);
+
   }
 }

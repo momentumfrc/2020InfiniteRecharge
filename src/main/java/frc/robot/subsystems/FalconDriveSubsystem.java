@@ -89,12 +89,15 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
 
-    NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch).getEntry();
-    drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
-        EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+    if (tab != null) {
+      NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch)
+          .getEntry();
+      drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
+          EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    leftDriveVelocity = tab.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
-    rightDriveVelocity = tab.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+      leftDriveVelocity = tab.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+      rightDriveVelocity = tab.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    }
   }
 
   /**
@@ -211,8 +214,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   public Pose2d generatePose(double leftVel, double rightVel) {
     leftVel = getWheelVelocity(leftVel);
-    rightVel = -getWheelVelocity(rightVel); // The right side encoder is inverted, but we want forward to be positive
-                                            // for both sides
+    rightVel = getWheelVelocity(rightVel);
     double x = (leftVel + rightVel) / 2; // Averages the two velocities to get the robot velocity
     double y = 0; // Not a holonomic drive
     double rot = (leftVel - rightVel) * 2 /* Rotations to radians CF, since pi cancels */
