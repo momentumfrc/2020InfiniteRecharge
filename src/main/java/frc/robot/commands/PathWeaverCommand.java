@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -21,7 +22,6 @@ public class PathWeaverCommand extends CommandBase {
   private Timer timer = new Timer();
 
   public PathWeaverCommand(FalconDriveSubsystem subsystem, PathChooser pathChooser) {
-    updateTrajectory();
     this.subsystem = subsystem;
     this.pathChooser = pathChooser;
   }
@@ -39,7 +39,10 @@ public class PathWeaverCommand extends CommandBase {
     Trajectory.State goal = trajectory.sample(timer.get());
     // Calculates the desired robot forward and angular velocity,
     // and passes it to the drive subsystem's PID controllers
-    subsystem.drive(controller.calculate(subsystem.getPose(), goal));
+    ChassisSpeeds speeds = controller.calculate(subsystem.getPose(), goal);
+    subsystem.drive(speeds);
+    System.out.println("vX: " + speeds.vxMetersPerSecond + " vY: " + speeds.vyMetersPerSecond + " omega: "
+        + speeds.omegaRadiansPerSecond);
   }
 
   @Override
@@ -56,17 +59,21 @@ public class PathWeaverCommand extends CommandBase {
     return false;
   }
 
-  // TODO Call this recurringly somewhere
   public void updateTrajectory() {
     if (safeToChangePath) {
       String path = pathChooser.getSelected();
       // Loads the PathWeaver trajectory into memory. If reading the file is
       // unsuccessful, print to DS.
-      try {
-        trajectory = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(path));
-      } catch (IOException e) {
-        DriverStation.reportError("Unable to open trajectory: " + path, e.getStackTrace());
+      if (path != null) {
+        try {
+          trajectory = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(path));
+        } catch (IOException e) {
+          DriverStation.reportError("Unable to open trajectory: " + path, e.getStackTrace());
+        }
+      } else {
+        System.out.println("Trajectory path was null");
       }
+
     } else {
       System.out.println("Path cannot be changed during autonomous run!");
     }

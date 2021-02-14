@@ -97,11 +97,11 @@ public class RobotContainer {
 
   private final LEDSubsystem leds = new LEDSubsystem();
   // ---------------------------------------Chooser---------------------------------------------
-  private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.path");
+  private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
-  private final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
+  public final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
