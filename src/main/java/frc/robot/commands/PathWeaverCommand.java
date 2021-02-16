@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -15,10 +14,16 @@ import frc.robot.subsystems.FalconDriveSubsystem;
 
 public class PathWeaverCommand extends CommandBase {
   private Trajectory trajectory;
+  // Main drive subsystem
   private final FalconDriveSubsystem subsystem;
+  // A built-in class that helps track a trajectory
   private final RamseteController controller = new RamseteController();
+  // Used to avoid changing trajectories while following a trajectory.
   private boolean safeToChangePath = true;
+  // A Shuffleboard widget used to choose a trajectory
   private PathChooser pathChooser;
+  // A timer used to accurately get the elapsed time since the start of trajectory
+  // tracking
   private Timer timer = new Timer();
 
   public PathWeaverCommand(FalconDriveSubsystem subsystem, PathChooser pathChooser) {
@@ -39,10 +44,7 @@ public class PathWeaverCommand extends CommandBase {
     Trajectory.State goal = trajectory.sample(timer.get());
     // Calculates the desired robot forward and angular velocity,
     // and passes it to the drive subsystem's PID controllers
-    ChassisSpeeds speeds = controller.calculate(subsystem.getPose(), goal);
-    subsystem.drive(speeds);
-    System.out.println("vX: " + speeds.vxMetersPerSecond + " vY: " + speeds.vyMetersPerSecond + " omega: "
-        + speeds.omegaRadiansPerSecond);
+    subsystem.drive(controller.calculate(subsystem.getPose(), goal));
   }
 
   @Override

@@ -142,7 +142,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    *                      m/s and rad/s, respectively.
    */
   public void drive(ChassisSpeeds chassisSpeeds) {
-    System.out.println(chassisSpeeds.vxMetersPerSecond + " vY: " + chassisSpeeds.vyMetersPerSecond);
     // Converts chassis speeds (the whole robot) into per-side speeds.
     final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
     // Converts the individual side speeds in m/s to encoder ticks per second
@@ -151,7 +150,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // Divides the side speeds by 10 to convert them to encoder ticks per 100ms
     leftETPerS *= 0.1;
     rightETPerS *= 0.1;
-    // Feeds the encoder ticks per second setpoint into the Talon FX PID
+    // Feeds the encoder ticks per 100ms setpoint into the Talon FX PID
     // controllers.
     leftFront.set(ControlMode.Velocity, leftETPerS);
     rightFront.set(ControlMode.Velocity, rightETPerS);
