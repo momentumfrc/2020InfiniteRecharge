@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class MoPrefs {
 
-  public static enum MoPrefsKey {
+  public enum MoPrefsKey {
     INTAKE_ROLLER_SETPOINT(0.125),
 
     INTAKE_ROLLER_ACC_RAMP(0.1),

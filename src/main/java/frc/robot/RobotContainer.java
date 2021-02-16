@@ -51,7 +51,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // --------------------------------------Shuffleboard----------------------------------------
   private final ShuffleboardTab matchTab = Shuffleboard.getTab("Match");
-  private final ShuffleboardTab testTab = Shuffleboard.getTab("Test Tune");
   private final ShuffleboardTab limelightTab = Shuffleboard.getTab("Limelight");
 
   // ---------------------------------------Components----------------------------------------
