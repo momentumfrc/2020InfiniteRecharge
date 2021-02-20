@@ -2,9 +2,6 @@ package frc.robot.commands;
 
 import java.io.IOException;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -37,7 +34,9 @@ public class PathWeaverCommand extends CommandBase {
     this.pathChooser = pathChooser;
 
     if (RobotBase.isSimulation()) {
-      SmartDashboard.getEntry("field2d").setValue(new Field2d());
+      // Adds a field image to the simulation GUI which helps visualize simulated
+      // autonomous routines.
+      SmartDashboard.putData(new Field2d());
     }
   }
 
