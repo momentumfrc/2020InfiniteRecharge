@@ -19,6 +19,9 @@ import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
@@ -26,6 +29,11 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 
 public class FalconDriveSubsystem extends DriveSubsystem {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -33,6 +41,17 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final WPI_TalonFX leftRear = new WPI_TalonFX(FALCON_DRIVE_LEFT_REAR_CAN_ADDR);
   private final WPI_TalonFX rightFront = new WPI_TalonFX(FALCON_DRIVE_RIGHT_FRONT_CAN_ADDR);
   private final WPI_TalonFX rightRear = new WPI_TalonFX(FALCON_DRIVE_RIGHT_REAR_CAN_ADDR);
+
+  private final SimEncoder leftSimEncoder = new SimEncoder();
+  private final SimEncoder rightSimEncoder = new SimEncoder();
+
+  private final ProfiledPIDController leftPID = new ProfiledPIDController(0, 0, 0,
+      new TrapezoidProfile.Constraints(0, 0));
+  private final ProfiledPIDController rightPID = new ProfiledPIDController(0, 0, 0,
+      new TrapezoidProfile.Constraints(0, 0));
+
+  private final DifferentialDrivetrainSim drivetrainSim = new DifferentialDrivetrainSim(DCMotor.getFalcon500(2),
+      GEAR_RATIO, 5.5 /* FIXME Get real moment of inertia */, 55, 0.1524, 0.5, null);
 
   private boolean enablePID = false;
 
@@ -69,11 +88,50 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private static final double TALON_FX_ENC_TICKS_PER_ROTATION = 2048;
 
+  /**
+   * The measured maximum velocity of the drivetrain, in encoder ticks per 100ms
+   * FIXME Take a measurement for this
+   */
+  private static final double EMPIRICAL_MAX_VEL = 1891.2;
+
+  private Field2d virtualField = new Field2d();
+
   private final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(
       Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES));
 
   private NetworkTableEntry leftDriveVelocity;
   private NetworkTableEntry rightDriveVelocity;
+
+  private class SimEncoder {
+    private double value;
+    private double lastValue;
+    private double lastTime;
+
+    public SimEncoder() {
+      value = 0;
+      lastValue = 0;
+      lastTime = 0;
+    }
+
+    public double get() {
+      return value;
+    }
+
+    public double getVelocity() {
+      return (value - lastValue) / (Timer.getFPGATimestamp() - lastTime);
+    }
+
+    /**
+     * Should be called periodically during simulation.
+     * 
+     * @param newValue The new encoder value to set.
+     */
+    public void update(double newValue) {
+      lastValue = value;
+      lastTime = Timer.getFPGATimestamp();
+      value = newValue;
+    }
+  }
 
   public FalconDriveSubsystem(ShuffleboardTab tab) {
     // Invert one side of the robot
@@ -112,26 +170,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   public void drive(final double moveRequest, final double turnRequest) {
     if (enablePID) {
-      /**
-       * Since moveRequest is from -1 to 1 and we need a value in meters per second to
-       * feed to ChassisSpeeds, we scale the moveRequest to the speed limit as
-       * converted to m/s.
-       */
-      final double moveReqScaled = Utils.map(moveRequest, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S);
-      /**
-       * Since turnRequest is from -1 to 1 and we need a value in radians per second
-       * to feed to ChassisSpeeds, we scale the turnRequest to the angular velocity
-       * limit in radians/second.
-       */
-      final double turnReqScaled = Utils.map(turnRequest, -1, 1, -TURN_LIMIT_RAD_PER_S, TURN_LIMIT_RAD_PER_S);
-      /**
-       * Calls the overload of this method, since all conversion is done.
-       */
-      drive(new ChassisSpeeds(moveReqScaled, 0, turnReqScaled));
-    } else {
-      leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
-      rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
+      set(Utils.clip(moveRequest - turnRequest, -1, 1), Utils.clip(moveRequest + turnRequest, -1, 1));
     }
+    leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
+    rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
   }
 
   /**
@@ -144,16 +186,41 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   public void drive(ChassisSpeeds chassisSpeeds) {
     // Converts chassis speeds (the whole robot) into per-side speeds.
     final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
-    // Converts the individual side speeds in m/s to encoder ticks per second
-    double leftETPerS = metersToEncTicks(wheelSpeeds.leftMetersPerSecond);
-    double rightETPerS = metersToEncTicks(wheelSpeeds.rightMetersPerSecond);
-    // Divides the side speeds by 10 to convert them to encoder ticks per 100ms
-    leftETPerS *= 0.1;
-    rightETPerS *= 0.1;
-    // Feeds the encoder ticks per 100ms setpoint into the Talon FX PID
-    // controllers.
-    leftFront.set(ControlMode.Velocity, leftETPerS);
-    rightFront.set(ControlMode.Velocity, rightETPerS);
+    // Scales each side speed based on the speed limit, then makes sure it's within
+    // -1 and 1.
+    // This is done the way it is to prevent errors if the target is faster than the
+    // speed limit.
+    double leftTarget = Utils.clip(wheelSpeeds.leftMetersPerSecond / SPEED_LIMIT_METERS_PER_S, -1, 1);
+    double rightTarget = Utils.clip(wheelSpeeds.rightMetersPerSecond / SPEED_LIMIT_METERS_PER_S, -1, 1);
+    // Sets the motors, with PIDF, to the setpoints.
+    set(leftTarget, rightTarget);
+  }
+
+  /**
+   * @param left  Left side target from -1 to 1
+   * @param right Right side target from -1 to 1
+   */
+  private void set(double left, double right) {
+    // Calculates PID output, inputs being:
+    // 1 - The measured encoder velocity scaled to be (roughly) between -1 and 1.
+    // 2 - The setpoint, between -1 and 1.
+    leftFront.set(ControlMode.PercentOutput,
+        leftPID.calculate(getEncoderVelocity(Side.kLeft) / EMPIRICAL_MAX_VEL, left));
+    rightFront.set(ControlMode.PercentOutput,
+        rightPID.calculate(getEncoderVelocity(Side.kRight) / EMPIRICAL_MAX_VEL, right));
+  }
+
+  public enum Side {
+    kLeft, kRight
+  }
+
+  private double getEncoderVelocity(Side side) {
+    if (RobotBase.isReal()) {
+      return side == Side.kLeft ? leftFront.getSensorCollection().getIntegratedSensorVelocity()
+          : rightFront.getSensorCollection().getIntegratedSensorVelocity();
+    } else {
+      return side == Side.kLeft ? leftSimEncoder.getVelocity() : rightSimEncoder.getVelocity();
+    }
   }
 
   /**
@@ -167,8 +234,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * 
    * @param m The number of meters to be converted to encoder ticks.
-   * @return the number of encoder ticks that correspond to @param m , assuming
-   *         6-inch wheels.
+   * @return encoder ticks
    */
   private double metersToEncTicks(final double m) {
     return m * ENC_TICKS_PER_METER;
@@ -177,35 +243,30 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * 
    * @param et The number of encoder ticks to be converted to meters.
-   * @return The number of meters that correspond to @param et , assuming 6-inch
-   *         wheels.
+   * @return meters
    */
   private double encTicksToMeters(final double et) {
     return et / ENC_TICKS_PER_METER;
   }
 
-  // Updates the PID constants stored in each Talon FX from MoPrefs
+  // Updates the PID constants stored in the PID controllers from MoPrefs
   private void updatePIDConstants() {
     double kP = MoPrefs.get(MoPrefsKey.DRIVE_KP);
     double kI = MoPrefs.get(MoPrefsKey.DRIVE_KI);
     double kD = MoPrefs.get(MoPrefsKey.DRIVE_KD);
     int kIZ = (int) MoPrefs.get(MoPrefsKey.DRIVE_KIZ);
-    double kFF = MoPrefs.get(MoPrefsKey.DRIVE_KFF);
-    leftFront.config_kP(0, kP);
-    leftFront.config_kI(0, kI);
-    leftFront.config_kD(0, kD);
-    leftFront.config_IntegralZone(0, kIZ);
-    leftFront.config_kF(0, kFF);
-    rightFront.config_kP(0, kP);
-    rightFront.config_kI(0, kI);
-    rightFront.config_kD(0, kD);
-    rightFront.config_IntegralZone(0, kIZ);
-    rightFront.config_kF(0, kFF);
+    leftPID.setP(kP);
+    leftPID.setI(kI);
+    leftPID.setD(kD);
+    leftPID.setIntegratorRange(-kIZ, kIZ);
+    rightPID.setP(kP);
+    rightPID.setI(kI);
+    rightPID.setD(kD);
+    leftPID.setIntegratorRange(-kIZ, kIZ);
   }
 
   public Pose2d getPose() {
-    return generatePose(leftFront.getSensorCollection().getIntegratedSensorVelocity(),
-        rightFront.getSensorCollection().getIntegratedSensorVelocity());
+    return generatePose(getEncoderVelocity(Side.kLeft), getEncoderVelocity(Side.kRight));
   }
 
   /**
@@ -240,8 +301,26 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   @Override
   public void periodic() {
-    leftDriveVelocity.setDouble(encTicksToMeters(leftFront.getSensorCollection().getIntegratedSensorVelocity()));
-    rightDriveVelocity.setDouble(encTicksToMeters(rightFront.getSensorCollection().getIntegratedSensorVelocity()));
+    leftDriveVelocity.setDouble(getEncoderVelocity(Side.kLeft));
+    rightDriveVelocity.setDouble(getEncoderVelocity(Side.kRight));
     updatePIDConstants();
+  }
+
+  @Override
+  public void simulationPeriodic() {
+    drivetrainSim.setInputs(Utils.map(leftFront.get(), -1, 1, -12, 12), Utils.map(rightFront.get(), -1, 1, -12, 12));
+    drivetrainSim.update(0.020); // 20ms, the recommended period
+    leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()));
+    rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()));
+    SmartDashboard.putNumber("left drive setting", leftFront.get());
+    SmartDashboard.putNumber("right drive setting", rightFront.get());
+    SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
+    SmartDashboard.putNumber("DTSim left vel m per s", drivetrainSim.getLeftVelocityMetersPerSecond());
+    // Adds a field image to the simulation GUI which helps visualize simulated
+    // autonomous routines.
+    virtualField.setRobotPose(getPose());
+    SmartDashboard.putData(virtualField);
+    SmartDashboard.putNumber("left encoder val", leftSimEncoder.get());
+    SmartDashboard.putNumber("right encoder val", rightSimEncoder.get());
   }
 }

@@ -4,11 +4,8 @@ import java.io.IOException;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -32,12 +29,6 @@ public class PathWeaverCommand extends CommandBase {
   public PathWeaverCommand(FalconDriveSubsystem subsystem, PathChooser pathChooser) {
     this.subsystem = subsystem;
     this.pathChooser = pathChooser;
-
-    if (RobotBase.isSimulation()) {
-      // Adds a field image to the simulation GUI which helps visualize simulated
-      // autonomous routines.
-      SmartDashboard.putData(new Field2d());
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -63,6 +54,7 @@ public class PathWeaverCommand extends CommandBase {
     timer.stop();
     timer.reset();
     safeToChangePath = true;
+    subsystem.stop();
   }
 
   @Override
