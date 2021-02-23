@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -51,7 +52,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       new TrapezoidProfile.Constraints(0, 0));
 
   private final DifferentialDrivetrainSim drivetrainSim = new DifferentialDrivetrainSim(DCMotor.getFalcon500(2),
-      GEAR_RATIO, 5.5 /* FIXME Get real moment of inertia */, 55, 0.1524, 0.5, null);
+      GEAR_RATIO, 7 /* FIXME Get real moment of inertia */, 55, 0.1524, 0.5, null);
 
   private boolean enablePID = false;
 
@@ -105,7 +106,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private class SimEncoder {
     private double value;
     private double lastValue;
-    private double lastTime;
+    private double lastTime = Timer.getFPGATimestamp();
 
     public SimEncoder() {
       value = 0;
@@ -223,6 +224,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
+  private double getEncoderDistance(Side side) {
+    if (RobotBase.isReal()) {
+      // TODO: getIntegratedSensorAbsolutePosition or getIntegratedSensorPosition?
+      return side == Side.kLeft ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
+          : rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
+    } else {
+      return side == Side.kLeft ? leftSimEncoder.get() : rightSimEncoder.get();
+    }
+  }
+
   /**
    * Stops both motors.
    */
@@ -266,8 +277,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   public Pose2d getPose() {
-    return generatePose(getEncoderVelocity(Side.kLeft), getEncoderVelocity(Side.kRight));
+    return generatePose(getEncoderDistance(Side.kLeft), getEncoderDistance(Side.kRight));
   }
+
+  DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d());
 
   /**
    * 
@@ -277,14 +290,15 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    *                 100ms
    * @return a Pose2d representing the motion of the robot
    */
-  public Pose2d generatePose(double leftVel, double rightVel) {
-    leftVel = getWheelVelocity(leftVel);
-    rightVel = getWheelVelocity(rightVel);
-    double x = (leftVel + rightVel) / 2; // Averages the two velocities to get the robot velocity
+  public Pose2d generatePose(double leftDist, double rightDist) {
+    double x = (leftDist + rightDist) / 2; // Averages the two velocities to get the robot velocity
     double y = 0; // Not a holonomic drive
-    double rot = (leftVel - rightVel) * 2 /* Rotations to radians CF, since pi cancels */
+    double rot = (leftDist - rightDist) * 2 /* Rotations to radians CF, since pi cancels */
         / (DRIVE_BASE_WIDTH_METERS);
-    return new Pose2d(x, y, new Rotation2d(rot));
+
+    odometry.update(new Rotation2d(rot), leftDist, rightDist);
+
+    return odometry.getPoseMeters();
   }
 
   /**
@@ -310,14 +324,17 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   public void simulationPeriodic() {
     drivetrainSim.setInputs(Utils.map(leftFront.get(), -1, 1, -12, 12), Utils.map(rightFront.get(), -1, 1, -12, 12));
     drivetrainSim.update(0.020); // 20ms, the recommended period
+
     leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()));
     rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()));
+
     SmartDashboard.putNumber("left drive setting", leftFront.get());
     SmartDashboard.putNumber("right drive setting", rightFront.get());
     SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
     SmartDashboard.putNumber("DTSim left vel m per s", drivetrainSim.getLeftVelocityMetersPerSecond());
     // Adds a field image to the simulation GUI which helps visualize simulated
     // autonomous routines.
+
     virtualField.setRobotPose(getPose());
     SmartDashboard.putData(virtualField);
     SmartDashboard.putNumber("left encoder val", leftSimEncoder.get());
