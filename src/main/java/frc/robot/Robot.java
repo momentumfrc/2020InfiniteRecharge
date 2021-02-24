@@ -59,11 +59,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_robotContainer.pathWeaverCommand.updateTrajectory();
   }
 
   @Override
   public void disabledPeriodic() {
-    m_robotContainer.pathWeaverCommand.updateTrajectory();
   }
 
   /**

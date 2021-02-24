@@ -15,6 +15,7 @@ import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
@@ -40,6 +41,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   private double hoodPos;
 
+  private boolean isReal;
+
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
     hoodLimitSwitch.enableLimitSwitch(true);
 
@@ -61,6 +64,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPosNumberBar = tab.add("Hood Pos", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
     hasReliableZero = tab.add("Has reliable zero?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
     isFullyDeployed = tab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+
+    isReal = RobotBase.isReal();
   }
 
   public void setHoodPosition(double posRequest) {
@@ -133,7 +138,9 @@ public class ShooterHoodSubsystem extends SubsystemBase {
       zeroHood();
       reliableZero = true;
     }
-    updatePidConstants();
+    if (isReal) {
+      updatePidConstants();
+    }
     // Updates the recorded position periodically so that things like isHoodReady()
     // can access it without polling the encoder too many times.
     hoodPos = hoodEncoder.getPosition();

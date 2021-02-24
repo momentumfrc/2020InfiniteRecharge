@@ -20,6 +20,7 @@ import org.usfirst.frc.team4999.utils.Utils;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -65,6 +66,8 @@ public class ShooterSubsystem extends SubsystemBase {
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
 
+  private boolean isReal;
+
   public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
 
     this.shooterHood = shooterHood;
@@ -99,6 +102,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().
     isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+
+    isReal = RobotBase.isReal();
   }
 
   public void shoot(double hoodSetpoint) {
@@ -163,6 +168,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
-    updatePIDConstants();
+    if (isReal) {
+      updatePIDConstants();
+    }
   }
 }
