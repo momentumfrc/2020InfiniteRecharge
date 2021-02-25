@@ -15,12 +15,12 @@ public class ControllerBase implements DriveController {
   }
 
   public double getMoveRequest() {
-    double moveRequest = -xbox.getY(GenericHID.Hand.kLeft); // Inverted, because +Y is down on most game controllers.
+    double moveRequest = -f310.getY(GenericHID.Hand.kLeft); // Inverted, because +Y is down on most game controllers.
     return moveRequest;
   }
 
   public double getTurnRequest() {
-    double turnRequest = xbox.getX(GenericHID.Hand.kRight);
+    double turnRequest = f310.getX(GenericHID.Hand.kRight);
     return turnRequest;
   }
 

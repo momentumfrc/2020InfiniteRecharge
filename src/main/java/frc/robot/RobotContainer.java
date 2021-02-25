@@ -69,7 +69,7 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickButton shooterShoot = new JoystickButton(xbox, XboxController.Button.kBumperRight.value);
+  private final JoystickButton shooterShoot = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
   private final JoystickButton purge = new JoystickButton(xbox, XboxController.Button.kBumperLeft.value);
 
   private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value);
