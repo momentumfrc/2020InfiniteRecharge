@@ -313,6 +313,12 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return rotationsPerSecond * GEAR_RATIO * WHEEL_DIAMETER * Math.PI;
   }
 
+  public void resetOdo() {
+    odometry.resetPosition(new Pose2d(), new Rotation2d());
+    leftFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
+    rightFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
+  }
+
   @Override
   public void periodic() {
     leftDriveVelocity.setDouble(getEncoderVelocity(Side.kLeft));

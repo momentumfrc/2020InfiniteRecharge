@@ -38,6 +38,7 @@ public class PathWeaverCommand extends CommandBase {
     // On the first scheduler cycle, update the start time with the current time
     if (timer.get() == 0) {
       timer.start();
+      subsystem.resetOdo();
     }
     // Gets the desired forward and angular velocity from the trajectory at the
     // current time

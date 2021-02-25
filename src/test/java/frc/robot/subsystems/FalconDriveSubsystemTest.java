@@ -25,18 +25,16 @@ public class FalconDriveSubsystemTest {
     assertEquals(0.445, testvar, TEST_DELTA);
   }
 
-  @Test
-  public void testPoseGen() {
-    // Represents the robot turning in place
-    Pose2d pose = m_subsystem.generatePose(2048, -2048);
-
-    // Shouldn't be moving forward
-    assertEquals(0, pose.getX(), TEST_DELTA);
-
-    // Robot shouldn't be able to slide sideways
-    assertEquals(0, pose.getY(), TEST_DELTA);
-
-    // Rotation should equate to about 2.7 radians per second
-    assertEquals(2.698, pose.getRotation().getRadians(), TEST_DELTA);
-  }
+  /*
+   * @Test public void testPoseGen() { // Represents the robot turning in place
+   * Pose2d pose = m_subsystem.generatePose(2048, -2048);
+   * 
+   * // Shouldn't be moving forward assertEquals(0, pose.getX(), TEST_DELTA);
+   * 
+   * // Robot shouldn't be able to slide sideways assertEquals(0, pose.getY(),
+   * TEST_DELTA);
+   * 
+   * // Rotation should equate to about 2.7 radians per second assertEquals(2.698,
+   * pose.getRotation().getRadians(), TEST_DELTA); }
+   */
 }
