@@ -104,6 +104,30 @@ public class ShooterSubsystem extends SubsystemBase {
     isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
 
     isReal = RobotBase.isReal();
+
+    MoPrefs instance = MoPrefs.getInstance();
+
+    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(
+        notification -> shooterPIDRight.setP(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KI).addListener(
+        notification -> shooterPIDRight.setI(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KD).addListener(
+        notification -> shooterPIDRight.setD(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KIZ).addListener(
+        notification -> shooterPIDRight.setIZone(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KFF).addListener(
+        notification -> shooterPIDRight.setFF(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+
+    instance.init(MoPrefsKey.SHOOTER_KP, 0);
+    instance.init(MoPrefsKey.SHOOTER_KI, 0);
+    instance.init(MoPrefsKey.SHOOTER_KD, 0);
+    instance.init(MoPrefsKey.SHOOTER_KIZ, 0);
+    instance.init(MoPrefsKey.SHOOTER_KFF, 0);
   }
 
   public void shoot(double hoodSetpoint) {
@@ -156,20 +180,9 @@ public class ShooterSubsystem extends SubsystemBase {
         .getInstance().get(MoPrefsKey.SHOOTER_FLYWHEEL_TOLERANCE);
   }
 
-  private void updatePIDConstants() {
-    shooterPIDRight.setP(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_KP), 0);
-    shooterPIDRight.setI(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_KI), 0);
-    shooterPIDRight.setD(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_KD), 0);
-    shooterPIDRight.setIZone(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_KIZ), 0);
-    shooterPIDRight.setFF(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_KFF), 0);
-  }
-
   @Override
   public void periodic() {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
-    if (isReal) {
-      updatePIDConstants();
-    }
   }
 }

@@ -6,6 +6,7 @@ import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
+
 import com.revrobotics.CANDigitalInput;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,6 +15,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
+import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -66,6 +68,35 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     isFullyDeployed = tab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
 
     isReal = RobotBase.isReal();
+
+    MoPrefs instance = MoPrefs.getInstance();
+
+    // Adds network table listeners for PID constants.
+    instance.getEntry(MoPrefsKey.HOOD_KP).addListener(notification -> hoodPID.setP(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_KI).addListener(notification -> hoodPID.setI(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_KD).addListener(notification -> hoodPID.setD(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_KIZ).addListener(notification -> hoodPID.setIZone(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_KFF).addListener(notification -> hoodPID.setFF(notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_OUT_RANGE).addListener(
+        notification -> hoodPID.setOutputRange(-notification.value.getDouble(), notification.value.getDouble()),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.HOOD_ALLOWED_ERR).addListener(
+        notification -> hoodPID.setSmartMotionAllowedClosedLoopError(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+
+    instance.init(MoPrefsKey.HOOD_KP, 0);
+    instance.init(MoPrefsKey.HOOD_KI, 0);
+    instance.init(MoPrefsKey.HOOD_KD, 0);
+    instance.init(MoPrefsKey.HOOD_KIZ, 0);
+    instance.init(MoPrefsKey.HOOD_KFF, 0);
+    instance.init(MoPrefsKey.HOOD_OUT_RANGE, 0);
+    instance.init(MoPrefsKey.HOOD_ALLOWED_ERR, 0);
+
   }
 
   public void setHoodPosition(double posRequest) {
@@ -116,20 +147,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     return hasReliableZero() && isFullyDeployed();
   }
 
-  /**
-   * Update PID constants from MoPrefs
-   */
-  private void updatePidConstants() {
-    hoodPID.setP(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KP));
-    hoodPID.setI(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KI));
-    hoodPID.setD(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KD));
-    hoodPID.setIZone(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KIZ));
-    hoodPID.setFF(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KFF));
-    double outRange = MoPrefs.getInstance().get(MoPrefsKey.HOOD_OUT_RANGE);
-    hoodPID.setOutputRange(-outRange, outRange);
-    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.getInstance().get(MoPrefsKey.HOOD_ALLOWED_ERR), 0);
-  }
-
   @Override
   public void periodic() {
     // If the hood hits the limit switch, reset the encoder and let everything else
@@ -137,9 +154,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     if (hoodLimitSwitch.get()) {
       zeroHood();
       reliableZero = true;
-    }
-    if (isReal) {
-      updatePidConstants();
     }
     // Updates the recorded position periodically so that things like isHoodReady()
     // can access it without polling the encoder too many times.

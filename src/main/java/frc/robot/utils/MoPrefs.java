@@ -116,6 +116,10 @@ public final class MoPrefs {
     return getEntry(key).getDouble(key.getDefaultValue());
   }
 
+  public void init(MoPrefsKey key, double value) {
+    getEntry(key).setDefaultDouble(value);
+  }
+
   public void set(MoPrefsKey key, double value) {
     getEntry(key).setDouble(value);
   }
@@ -127,7 +131,7 @@ public final class MoPrefs {
         EntryListenerFlags.kImmediate | EntryListenerFlags.kNew);
   }
 
-  NetworkTableEntry getEntry(MoPrefsKey key) {
+  public NetworkTableEntry getEntry(MoPrefsKey key) {
     return m_table.getEntry(key.getPrefsKey());
   }
 
