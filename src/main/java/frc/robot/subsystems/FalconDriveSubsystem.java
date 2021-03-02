@@ -262,10 +262,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   // Updates the PID constants stored in the PID controllers from MoPrefs
   private void updatePIDConstants() {
-    double kP = MoPrefs.get(MoPrefsKey.DRIVE_KP);
-    double kI = MoPrefs.get(MoPrefsKey.DRIVE_KI);
-    double kD = MoPrefs.get(MoPrefsKey.DRIVE_KD);
-    int kIZ = (int) MoPrefs.get(MoPrefsKey.DRIVE_KIZ);
+    double kP = MoPrefs.getInstance().get(MoPrefsKey.DRIVE_KP);
+    double kI = MoPrefs.getInstance().get(MoPrefsKey.DRIVE_KI);
+    double kD = MoPrefs.getInstance().get(MoPrefsKey.DRIVE_KD);
+    int kIZ = (int) MoPrefs.getInstance().get(MoPrefsKey.DRIVE_KIZ);
     leftPID.setP(kP);
     leftPID.setI(kI);
     leftPID.setD(kD);

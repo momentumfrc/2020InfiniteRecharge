@@ -47,7 +47,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void climb() {
-    if (!reliableZero || encoder.get() > MoPrefs.get(MoPrefsKey.CLIMBER_ENCODER_LIMIT))
+    if (!reliableZero || encoder.get() > MoPrefs.getInstance().get(MoPrefsKey.CLIMBER_ENCODER_LIMIT))
       stop();
     else
       climberSP.set(CLIMB);

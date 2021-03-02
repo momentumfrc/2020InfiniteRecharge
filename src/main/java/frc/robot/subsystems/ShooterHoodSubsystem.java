@@ -76,7 +76,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   // Raises the hood to its setpoint using position PID.
   public void deployHood() {
     if (reliableZero) {
-      hoodPID.setReference(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT), ControlType.kPosition, 0);
+      hoodPID.setReference(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT), ControlType.kPosition, 0);
     } else {
       hoodNEO.set(SAFE_STOW_SPEED);
     }
@@ -108,7 +108,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     // If the current position is in within +-positionTolerance of the setpoint,
     // return true
     // Otherwise, return false
-    return Math.abs(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT) - getHoodPos()) < MoPrefs
+    return Math.abs(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT) - getHoodPos()) < MoPrefs.getInstance()
         .get(MoPrefsKey.SHOOTER_HOOD_POSITION_TOLERANCE);
   }
 
@@ -120,14 +120,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
    * Update PID constants from MoPrefs
    */
   private void updatePidConstants() {
-    hoodPID.setP(MoPrefs.get(MoPrefsKey.HOOD_KP));
-    hoodPID.setI(MoPrefs.get(MoPrefsKey.HOOD_KI));
-    hoodPID.setD(MoPrefs.get(MoPrefsKey.HOOD_KD));
-    hoodPID.setIZone(MoPrefs.get(MoPrefsKey.HOOD_KIZ));
-    hoodPID.setFF(MoPrefs.get(MoPrefsKey.HOOD_KFF));
-    double outRange = MoPrefs.get(MoPrefsKey.HOOD_OUT_RANGE);
+    hoodPID.setP(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KP));
+    hoodPID.setI(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KI));
+    hoodPID.setD(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KD));
+    hoodPID.setIZone(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KIZ));
+    hoodPID.setFF(MoPrefs.getInstance().get(MoPrefsKey.HOOD_KFF));
+    double outRange = MoPrefs.getInstance().get(MoPrefsKey.HOOD_OUT_RANGE);
     hoodPID.setOutputRange(-outRange, outRange);
-    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.get(MoPrefsKey.HOOD_ALLOWED_ERR), 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(MoPrefs.getInstance().get(MoPrefsKey.HOOD_ALLOWED_ERR), 0);
   }
 
   @Override

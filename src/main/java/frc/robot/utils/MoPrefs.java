@@ -1,8 +1,15 @@
 package frc.robot.utils;
 
-import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class MoPrefs {
+public final class MoPrefs {
+  private static final String TABLE_NAME = "Preferences";
+  private static MoPrefs instance;
+  private static boolean safePrefs = false;
+  private final NetworkTable m_table;
 
   public enum MoPrefsKey {
     INTAKE_ROLLER_SETPOINT(0.125),
@@ -91,43 +98,37 @@ public class MoPrefs {
     }
   }
 
-  private MoPrefs() {
-    throw new IllegalStateException("MoPrefs should be static");
+  public static synchronized MoPrefs getInstance() {
+    if (!safePrefs) {
+      throw new IllegalStateException("Do not call preferences before RobotInit()");
+    }
+    if (instance == null) {
+      instance = new MoPrefs();
+    }
+    return instance;
   }
-
-  private static boolean safePrefs = false;
 
   public static void safeForPrefs() {
     safePrefs = true;
   }
 
-  private static Preferences getPrefs() {
-    if (safePrefs)
-      return Preferences.getInstance();
-    throw new RuntimeException("Do not call preferences before RobotInit()");
+  public double get(MoPrefsKey key) {
+    return getEntry(key).getDouble(key.getDefaultValue());
   }
 
-  public static double getDouble(String key, double def) {
-    Preferences prefs = getPrefs();
-    if (!prefs.containsKey(key)) {
-      prefs.putDouble(key, def);
-      System.out.format("Prefs default key=%s value=%f\n", key, def);
-    }
-    double value = prefs.getDouble(key, def);
-    return value;
+  public void set(MoPrefsKey key, double value) {
+    getEntry(key).setDouble(value);
   }
 
-  public static void setDouble(String key, double value) {
-    Preferences prefs = getPrefs();
-    prefs.putDouble(key, value);
-    System.out.format("set pref: %s=%f\n", key, value);
+  private MoPrefs() {
+    m_table = NetworkTableInstance.getDefault().getTable(TABLE_NAME);
+    m_table.getEntry(".type").setString("RobotPreferences");
+    m_table.addEntryListener((table, key, entry, value, flags) -> entry.setPersistent(),
+        EntryListenerFlags.kImmediate | EntryListenerFlags.kNew);
   }
 
-  public static double get(MoPrefsKey key) {
-    return getDouble(key.getPrefsKey(), key.getDefaultValue());
+  NetworkTableEntry getEntry(MoPrefsKey key) {
+    return m_table.getEntry(key.getPrefsKey());
   }
 
-  public static void set(MoPrefsKey key, double value) {
-    setDouble(key.getPrefsKey(), value);
-  }
 }

@@ -55,15 +55,16 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void runIntakeFwd() {
-    setMotorsWithRamp(MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
+    setMotorsWithRamp(MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   public void runIntakeRvs() {
-    setMotorsWithRamp(-1 * MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
+    setMotorsWithRamp(-1 * MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   private void setMotorsWithRamp(double power) {
-    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.get(MoPrefsKey.INTAKE_ROLLER_ACC_RAMP));
+    double currPower = MoUtils.rampMotor(power, lastPower,
+        MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_ACC_RAMP));
     lastPower = currPower;
     intakeSP.set(currPower);
     intakeSP2.set(currPower);

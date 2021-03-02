@@ -27,11 +27,11 @@ public class StorageSubsystem extends SubsystemBase {
   }
 
   public void run() {
-    storage.set(MoPrefs.get(MoPrefsKey.STORAGE_SPEED));
+    storage.set(MoPrefs.getInstance().get(MoPrefsKey.STORAGE_SPEED));
   }
 
   public void reverse() {
-    speed = -MoPrefs.get(MoPrefsKey.STORAGE_SPEED);
+    speed = -MoPrefs.getInstance().get(MoPrefsKey.STORAGE_SPEED);
     storage.set(speed);
   }
 

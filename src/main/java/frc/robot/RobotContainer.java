@@ -106,22 +106,22 @@ public class RobotContainer {
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
   private final Command shootCommand = new RunCommand(
-      () -> shooterSubsystem.shoot(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem)
+      () -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem)
           .alongWith(new RunCommand(limelight::lightsOn, limelight));
   // Deploys the shooter hood, starts shooting, and runs the intake.
   // 10 seconds later, all of those stop, and then drive off of the initiation
   // line.
   private final Command shootFromLine = new ParallelCommandGroup(
-      new RunCommand(() -> shooterSubsystem.shoot(MoPrefs.get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem)
-          .withTimeout(10),
+      new RunCommand(() -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)),
+          shooterSubsystem).withTimeout(10),
       new RunCommand(intakeSubsystem::runIntakeFwd, intakeSubsystem).withTimeout(10))
           .andThen(new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0), falconDriveSubsystem));
   // Drives forward to the wall, then starts shooting at a different angle than
   // normal(one tailored for shooting up against the wall)
-  private final Command shootFromWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5).andThen(
-      new ParallelCommandGroup(new RunCommand(
-          () -> shooterSubsystem.shoot(MoPrefs.get(MoPrefsKey.SHOOT_FROM_WALL_HOOD_SETPOINT)), shooterSubsystem)),
-      new RunCommand(storageSubsystem::run, storageSubsystem));
+  private final Command shootFromWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5)
+      .andThen(new ParallelCommandGroup(new RunCommand(
+          () -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOT_FROM_WALL_HOOD_SETPOINT)),
+          shooterSubsystem)), new RunCommand(storageSubsystem::run, storageSubsystem));
 
   private final Command driveToWall = new RunCommand(() -> falconDriveSubsystem.drive(0.5, 0)).withTimeout(5);
   // ----------------------------------------Choosers------------------------------------------
