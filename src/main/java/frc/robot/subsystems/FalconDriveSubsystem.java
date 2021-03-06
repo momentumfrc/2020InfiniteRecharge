@@ -206,31 +206,31 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // 1 - The measured encoder velocity scaled to be (roughly) between -1 and 1.
     // 2 - The setpoint, between -1 and 1.
     leftFront.set(ControlMode.PercentOutput,
-        leftPID.calculate(getEncoderVelocity(Side.kLeft) / EMPIRICAL_MAX_VEL, left));
+        leftPID.calculate(getEncoderVelocity(Side.LEFT) / EMPIRICAL_MAX_VEL, left));
     rightFront.set(ControlMode.PercentOutput,
-        rightPID.calculate(getEncoderVelocity(Side.kRight) / EMPIRICAL_MAX_VEL, right));
+        rightPID.calculate(getEncoderVelocity(Side.RIGHT) / EMPIRICAL_MAX_VEL, right));
   }
 
   public enum Side {
-    kLeft, kRight
+    LEFT, RIGHT
   }
 
   private double getEncoderVelocity(Side side) {
     if (RobotBase.isReal()) {
-      return side == Side.kLeft ? leftFront.getSensorCollection().getIntegratedSensorVelocity()
+      return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorVelocity()
           : rightFront.getSensorCollection().getIntegratedSensorVelocity();
     } else {
-      return side == Side.kLeft ? leftSimEncoder.getVelocity() : rightSimEncoder.getVelocity();
+      return side == Side.LEFT ? leftSimEncoder.getVelocity() : rightSimEncoder.getVelocity();
     }
   }
 
   private double getEncoderDistance(Side side) {
     if (RobotBase.isReal()) {
       // TODO: getIntegratedSensorAbsolutePosition or getIntegratedSensorPosition?
-      return side == Side.kLeft ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
+      return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
           : rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
     } else {
-      return side == Side.kLeft ? leftSimEncoder.get() : rightSimEncoder.get();
+      return side == Side.LEFT ? leftSimEncoder.get() : rightSimEncoder.get();
     }
   }
 
@@ -277,7 +277,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   public Pose2d getPose() {
-    return generatePose(getEncoderDistance(Side.kLeft), getEncoderDistance(Side.kRight));
+    return generatePose(getEncoderDistance(Side.LEFT), getEncoderDistance(Side.RIGHT));
   }
 
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d());
@@ -291,8 +291,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @return a Pose2d representing the motion of the robot
    */
   public Pose2d generatePose(double leftDist, double rightDist) {
-    double x = (leftDist + rightDist) / 2; // Averages the two velocities to get the robot velocity
-    double y = 0; // Not a holonomic drive
     double rot = (leftDist - rightDist) * 2 /* Rotations to radians CF, since pi cancels */
         / (DRIVE_BASE_WIDTH_METERS);
 
@@ -321,8 +319,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   @Override
   public void periodic() {
-    leftDriveVelocity.setDouble(getEncoderVelocity(Side.kLeft));
-    rightDriveVelocity.setDouble(getEncoderVelocity(Side.kRight));
+    leftDriveVelocity.setDouble(getEncoderVelocity(Side.LEFT));
+    rightDriveVelocity.setDouble(getEncoderVelocity(Side.RIGHT));
     updatePIDConstants();
   }
 
