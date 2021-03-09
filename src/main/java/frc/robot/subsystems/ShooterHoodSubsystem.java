@@ -17,7 +17,6 @@ import frc.robot.utils.SimmableCANSparkMax;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
@@ -43,8 +42,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   private double hoodPos;
 
-  private boolean isReal;
-
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
     hoodLimitSwitch.enableLimitSwitch(true);
 
@@ -66,8 +63,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodPosNumberBar = tab.add("Hood Pos", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
     hasReliableZero = tab.add("Has reliable zero?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
     isFullyDeployed = tab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
-
-    isReal = RobotBase.isReal();
 
     MoPrefs instance = MoPrefs.getInstance();
 
@@ -96,7 +91,6 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     instance.init(MoPrefsKey.HOOD_KFF, 0);
     instance.init(MoPrefsKey.HOOD_OUT_RANGE, 0);
     instance.init(MoPrefsKey.HOOD_ALLOWED_ERR, 0);
-
   }
 
   public void setHoodPosition(double posRequest) {

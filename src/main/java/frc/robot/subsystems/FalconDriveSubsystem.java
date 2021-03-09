@@ -263,6 +263,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @param et The number of encoder ticks to be converted to meters.
    * @return meters
    */
+  @SuppressWarnings("unused")
   private double encTicksToMeters(final double et) {
     return et / ENC_TICKS_PER_METER;
   }
