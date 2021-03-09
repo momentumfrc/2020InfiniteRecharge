@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
@@ -45,6 +46,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private final SimEncoder leftSimEncoder = new SimEncoder();
   private final SimEncoder rightSimEncoder = new SimEncoder();
+
+  private final Gyro gyro;
 
   private final ProfiledPIDController leftPID = new ProfiledPIDController(0, 0, 0,
       new TrapezoidProfile.Constraints(0, 0));
@@ -103,6 +106,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private NetworkTableEntry leftDriveVelocity;
   private NetworkTableEntry rightDriveVelocity;
 
+  DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d());
+
   private class SimEncoder {
     private double value;
     private double lastValue;
@@ -134,7 +139,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
-  public FalconDriveSubsystem(ShuffleboardTab tab) {
+  public FalconDriveSubsystem(ShuffleboardTab tab, Gyro gyro) {
     // Invert one side of the robot
     // These should always be opposites
     // If the robot drives backwards, flip both
@@ -151,6 +156,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // Sets the acceleration limit for all motors.
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
+
+    this.gyro = gyro;
 
     if (tab != null) {
       NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch)
@@ -280,22 +287,14 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return generatePose(getEncoderDistance(Side.LEFT), getEncoderDistance(Side.RIGHT));
   }
 
-  DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d());
-
   /**
    * 
-   * @param leftVel  Left side encoder velocity, in Talon FX encoder ticks per
-   *                 100ms
-   * @param rightVel Right side encoder velocity, in Talon FX encoder ticks per
-   *                 100ms
+   * @param leftDist  Left side encoder position, in Talon FX encoder ticks
+   * @param rightDist Right side encoder position, in Talon FX encoder ticks
    * @return a Pose2d representing the motion of the robot
    */
   public Pose2d generatePose(double leftDist, double rightDist) {
-    double rot = (leftDist - rightDist) * 2 /* Rotations to radians CF, since pi cancels */
-        / (DRIVE_BASE_WIDTH_METERS);
-
-    odometry.update(new Rotation2d(rot), leftDist, rightDist);
-
+    odometry.update(Rotation2d.fromDegrees(gyro.getAngle()), leftDist, rightDist);
     return odometry.getPoseMeters();
   }
 

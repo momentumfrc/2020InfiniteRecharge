@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import org.usfirst.frc.team4999.controllers.LogitechF310;
 import org.usfirst.frc.team4999.utils.MoPDP;
 
@@ -32,6 +34,7 @@ import frc.robot.utils.MoPrefs.MoPrefsKey;
 import frc.robot.controllers.ControllerBase;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -86,7 +89,8 @@ public class RobotContainer {
       new FunctionalConditioner(mr -> mr, tr -> -tr));
 
   // ---------------------------------------Subsystems----------------------------------------
-  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab);
+  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab,
+      new AHRS(SerialPort.Port.kMXP));
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem(matchTab);
@@ -132,7 +136,6 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    MoPrefs.safeForPrefs();
 
     // Configure the button bindings
     configureButtonBindings();
