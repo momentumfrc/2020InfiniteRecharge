@@ -52,7 +52,7 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
-    drive_subsystem.drive(moveRequest, turnRequest);
+    drive_subsystem.drive(moveRequest, -turnRequest);
   }
 
   public boolean isMet() {

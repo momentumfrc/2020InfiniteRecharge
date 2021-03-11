@@ -55,8 +55,8 @@ public final class Constants {
   public static final int ADDRESSABLE_LED_LENGTH = 50;
 
   // Limelight constants
-  public static final double CAMERA_ANGLE = 56.5;
+  public static final double CAMERA_ANGLE = 34.8;
   public static final double CAMERA_HEIGHT = 23.6;
   public static final double TARGET_HEIGHT = 84;
-
+  public static final double DISTANCE_ERR_CORRECTION = 0.9304;
 }

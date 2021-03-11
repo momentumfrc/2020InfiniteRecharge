@@ -343,5 +343,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     SmartDashboard.putData(virtualField);
     SmartDashboard.putNumber("left encoder val", leftSimEncoder.get());
     SmartDashboard.putNumber("right encoder val", rightSimEncoder.get());
+    SmartDashboard.putNumber("gyro angle", gyro.getAngle());
   }
 }
