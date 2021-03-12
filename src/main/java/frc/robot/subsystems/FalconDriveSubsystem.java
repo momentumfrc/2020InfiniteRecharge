@@ -250,7 +250,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
-   * 
    * @param m The number of meters to be converted to encoder ticks.
    * @return encoder ticks
    */
@@ -289,7 +288,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
-   * 
    * @param leftDist  Left side encoder position, in Talon FX encoder ticks
    * @param rightDist Right side encoder position, in Talon FX encoder ticks
    * @return a Pose2d representing the motion of the robot

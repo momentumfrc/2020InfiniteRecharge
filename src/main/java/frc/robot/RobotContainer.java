@@ -104,7 +104,8 @@ public class RobotContainer {
       "paths/forward2meters.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight);
+  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight,
+      shooterSubsystem, shooterHoodSubsystem, storageSubsystem);
   public final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);

@@ -9,6 +9,9 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.ShooterHoodSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.Limelight.LimelightData;
 
 import org.usfirst.frc.team4999.utils.Utils;
@@ -16,24 +19,33 @@ import org.usfirst.frc.team4999.utils.Utils;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonDriveCommand extends CommandBase {
-  private final DriveSubsystem drive_subsystem;
-  private final Limelight limelight;
+  private final DriveSubsystem driveSubsystem;
+  private final Limelight limelightSubsystem;
+  private final ShooterSubsystem shooterSubsystem;
+  private final ShooterHoodSubsystem hoodSubsystem;
+  private final StorageSubsystem storageSubsystem;
+
+  private static final double[] trajectoryTable = {}; // TODO: Get empirical testing data for this table
 
   private boolean met;
 
   private double maxTurnRequest = 0.25;
 
-  public AutonDriveCommand(DriveSubsystem subsystem, Limelight llight) {
-    drive_subsystem = subsystem;
-    limelight = llight;
+  public AutonDriveCommand(DriveSubsystem subsystem, Limelight limelight, ShooterSubsystem shooter,
+      ShooterHoodSubsystem hood, StorageSubsystem storage) {
+    driveSubsystem = subsystem;
+    limelightSubsystem = limelight;
+    shooterSubsystem = shooter;
+    hoodSubsystem = hood;
+    storageSubsystem = storage;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(driveSubsystem, limelightSubsystem, shooterSubsystem, hoodSubsystem, storageSubsystem);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    LimelightData data = limelight.getData();
+    LimelightData data = limelightSubsystem.getData();
     double turnRequest;
     double moveRequest;
     double distance;
@@ -44,7 +56,16 @@ public class AutonDriveCommand extends CommandBase {
       moveRequest = 0 * Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
       distance = data.dist();
       met = data.targetMet();
-
+      driveSubsystem.drive(moveRequest, -turnRequest);
+      if (met) {
+        // Index of the array should be the measured range, returned value is the hood
+        // setpoint.
+        shooterSubsystem.shoot(trajectoryTable[(int) distance]);
+        storageSubsystem.run();
+      } else {
+        shooterSubsystem.idle();
+        storageSubsystem.stop();
+      }
     } else {
       turnRequest = 0;
       moveRequest = 0;
@@ -52,7 +73,6 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
-    drive_subsystem.drive(moveRequest, -turnRequest);
   }
 
   public boolean isMet() {
@@ -62,7 +82,7 @@ public class AutonDriveCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drive_subsystem.stop();
+    driveSubsystem.stop();
   }
 
   // Returns true when the command should end.
