@@ -12,14 +12,18 @@ import static frc.robot.Constants.*;
 import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
+import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
+import frc.robot.utils.SimGyro;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -47,6 +51,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final SimEncoder leftSimEncoder = new SimEncoder();
   private final SimEncoder rightSimEncoder = new SimEncoder();
 
+  private final SimGyro simGyro = new SimGyro();
+
   private final Gyro gyro;
 
   private final ProfiledPIDController leftPID = new ProfiledPIDController(0, 0, 0,
@@ -54,8 +60,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private final ProfiledPIDController rightPID = new ProfiledPIDController(0, 0, 0,
       new TrapezoidProfile.Constraints(0, 0));
 
-  private final DifferentialDrivetrainSim drivetrainSim = new DifferentialDrivetrainSim(DCMotor.getFalcon500(2),
-      GEAR_RATIO, 7 /* FIXME Get real moment of inertia */, 55, 0.1524, 0.5, null);
+  private final DifferentialDrivetrainSim drivetrainSim = new DifferentialDrivetrainSim(Constants.kDrivetrainPlant,
+      DCMotor.getFalcon500(2), GEAR_RATIO, 0.1524, 0.0762, null);
 
   private boolean enablePID = false;
 
@@ -94,7 +100,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   /**
    * The measured maximum velocity of the drivetrain, in encoder ticks per 100ms
-   * FIXME Take a measurement for this
    */
   private static final double EMPIRICAL_MAX_VEL = 1891.2;
 
@@ -107,6 +112,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private NetworkTableEntry rightDriveVelocity;
 
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d());
+
+  private boolean isReal;
 
   private class SimEncoder {
     private double value;
@@ -139,7 +146,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
-  public FalconDriveSubsystem(ShuffleboardTab tab, Gyro gyro) {
+  public FalconDriveSubsystem(ShuffleboardTab tab, AHRS gyro) {
     // Invert one side of the robot
     // These should always be opposites
     // If the robot drives backwards, flip both
@@ -158,6 +165,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
 
     this.gyro = gyro;
+
+    isReal = RobotBase.isReal();
 
     if (tab != null) {
       NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch)
@@ -202,6 +211,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     double rightTarget = Utils.clip(wheelSpeeds.rightMetersPerSecond / SPEED_LIMIT_METERS_PER_S, -1, 1);
     // Sets the motors, with PIDF, to the setpoints.
     set(leftTarget, rightTarget);
+    SmartDashboard.putNumber("left PID target", leftTarget);
+    SmartDashboard.putNumber("right PID target", rightTarget);
   }
 
   /**
@@ -223,7 +234,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   private double getEncoderVelocity(Side side) {
-    if (RobotBase.isReal()) {
+    if (isReal) {
       return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorVelocity()
           : rightFront.getSensorCollection().getIntegratedSensorVelocity();
     } else {
@@ -232,13 +243,21 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   private double getEncoderDistance(Side side) {
-    if (RobotBase.isReal()) {
+    if (isReal) {
       // TODO: getIntegratedSensorAbsolutePosition or getIntegratedSensorPosition?
       return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
           : rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
     } else {
       return side == Side.LEFT ? leftSimEncoder.get() : rightSimEncoder.get();
     }
+  }
+
+  private double getGyroAngle() {
+    return isReal ? gyro.getAngle() : simGyro.getAngle();
+  }
+
+  private double getGyroRate() {
+    return isReal ? gyro.getRate() : simGyro.getRate();
   }
 
   /**
@@ -284,7 +303,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   public Pose2d getPose() {
-    return generatePose(getEncoderDistance(Side.LEFT), getEncoderDistance(Side.RIGHT));
+    return generatePose();
   }
 
   /**
@@ -292,8 +311,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @param rightDist Right side encoder position, in Talon FX encoder ticks
    * @return a Pose2d representing the motion of the robot
    */
-  public Pose2d generatePose(double leftDist, double rightDist) {
-    odometry.update(Rotation2d.fromDegrees(gyro.getAngle()), leftDist, rightDist);
+  public Pose2d generatePose() {
     return odometry.getPoseMeters();
   }
 
@@ -313,22 +331,31 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     odometry.resetPosition(new Pose2d(), new Rotation2d());
     leftFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
     rightFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
+    leftSimEncoder.update(0);
+    rightSimEncoder.update(0);
+    drivetrainSim.setPose(new Pose2d());
+    drivetrainSim.setInputs(0, 0);
   }
 
   @Override
   public void periodic() {
     leftDriveVelocity.setDouble(getEncoderVelocity(Side.LEFT));
     rightDriveVelocity.setDouble(getEncoderVelocity(Side.RIGHT));
+    odometry.update(Rotation2d.fromDegrees(getGyroAngle()), encTicksToMeters(getEncoderDistance(Side.LEFT)),
+        encTicksToMeters(getEncoderDistance(Side.RIGHT)));
     updatePIDConstants();
   }
 
   @Override
   public void simulationPeriodic() {
-    drivetrainSim.setInputs(Utils.map(leftFront.get(), -1, 1, -12, 12), Utils.map(rightFront.get(), -1, 1, -12, 12));
+    double currBatteryVoltage = RobotController.getBatteryVoltage();
+    drivetrainSim.setInputs(Utils.map(leftFront.get(), -1, 1, -currBatteryVoltage, currBatteryVoltage),
+        Utils.map(rightFront.get(), -1, 1, -currBatteryVoltage, currBatteryVoltage));
     drivetrainSim.update(0.020); // 20ms, the recommended period
 
     leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()));
     rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()));
+    simGyro.update(drivetrainSim.getHeading().getRadians());
 
     SmartDashboard.putNumber("left drive setting", leftFront.get());
     SmartDashboard.putNumber("right drive setting", rightFront.get());
@@ -341,6 +368,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     SmartDashboard.putData(virtualField);
     SmartDashboard.putNumber("left encoder val", leftSimEncoder.get());
     SmartDashboard.putNumber("right encoder val", rightSimEncoder.get());
-    SmartDashboard.putNumber("gyro angle", gyro.getAngle());
+    SmartDashboard.putNumber("gyro angle", getGyroAngle());
   }
 }

@@ -62,6 +62,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     m_robotContainer.pathWeaverCommand.updateTrajectory();
+    m_robotContainer.falconDriveSubsystem.resetOdo();
   }
 
   @Override

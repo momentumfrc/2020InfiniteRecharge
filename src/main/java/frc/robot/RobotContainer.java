@@ -89,8 +89,7 @@ public class RobotContainer {
       new FunctionalConditioner(mr -> mr, tr -> -tr));
 
   // ---------------------------------------Subsystems----------------------------------------
-  private final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab,
-      new AHRS(SerialPort.Port.kMXP));
+  final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab, new AHRS(SerialPort.Port.kMXP));
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem(matchTab);
