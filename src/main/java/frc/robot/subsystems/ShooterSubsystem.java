@@ -23,6 +23,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
@@ -145,6 +146,7 @@ public class ShooterSubsystem extends SubsystemBase {
     } else {
       shooterGate.set(0);
     }
+    System.out.println("shoot()");
   }
 
   public void idle() {
@@ -152,6 +154,7 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop shooter wheel
     shooterGate.stopMotor();
     leader_shooterMAXRight.stopMotor();
+    System.out.println("idle()");
   }
 
   public void purge() {
@@ -179,5 +182,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
+    SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
+    SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
   }
 }

@@ -215,8 +215,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
         -1, 1);
     double rightTarget = Utils.map(wheelSpeeds.rightMetersPerSecond, -SPEED_LIMIT_METERS_PER_S,
         SPEED_LIMIT_METERS_PER_S, -1, 1);
-    SmartDashboard.putNumber("left PID target", leftTarget);
-    SmartDashboard.putNumber("right PID target", rightTarget);
 
     // Sets the motors, with PIDF, to the setpoints.
     set(leftTarget, rightTarget);
@@ -227,13 +225,24 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @param right Right side target from -1 to 1
    */
   private void set(double left, double right) {
+    SmartDashboard.putNumber("left PID target", left);
+    SmartDashboard.putNumber("right PID target", right);
+
     // Calculates PID output, inputs being:
     // 1 - The measured encoder velocity scaled to be (roughly) between -1 and 1.
     // 2 - The setpoint, between -1 and 1.
-    leftFront.set(ControlMode.PercentOutput,
-        leftPID.calculate(getEncoderVelocity(Side.LEFT) / EMPIRICAL_MAX_VEL, left));
-    rightFront.set(ControlMode.PercentOutput,
-        rightPID.calculate(getEncoderVelocity(Side.RIGHT) / EMPIRICAL_MAX_VEL, right));
+    double leftMeasurement = Utils.map(getEncoderVelocity(Side.LEFT), -EMPIRICAL_MAX_VEL, EMPIRICAL_MAX_VEL, -1, 1);
+    double rightMeasurement = Utils.map(getEncoderVelocity(Side.RIGHT), -EMPIRICAL_MAX_VEL, EMPIRICAL_MAX_VEL, -1, 1);
+    double leftOutput = leftPID.calculate(leftMeasurement, left);
+    double rightOutput = rightPID.calculate(rightMeasurement, right);
+    SmartDashboard.putNumber("left PID output", leftOutput);
+    SmartDashboard.putNumber("right PID output", rightOutput);
+    leftFront.set(ControlMode.PercentOutput, leftOutput);
+    rightFront.set(ControlMode.PercentOutput, rightOutput);
+    SmartDashboard.putNumber("left measurement", leftMeasurement);
+    SmartDashboard.putNumber("right measurement", rightMeasurement);
+    SmartDashboard.putNumber("left error", leftPID.getPositionError());
+    SmartDashboard.putNumber("right err", rightPID.getPositionError());
   }
 
   public enum Side {
@@ -340,6 +349,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     rightSimEncoder.update(0);
     drivetrainSim.setPose(new Pose2d());
     drivetrainSim.setInputs(0, 0);
+    leftPID.reset();
+    rightPID.reset();
   }
 
   public PIDController getLeftPidController() {

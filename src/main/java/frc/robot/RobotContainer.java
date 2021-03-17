@@ -75,7 +75,7 @@ public class RobotContainer {
 
   // ----------------------------------------Buttons------------------------------------------------
   private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
-  private final JoystickButton intakeRollerRvsButton = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
+  private final JoystickButton intakeRollerRvsButton = new JoystickButton(f310, LogitechF310.Button.kA.value);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
@@ -225,7 +225,7 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     // return ramseteCommand.andThen(() -> falconDriveSubsystem.stop());
-    return pathWeaverCommand;
+    return autoChooser.getSelected();
   }
 
   public Command getTeleopCommand() {
