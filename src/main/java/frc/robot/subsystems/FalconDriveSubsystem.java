@@ -16,6 +16,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
+import edu.wpi.first.wpiutil.math.VecBuilder;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimGyro;
@@ -25,6 +26,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -55,10 +57,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private final Gyro gyro;
 
-  private final ProfiledPIDController leftPID = new ProfiledPIDController(0, 0, 0,
-      new TrapezoidProfile.Constraints(0, 0));
-  private final ProfiledPIDController rightPID = new ProfiledPIDController(0, 0, 0,
-      new TrapezoidProfile.Constraints(0, 0));
+  private final PIDController leftPID = new PIDController(0, 0, 0);
+  private final PIDController rightPID = new PIDController(0, 0, 0);
 
   private final DifferentialDrivetrainSim drivetrainSim = new DifferentialDrivetrainSim(Constants.kDrivetrainPlant,
       DCMotor.getFalcon500(2), GEAR_RATIO, 0.1524, 0.0762, null);
@@ -131,7 +131,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
 
     public double getVelocity() {
-      return (value - lastValue) / (Timer.getFPGATimestamp() - lastTime);
+      // Divide by 10 to match CTRE standard of encoder ticks per 100ms
+      return (value - lastValue) / (Timer.getFPGATimestamp() - lastTime) / 10;
     }
 
     /**
@@ -163,6 +164,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // Sets the acceleration limit for all motors.
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
+
+    leftPID.enableContinuousInput(-1, 1);
+    rightPID.enableContinuousInput(-1, 1);
 
     this.gyro = gyro;
 
@@ -207,12 +211,15 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // -1 and 1.
     // This is done the way it is to prevent errors if the target is faster than the
     // speed limit.
-    double leftTarget = Utils.clip(wheelSpeeds.leftMetersPerSecond / SPEED_LIMIT_METERS_PER_S, -1, 1);
-    double rightTarget = Utils.clip(wheelSpeeds.rightMetersPerSecond / SPEED_LIMIT_METERS_PER_S, -1, 1);
-    // Sets the motors, with PIDF, to the setpoints.
-    set(leftTarget, rightTarget);
+    double leftTarget = Utils.map(wheelSpeeds.leftMetersPerSecond, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S,
+        -1, 1);
+    double rightTarget = Utils.map(wheelSpeeds.rightMetersPerSecond, -SPEED_LIMIT_METERS_PER_S,
+        SPEED_LIMIT_METERS_PER_S, -1, 1);
     SmartDashboard.putNumber("left PID target", leftTarget);
     SmartDashboard.putNumber("right PID target", rightTarget);
+
+    // Sets the motors, with PIDF, to the setpoints.
+    set(leftTarget, rightTarget);
   }
 
   /**
@@ -307,8 +314,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
-   * @param leftDist  Left side encoder position, in Talon FX encoder ticks
-   * @param rightDist Right side encoder position, in Talon FX encoder ticks
    * @return a Pose2d representing the motion of the robot
    */
   public Pose2d generatePose() {
@@ -337,6 +342,23 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     drivetrainSim.setInputs(0, 0);
   }
 
+  public PIDController getLeftPidController() {
+    return leftPID;
+  }
+
+  public PIDController getRightPidController() {
+    return rightPID;
+  }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(encTicksToMeters(getEncoderVelocity(Side.LEFT)),
+        encTicksToMeters(getEncoderVelocity(Side.RIGHT)));
+  }
+
+  public void tankDriveVolts(double left, double right) {
+    set(left / RobotController.getBatteryVoltage(), right / RobotController.getBatteryVoltage());
+  }
+
   @Override
   public void periodic() {
     leftDriveVelocity.setDouble(getEncoderVelocity(Side.LEFT));
@@ -357,10 +379,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()));
     simGyro.update(drivetrainSim.getHeading().getRadians());
 
-    SmartDashboard.putNumber("left drive setting", leftFront.get());
-    SmartDashboard.putNumber("right drive setting", rightFront.get());
     SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
+    SmartDashboard.putNumber("DTSim right pos m", drivetrainSim.getRightPositionMeters());
     SmartDashboard.putNumber("DTSim left vel m per s", drivetrainSim.getLeftVelocityMetersPerSecond());
+    SmartDashboard.putNumber("DTSim right vel ms", drivetrainSim.getRightVelocityMetersPerSecond());
     // Adds a field image to the simulation GUI which helps visualize simulated
     // autonomous routines.
 

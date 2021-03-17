@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -43,6 +44,9 @@ public class PathWeaverCommand extends CommandBase {
     // Gets the desired forward and angular velocity from the trajectory at the
     // current time
     Trajectory.State goal = trajectory.sample(timer.get());
+    SmartDashboard.putNumber("goal vel", goal.velocityMetersPerSecond);
+    SmartDashboard.putNumber("goal accel", goal.accelerationMetersPerSecondSq);
+    SmartDashboard.putNumber("goal curve", goal.curvatureRadPerMeter);
     // Calculates the desired robot forward and angular velocity,
     // and passes it to the drive subsystem's PID controllers
     subsystem.drive(controller.calculate(subsystem.getPose(), goal));
