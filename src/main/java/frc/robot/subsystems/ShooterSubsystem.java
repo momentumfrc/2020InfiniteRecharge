@@ -146,7 +146,6 @@ public class ShooterSubsystem extends SubsystemBase {
     } else {
       shooterGate.set(0);
     }
-    System.out.println("shoot()");
   }
 
   public void idle() {
@@ -154,7 +153,6 @@ public class ShooterSubsystem extends SubsystemBase {
     // stop shooter wheel
     shooterGate.stopMotor();
     leader_shooterMAXRight.stopMotor();
-    System.out.println("idle()");
   }
 
   public void purge() {

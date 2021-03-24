@@ -190,11 +190,15 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    *                    joystick, from -1 to 1.
    */
   public void drive(final double moveRequest, final double turnRequest) {
+    double left = Utils.clip(moveRequest - turnRequest, -1, 1);
+    double right = Utils.clip(moveRequest + turnRequest, -1, 1);
     if (enablePID) {
-      set(Utils.clip(moveRequest - turnRequest, -1, 1), Utils.clip(moveRequest + turnRequest, -1, 1));
+      set(Utils.map(left, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S),
+          Utils.map(right, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S));
+    } else {
+      leftFront.set(ControlMode.PercentOutput, left);
+      rightFront.set(ControlMode.PercentOutput, right);
     }
-    leftFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest - turnRequest, -1, 1));
-    rightFront.set(ControlMode.PercentOutput, Utils.clip(moveRequest + turnRequest, -1, 1));
   }
 
   /**
@@ -207,32 +211,30 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   public void drive(ChassisSpeeds chassisSpeeds) {
     // Converts chassis speeds (the whole robot) into per-side speeds.
     final DifferentialDriveWheelSpeeds wheelSpeeds = kinematics.toWheelSpeeds(chassisSpeeds);
-    // Scales each side speed based on the speed limit, then makes sure it's within
-    // -1 and 1.
-    // This is done the way it is to prevent errors if the target is faster than the
-    // speed limit.
-    double leftTarget = Utils.map(wheelSpeeds.leftMetersPerSecond, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S,
-        -1, 1);
-    double rightTarget = Utils.map(wheelSpeeds.rightMetersPerSecond, -SPEED_LIMIT_METERS_PER_S,
-        SPEED_LIMIT_METERS_PER_S, -1, 1);
+    // Clips each side to the speed limit.
+    double leftTarget = Utils.clip(wheelSpeeds.leftMetersPerSecond, -SPEED_LIMIT_METERS_PER_S,
+        SPEED_LIMIT_METERS_PER_S);
+    double rightTarget = Utils.clip(wheelSpeeds.rightMetersPerSecond, -SPEED_LIMIT_METERS_PER_S,
+        SPEED_LIMIT_METERS_PER_S);
 
-    // Sets the motors, with PIDF, to the setpoints.
+    // Sets the motors, with PID, to the setpoints.
     set(leftTarget, rightTarget);
   }
 
   /**
-   * @param left  Left side target from -1 to 1
-   * @param right Right side target from -1 to 1
+   * @param left  Left side target in m/s
+   * @param right Right side target in m/s
    */
   private void set(double left, double right) {
     SmartDashboard.putNumber("left PID target", left);
     SmartDashboard.putNumber("right PID target", right);
 
     // Calculates PID output, inputs being:
-    // 1 - The measured encoder velocity scaled to be (roughly) between -1 and 1.
-    // 2 - The setpoint, between -1 and 1.
-    double leftMeasurement = Utils.map(getEncoderVelocity(Side.LEFT), -EMPIRICAL_MAX_VEL, EMPIRICAL_MAX_VEL, -1, 1);
-    double rightMeasurement = Utils.map(getEncoderVelocity(Side.RIGHT), -EMPIRICAL_MAX_VEL, EMPIRICAL_MAX_VEL, -1, 1);
+    // 1 - The measured encoder velocity converted to wheel speeds in m/s.
+    // 2 - The setpoint in wheel speeds, m/s.
+    double leftMeasurement = getWheelVelocity(getEncoderVelocity(Side.LEFT));
+    double rightMeasurement = getWheelVelocity(getEncoderVelocity(Side.RIGHT));
+
     double leftOutput = leftPID.calculate(leftMeasurement, left);
     double rightOutput = rightPID.calculate(rightMeasurement, right);
     SmartDashboard.putNumber("left PID output", leftOutput);
@@ -386,8 +388,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
         Utils.map(rightFront.get(), -1, 1, -currBatteryVoltage, currBatteryVoltage));
     drivetrainSim.update(0.020); // 20ms, the recommended period
 
-    leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()));
-    rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()));
+    leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()) / 10);
+    rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()) / 10);
     simGyro.update(drivetrainSim.getHeading().getRadians());
 
     SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
@@ -399,8 +401,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
     virtualField.setRobotPose(getPose());
     SmartDashboard.putData(virtualField);
-    SmartDashboard.putNumber("left encoder val", leftSimEncoder.get());
-    SmartDashboard.putNumber("right encoder val", rightSimEncoder.get());
+    SmartDashboard.putNumber("left encoder vel", leftSimEncoder.getVelocity());
+    SmartDashboard.putNumber("left enc value", rightSimEncoder.get());
     SmartDashboard.putNumber("gyro angle", getGyroAngle());
   }
 }
