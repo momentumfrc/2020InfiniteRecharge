@@ -237,10 +237,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
     double leftOutput = leftPID.calculate(leftMeasurement, left);
     double rightOutput = rightPID.calculate(rightMeasurement, right);
+
     SmartDashboard.putNumber("left PID output", leftOutput);
     SmartDashboard.putNumber("right PID output", rightOutput);
-    leftFront.set(ControlMode.PercentOutput, leftOutput);
-    rightFront.set(ControlMode.PercentOutput, rightOutput);
+
+    leftFront.set(ControlMode.PercentOutput, left / 30);
+    rightFront.set(ControlMode.PercentOutput, right / 30);
+
     SmartDashboard.putNumber("left measurement", leftMeasurement);
     SmartDashboard.putNumber("right measurement", rightMeasurement);
     SmartDashboard.putNumber("left error", leftPID.getPositionError());
@@ -254,9 +257,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private double getEncoderVelocity(Side side) {
     if (isReal) {
       return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorVelocity()
-          : rightFront.getSensorCollection().getIntegratedSensorVelocity();
+          : -rightFront.getSensorCollection().getIntegratedSensorVelocity();
     } else {
-      return side == Side.LEFT ? leftSimEncoder.getVelocity() : rightSimEncoder.getVelocity();
+      return side == Side.LEFT ? leftSimEncoder.getVelocity() : -rightSimEncoder.getVelocity();
     }
   }
 
@@ -264,9 +267,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     if (isReal) {
       // TODO: getIntegratedSensorAbsolutePosition or getIntegratedSensorPosition?
       return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
-          : rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
+          : -rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
     } else {
-      return side == Side.LEFT ? leftSimEncoder.get() : rightSimEncoder.get();
+      return side == Side.LEFT ? leftSimEncoder.get() : -rightSimEncoder.get();
     }
   }
 
@@ -379,6 +382,12 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     odometry.update(Rotation2d.fromDegrees(getGyroAngle()), encTicksToMeters(getEncoderDistance(Side.LEFT)),
         encTicksToMeters(getEncoderDistance(Side.RIGHT)));
     updatePIDConstants();
+    Pose2d pose = generatePose();
+    SmartDashboard.putNumber("pose x", pose.getX());
+    SmartDashboard.putNumber("pose y", pose.getY());
+    SmartDashboard.putNumber("pose rot", pose.getRotation().getRadians());
+    SmartDashboard.putNumber("left enc val", encTicksToMeters(getEncoderDistance(Side.LEFT)));
+    SmartDashboard.putNumber("right enc val", encTicksToMeters(getEncoderDistance(Side.RIGHT)));
   }
 
   @Override

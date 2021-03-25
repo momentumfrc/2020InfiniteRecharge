@@ -1,6 +1,7 @@
 package frc.robot.controllers;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID;
 
 import org.usfirst.frc.team4999.controllers.LogitechF310;
@@ -15,12 +16,12 @@ public class ControllerBase implements DriveController {
   }
 
   public double getMoveRequest() {
-    double moveRequest = f310.getRawAxis(0); // Inverted, because +Y is down on most game controllers.
+    double moveRequest = -f310.getY(Hand.kLeft); // Inverted, because +Y is down on most game controllers.
     return moveRequest;
   }
 
   public double getTurnRequest() {
-    double turnRequest = -f310.getRawAxis(1);
+    double turnRequest = f310.getX(Hand.kRight);
     return turnRequest;
   }
 
