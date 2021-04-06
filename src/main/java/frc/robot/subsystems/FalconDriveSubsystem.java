@@ -65,12 +65,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private boolean enablePID = false;
 
-  /**
-   * The number of TalonFX encoder ticks per meter that the robot drives on 6"
-   * wheels. Used to input m/s into WPI_TalonFX.set(VelocityControl, double
-   * value), which takes its value in encoder ticks per 100ms.
-   */
-  private static final double ENC_TICKS_PER_METER = 45983.7;
+  private static final double WHEEL_DIAMETER = 0.1524; // meters
+
   /**
    * The maximum acceleration allowed by the Motion Magic control mode, in encoder
    * ticks per 100 ms per second. For example, a value of ~420 for this is roughly
@@ -92,11 +88,17 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private static final double GEAR_RATIO = 1 / 10.75;
 
-  private static final double WHEEL_DIAMETER = 0.1524; // meters
-
   private static final double DRIVE_BASE_WIDTH_METERS = Units.inchesToMeters(DRIVE_BASE_WIDTH_INCHES);
 
   private static final double TALON_FX_ENC_TICKS_PER_ROTATION = 2048;
+
+  /**
+   * The number of TalonFX encoder ticks per meter that the robot drives on 6"
+   * wheels. Used to input m/s into WPI_TalonFX.set(VelocityControl, double
+   * value), which takes its value in encoder ticks per 100ms.
+   */
+  private static final double ENC_TICKS_PER_METER = (1 / (Math.PI * WHEEL_DIAMETER)) * (1 / GEAR_RATIO)
+      * TALON_FX_ENC_TICKS_PER_ROTATION;
 
   /**
    * The measured maximum velocity of the drivetrain, in encoder ticks per 100ms
@@ -115,6 +117,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private boolean isReal;
 
+  /**
+   * Can technically be used with any units, but the FalconDriveSubsystem usecase
+   * expects everything to be in Talon FX encoder ticks per 100ms
+   */
   private class SimEncoder {
     private double position; // ticks
     private double velocity; // ticks per decisecond
@@ -137,9 +143,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
      * 
      * @param newValue The new encoder value to set.
      */
-    public void update(double newPosition, double newVelocity) {
-      this.position = newPosition;
-      this.velocity = newVelocity;
+    public void update(double position, double velocity) {
+      this.position = position;
+      this.velocity = velocity;
     }
   }
 
@@ -346,17 +352,19 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
-   * @param encoderVelocity Input velocity in Talon FX encoder ticks per 100ms
-   * @return Velocity of the drive wheels in meters per second
+   * @param encoderVelocity Encoder ticks per decisecond (100ms)
+   * @return Wheel meters per second
    */
   public double getWheelVelocity(double encoderVelocity) {
-    double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it
-                                                     // per
-                                                     // second
-    double rotationsPerSecond = encTicksPerSecond / TALON_FX_ENC_TICKS_PER_ROTATION; // 2048 encoder ticks = 1
-                                                                                     // rotation
+    return (encoderVelocity / ENC_TICKS_PER_METER) * 10;
+  }
 
-    return rotationsPerSecond * GEAR_RATIO * WHEEL_DIAMETER * Math.PI;
+  /**
+   * @param wheelVelocity Wheel meters per second
+   * @return Encoder ticks per decisecond (100ms)
+   */
+  public double convWheelToMotorVelocity(double wheelVelocity) {
+    return (wheelVelocity * ENC_TICKS_PER_METER) / 10;
   }
 
   public void resetOdo() {
@@ -415,14 +423,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
     drivetrainSim.update(0.020); // 20ms, the recommended period
 
-    // System.out.format("l:%.2f r:%.2f\n", drivetrainSim.getLeftPositionMeters(),
-    // drivetrainSim.getRightPositionMeters());
-
     leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()),
-        mpsToTicksPerDeciSecond(drivetrainSim.getLeftVelocityMetersPerSecond()));
+        convWheelToMotorVelocity(drivetrainSim.getLeftVelocityMetersPerSecond()));
     rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()),
-        mpsToTicksPerDeciSecond(drivetrainSim.getRightVelocityMetersPerSecond()));
-
+        convWheelToMotorVelocity(drivetrainSim.getRightVelocityMetersPerSecond()));
     simGyro.update(drivetrainSim.getHeading().getDegrees());
 
     SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
