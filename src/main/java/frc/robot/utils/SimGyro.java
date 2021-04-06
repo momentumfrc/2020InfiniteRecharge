@@ -3,7 +3,7 @@ package frc.robot.utils;
 import edu.wpi.first.wpilibj.Timer;
 
 public class SimGyro {
-  private double angle = 0;
+  private double angle = 0; // degrees
   private double rate = 0;
   private double lastAngle = 0;
   private double lastTime = 0;

@@ -70,7 +70,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * wheels. Used to input m/s into WPI_TalonFX.set(VelocityControl, double
    * value), which takes its value in encoder ticks per 100ms.
    */
-  private static final double ENC_TICKS_PER_METER = 4278.215;
+  private static final double ENC_TICKS_PER_METER = 45983.7;
   /**
    * The maximum acceleration allowed by the Motion Magic control mode, in encoder
    * ticks per 100 ms per second. For example, a value of ~420 for this is roughly
@@ -116,23 +116,20 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   private boolean isReal;
 
   private class SimEncoder {
-    private double value;
-    private double lastValue;
-    private double lastTime = Timer.getFPGATimestamp();
+    private double position; // ticks
+    private double velocity; // ticks per decisecond
 
     public SimEncoder() {
-      value = 0;
-      lastValue = 0;
-      lastTime = 0;
+      position = 0;
+      velocity = 0;
     }
 
     public double get() {
-      return value;
+      return position;
     }
 
     public double getVelocity() {
-      // Divide by 10 to match CTRE standard of encoder ticks per 100ms
-      return (value - lastValue) / (Timer.getFPGATimestamp() - lastTime) / 10;
+      return velocity;
     }
 
     /**
@@ -140,10 +137,9 @@ public class FalconDriveSubsystem extends DriveSubsystem {
      * 
      * @param newValue The new encoder value to set.
      */
-    public void update(double newValue) {
-      lastValue = value;
-      lastTime = Timer.getFPGATimestamp();
-      value = newValue;
+    public void update(double newPosition, double newVelocity) {
+      this.position = newPosition;
+      this.velocity = newVelocity;
     }
   }
 
@@ -165,8 +161,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
 
-    leftPID.enableContinuousInput(-1, 1);
-    rightPID.enableContinuousInput(-1, 1);
+    // leftPID.enableContinuousInput(-1, 1);
+    // rightPID.enableContinuousInput(-1, 1);
 
     this.gyro = gyro;
 
@@ -189,6 +185,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @param turnRequest The "requested" angular motion as given by the controller
    *                    joystick, from -1 to 1.
    */
+  @Override
   public void drive(final double moveRequest, final double turnRequest) {
     double left = Utils.clip(moveRequest - turnRequest, -1, 1);
     double right = Utils.clip(moveRequest + turnRequest, -1, 1);
@@ -233,7 +230,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // 1 - The measured encoder velocity converted to wheel speeds in m/s.
     // 2 - The setpoint in wheel speeds, m/s.
     double leftMeasurement = getWheelVelocity(getEncoderVelocity(Side.LEFT));
-    double rightMeasurement = getWheelVelocity(getEncoderVelocity(Side.RIGHT));
+    double rightMeasurement = -getWheelVelocity(getEncoderVelocity(Side.RIGHT));
 
     double leftOutput = leftPID.calculate(leftMeasurement, left);
     double rightOutput = rightPID.calculate(rightMeasurement, right);
@@ -241,8 +238,16 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     SmartDashboard.putNumber("left PID output", leftOutput);
     SmartDashboard.putNumber("right PID output", rightOutput);
 
-    leftFront.set(ControlMode.PercentOutput, left / 30);
-    rightFront.set(ControlMode.PercentOutput, right / 30);
+    double kFF = 1 / SPEED_LIMIT_METERS_PER_S;
+
+    leftOutput += kFF * left;
+    rightOutput += kFF * right;
+
+    // leftFront.set(ControlMode.PercentOutput, left / 30);
+    // rightFront.set(ControlMode.PercentOutput, right / 30);
+
+    leftFront.set(ControlMode.PercentOutput, leftOutput);
+    rightFront.set(ControlMode.PercentOutput, rightOutput);
 
     SmartDashboard.putNumber("left measurement", leftMeasurement);
     SmartDashboard.putNumber("right measurement", rightMeasurement);
@@ -269,11 +274,13 @@ public class FalconDriveSubsystem extends DriveSubsystem {
       return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
           : -rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
     } else {
-      return side == Side.LEFT ? leftSimEncoder.get() : -rightSimEncoder.get();
+      return side == Side.LEFT ? leftSimEncoder.get() : rightSimEncoder.get();
     }
   }
 
+  // returns in radians
   private double getGyroAngle() {
+    // FIXME: gyro.getAngle is continuous, but simGyro.getAngle() is not
     return isReal ? gyro.getAngle() : simGyro.getAngle();
   }
 
@@ -295,6 +302,10 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   private double metersToEncTicks(final double m) {
     return m * ENC_TICKS_PER_METER;
+  }
+
+  private double mpsToTicksPerDeciSecond(double m) {
+    return (m * ENC_TICKS_PER_METER) / 10;
   }
 
   /**
@@ -339,9 +350,11 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    * @return Velocity of the drive wheels in meters per second
    */
   public double getWheelVelocity(double encoderVelocity) {
-    double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it per
+    double encTicksPerSecond = encoderVelocity * 10; // Talon FX outputs in encoder ticks per 100ms, but we want it
+                                                     // per
                                                      // second
-    double rotationsPerSecond = encTicksPerSecond / TALON_FX_ENC_TICKS_PER_ROTATION; // 2048 encoder ticks = 1 rotation
+    double rotationsPerSecond = encTicksPerSecond / TALON_FX_ENC_TICKS_PER_ROTATION; // 2048 encoder ticks = 1
+                                                                                     // rotation
 
     return rotationsPerSecond * GEAR_RATIO * WHEEL_DIAMETER * Math.PI;
   }
@@ -350,8 +363,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     odometry.resetPosition(new Pose2d(), new Rotation2d());
     leftFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
     rightFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
-    leftSimEncoder.update(0);
-    rightSimEncoder.update(0);
+    leftSimEncoder.update(0, 0);
+    rightSimEncoder.update(0, 0);
     drivetrainSim.setPose(new Pose2d());
     drivetrainSim.setInputs(0, 0);
     leftPID.reset();
@@ -393,13 +406,24 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   @Override
   public void simulationPeriodic() {
     double currBatteryVoltage = RobotController.getBatteryVoltage();
-    drivetrainSim.setInputs(Utils.map(leftFront.get(), -1, 1, -currBatteryVoltage, currBatteryVoltage),
-        Utils.map(rightFront.get(), -1, 1, -currBatteryVoltage, currBatteryVoltage));
+
+    double left_pwr = leftFront.get();
+    double right_pwr = -rightFront.get();
+    double left_volt = left_pwr * currBatteryVoltage;
+    double right_volt = right_pwr * currBatteryVoltage;
+    drivetrainSim.setInputs(left_volt, right_volt);
+
     drivetrainSim.update(0.020); // 20ms, the recommended period
 
-    leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()) / 10);
-    rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()) / 10);
-    simGyro.update(drivetrainSim.getHeading().getRadians());
+    // System.out.format("l:%.2f r:%.2f\n", drivetrainSim.getLeftPositionMeters(),
+    // drivetrainSim.getRightPositionMeters());
+
+    leftSimEncoder.update(metersToEncTicks(drivetrainSim.getLeftPositionMeters()),
+        mpsToTicksPerDeciSecond(drivetrainSim.getLeftVelocityMetersPerSecond()));
+    rightSimEncoder.update(metersToEncTicks(drivetrainSim.getRightPositionMeters()),
+        mpsToTicksPerDeciSecond(drivetrainSim.getRightVelocityMetersPerSecond()));
+
+    simGyro.update(drivetrainSim.getHeading().getDegrees());
 
     SmartDashboard.putNumber("DTSim left pos m", drivetrainSim.getLeftPositionMeters());
     SmartDashboard.putNumber("DTSim right pos m", drivetrainSim.getRightPositionMeters());
