@@ -64,24 +64,12 @@ public final class Constants {
   public static final double TARGET_HEIGHT = 84;
   public static final double DISTANCE_ERR_CORRECTION = 0.9304;
 
-  // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-  // These characterization values MUST be determined either experimentally or
-  // theoretically
-  // for *your* robot's drive.
-  // The Robot Characterization Toolsuite provides a convenient tool for obtaining
-  // these
-  // values for your robot.
-  public static final double ksVolts = 0.22;
-  public static final double kvVoltSecondsPerMeter = 1.98;
-  public static final double kaVoltSecondsSquaredPerMeter = 0.2;
+  public static final double ksVolts = 0.506;
+  public static final double kvVoltSecondsPerMeter = 2.37;
+  public static final double kaVoltSecondsSquaredPerMeter = 0.246;
 
-  // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-  // These characterization values MUST be determined either experimentally or
-  // theoretically
-  // for *your* robot's drive.
-  // These two values are "angular" kV and kA
-  public static final double kvVoltSecondsPerRadian = 1.5;
-  public static final double kaVoltSecondsSquaredPerRadian = 0.3;
+  public static final double kvVoltSecondsPerRadian = 2.37;
+  public static final double kaVoltSecondsSquaredPerRadian = 0.246;
 
   public static final LinearSystem<N2, N2, N2> kDrivetrainPlant = LinearSystemId.identifyDrivetrainSystem(
       kvVoltSecondsPerMeter, kaVoltSecondsSquaredPerMeter, kvVoltSecondsPerRadian, kaVoltSecondsSquaredPerRadian);
