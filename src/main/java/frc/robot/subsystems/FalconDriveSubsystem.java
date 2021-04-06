@@ -16,7 +16,6 @@ import com.kauailabs.navx.frc.AHRS;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.util.Units;
-import edu.wpi.first.wpiutil.math.VecBuilder;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimGyro;
@@ -25,9 +24,7 @@ import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -41,7 +38,6 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.system.plant.DCMotor;
-import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 
 public class FalconDriveSubsystem extends DriveSubsystem {
   // Need to use WPI_TalonFX so that DifferentialDrive will accept the motors.
@@ -225,6 +221,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   }
 
   /**
+   * Drives the robot using PIDF.
+   * 
    * @param left  Left side target in m/s
    * @param right Right side target in m/s
    */
@@ -365,6 +363,18 @@ public class FalconDriveSubsystem extends DriveSubsystem {
    */
   public double convWheelToMotorVelocity(double wheelVelocity) {
     return (wheelVelocity * ENC_TICKS_PER_METER) / 10;
+  }
+
+  public void resetOdo(Pose2d newPose) {
+    odometry.resetPosition(newPose, new Rotation2d());
+    leftFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
+    rightFront.getSensorCollection().setIntegratedSensorPosition(0, 0);
+    leftSimEncoder.update(0, 0);
+    rightSimEncoder.update(0, 0);
+    drivetrainSim.setPose(newPose);
+    drivetrainSim.setInputs(0, 0);
+    leftPID.reset();
+    rightPID.reset();
   }
 
   public void resetOdo() {

@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import java.io.IOException;
-
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team4999.controllers.LogitechF310;
@@ -34,22 +32,14 @@ import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import frc.robot.controllers.ControllerBase;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -109,7 +99,7 @@ public class RobotContainer {
   private final LEDSubsystem leds = new LEDSubsystem();
   // ---------------------------------------Chooser---------------------------------------------
   private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.wpilib.json",
-      "paths/forward2meters.wpilib.json");
+      "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight,
@@ -197,34 +187,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    String path = pathChooser.getSelected();
-    Trajectory trajectory = null;
-    // Loads the PathWeaver trajectory into memory. If reading the file is
-    // unsuccessful, print to DS.
-    if (path != null) {
-      try {
-        trajectory = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(path));
-      } catch (IOException e) {
-        DriverStation.reportError("Unable to open trajectory: " + path, e.getStackTrace());
-      }
-    } else {
-      System.out.println("Trajectory path was null");
-    }
-
-    RamseteCommand ramseteCommand = new RamseteCommand(trajectory, falconDriveSubsystem::getPose,
-        new RamseteController(2.0, 7),
-        new SimpleMotorFeedforward(Constants.ksVolts, Constants.kvVoltSecondsPerMeter,
-            Constants.kaVoltSecondsSquaredPerMeter),
-        new DifferentialDriveKinematics(0.1524), falconDriveSubsystem::getWheelSpeeds,
-        falconDriveSubsystem.getLeftPidController(), falconDriveSubsystem.getRightPidController(),
-        // RamseteCommand passes volts to the callback
-        falconDriveSubsystem::tankDriveVolts, falconDriveSubsystem);
-
-    // Reset odometry to starting pose of trajectory.
-    falconDriveSubsystem.resetOdo();
-
-    // Run path following command, then stop at the end.
-    // return ramseteCommand.andThen(() -> falconDriveSubsystem.stop());
     return autoChooser.getSelected();
   }
 

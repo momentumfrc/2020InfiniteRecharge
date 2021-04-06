@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_robotContainer.falconDriveSubsystem.resetOdo();
+    m_robotContainer.pathWeaverCommand.updateTrajectory();
 
     // schedule the autonomous command
     if (m_robotContainer.getAutonomousCommand() != null) {

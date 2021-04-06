@@ -18,7 +18,7 @@ public class PathWeaverCommand extends CommandBase {
   // Main drive subsystem
   private final FalconDriveSubsystem subsystem;
   // A built-in class that helps track a trajectory
-  private final RamseteController controller = new RamseteController();
+  private final RamseteController controller = new RamseteController(2.0, 0.6);
   // Used to avoid changing trajectories while following a trajectory.
   private boolean safeToChangePath = true;
   // A Shuffleboard widget used to choose a trajectory
@@ -39,7 +39,7 @@ public class PathWeaverCommand extends CommandBase {
     // On the first scheduler cycle, update the start time with the current time
     if (timer.get() == 0) {
       timer.start();
-      subsystem.resetOdo();
+      subsystem.resetOdo(trajectory.getInitialPose());
     }
     // Gets the desired forward and angular velocity from the trajectory at the
     // current time
@@ -77,6 +77,7 @@ public class PathWeaverCommand extends CommandBase {
           trajectory = TrajectoryUtil.fromPathweaverJson(Filesystem.getDeployDirectory().toPath().resolve(path));
         } catch (IOException e) {
           DriverStation.reportError("Unable to open trajectory: " + path, e.getStackTrace());
+          System.out.println("Unable to open trajectory");
         }
       } else {
         System.out.println("Trajectory path was null");
