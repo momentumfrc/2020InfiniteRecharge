@@ -18,7 +18,7 @@ public class PathWeaverCommand extends CommandBase {
   // Main drive subsystem
   private final FalconDriveSubsystem subsystem;
   // A built-in class that helps track a trajectory
-  private final RamseteController controller = new RamseteController(2.0, 0.6);
+  private final RamseteController controller = new RamseteController();
   // Used to avoid changing trajectories while following a trajectory.
   private boolean safeToChangePath = true;
   // A Shuffleboard widget used to choose a trajectory

@@ -234,7 +234,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // 1 - The measured encoder velocity converted to wheel speeds in m/s.
     // 2 - The setpoint in wheel speeds, m/s.
     double leftMeasurement = getWheelVelocity(getEncoderVelocity(Side.LEFT));
-    double rightMeasurement = -getWheelVelocity(getEncoderVelocity(Side.RIGHT));
+    double rightMeasurement = isReal ? getWheelVelocity(getEncoderVelocity(Side.RIGHT))
+        : -getWheelVelocity(getEncoderVelocity(Side.RIGHT));
 
     double leftOutput = leftPID.calculate(leftMeasurement, left);
     double rightOutput = rightPID.calculate(rightMeasurement, right);
@@ -250,8 +251,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // leftFront.set(ControlMode.PercentOutput, left / 30);
     // rightFront.set(ControlMode.PercentOutput, right / 30);
 
-    leftFront.set(ControlMode.PercentOutput, leftOutput);
-    rightFront.set(ControlMode.PercentOutput, rightOutput);
+    leftFront.set(ControlMode.PercentOutput, leftOutput / 10);
+    rightFront.set(ControlMode.PercentOutput, rightOutput / 10);
 
     SmartDashboard.putNumber("left measurement", leftMeasurement);
     SmartDashboard.putNumber("right measurement", rightMeasurement);
@@ -274,9 +275,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
   private double getEncoderDistance(Side side) {
     if (isReal) {
-      // TODO: getIntegratedSensorAbsolutePosition or getIntegratedSensorPosition?
-      return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorAbsolutePosition()
-          : -rightFront.getSensorCollection().getIntegratedSensorAbsolutePosition();
+      return side == Side.LEFT ? leftFront.getSensorCollection().getIntegratedSensorPosition()
+          : -rightFront.getSensorCollection().getIntegratedSensorPosition();
     } else {
       return side == Side.LEFT ? leftSimEncoder.get() : rightSimEncoder.get();
     }
