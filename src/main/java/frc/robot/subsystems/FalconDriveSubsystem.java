@@ -163,9 +163,6 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     leftFront.configMotionAcceleration(ACCELERATION_LIMIT);
     rightFront.configMotionAcceleration(ACCELERATION_LIMIT);
 
-    // leftPID.enableContinuousInput(-1, 1);
-    // rightPID.enableContinuousInput(-1, 1);
-
     this.gyro = gyro;
 
     isReal = RobotBase.isReal();
@@ -243,7 +240,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     SmartDashboard.putNumber("left PID output", leftOutput);
     SmartDashboard.putNumber("right PID output", rightOutput);
 
-    double kFF = 1 / SPEED_LIMIT_METERS_PER_S;
+    double kFF = MoPrefs.getInstance().get(MoPrefsKey.DRIVE_KFF);
 
     leftOutput += kFF * left;
     rightOutput += kFF * right;
@@ -251,8 +248,8 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     // leftFront.set(ControlMode.PercentOutput, left / 30);
     // rightFront.set(ControlMode.PercentOutput, right / 30);
 
-    leftFront.set(ControlMode.PercentOutput, leftOutput / 10);
-    rightFront.set(ControlMode.PercentOutput, rightOutput / 10);
+    leftFront.set(ControlMode.PercentOutput, leftOutput);
+    rightFront.set(ControlMode.PercentOutput, rightOutput);
 
     SmartDashboard.putNumber("left measurement", leftMeasurement);
     SmartDashboard.putNumber("right measurement", rightMeasurement);
@@ -419,6 +416,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     SmartDashboard.putNumber("pose rot", pose.getRotation().getRadians());
     SmartDashboard.putNumber("left enc val", encTicksToMeters(getEncoderDistance(Side.LEFT)));
     SmartDashboard.putNumber("right enc val", encTicksToMeters(getEncoderDistance(Side.RIGHT)));
+    SmartDashboard.putNumber("drive kP", leftPID.getP());
   }
 
   @Override

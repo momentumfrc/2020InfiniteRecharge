@@ -66,7 +66,7 @@ public final class MoPrefs {
 
     DRIVE_KIZ(0.0000001),
 
-    DRIVE_KFF(0.00000156),
+    DRIVE_KFF(1 / 4),
 
     // PID constants for the shooter hood
     HOOD_KP(0.15),

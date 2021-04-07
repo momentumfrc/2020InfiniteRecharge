@@ -99,7 +99,8 @@ public class RobotContainer {
   private final LEDSubsystem leds = new LEDSubsystem();
   // ---------------------------------------Chooser---------------------------------------------
   private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.wpilib.json",
-      "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json");
+      "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json", "paths/Slalom.wpilib.json",
+      "paths/Bounce.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight,
