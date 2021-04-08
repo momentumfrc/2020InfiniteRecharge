@@ -85,7 +85,7 @@ public class RobotContainer {
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
   private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
       new CurvesConditioner(), reverseConditioner, speedLimitConditioner,
-      new FunctionalConditioner(mr -> mr, tr -> -tr));
+      new FunctionalConditioner(mr -> mr, tr -> -0.5 * tr));
 
   // ---------------------------------------Subsystems----------------------------------------
   final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(matchTab, new AHRS(SerialPort.Port.kMXP));
@@ -99,7 +99,7 @@ public class RobotContainer {
   private final LEDSubsystem leds = new LEDSubsystem();
   // ---------------------------------------Chooser---------------------------------------------
   private final PathChooser pathChooser = new PathChooser(matchTab, "paths/test.wpilib.json",
-      "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json");
+      "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json", "paths/Slalom.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
   private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight,
