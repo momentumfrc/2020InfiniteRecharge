@@ -63,12 +63,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final ShooterHoodSubsystem shooterHood;
 
+  private final IntakeSubsystem intake;
+
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
 
-  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab, final IntakeSubsystem intake) {
 
     this.shooterHood = shooterHood;
+    this.intake = intake;
 
     shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
@@ -127,24 +130,27 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shoot(double hoodSetpoint) {
-    // fast shooter wheel
-    // deploy hood
-    // run gate if both of "" are good
+    // Makes sure that the intake is lowered before firing.
+    if (intake.isLowered) {
+      // fast shooter wheel
+      // deploy hood
+      // run gate if both of "" are good
 
-    double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
+      double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
 
-    if (enablePID) {
-      shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
-    } else {
-      leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
-    }
+      if (enablePID) {
+        shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+      } else {
+        leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
+      }
 
-    shooterHood.setHoodPosition(hoodSetpoint);
+      shooterHood.setHoodPosition(hoodSetpoint);
 
-    if (shooterHood.isHoodReady() && isFlywheelReady()) {
-      shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
-    } else {
-      shooterGate.set(0);
+      if (shooterHood.isHoodReady() && isFlywheelReady()) {
+        shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
+      } else {
+        shooterGate.set(0);
+      }
     }
   }
 

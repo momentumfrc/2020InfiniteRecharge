@@ -93,7 +93,8 @@ public class RobotContainer {
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem(matchTab);
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
-  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab);
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab,
+      intakeSubsystem);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
 
   private final LEDSubsystem leds = new LEDSubsystem();
