@@ -110,8 +110,8 @@ public class RobotContainer {
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
   private final Command shootCommand = new RunCommand(
-      () -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem)
-          .alongWith(new RunCommand(limelight::lightsOn, limelight));
+      () -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem,
+      shooterHoodSubsystem).alongWith(new RunCommand(limelight::lightsOn, limelight));
   // Deploys the shooter hood, starts shooting, and runs the intake.
   // 10 seconds later, all of those stop, and then drive off of the initiation
   // line.
@@ -146,6 +146,7 @@ public class RobotContainer {
     shooterSubsystem.setDefaultCommand(new RunCommand(shooterSubsystem::idle, shooterSubsystem));
     shooterHoodSubsystem.setDefaultCommand(new RunCommand(shooterHoodSubsystem::stowHood, shooterHoodSubsystem));
     storageSubsystem.setDefaultCommand(new RunCommand(storageSubsystem::stop, storageSubsystem));
+    limelight.setDefaultCommand(new RunCommand(limelight::lightsOff, limelight));
   }
 
   /**

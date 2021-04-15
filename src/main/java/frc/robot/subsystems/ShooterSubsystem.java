@@ -106,9 +106,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
     MoPrefs instance = MoPrefs.getInstance();
 
-    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(
-        notification -> shooterPIDRight.setP(notification.value.getDouble()),
-        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(notification -> {
+      shooterPIDRight.setP(notification.value.getDouble());
+      System.out.println("Setting shooter kP to " + notification.value.getDouble());
+    }, EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.SHOOTER_KI).addListener(
         notification -> shooterPIDRight.setI(notification.value.getDouble()),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
@@ -137,21 +138,30 @@ public class ShooterSubsystem extends SubsystemBase {
       // run gate if both of "" are good
 
       double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
-
       if (enablePID) {
         shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+        System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
       } else {
         leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
       }
+      SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
 
       shooterHood.setHoodPosition(hoodSetpoint);
+      System.out.println("Setting hood to " + hoodSetpoint + " R");
 
       if (shooterHood.isHoodReady() && isFlywheelReady()) {
         shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
       } else {
         shooterGate.set(0);
       }
+      SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
+
+    } else {
+      System.out.println("Cannot shoot with raised intake!");
+      leader_shooterMAXRight.stopMotor();
+      shooterGate.stopMotor();
     }
+
   }
 
   public void idle() {
@@ -186,7 +196,5 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     flywheelSpeed.setDouble(shooterEncoder.getVelocity());
     isFlywheelReady.setBoolean(isFlywheelReady());
-    SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
-    SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
   }
 }

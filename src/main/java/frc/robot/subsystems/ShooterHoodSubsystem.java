@@ -19,6 +19,7 @@ import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
@@ -161,6 +162,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     // Gets whether the hood is within an acceptable distance of the setpoint, and
     // passes it to a Shuffleboard widget
     isFullyDeployed.setBoolean(isFullyDeployed());
+
+    SmartDashboard.putNumber("Hood setpoint", hoodNEO.get());
   }
 
   // Resets the encoder to 0.
