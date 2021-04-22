@@ -172,7 +172,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     // passes it to a Shuffleboard widget
     isFullyDeployed.setBoolean(isFullyDeployed());
 
-    SmartDashboard.putNumber("Hood setpoint", hoodNEO.get());
+    // SmartDashboard.putNumber("Hood setpoint", hoodNEO.get());
   }
 
   // Resets the encoder to 0.

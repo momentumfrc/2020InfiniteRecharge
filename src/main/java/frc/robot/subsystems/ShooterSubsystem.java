@@ -158,7 +158,7 @@ public class ShooterSubsystem extends SubsystemBase {
       } else {
         leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
       }
-      SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
+      // SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
 
       shooterHood.setHoodPosition(hoodSetpoint);
       System.out.println("Setting hood to " + hoodSetpoint + " R");
@@ -168,7 +168,7 @@ public class ShooterSubsystem extends SubsystemBase {
       } else {
         shooterGate.set(0);
       }
-      SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
+      // SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
 
     } else {
       System.out.println("Cannot shoot with raised intake!");
