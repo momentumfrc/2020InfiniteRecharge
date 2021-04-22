@@ -20,31 +20,18 @@ public final class MoPrefs {
 
     SHOOTER_HOOD_SETPOINT(100),
 
-    // FIXME: Copy this value to the new key
-    // The original key for this value was "SHOOTER_HOOD_POS_TOLERANCE"
-    // The new key is "SHOOTER_HOOD_POSITION_TOLERANCE"
     SHOOTER_HOOD_POSITION_TOLERANCE(2),
 
     SHOOTER_GATE_SETPOINT(1),
 
-    // FIXME: Copy this value to the new key
-    // The original key for this value was "Shooter PID Setpoint"
-    // The new key is "SHOOTER_PID_SETPOINT"
     SHOOTER_PID_SETPOINT(4500),
 
     STORAGE_SPEED(0.75),
 
-    // FIXME: Copy this value to the new key
-    // The original key for this value was "FLYWHEEL_TOLER"
-    // The new key is "SHOOTER_FLYWHEEL_TOLERANCE"
     SHOOTER_FLYWHEEL_TOLERANCE(100), // RPM
 
     // The encoder setpoint that will reliably hit the Outer Port
     // when the robot is sitting up against the Power Port.
-    //
-    // FIXME: Copy this value to the new key
-    // The original key for this value was "Shoot From Wall Hood Setpoint"
-    // The new key is "SHOOT_FROM_WALL_HOOD_SETPOINT"
     SHOOT_FROM_WALL_HOOD_SETPOINT(60),
 
     SHOOTER_KP(0.00005),
@@ -55,7 +42,7 @@ public final class MoPrefs {
 
     SHOOTER_KIZ(0.0000001),
 
-    SHOOTER_KFF(0.00000156),
+    SHOOTER_KFF(0.00017),
 
     // PID constants for the drivetrain
     DRIVE_KP(0.00005),
@@ -66,7 +53,7 @@ public final class MoPrefs {
 
     DRIVE_KIZ(0.0000001),
 
-    DRIVE_KFF(1 / 4),
+    DRIVE_KFF(0.25),
 
     // PID constants for the shooter hood
     HOOD_KP(0.15),
@@ -77,7 +64,7 @@ public final class MoPrefs {
 
     HOOD_KIZ(0),
 
-    HOOD_KFF(0),
+    HOOD_KFF(0), // TODO: This probably shouldn't be zero. Need to tune.
 
     HOOD_ALLOWED_ERR(2),
 
@@ -116,8 +103,8 @@ public final class MoPrefs {
     return getEntry(key).getDouble(key.getDefaultValue());
   }
 
-  public void init(MoPrefsKey key, double value) {
-    getEntry(key).setDefaultDouble(value);
+  public void init(MoPrefsKey key) {
+    getEntry(key).setDefaultDouble(key.getDefaultValue());
   }
 
   public void set(MoPrefsKey key, double value) {

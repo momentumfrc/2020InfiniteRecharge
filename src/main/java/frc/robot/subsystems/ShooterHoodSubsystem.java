@@ -68,31 +68,34 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     MoPrefs instance = MoPrefs.getInstance();
 
     // Adds network table listeners for PID constants.
-    instance.getEntry(MoPrefsKey.HOOD_KP).addListener(notification -> hoodPID.setP(notification.value.getDouble()),
+    instance.getEntry(MoPrefsKey.HOOD_KP).addListener(notification -> hoodPID.setP(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
-    instance.getEntry(MoPrefsKey.HOOD_KI).addListener(notification -> hoodPID.setI(notification.value.getDouble()),
+    instance.getEntry(MoPrefsKey.HOOD_KI).addListener(notification -> hoodPID.setI(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
-    instance.getEntry(MoPrefsKey.HOOD_KD).addListener(notification -> hoodPID.setD(notification.value.getDouble()),
+    instance.getEntry(MoPrefsKey.HOOD_KD).addListener(notification -> hoodPID.setD(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
-    instance.getEntry(MoPrefsKey.HOOD_KIZ).addListener(notification -> hoodPID.setIZone(notification.value.getDouble()),
+    instance.getEntry(MoPrefsKey.HOOD_KIZ).addListener(
+        notification -> hoodPID.setIZone(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
-    instance.getEntry(MoPrefsKey.HOOD_KFF).addListener(notification -> hoodPID.setFF(notification.value.getDouble()),
+    instance.getEntry(MoPrefsKey.HOOD_KFF).addListener(notification -> hoodPID.setFF(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.HOOD_OUT_RANGE).addListener(
-        notification -> hoodPID.setOutputRange(-notification.value.getDouble(), notification.value.getDouble()),
+        notification -> hoodPID.setOutputRange(-notification.value.getDouble(), notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.HOOD_ALLOWED_ERR).addListener(
         notification -> hoodPID.setSmartMotionAllowedClosedLoopError(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
 
-    instance.init(MoPrefsKey.HOOD_KP, 0);
-    instance.init(MoPrefsKey.HOOD_KI, 0);
-    instance.init(MoPrefsKey.HOOD_KD, 0);
-    instance.init(MoPrefsKey.HOOD_KIZ, 0);
-    instance.init(MoPrefsKey.HOOD_KFF, 0);
-    instance.init(MoPrefsKey.HOOD_OUT_RANGE, 0);
-    instance.init(MoPrefsKey.HOOD_ALLOWED_ERR, 0);
+    // Ensure the PID prefs exist. Defaults are picked up from MoPrefsKey.
+    instance.init(MoPrefsKey.HOOD_KP);
+    instance.init(MoPrefsKey.HOOD_KI);
+    instance.init(MoPrefsKey.HOOD_KD);
+    instance.init(MoPrefsKey.HOOD_KIZ);
+    instance.init(MoPrefsKey.HOOD_KFF);
+    instance.init(MoPrefsKey.HOOD_OUT_RANGE);
+    instance.init(MoPrefsKey.HOOD_ALLOWED_ERR);
 
+    // Initialize the PID in the SparkMax from MoPrefs
     hoodPID.setP(instance.get(MoPrefsKey.HOOD_KP), 0);
     hoodPID.setI(instance.get(MoPrefsKey.HOOD_KI), 0);
     hoodPID.setD(instance.get(MoPrefsKey.HOOD_KD), 0);

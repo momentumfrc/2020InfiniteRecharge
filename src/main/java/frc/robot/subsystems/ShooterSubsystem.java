@@ -104,35 +104,31 @@ public class ShooterSubsystem extends SubsystemBase {
 
     MoPrefs instance = MoPrefs.getInstance();
 
-    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(notification -> {
-      shooterPIDRight.setP(notification.value.getDouble());
-      System.out.println("Setting shooter kP to " + notification.value.getDouble());
-    }, EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    // Attach listeners to the PID prefs for live tuning
+    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(
+        notification -> shooterPIDRight.setP(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.SHOOTER_KI).addListener(
-        notification -> shooterPIDRight.setI(notification.value.getDouble()),
+        notification -> shooterPIDRight.setI(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.SHOOTER_KD).addListener(
-        notification -> shooterPIDRight.setD(notification.value.getDouble()),
+        notification -> shooterPIDRight.setD(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.SHOOTER_KIZ).addListener(
-        notification -> shooterPIDRight.setIZone(notification.value.getDouble()),
+        notification -> shooterPIDRight.setIZone(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     instance.getEntry(MoPrefsKey.SHOOTER_KFF).addListener(
-        notification -> shooterPIDRight.setFF(notification.value.getDouble()),
+        notification -> shooterPIDRight.setFF(notification.value.getDouble(), 0),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
 
-    instance.init(MoPrefsKey.SHOOTER_KP, 0.00005);
-    instance.init(MoPrefsKey.SHOOTER_KI, 0.000001);
-    instance.init(MoPrefsKey.SHOOTER_KD, 0);
-    instance.init(MoPrefsKey.SHOOTER_KIZ, 0.000001);
-    instance.init(MoPrefsKey.SHOOTER_KFF, 0.00017);
+    // Ensure the PID prefs exist. Defaults are picked up from MoPrefsKey.
+    instance.init(MoPrefsKey.SHOOTER_KP);
+    instance.init(MoPrefsKey.SHOOTER_KI);
+    instance.init(MoPrefsKey.SHOOTER_KD);
+    instance.init(MoPrefsKey.SHOOTER_KIZ);
+    instance.init(MoPrefsKey.SHOOTER_KFF);
 
-    // P - 0.00005
-    // I - 0.000001
-    // D - 0
-    // IZ - 0.000001
-    // FF - 0.00017
-
+    // Initialize the PID in the SparkMax from MoPrefs
     shooterPIDRight.setP(instance.get(MoPrefsKey.SHOOTER_KP), 0);
     shooterPIDRight.setI(instance.get(MoPrefsKey.SHOOTER_KI), 0);
     shooterPIDRight.setD(instance.get(MoPrefsKey.SHOOTER_KD), 0);
