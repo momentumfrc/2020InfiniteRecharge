@@ -92,6 +92,15 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     instance.init(MoPrefsKey.HOOD_KFF, 0);
     instance.init(MoPrefsKey.HOOD_OUT_RANGE, 0);
     instance.init(MoPrefsKey.HOOD_ALLOWED_ERR, 0);
+
+    hoodPID.setP(instance.get(MoPrefsKey.HOOD_KP), 0);
+    hoodPID.setI(instance.get(MoPrefsKey.HOOD_KI), 0);
+    hoodPID.setD(instance.get(MoPrefsKey.HOOD_KD), 0);
+    hoodPID.setIZone(instance.get(MoPrefsKey.HOOD_KIZ), 0);
+    hoodPID.setFF(instance.get(MoPrefsKey.HOOD_KFF), 0);
+    double outRange = instance.get(MoPrefsKey.HOOD_OUT_RANGE);
+    hoodPID.setOutputRange(-outRange, outRange, 0);
+    hoodPID.setSmartMotionAllowedClosedLoopError(instance.get(MoPrefsKey.HOOD_ALLOWED_ERR), 0);
   }
 
   public void setHoodPosition(double posRequest) {

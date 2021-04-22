@@ -73,8 +73,6 @@ public class ShooterSubsystem extends SubsystemBase {
     this.shooterHood = shooterHood;
     this.intake = intake;
 
-    shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
-    shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
     follower_shooterMAXLeft.setIdleMode(IdleMode.kCoast);
@@ -123,11 +121,27 @@ public class ShooterSubsystem extends SubsystemBase {
         notification -> shooterPIDRight.setFF(notification.value.getDouble()),
         EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
 
-    instance.init(MoPrefsKey.SHOOTER_KP, 0);
-    instance.init(MoPrefsKey.SHOOTER_KI, 0);
+    instance.init(MoPrefsKey.SHOOTER_KP, 0.00005);
+    instance.init(MoPrefsKey.SHOOTER_KI, 0.000001);
     instance.init(MoPrefsKey.SHOOTER_KD, 0);
-    instance.init(MoPrefsKey.SHOOTER_KIZ, 0);
-    instance.init(MoPrefsKey.SHOOTER_KFF, 0);
+    instance.init(MoPrefsKey.SHOOTER_KIZ, 0.000001);
+    instance.init(MoPrefsKey.SHOOTER_KFF, 0.00017);
+
+    // P - 0.00005
+    // I - 0.000001
+    // D - 0
+    // IZ - 0.000001
+    // FF - 0.00017
+
+    shooterPIDRight.setP(instance.get(MoPrefsKey.SHOOTER_KP), 0);
+    shooterPIDRight.setI(instance.get(MoPrefsKey.SHOOTER_KI), 0);
+    shooterPIDRight.setD(instance.get(MoPrefsKey.SHOOTER_KD), 0);
+    shooterPIDRight.setIZone(instance.get(MoPrefsKey.SHOOTER_KIZ), 0);
+    shooterPIDRight.setFF(instance.get(MoPrefsKey.SHOOTER_KFF), 0);
+    double outRange = PID_OUTPUT_RANGE;
+    shooterPIDLeft.setOutputRange(-outRange, outRange, 0);
+    shooterPIDRight.setOutputRange(-outRange, outRange, 0);
+    shooterPIDRight.setSmartMotionAllowedClosedLoopError(0, 0);
   }
 
   public void shoot(double hoodSetpoint) {
