@@ -103,8 +103,8 @@ public class RobotContainer {
       "paths/forward2meters.wpilib.json", "paths/BarrelRacing.wpilib.json", "paths/Slalom.wpilib.json");
 
   // ---------------------------------------Commands--------------------------------------------
-  private final AutonDriveCommand autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight,
-      shooterSubsystem, shooterHoodSubsystem, storageSubsystem);
+  private final Command autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight, shooterSubsystem,
+      shooterHoodSubsystem, storageSubsystem).alongWith(new RunCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
   public final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
@@ -146,7 +146,7 @@ public class RobotContainer {
     shooterSubsystem.setDefaultCommand(new RunCommand(shooterSubsystem::idle, shooterSubsystem));
     shooterHoodSubsystem.setDefaultCommand(new RunCommand(shooterHoodSubsystem::stowHood, shooterHoodSubsystem));
     storageSubsystem.setDefaultCommand(new RunCommand(storageSubsystem::stop, storageSubsystem));
-    limelight.setDefaultCommand(new RunCommand(limelight::lightsOff, limelight));
+    // limelight.setDefaultCommand(new RunCommand(limelight::lightsOff, limelight));
   }
 
   /**

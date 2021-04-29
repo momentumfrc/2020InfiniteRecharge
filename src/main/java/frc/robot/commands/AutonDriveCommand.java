@@ -49,6 +49,7 @@ public class AutonDriveCommand extends CommandBase {
     double turnRequest;
     double moveRequest;
     double distance;
+    limelightSubsystem.lightsOn();
 
     if (data.valid()) {
       turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -maxTurnRequest, maxTurnRequest);
@@ -60,7 +61,7 @@ public class AutonDriveCommand extends CommandBase {
       if (met) {
         // Index of the array should be the measured range, returned value is the hood
         // setpoint.
-        shooterSubsystem.shoot(trajectoryTable[(int) distance]);
+        shooterSubsystem.shoot(getHoodAngle(distance));
         storageSubsystem.run();
       } else {
         shooterSubsystem.idle();
@@ -73,6 +74,10 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
+  }
+
+  public double getHoodAngle(double dist) {
+    return -0.0042 * Math.pow(dist - 140, 2) + 126;
   }
 
   public boolean isMet() {
