@@ -62,16 +62,18 @@ public class ShooterSubsystem extends SubsystemBase {
   private boolean enablePID = true;
 
   private final ShooterHoodSubsystem shooterHood;
-
   private final IntakeSubsystem intake;
+  private final Limelight limelight;
 
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
 
-  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab, final IntakeSubsystem intake) {
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab, final IntakeSubsystem intake,
+      final Limelight limelight) {
 
     this.shooterHood = shooterHood;
     this.intake = intake;
+    this.limelight = limelight;
 
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
@@ -140,6 +142,10 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterPIDRight.setSmartMotionAllowedClosedLoopError(0, 0);
   }
 
+  private double getHoodAngle(double dist) {
+    return -0.0042 * Math.pow(dist - 140, 2) + 126;
+  }
+
   public void shoot(double hoodSetpoint) {
     // Makes sure that the intake is lowered before firing.
     if (intake.isLowered) {
@@ -154,24 +160,27 @@ public class ShooterSubsystem extends SubsystemBase {
       } else {
         leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
       }
-      // SmartDashboard.putNumber("shooter setting", follower_shooterMAXLeft.get());
 
       shooterHood.setHoodPosition(hoodSetpoint);
       System.out.println("Setting hood to " + hoodSetpoint + " R");
 
+      System.out.println("hood ready? " + shooterHood.isHoodReady() + " flywheel ready? " + isFlywheelReady());
       if (shooterHood.isHoodReady() && isFlywheelReady()) {
         shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
+
       } else {
         shooterGate.set(0);
       }
-      // SmartDashboard.putNumber("shooter gate setting", shooterGate.get());
-
     } else {
       System.out.println("Cannot shoot with raised intake!");
       leader_shooterMAXRight.stopMotor();
       shooterGate.stopMotor();
     }
+  }
 
+  public void shoot() {
+    double hoodSetpoint = getHoodAngle(limelight.getData().dist());
+    shoot(hoodSetpoint);
   }
 
   public void idle() {

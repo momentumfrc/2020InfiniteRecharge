@@ -61,7 +61,7 @@ public class AutonDriveCommand extends CommandBase {
       if (met) {
         // Index of the array should be the measured range, returned value is the hood
         // setpoint.
-        shooterSubsystem.shoot(getHoodAngle(distance));
+        shooterSubsystem.shoot();
         storageSubsystem.run();
       } else {
         shooterSubsystem.idle();
@@ -74,10 +74,6 @@ public class AutonDriveCommand extends CommandBase {
       met = false;
     }
     System.out.format("Target Distance:%.02f\n", distance);
-  }
-
-  public double getHoodAngle(double dist) {
-    return -0.0042 * Math.pow(dist - 140, 2) + 126;
   }
 
   public boolean isMet() {

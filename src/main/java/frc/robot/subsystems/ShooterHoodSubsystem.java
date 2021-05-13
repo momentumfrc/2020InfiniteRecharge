@@ -42,6 +42,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private NetworkTableEntry isFullyDeployed;
 
   private double hoodPos;
+  private double hoodSetpoint;
+  private boolean usingCustomSetpoint;
 
   public ShooterHoodSubsystem(ShuffleboardTab tab) {
     hoodLimitSwitch.enableLimitSwitch(true);
@@ -109,6 +111,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   public void setHoodPosition(double posRequest) {
     // Used for autonomous and vision-tied control of the shooter hood.
     hoodPID.setReference(posRequest, ControlType.kPosition, 0);
+    hoodSetpoint = posRequest;
+    usingCustomSetpoint = true;
   }
 
   // Raises the hood to its setpoint using position PID.
@@ -118,6 +122,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     } else {
       hoodNEO.set(SAFE_STOW_SPEED);
     }
+    usingCustomSetpoint = false;
   }
 
   // Lowers the shooter hood until it hits the limit switch.
@@ -146,8 +151,8 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     // If the current position is in within +-positionTolerance of the setpoint,
     // return true
     // Otherwise, return false
-    return Math.abs(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT) - getHoodPos()) < MoPrefs.getInstance()
-        .get(MoPrefsKey.SHOOTER_HOOD_POSITION_TOLERANCE);
+    return Math.abs((usingCustomSetpoint ? hoodSetpoint : MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT))
+        - getHoodPos()) < MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_POSITION_TOLERANCE);
   }
 
   public boolean isHoodReady() {

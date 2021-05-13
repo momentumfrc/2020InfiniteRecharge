@@ -94,7 +94,7 @@ public class RobotContainer {
   private final ShooterHoodSubsystem shooterHoodSubsystem = new ShooterHoodSubsystem(matchTab);
   private final Limelight limelight = new Limelight(limelightTab, matchTab, 0, 0);
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem(shooterHoodSubsystem, matchTab,
-      intakeSubsystem);
+      intakeSubsystem, limelight);
   private final StorageSubsystem storageSubsystem = new StorageSubsystem(powerDistributionPanel);
 
   private final LEDSubsystem leds = new LEDSubsystem();
@@ -109,9 +109,8 @@ public class RobotContainer {
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
-  private final Command shootCommand = new RunCommand(
-      () -> shooterSubsystem.shoot(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT)), shooterSubsystem,
-      shooterHoodSubsystem).alongWith(new RunCommand(limelight::lightsOn, limelight));
+  private final Command shootCommand = new RunCommand(() -> shooterSubsystem.shoot(), shooterSubsystem,
+      shooterHoodSubsystem);
   // Deploys the shooter hood, starts shooting, and runs the intake.
   // 10 seconds later, all of those stop, and then drive off of the initiation
   // line.
