@@ -20,6 +20,7 @@ import org.usfirst.frc.team4999.utils.Utils;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
