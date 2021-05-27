@@ -150,24 +150,34 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shoot(double hoodSetpoint) {
     // Makes sure that the intake is lowered before firing.
     if (intake.isLowered) {
-      // fast shooter wheel
-      // deploy hood
-      // run gate if both of "" are good
+      // Makes sure that the shooter hood is zeroed before firing.
+      // Only practically applies in auto, since the hood auto-stows in teleop and
+      // zeros itself.
+      if (shooterHood.hasReliableZero()) {
+        // fast shooter wheel
+        // deploy hood
+        // run gate if both of "" are good
 
-      double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
-      if (enablePID) {
-        shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
-        System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
+        double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
+        if (enablePID) {
+          shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+          System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
+        } else {
+          leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
+        }
+
+        shooterHood.setHoodPosition(hoodSetpoint);
+        if (shooterHood.isHoodReady() && isFlywheelReady()) {
+          shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
+
+        } else {
+          shooterGate.stopMotor();
+        }
       } else {
-        leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
-      }
-
-      shooterHood.setHoodPosition(hoodSetpoint);
-      if (shooterHood.isHoodReady() && isFlywheelReady()) {
-        shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
-
-      } else {
-        shooterGate.set(0);
+        shooterHood.stowHood(); // Once it stows, the zero will be reliable and this will not be run.
+        leader_shooterMAXRight.stopMotor();
+        shooterGate.stopMotor();
+        // No need to print, there is already a Shuffleboard widget for hood zero.
       }
     } else {
       System.out.println("Cannot shoot with raised intake!");
