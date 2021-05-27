@@ -163,9 +163,6 @@ public class ShooterSubsystem extends SubsystemBase {
       }
 
       shooterHood.setHoodPosition(hoodSetpoint);
-      System.out.println("Setting hood to " + hoodSetpoint + " R");
-
-      System.out.println("hood ready? " + shooterHood.isHoodReady() + " flywheel ready? " + isFlywheelReady());
       if (shooterHood.isHoodReady() && isFlywheelReady()) {
         shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
 

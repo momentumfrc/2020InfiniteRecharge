@@ -112,13 +112,12 @@ public class Limelight extends SubsystemBase {
 
     public boolean targetMet() {
       if (valid()) {
-        double d = Math.abs(dist() - DIST_ERR);
-        if (d <= TARGET_DIST) {
+        double x = xCoord();
+        if (x <= 0.5) {
           return true;
         }
       }
       return false;
     }
   }
-
 }

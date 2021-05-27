@@ -104,7 +104,8 @@ public class RobotContainer {
 
   // ---------------------------------------Commands--------------------------------------------
   private final Command autonDriveCommand = new AutonDriveCommand(falconDriveSubsystem, limelight, shooterSubsystem,
-      shooterHoodSubsystem, storageSubsystem).alongWith(new RunCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+      shooterHoodSubsystem, storageSubsystem, limelightTab)
+          .alongWith(new RunCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
   public final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);

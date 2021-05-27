@@ -141,7 +141,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     hoodNEO.set(0);
   }
 
-  private boolean hasReliableZero() {
+  public boolean hasReliableZero() {
     // If the hood has hit the limit switch, and therefore has been zeroed, return
     // true. Otherwise, return false.
     return reliableZero;

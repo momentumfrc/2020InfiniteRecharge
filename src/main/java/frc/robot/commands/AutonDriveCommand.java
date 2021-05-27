@@ -13,9 +13,15 @@ import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.Limelight.LimelightData;
+import frc.robot.utils.MoPrefs;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 import org.usfirst.frc.team4999.utils.Utils;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class AutonDriveCommand extends CommandBase {
@@ -25,14 +31,16 @@ public class AutonDriveCommand extends CommandBase {
   private final ShooterHoodSubsystem hoodSubsystem;
   private final StorageSubsystem storageSubsystem;
 
-  private static final double[] trajectoryTable = {}; // TODO: Get empirical testing data for this table
+  private final PIDController turnPID = new PIDController(1, 0, 0);
 
   private boolean met;
 
-  private double maxTurnRequest = 0.25;
+  private double maxRequest = 0.1;
+
+  private final NetworkTableEntry targetMet;
 
   public AutonDriveCommand(DriveSubsystem subsystem, Limelight limelight, ShooterSubsystem shooter,
-      ShooterHoodSubsystem hood, StorageSubsystem storage) {
+      ShooterHoodSubsystem hood, StorageSubsystem storage, ShuffleboardTab tab) {
     driveSubsystem = subsystem;
     limelightSubsystem = limelight;
     shooterSubsystem = shooter;
@@ -40,11 +48,16 @@ public class AutonDriveCommand extends CommandBase {
     storageSubsystem = storage;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveSubsystem, limelightSubsystem, shooterSubsystem, hoodSubsystem, storageSubsystem);
+    MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KP);
+    MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KI);
+    MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KD);
+    targetMet = tab.add("Limelight Target Met?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    updatePIDConstants();
     LimelightData data = limelightSubsystem.getData();
     double turnRequest;
     double moveRequest;
@@ -52,9 +65,9 @@ public class AutonDriveCommand extends CommandBase {
     limelightSubsystem.lightsOn();
 
     if (data.valid()) {
-      turnRequest = Utils.map(data.xCoord(), -Limelight.RANGE_X, Limelight.RANGE_X, -maxTurnRequest, maxTurnRequest);
+      turnRequest = -Utils.clip(turnPID.calculate(data.xCoord() / Limelight.RANGE_X, 0), -maxRequest, maxRequest);
       // Don't move forward, for safety reasons.
-      moveRequest = 0 * Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -1.0, 1.0);
+      moveRequest = 0 * Utils.map(data.dist(), -Limelight.RANGE_Y, Limelight.RANGE_Y, -maxRequest, maxRequest);
       distance = data.dist();
       met = data.targetMet();
       driveSubsystem.drive(moveRequest, -turnRequest);
@@ -72,12 +85,18 @@ public class AutonDriveCommand extends CommandBase {
       moveRequest = 0;
       distance = 0;
       met = false;
+      driveSubsystem.stop();
     }
-    System.out.format("Target Distance:%.02f\n", distance);
   }
 
   public boolean isMet() {
     return met;
+  }
+
+  private void updatePIDConstants() {
+    turnPID.setP(MoPrefs.getInstance().get(MoPrefsKey.LLIGHT_KP));
+    turnPID.setI(MoPrefs.getInstance().get(MoPrefsKey.LLIGHT_KI));
+    turnPID.setD(MoPrefs.getInstance().get(MoPrefsKey.LLIGHT_KD));
   }
 
   // Called once the command ends or is interrupted.

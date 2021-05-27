@@ -68,7 +68,13 @@ public final class MoPrefs {
 
     HOOD_ALLOWED_ERR(2),
 
-    HOOD_OUT_RANGE(1);
+    HOOD_OUT_RANGE(1),
+
+    LLIGHT_KP(1),
+
+    LLIGHT_KI(1),
+
+    LLIGHT_KD(1);
 
     private double defaultValue;
 
