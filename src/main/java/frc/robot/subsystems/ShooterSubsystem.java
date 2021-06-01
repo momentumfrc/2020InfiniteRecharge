@@ -20,6 +20,7 @@ import org.usfirst.frc.team4999.utils.Utils;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -27,6 +28,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -45,34 +48,6 @@ public class ShooterSubsystem extends SubsystemBase {
   private final CANPIDController shooterPIDRight = leader_shooterMAXRight.getPIDController();
   private final CANEncoder shooterEncoder = leader_shooterMAXRight.getEncoder();
   /**
-   * The Proportial Gain of the SparkMAX PIDF controller The weight of the
-   * proportional path against the differential and integral paths is controlled
-   * by this value.
-   */
-  private static final double K_P = 5e-5;
-  /**
-   * The Integral Gain of the SparkMAX PIDF controller The weight of the integral
-   * path against the proportional and differential paths is controlled by this
-   * value.
-   */
-  private static final double K_I = 1e-6;
-  /**
-   * The Differential Gain of the SparkMAX PIDF controller. The weight of the
-   * differential path against the proportional and integral paths is controlled
-   * by this value.
-   */
-  private static final double K_D = 0;
-  /**
-   * The Integral Zone of the SparkMAX PIDF controller. The integral accumulator
-   * will reset once it hits this value.
-   */
-  private static final double K_IZ = 0;
-  /**
-   * The Feed-Forward Gain of the SparkMAX PIDF controller. The weight of the
-   * feed-forward loop as compared to the PID loop is controlled by this value.
-   */
-  private static final double K_FF = 0.000156;
-  /**
    * Scales the output of the SparkMAX PIDF controller.
    */
   private static final double PID_OUTPUT_RANGE = 1;
@@ -84,30 +59,24 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * The (rough) maximum free speed of the shooter flywheel, in RPM.
    */
-  private static final int MAX_FREE_SPEED = 5500;
+  private static final int MAX_FREE_SPEED = 5700;
 
   private boolean enablePID = true;
 
   private final ShooterHoodSubsystem shooterHood;
+  private final IntakeSubsystem intake;
+  private final Limelight limelight;
 
-  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab) {
+  private NetworkTableEntry flywheelSpeed;
+  private NetworkTableEntry isFlywheelReady;
+
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, final IntakeSubsystem intake,
+      final Limelight limelight) {
 
     this.shooterHood = shooterHood;
+    this.intake = intake;
+    this.limelight = limelight;
 
-    // Applies the previously-declared values to the PIDF controller.
-    shooterPIDLeft.setP(K_P, 0);
-    shooterPIDRight.setP(K_P, 0);
-    shooterPIDLeft.setI(K_I, 0);
-    shooterPIDRight.setI(K_I, 0);
-    shooterPIDLeft.setD(K_D, 0);
-    shooterPIDRight.setD(K_D, 0);
-    shooterPIDLeft.setIZone(K_IZ, 0);
-    shooterPIDRight.setIZone(K_IZ, 0);
-    shooterPIDLeft.setFF(K_FF, 0);
-    shooterPIDRight.setFF(K_FF, 0);
-
-    shooterPIDLeft.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
-    shooterPIDRight.setOutputRange(-PID_OUTPUT_RANGE, PID_OUTPUT_RANGE, 0);
     // Sets the shooter motor to coast so that subsequent shots don't have to rev up
     // from 0 speed.
     follower_shooterMAXLeft.setIdleMode(IdleMode.kCoast);
@@ -123,32 +92,106 @@ public class ShooterSubsystem extends SubsystemBase {
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
 
-    NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
-        .getEntry();
+    NetworkTableEntry shooterPIDchooser = Tab.getTab(Tab.MATCH).add("Shooter PID", true)
+        .withWidget(BuiltInWidgets.kToggleSwitch).withPosition(4, 2).getEntry();
+
     shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    // Configures a Shuffleboard widget for flywheel speed. It will display as a
+    // graph of the flywheel speed from the last 20 seconds.
+    flywheelSpeed = Tab.getTab(Tab.DEBUG).add("Flywheel Speed", 0).withWidget(BuiltInWidgets.kNumberBar)
+        .withPosition(4, 2).getEntry();
+
+    // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
+    // certain tolerance of the setpoint. See isFlywheelReady().
+    isFlywheelReady = Tab.getTab(Tab.MATCH).add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox)
+        .withPosition(2, 0).getEntry();
+
+    MoPrefs instance = MoPrefs.getInstance();
+
+    // Attach listeners to the PID prefs for live tuning
+    instance.getEntry(MoPrefsKey.SHOOTER_KP).addListener(
+        notification -> shooterPIDRight.setP(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KI).addListener(
+        notification -> shooterPIDRight.setI(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KD).addListener(
+        notification -> shooterPIDRight.setD(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KIZ).addListener(
+        notification -> shooterPIDRight.setIZone(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    instance.getEntry(MoPrefsKey.SHOOTER_KFF).addListener(
+        notification -> shooterPIDRight.setFF(notification.value.getDouble(), 0),
+        EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+
+    // Ensure the PID prefs exist. Defaults are picked up from MoPrefsKey.
+    instance.init(MoPrefsKey.SHOOTER_KP);
+    instance.init(MoPrefsKey.SHOOTER_KI);
+    instance.init(MoPrefsKey.SHOOTER_KD);
+    instance.init(MoPrefsKey.SHOOTER_KIZ);
+    instance.init(MoPrefsKey.SHOOTER_KFF);
+
+    // Initialize the PID in the SparkMax from MoPrefs
+    shooterPIDRight.setP(instance.get(MoPrefsKey.SHOOTER_KP), 0);
+    shooterPIDRight.setI(instance.get(MoPrefsKey.SHOOTER_KI), 0);
+    shooterPIDRight.setD(instance.get(MoPrefsKey.SHOOTER_KD), 0);
+    shooterPIDRight.setIZone(instance.get(MoPrefsKey.SHOOTER_KIZ), 0);
+    shooterPIDRight.setFF(instance.get(MoPrefsKey.SHOOTER_KFF), 0);
+    double outRange = PID_OUTPUT_RANGE;
+    shooterPIDLeft.setOutputRange(-outRange, outRange, 0);
+    shooterPIDRight.setOutputRange(-outRange, outRange, 0);
+    shooterPIDRight.setSmartMotionAllowedClosedLoopError(0, 0);
+  }
+
+  private double getHoodAngle(double dist) {
+    return -0.0042 * Math.pow(dist - 140, 2) + 126;
   }
 
   public void shoot(double hoodSetpoint) {
-    // fast shooter wheel
-    // deploy hood
-    // run gate if both of "" are good
+    // Makes sure that the intake is lowered before firing.
+    if (intake.isLowered) {
+      // Makes sure that the shooter hood is zeroed before firing.
+      // Only practically applies in auto, since the hood auto-stows in teleop and
+      // zeros itself.
+      if (shooterHood.hasReliableZero()) {
+        // fast shooter wheel
+        // deploy hood
+        // run gate if both of "" are good
 
-    double pidSetpoint = MoPrefs.getShooterPIDSetpoint();
+        double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
+        if (enablePID) {
+          shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+          System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
+        } else {
+          leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
+        }
 
-    if (enablePID) {
-      shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+        shooterHood.setHoodPosition(hoodSetpoint);
+        if (shooterHood.isHoodReady() && isFlywheelReady()) {
+          shooterGate.set(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
+
+        } else {
+          shooterGate.stopMotor();
+        }
+      } else {
+        shooterHood.stowHood(); // Once it stows, the zero will be reliable and this will not be run.
+        leader_shooterMAXRight.stopMotor();
+        shooterGate.stopMotor();
+        // No need to print, there is already a Shuffleboard widget for hood zero.
+      }
     } else {
-      leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
+      System.out.println("Cannot shoot with raised intake!");
+      leader_shooterMAXRight.stopMotor();
+      shooterGate.stopMotor();
     }
+  }
 
-    shooterHood.setHoodPosition(hoodSetpoint);
-
-    if (shooterHood.isHoodReady() && isFlywheelReady()) {
-      shooterGate.set(MoPrefs.getShooterGateSetpoint());
-    } else {
-      shooterGate.set(0);
-    }
+  public void shoot() {
+    double hoodSetpoint = getHoodAngle(limelight.getData().dist());
+    shoot(hoodSetpoint);
   }
 
   public void idle() {
@@ -162,22 +205,26 @@ public class ShooterSubsystem extends SubsystemBase {
     // reverse gate
     // reverse shooter wheel
     leader_shooterMAXRight.set(-0.2);
-    shooterGate.set(-1 * MoPrefs.getShooterGateSetpoint());
+    shooterGate.set(-1 * MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_GATE_SETPOINT));
   }
 
-  private double getOpenLoopSetpoint(double openLoopSetpoint) {
-    return Utils.map(openLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
+  /**
+   * 
+   * @param closedLoopSetpoint The PID setpoint, in RPM
+   * @return A number between -1 and 1 to be used for openloop motor control
+   */
+  private double getOpenLoopSetpoint(double closedLoopSetpoint) {
+    return Utils.map(closedLoopSetpoint, -MAX_FREE_SPEED, MAX_FREE_SPEED, -1, 1);
   }
 
   private boolean isFlywheelReady() {
-    return Math.abs(MoPrefs.getShooterPIDSetpoint() - shooterEncoder.getVelocity()) < MoPrefs
-        .getShooterFlywheelTolerance();
+    return Math.abs(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT) - shooterEncoder.getVelocity()) < MoPrefs
+        .getInstance().get(MoPrefsKey.SHOOTER_FLYWHEEL_TOLERANCE);
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Flywheel Speed", shooterEncoder.getVelocity());
-    SmartDashboard.putNumber("Flywheel Position", shooterEncoder.getPosition());
-    SmartDashboard.putBoolean("Flywheel ready?", isFlywheelReady());
+    flywheelSpeed.setDouble(shooterEncoder.getVelocity());
+    isFlywheelReady.setBoolean(isFlywheelReady());
   }
 }

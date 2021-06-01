@@ -1,89 +1,131 @@
 package frc.robot.utils;
 
-import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class MoPrefs {
-  static final double INTAKE_ROLLER_SETPOINT = 0.125;
-  static final double INTAKE_ROLLER_ACC_RAMP = 0.1;
-  static final int CLIMBER_ENCODER_LIMIT = 10;
-  static final double SHOOTER_HOOD_SETPOINT = 100;
-  static final double SHOOTER_HOOD_POSITION_TOLERANCE = 2;
-  static final double SHOOTER_GATE_SETPOINT = 1;
-  static final double SHOOTER_PID_SETPOINT = 4500;
-  static final double STORAGE_SPEED = 0.75;
-  static final double SHOOTER_FLYWHEEL_TOLERANCE = 100; // RPM
-  static final double SHOOT_FROM_WALL_HOOD_SETPOINT = 60; // The encoder setpoint that will reliably hit the Outer Port
-                                                          // when the robot is sitting up against the Power Port.
+public final class MoPrefs {
+  private static final String TABLE_NAME = "Preferences";
+  private static MoPrefs instance;
+  private static boolean safePrefs = false;
+  private final NetworkTable m_table;
 
-  private MoPrefs() {
-    throw new IllegalStateException("MoPrefs should be static");
+  public enum MoPrefsKey {
+    INTAKE_ROLLER_SETPOINT(0.125),
+
+    INTAKE_ROLLER_ACC_RAMP(0.1),
+
+    CLIMBER_ENCODER_LIMIT(10),
+
+    SHOOTER_HOOD_SETPOINT(100),
+
+    SHOOTER_HOOD_POSITION_TOLERANCE(2),
+
+    SHOOTER_GATE_SETPOINT(1),
+
+    SHOOTER_PID_SETPOINT(4500),
+
+    STORAGE_SPEED(0.75),
+
+    SHOOTER_FLYWHEEL_TOLERANCE(100), // RPM
+
+    // The encoder setpoint that will reliably hit the Outer Port
+    // when the robot is sitting up against the Power Port.
+    SHOOT_FROM_WALL_HOOD_SETPOINT(60),
+
+    SHOOTER_KP(0.00005),
+
+    SHOOTER_KI(0.000001),
+
+    SHOOTER_KD(0),
+
+    SHOOTER_KIZ(0.0000001),
+
+    SHOOTER_KFF(0.00017),
+
+    // PID constants for the drivetrain
+    DRIVE_KP(0.00005),
+
+    DRIVE_KI(0.000001),
+
+    DRIVE_KD(0),
+
+    DRIVE_KIZ(0.0000001),
+
+    DRIVE_KFF(0.25),
+
+    // PID constants for the shooter hood
+    HOOD_KP(0.15),
+
+    HOOD_KI(1e-6),
+
+    HOOD_KD(0),
+
+    HOOD_KIZ(0),
+
+    HOOD_KFF(0), // TODO: This probably shouldn't be zero. Need to tune.
+
+    HOOD_ALLOWED_ERR(2),
+
+    HOOD_OUT_RANGE(1),
+
+    LLIGHT_KP(1),
+
+    LLIGHT_KI(1),
+
+    LLIGHT_KD(1);
+
+    private double defaultValue;
+
+    MoPrefsKey(double defaultValue) {
+      this.defaultValue = defaultValue;
+    }
+
+    public String getPrefsKey() {
+      return this.name();
+    }
+
+    public double getDefaultValue() {
+      return defaultValue;
+    }
   }
 
-  private static boolean safePrefs = false;
+  public static synchronized MoPrefs getInstance() {
+    if (!safePrefs) {
+      throw new IllegalStateException("Do not call preferences before RobotInit()");
+    }
+    if (instance == null) {
+      instance = new MoPrefs();
+    }
+    return instance;
+  }
 
   public static void safeForPrefs() {
     safePrefs = true;
   }
 
-  private static Preferences getPrefs() {
-    if (safePrefs)
-      return Preferences.getInstance();
-    throw new RuntimeException("Do not call preferences before RobotInit()");
+  public double get(MoPrefsKey key) {
+    return getEntry(key).getDouble(key.getDefaultValue());
   }
 
-  public static double getDouble(String key, double def) {
-    Preferences prefs = getPrefs();
-    if (!prefs.containsKey(key)) {
-      prefs.putDouble(key, def);
-      System.out.format("Prefs default key=%s value=%f\n", key, def);
-    }
-    double value = prefs.getDouble(key, def);
-    return value;
+  public void init(MoPrefsKey key) {
+    getEntry(key).setDefaultDouble(key.getDefaultValue());
   }
 
-  public static void setDouble(String key, double value) {
-    Preferences prefs = getPrefs();
-    prefs.putDouble(key, value);
-    System.out.format("set pref: %s=%f\n", key, value);
+  public void set(MoPrefsKey key, double value) {
+    getEntry(key).setDouble(value);
   }
 
-  public static double getIntakeRollerSetpoint() {
-    return getDouble("INTAKE_ROLLER_SETPOINT", INTAKE_ROLLER_SETPOINT);
+  private MoPrefs() {
+    m_table = NetworkTableInstance.getDefault().getTable(TABLE_NAME);
+    m_table.getEntry(".type").setString("RobotPreferences");
+    m_table.addEntryListener((table, key, entry, value, flags) -> entry.setPersistent(),
+        EntryListenerFlags.kImmediate | EntryListenerFlags.kNew);
   }
 
-  public static double getClimberEncoderLimit() {
-    return getDouble("CLIMBER_ENCODER_LIMIT", CLIMBER_ENCODER_LIMIT);
+  public NetworkTableEntry getEntry(MoPrefsKey key) {
+    return m_table.getEntry(key.getPrefsKey());
   }
 
-  public static double getShooterHoodSetpoint() {
-    return getDouble("SHOOTER_HOOD_SETPOINT", SHOOTER_HOOD_SETPOINT);
-  }
-
-  public static double getShooterHoodPositionTolerance() {
-    return getDouble("SHOOTER_HOOD_POS_TOLERANCE", SHOOTER_HOOD_POSITION_TOLERANCE);
-  }
-
-  public static double getShooterGateSetpoint() {
-    return getDouble("SHOOTER_GATE_SETPOINT", SHOOTER_GATE_SETPOINT);
-  }
-
-  public static double getIntakeRollerAccRamp() {
-    return getDouble("INTAKE_ROLLER_ACC_RAMP", INTAKE_ROLLER_ACC_RAMP);
-  }
-
-  public static double getStorageSpeed() {
-    return getDouble("STORAGE_SPEED", STORAGE_SPEED);
-  }
-
-  public static double getShooterFlywheelTolerance() {
-    return getDouble("FLYWHEEL_TOLER", SHOOTER_FLYWHEEL_TOLERANCE);
-  }
-
-  public static double getShooterPIDSetpoint() {
-    return getDouble("Shooter PID Setpoint", SHOOTER_PID_SETPOINT);
-  }
-
-  public static double getShootFromWallHoodSetpoint() {
-    return getDouble("Shoot From Wall Hood Setpoint", SHOOT_FROM_WALL_HOOD_SETPOINT);
-  }
 }

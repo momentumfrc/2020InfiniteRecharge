@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.utils.MoPrefs;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    MoPrefs.safeForPrefs();
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
@@ -59,6 +61,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_robotContainer.pathWeaverCommand.updateTrajectory();
+    m_robotContainer.falconDriveSubsystem.resetOdo();
   }
 
   @Override
@@ -71,6 +75,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    m_robotContainer.pathWeaverCommand.updateTrajectory();
 
     // schedule the autonomous command
     if (m_robotContainer.getAutonomousCommand() != null) {
@@ -87,6 +92,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    m_robotContainer.falconDriveSubsystem.resetOdo();
+
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

@@ -17,6 +17,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoUtils;
 import frc.robot.utils.SafeSP;
+import frc.robot.utils.MoPrefs.MoPrefsKey;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -34,8 +35,8 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean isLowered = false;
   private double lastPower;
 
-  private final DoubleSolenoid.Value deploy = DoubleSolenoid.Value.kForward;
-  private final DoubleSolenoid.Value stow = DoubleSolenoid.Value.kReverse;
+  private static final DoubleSolenoid.Value DEPLOY = DoubleSolenoid.Value.kReverse;
+  private static final DoubleSolenoid.Value STOW = DoubleSolenoid.Value.kForward;
 
   public IntakeSubsystem(MoPDP pdp) {
     intakeSP = new SafeSP(Constants.INTAKE_VICTORSP_PWM_CHAN, SAFE_SPEED, SAFE_COOLDOWN_MS, pdp
@@ -54,15 +55,16 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void runIntakeFwd() {
-    setMotorsWithRamp(MoPrefs.getIntakeRollerSetpoint());
+    setMotorsWithRamp(MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   public void runIntakeRvs() {
-    setMotorsWithRamp(-1 * MoPrefs.getIntakeRollerSetpoint());
+    setMotorsWithRamp(-1 * MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_SETPOINT));
   }
 
   private void setMotorsWithRamp(double power) {
-    double currPower = MoUtils.rampMotor(power, lastPower, MoPrefs.getIntakeRollerAccRamp());
+    double currPower = MoUtils.rampMotor(power, lastPower,
+        MoPrefs.getInstance().get(MoPrefsKey.INTAKE_ROLLER_ACC_RAMP));
     lastPower = currPower;
     intakeSP.set(currPower);
     intakeSP2.set(currPower);
@@ -82,17 +84,16 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void raiseIntake() {
-    intakePiston.set(stow);
-    isLowered = false;
+    intakePiston.set(STOW);
   }
 
   public void lowerIntake() {
-    intakePiston.set(deploy);
-    isLowered = true;
+    intakePiston.set(DEPLOY);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    isLowered = intakePiston.get() == DEPLOY;
   }
 }
