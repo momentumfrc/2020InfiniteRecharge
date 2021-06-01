@@ -35,8 +35,6 @@ import frc.robot.controllers.ControllerBase;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -106,7 +104,7 @@ public class RobotContainer {
 
     private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
     // Starts shooting and turns on the limelight.
-    private final Command shootCommand = new RunCommand(() -> shooterSubsystem.shoot(), shooterSubsystem,
+    private final Command shootCommand = new RunCommand(shooterSubsystem::shoot, shooterSubsystem,
             shooterHoodSubsystem);
     // Deploys the shooter hood, starts shooting, and runs the intake.
     // 10 seconds later, all of those stop, and then drive off of the initiation
