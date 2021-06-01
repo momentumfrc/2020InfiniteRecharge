@@ -2,16 +2,20 @@ package frc.robot.commands;
 
 import java.io.IOException;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.RamseteController;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.choosers.PathChooser;
 import frc.robot.subsystems.FalconDriveSubsystem;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 
 public class PathWeaverCommand extends CommandBase {
   private Trajectory trajectory;
@@ -27,9 +31,20 @@ public class PathWeaverCommand extends CommandBase {
   // tracking
   private Timer timer = new Timer();
 
+  private final ShuffleboardTab tab;
+  private NetworkTableEntry velocityWidget;
+  private NetworkTableEntry accelerationWidget;
+  private NetworkTableEntry curvatureWidget;
+  private NetworkTableEntry safeWidget;
+
   public PathWeaverCommand(FalconDriveSubsystem subsystem, PathChooser pathChooser) {
     this.subsystem = subsystem;
     this.pathChooser = pathChooser;
+    tab = Tab.getTab(Tab.PATHWEAVER);
+    velocityWidget = tab.add("Goal Vel", 0).withWidget(BuiltInWidgets.kTextView).withPosition(0, 0).getEntry();
+    accelerationWidget = tab.add("Goal Accel", 0).withWidget(BuiltInWidgets.kTextView).withPosition(1, 0).getEntry();
+    curvatureWidget = tab.add("Goal Curvature", 0).withWidget(BuiltInWidgets.kTextView).withPosition(2, 0).getEntry();
+    safeWidget = tab.add("Path Safe", false).withWidget(BuiltInWidgets.kBooleanBox).withPosition(3, 0).getEntry();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -44,9 +59,10 @@ public class PathWeaverCommand extends CommandBase {
     // Gets the desired forward and angular velocity from the trajectory at the
     // current time
     Trajectory.State goal = trajectory.sample(timer.get());
-    SmartDashboard.putNumber("goal vel", goal.velocityMetersPerSecond);
-    SmartDashboard.putNumber("goal accel", goal.accelerationMetersPerSecondSq);
-    SmartDashboard.putNumber("goal curve", goal.curvatureRadPerMeter);
+    velocityWidget.setDouble(goal.velocityMetersPerSecond);
+    accelerationWidget.setDouble(goal.accelerationMetersPerSecondSq);
+    curvatureWidget.setDouble(goal.curvatureRadPerMeter);
+    safeWidget.setBoolean(safeToChangePath);
     // Calculates the desired robot forward and angular velocity,
     // and passes it to the drive subsystem's PID controllers
     subsystem.drive(controller.calculate(subsystem.getPose(), goal));
@@ -60,6 +76,7 @@ public class PathWeaverCommand extends CommandBase {
     timer.reset();
     safeToChangePath = true;
     subsystem.stop();
+    safeWidget.setBoolean(safeToChangePath);
   }
 
   @Override

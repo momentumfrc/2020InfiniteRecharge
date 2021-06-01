@@ -15,6 +15,7 @@ import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.Limelight.LimelightData;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 
 import org.usfirst.frc.team4999.utils.Utils;
 
@@ -40,7 +41,7 @@ public class AutonDriveCommand extends CommandBase {
   private final NetworkTableEntry targetMet;
 
   public AutonDriveCommand(DriveSubsystem subsystem, Limelight limelight, ShooterSubsystem shooter,
-      ShooterHoodSubsystem hood, StorageSubsystem storage, ShuffleboardTab tab) {
+      ShooterHoodSubsystem hood, StorageSubsystem storage) {
     driveSubsystem = subsystem;
     limelightSubsystem = limelight;
     shooterSubsystem = shooter;
@@ -51,7 +52,7 @@ public class AutonDriveCommand extends CommandBase {
     MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KP);
     MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KI);
     MoPrefs.getInstance().init(MoPrefsKey.LLIGHT_KD);
-    targetMet = tab.add("Limelight Target Met?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+    targetMet = Tab.getTab(Tab.LIMELIGHT).add("Met?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

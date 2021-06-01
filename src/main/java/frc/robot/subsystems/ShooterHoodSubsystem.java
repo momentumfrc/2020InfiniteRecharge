@@ -15,6 +15,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -45,7 +46,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private double hoodSetpoint;
   private boolean usingCustomSetpoint;
 
-  public ShooterHoodSubsystem(ShuffleboardTab tab) {
+  public ShooterHoodSubsystem() {
     hoodLimitSwitch.enableLimitSwitch(true);
 
     hoodPID.setSmartMotionAccelStrategy(CANPIDController.AccelStrategy.kTrapezoidal, 0);
@@ -63,9 +64,14 @@ public class ShooterHoodSubsystem extends SubsystemBase {
     reliableZero = false;
     stopHood();
 
-    hoodPosNumberBar = tab.add("Hood Pos", 0).withWidget(BuiltInWidgets.kNumberBar).getEntry();
-    hasReliableZero = tab.add("Has reliable zero?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
-    isFullyDeployed = tab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+    ShuffleboardTab matchTab = Tab.getTab(Tab.MATCH);
+
+    hoodPosNumberBar = Tab.getTab(Tab.DEBUG).add("Hood Pos", 0).withWidget(BuiltInWidgets.kTextView).withPosition(0, 0)
+        .getEntry();
+    hasReliableZero = matchTab.add("Has reliable zero?", false).withWidget(BuiltInWidgets.kBooleanBox)
+        .withPosition(1, 0).getEntry();
+    isFullyDeployed = matchTab.add("Hood fully deployed?", false).withWidget(BuiltInWidgets.kBooleanBox)
+        .withPosition(0, 0).getEntry();
 
     MoPrefs instance = MoPrefs.getInstance();
 

@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import static frc.robot.Constants.*;
 
+import java.util.Map;
+
 import org.usfirst.frc.team4999.utils.*;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -20,6 +22,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimGyro;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -32,7 +35,9 @@ import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -145,7 +150,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     }
   }
 
-  public FalconDriveSubsystem(ShuffleboardTab tab, AHRS gyro) {
+  public FalconDriveSubsystem(AHRS gyro) {
     // Invert one side of the robot
     // These should always be opposites
     // If the robot drives backwards, flip both
@@ -167,14 +172,20 @@ public class FalconDriveSubsystem extends DriveSubsystem {
 
     isReal = RobotBase.isReal();
 
+    ShuffleboardTab tab = Tab.getTab(Tab.MATCH);
+
     if (tab != null) {
       NetworkTableEntry drivePIDchooser = tab.add("Drive PID", false).withWidget(BuiltInWidgets.kToggleSwitch)
-          .getEntry();
+          .withPosition(5, 1).getEntry();
       drivePIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
           EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-      leftDriveVelocity = tab.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
-      rightDriveVelocity = tab.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+      ShuffleboardLayout velocityLayout = tab.getLayout("Drive Velocities", BuiltInLayouts.kGrid).withPosition(3, 0)
+          .withSize(2, 1).withProperties(Map.of("Label position", "HIDDEN"));
+      leftDriveVelocity = velocityLayout.add("Drive Velocity L", 0).withWidget(BuiltInWidgets.kTextView)
+          .withPosition(0, 0).getEntry();
+      rightDriveVelocity = velocityLayout.add("Drive Velocity R", 0).withWidget(BuiltInWidgets.kTextView)
+          .withPosition(1, 0).getEntry();
     }
   }
 

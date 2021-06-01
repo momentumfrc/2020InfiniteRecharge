@@ -29,6 +29,7 @@ import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -69,7 +70,7 @@ public class ShooterSubsystem extends SubsystemBase {
   private NetworkTableEntry flywheelSpeed;
   private NetworkTableEntry isFlywheelReady;
 
-  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, ShuffleboardTab tab, final IntakeSubsystem intake,
+  public ShooterSubsystem(final ShooterHoodSubsystem shooterHood, final IntakeSubsystem intake,
       final Limelight limelight) {
 
     this.shooterHood = shooterHood;
@@ -91,19 +92,21 @@ public class ShooterSubsystem extends SubsystemBase {
     // Sets the left shooter motor to follow the right motor, and be inverted.
     follower_shooterMAXLeft.follow(leader_shooterMAXRight, true);
 
-    NetworkTableEntry shooterPIDchooser = tab.add("Shooter PID", true).withWidget(BuiltInWidgets.kToggleSwitch)
-        .getEntry();
+    NetworkTableEntry shooterPIDchooser = Tab.getTab(Tab.MATCH).add("Shooter PID", true)
+        .withWidget(BuiltInWidgets.kToggleSwitch).withPosition(4, 2).getEntry();
 
     shooterPIDchooser.addListener(notice -> enablePID = notice.value.getBoolean(),
         EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
     // Configures a Shuffleboard widget for flywheel speed. It will display as a
     // graph of the flywheel speed from the last 20 seconds.
-    flywheelSpeed = tab.add("Flywheel Speed", 0).withWidget(BuiltInWidgets.kGraph).getEntry();
+    flywheelSpeed = Tab.getTab(Tab.DEBUG).add("Flywheel Speed", 0).withWidget(BuiltInWidgets.kNumberBar)
+        .withPosition(4, 2).getEntry();
 
     // Adds a Shuffleboard widget to show whether the flywheel is spinning within a
     // certain tolerance of the setpoint. See isFlywheelReady().
-    isFlywheelReady = tab.add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox).getEntry();
+    isFlywheelReady = Tab.getTab(Tab.MATCH).add("Is Flywheel Ready?", false).withWidget(BuiltInWidgets.kBooleanBox)
+        .withPosition(2, 0).getEntry();
 
     MoPrefs instance = MoPrefs.getInstance();
 

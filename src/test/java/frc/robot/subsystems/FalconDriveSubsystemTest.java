@@ -12,7 +12,7 @@ public class FalconDriveSubsystemTest {
   private static final double TEST_DELTA = 1e-2;
 
   public FalconDriveSubsystemTest() {
-    m_subsystem = new FalconDriveSubsystem(null, null);
+    m_subsystem = new FalconDriveSubsystem(null);
   }
 
   @Test
