@@ -162,12 +162,7 @@ public class ShooterSubsystem extends SubsystemBase {
         // run gate if both of "" are good
 
         double pidSetpoint = MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT);
-        if (enablePID) {
-          shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
-          System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
-        } else {
-          leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
-        }
+        runFlywheel(pidSetpoint);
 
         shooterHood.setHoodPosition(hoodSetpoint);
         if (shooterHood.isHoodReady() && isFlywheelReady()) {
@@ -178,7 +173,7 @@ public class ShooterSubsystem extends SubsystemBase {
         }
       } else {
         shooterHood.stowHood(); // Once it stows, the zero will be reliable and this will not be run.
-        leader_shooterMAXRight.stopMotor();
+        runFlywheel(MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_PID_SETPOINT));
         shooterGate.stopMotor();
         // No need to print, there is already a Shuffleboard widget for hood zero.
       }
@@ -186,6 +181,15 @@ public class ShooterSubsystem extends SubsystemBase {
       System.out.println("Cannot shoot with raised intake!");
       leader_shooterMAXRight.stopMotor();
       shooterGate.stopMotor();
+    }
+  }
+
+  private void runFlywheel(double pidSetpoint) {
+    if (enablePID) {
+      shooterPIDRight.setReference(pidSetpoint, ControlType.kVelocity);
+      System.out.println("Setting flywheel to " + pidSetpoint + " RPM\n");
+    } else {
+      leader_shooterMAXRight.set(getOpenLoopSetpoint(pidSetpoint));
     }
   }
 

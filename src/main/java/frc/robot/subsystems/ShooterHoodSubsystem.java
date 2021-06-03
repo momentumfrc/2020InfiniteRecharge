@@ -20,7 +20,6 @@ import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANSparkMax hoodNEO = new SimmableCANSparkMax(Constants.SPARKMAX_SHOOTER_HOOD_CAN_ADDR,
@@ -30,7 +29,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
   private final CANEncoder hoodEncoder = hoodNEO.getEncoder();
   private final CANPIDController hoodPID = hoodNEO.getPIDController();
 
-  private final double SAFE_STOW_SPEED = -0.1;
+  private final double SAFE_STOW_SPEED = -0.3;
 
   private boolean reliableZero;
 
@@ -133,10 +132,7 @@ public class ShooterHoodSubsystem extends SubsystemBase {
 
   // Lowers the shooter hood until it hits the limit switch.
   public void stowHood() {
-    if (reliableZero)
-      hoodPID.setReference(0, ControlType.kPosition, 0);
-    else
-      hoodNEO.set(SAFE_STOW_SPEED);
+    hoodNEO.set(SAFE_STOW_SPEED);
   }
 
   public double getHoodPos() {
