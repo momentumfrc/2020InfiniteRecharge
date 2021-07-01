@@ -1,10 +1,11 @@
 package frc.robot.subsystems;
 
 import org.usfirst.frc.team4999.lights.AddressableLEDDisplay;
-import org.usfirst.frc.team4999.lights.AnimationCoordinator;
 import org.usfirst.frc.team4999.lights.Animator;
 import org.usfirst.frc.team4999.lights.Color;
 import org.usfirst.frc.team4999.lights.animations.*;
+import org.usfirst.frc.team4999.lights.compositor.AnimationCompositor;
+import org.usfirst.frc.team4999.lights.compositor.FullScreenView;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 
@@ -13,7 +14,7 @@ import static frc.robot.Constants.*;
 public class LEDSubsystem {
   private AddressableLEDDisplay display;
   private Animator animator;
-  private AnimationCoordinator coordinator;
+  private AnimationCompositor coordinator;
 
   public AddressableLED test;
 
@@ -32,7 +33,7 @@ public class LEDSubsystem {
     try {
       display = new AddressableLEDDisplay(ADDRESSABLE_LED_PWM_ADDRESS, ADDRESSABLE_LED_LENGTH);
       animator = new Animator(display);
-      coordinator = new AnimationCoordinator(animator);
+      coordinator = new AnimationCompositor(animator);
 
       setBaseAnimation(rainbow);
     } catch (Exception e) {
@@ -52,8 +53,8 @@ public class LEDSubsystem {
 
   public void setBaseAnimation(Animation animation) {
     if (coordinator != null) {
-      coordinator.popAnimation(BASE_ANIMATION_KEY);
-      coordinator.pushAnimation(BASE_ANIMATION_KEY, animation, BASE_ANIMATION_PRIORITY, false);
+      coordinator.hideView(BASE_ANIMATION_KEY);
+      coordinator.showView(BASE_ANIMATION_KEY, new FullScreenView(animation), BASE_ANIMATION_PRIORITY);
     }
   }
 
