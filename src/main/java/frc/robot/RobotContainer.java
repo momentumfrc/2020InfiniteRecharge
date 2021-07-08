@@ -65,7 +65,7 @@ public class RobotContainer {
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickButton shooterShoot = new JoystickButton(f310, 3);
+  private final JoystickButton shooterShoot = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
   private final JoystickButton smartShoot = new JoystickButton(f310, LogitechF310.Button.kStart.value);
   private final JoystickButton purge = new JoystickButton(f310, LogitechF310.Button.kA.value);
 

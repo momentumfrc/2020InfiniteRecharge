@@ -4,7 +4,7 @@ import org.usfirst.frc.team4999.utils.Utils;
 
 public class CurvesConditioner implements DriveConditioner {
   private final double move_curve = 2;
-  private final double turn_curve = 2;
+  private final double turn_curve = 3;
 
   @Override
   public double conditionMove(double moveRequest) {
