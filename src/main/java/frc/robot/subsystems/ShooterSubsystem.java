@@ -20,11 +20,8 @@ import org.usfirst.frc.team4999.utils.Utils;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.SimmableCANSparkMax;
@@ -147,7 +144,10 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   private double getHoodAngle(double dist) {
-    return -0.0042 * Math.pow(dist - 140, 2) + 126;
+    if (dist != 0)
+      return -0.0042 * Math.pow(dist - 140, 2) + 126;
+    else
+      return MoPrefs.getInstance().get(MoPrefsKey.SHOOTER_HOOD_SETPOINT);
   }
 
   public void shoot(double hoodSetpoint) {

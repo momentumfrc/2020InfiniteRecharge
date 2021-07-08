@@ -296,6 +296,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return isReal ? gyro.getAngle() : simGyro.getAngle();
   }
 
+  @SuppressWarnings("unused")
   private double getGyroRate() {
     return isReal ? gyro.getRate() : simGyro.getRate();
   }
@@ -316,6 +317,7 @@ public class FalconDriveSubsystem extends DriveSubsystem {
     return m * ENC_TICKS_PER_METER;
   }
 
+  @SuppressWarnings("unused")
   private double mpsToTicksPerDeciSecond(double m) {
     return (m * ENC_TICKS_PER_METER) / 10;
   }
