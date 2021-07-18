@@ -9,7 +9,7 @@ public class CurvesConditionerTest {
 
   @Test
   public void test() {
-    DriveConditioner conditioner = new CurvesConditioner();
+    DriveConditioner conditioner = new CurvesConditioner(2, 2);
 
     assertEquals(0, conditioner.conditionMove(0), ASSERT_DELTA);
     assertEquals(0, conditioner.conditionTurn(0), ASSERT_DELTA);
