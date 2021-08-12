@@ -14,14 +14,22 @@ public class ControllerBase implements DriveController {
     this.f310 = f310;
   }
 
+  // These are for arcade drive
   public double getMoveRequest() {
-    double moveRequest = -f310.getY(Hand.kLeft); // Inverted, because +Y is down on most game controllers.
-    return moveRequest;
+    return -f310.getY(Hand.kLeft); // Inverted, because +Y is down on most game controllers.
   }
 
   public double getTurnRequest() {
-    double turnRequest = f310.getX(Hand.kRight);
-    return turnRequest;
+    return f310.getX(Hand.kRight);
+  }
+
+  // These are for tank drive
+  public double getLeftStick() {
+    return -f310.getY(Hand.kLeft); // See previous comment.
+  }
+
+  public double getRightStick() {
+    return -f310.getY(Hand.kRight);
   }
 
   public boolean getIncHoodPos() {
