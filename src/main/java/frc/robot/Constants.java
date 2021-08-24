@@ -56,7 +56,7 @@ public final class Constants {
   public static final int CLIMBER_ENCODER_B_CHAN = 2;
 
   // LEDs
-  public static final int ADDRESSABLE_LED_LENGTH = 50;
+  public static final int ADDRESSABLE_LED_LENGTH = 120;
 
   // Limelight constants
   public static final double CAMERA_ANGLE = 34.8;
