@@ -49,8 +49,12 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(m_conditioner.conditionMove(m_controller.getMoveRequest()),
-        m_conditioner.conditionTurn(m_controller.getTurnRequest()));
+    if (this.tankDrive) {
+      m_subsystem.tankDrive(m_controller.getLeftStick(), m_controller.getRightStick());
+    } else {
+      m_subsystem.drive(m_conditioner.conditionMove(m_controller.getMoveRequest()),
+                        m_conditioner.conditionTurn(m_controller.getTurnRequest()));
+    }
   }
 
   // Called once the command ends or is interrupted.
