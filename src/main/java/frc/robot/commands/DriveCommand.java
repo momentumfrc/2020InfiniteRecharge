@@ -23,6 +23,8 @@ public class DriveCommand extends CommandBase {
   private final DriveConditioner m_conditioner;
   private boolean tankDrive;
 
+  private static NetworkTableEntry tankDriveChooser;
+
   public DriveCommand(DriveSubsystem subsystem, DriveController controller, DriveConditioner conditioner) {
     m_controller = controller;
     m_subsystem = subsystem;
@@ -33,11 +35,18 @@ public class DriveCommand extends CommandBase {
     ShuffleboardTab tab = Tab.getTab(Tab.MATCH);
 
     if (tab != null) {
-      NetworkTableEntry tankDriveChooser = tab.add("Tank Drive", true).withWidget(BuiltInWidgets.kToggleSwitch)
-          .withPosition(7, 1).getEntry();
+      if (tankDriveChooser == null) {
+        tankDriveChooser = tab.add("Tank Drive", true).withWidget(BuiltInWidgets.kToggleSwitch).withPosition(7, 1)
+            .getEntry();
+      }
       tankDriveChooser.addListener(notice -> tankDrive = notice.value.getBoolean(),
           EntryListenerFlags.kNew | EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     }
+  }
+
+  public void setTankDriveEnabled(boolean enabled) {
+    tankDriveChooser.setBoolean(enabled);
+    tankDrive = enabled;
   }
 
   // Called when the command is initially scheduled.

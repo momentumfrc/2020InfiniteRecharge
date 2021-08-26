@@ -41,7 +41,7 @@ public class DriveCommandTest {
 
     @Override
     public void tankDrive(double left, double right) {
-      throw new UnsupportedOperationException("Not implemented");
+      // TODO: implement real test
     }
   };
 
@@ -79,7 +79,8 @@ public class DriveCommandTest {
 
     @Override
     public double conditionTank(double tankRequest) {
-      throw new UnsupportedOperationException("Not implemented");
+      // TODO: implement real tests
+      return tankRequest;
     }
 
   }
@@ -116,12 +117,14 @@ public class DriveCommandTest {
 
     @Override
     public double getLeftStick() {
-      throw new UnsupportedOperationException("Not implemented");
+      // TODO: implement real tests
+      return 0;
     }
 
     @Override
     public double getRightStick() {
-      throw new UnsupportedOperationException("Not implemented");
+      // TODO: implement real tests
+      return 0;
     }
   };
 
@@ -148,6 +151,8 @@ public class DriveCommandTest {
   public void testExecute() {
     mockConditioner.setMoveScale(0.5);
     mockConditioner.setTurnScale(0.5);
+
+    command.setTankDriveEnabled(false);
 
     mockController.setMTR(0, 0);
     command.execute();
