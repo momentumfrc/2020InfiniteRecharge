@@ -5,6 +5,7 @@ import org.usfirst.frc.team4999.utils.Utils;
 public class DeadzoneConditioner implements DriveConditioner {
   private final double move_request_deadzone = 0.1;
   private final double turn_request_deadzone = 0.1;
+  private final double tank_request_deadzone = 0.1;
 
   @Override
   public double conditionMove(double moveRequest) {
@@ -14,5 +15,10 @@ public class DeadzoneConditioner implements DriveConditioner {
   @Override
   public double conditionTurn(double turnRequest) {
     return Utils.deadzone(turnRequest, turn_request_deadzone);
+  }
+
+  @Override
+  public double conditionTank(double tankRequest) {
+    return Utils.deadzone(tankRequest, tank_request_deadzone);
   }
 }

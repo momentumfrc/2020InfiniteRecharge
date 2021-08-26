@@ -36,7 +36,7 @@ public class DriveCommand extends CommandBase {
       NetworkTableEntry tankDriveChooser = tab.add("Tank Drive", true).withWidget(BuiltInWidgets.kToggleSwitch)
           .withPosition(7, 1).getEntry();
       tankDriveChooser.addListener(notice -> tankDrive = notice.value.getBoolean(),
-          EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+          EntryListenerFlags.kNew | EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
     }
   }
 
@@ -50,10 +50,11 @@ public class DriveCommand extends CommandBase {
   @Override
   public void execute() {
     if (this.tankDrive) {
-      m_subsystem.tankDrive(m_controller.getLeftStick(), m_controller.getRightStick());
+      m_subsystem.tankDrive(m_conditioner.conditionTank(m_controller.getLeftStick()),
+          m_conditioner.conditionTank(m_controller.getRightStick()));
     } else {
       m_subsystem.drive(m_conditioner.conditionMove(m_controller.getMoveRequest()),
-                        m_conditioner.conditionTurn(m_controller.getTurnRequest()));
+          m_conditioner.conditionTurn(m_controller.getTurnRequest()));
     }
   }
 

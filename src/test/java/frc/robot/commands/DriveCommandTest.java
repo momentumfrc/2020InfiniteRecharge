@@ -38,6 +38,11 @@ public class DriveCommandTest {
     public double getTurnRequest() {
       return turnRequest;
     }
+
+    @Override
+    public void tankDrive(double left, double right) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
   };
 
   private MockDriveSubsystem mockDrive = new MockDriveSubsystem();
@@ -72,6 +77,11 @@ public class DriveCommandTest {
       this.turnScale = turnScale;
     }
 
+    @Override
+    public double conditionTank(double tankRequest) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
   }
 
   private MockConditioner mockConditioner = new MockConditioner();
@@ -102,6 +112,16 @@ public class DriveCommandTest {
     public void setMTR(double moveRequest, double turnRequest) {
       this.setMoveRequest(moveRequest);
       this.setTurnRequest(turnRequest);
+    }
+
+    @Override
+    public double getLeftStick() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    @Override
+    public double getRightStick() {
+      throw new UnsupportedOperationException("Not implemented");
     }
   };
 

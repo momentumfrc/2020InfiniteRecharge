@@ -24,4 +24,10 @@ public class ReverseConditioner implements DriveConditioner {
   public double conditionTurn(double turnRequest) {
     return turnRequest;
   }
+
+  @Override
+  public double conditionTank(double tankRequest) {
+    return reversed ? -tankRequest : tankRequest;
+  }
+
 }

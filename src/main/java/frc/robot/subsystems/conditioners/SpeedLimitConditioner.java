@@ -26,4 +26,10 @@ public class SpeedLimitConditioner implements DriveConditioner {
   public void decSpeedLimit() {
     spd_limit_index = Math.max(spd_limit_index - 1, 0);
   }
+
+  @Override
+  public double conditionTank(double tankRequest) {
+    return conditionMove(tankRequest);
+  }
+
 }

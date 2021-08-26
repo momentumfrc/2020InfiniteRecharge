@@ -26,4 +26,12 @@ public class ComposedConditioner implements DriveConditioner {
     return value;
   }
 
+  @Override
+  public double conditionTank(double tank) {
+    double value = tank;
+    for (DriveConditioner cond : conditioners) {
+      value = cond.conditionTank(value);
+    }
+    return value;
+  }
 }

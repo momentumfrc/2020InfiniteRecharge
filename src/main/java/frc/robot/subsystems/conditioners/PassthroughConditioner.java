@@ -12,4 +12,9 @@ public class PassthroughConditioner implements DriveConditioner {
     return turnRequest;
   }
 
+  @Override
+  public double conditionTank(double tankRequest) {
+    return tankRequest;
+  }
+
 }
