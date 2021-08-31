@@ -205,17 +205,23 @@ public class FalconDriveSubsystem extends DriveSubsystem {
   /**
    * @param left  The "requested" left side power as given by the controller
    *              joystick, from -1 to 1.
-   * @param right The "requested" right side as given by the controller
-   *              joystick, from -1 to 1.
+   * @param right The "requested" right side as given by the controller joystick,
+   *              from -1 to 1.
    */
   @Override
   public void tankDrive(double left, double right) {
     if (enablePID) {
       left = Utils.clip(left, -1, 1);
       right = Utils.clip(right, -1, 1);
+      if (Math.abs(left - right) < 0.15) {
+        right = left = (left + right) / 2;
+      }
       set(Utils.map(left, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S),
           Utils.map(right, -1, 1, -SPEED_LIMIT_METERS_PER_S, SPEED_LIMIT_METERS_PER_S));
     } else {
+      if (Math.abs(left - right) < 0.15) {
+        right = left = (left + right) / 2;
+      }
       leftFront.set(ControlMode.PercentOutput, left);
       rightFront.set(ControlMode.PercentOutput, right);
     }
