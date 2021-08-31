@@ -103,6 +103,18 @@ public class DriveCommandTest {
       this.setMoveRequest(moveRequest);
       this.setTurnRequest(turnRequest);
     }
+
+    @Override
+    public double getLeftStick() {
+      // TODO: implement real tests
+      return 0;
+    }
+
+    @Override
+    public double getRightStick() {
+      // TODO: implement real tests
+      return 0;
+    }
   };
 
   private MockDriveController mockController = new MockDriveController();
@@ -128,6 +140,8 @@ public class DriveCommandTest {
   public void testExecute() {
     mockConditioner.setMoveScale(0.5);
     mockConditioner.setTurnScale(0.5);
+
+    command.setTankDriveEnabled(false);
 
     mockController.setMTR(0, 0);
     command.execute();

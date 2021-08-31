@@ -8,21 +8,52 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.conditioners.DriveConditioner;
+import frc.robot.utils.ShuffleboardTabRegister.Tab;
 import frc.robot.subsystems.DriveSubsystem;
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.controllers.DriveController;
 
 public class DriveCommand extends CommandBase {
   private final DriveController m_controller;
   private final DriveSubsystem m_subsystem;
-  private final DriveConditioner m_conditioner;
+  private final DriveConditioner arcadeConditioner;
+  private final DriveConditioner tankConditioner;
+  private boolean tankDrive;
+
+  private static NetworkTableEntry tankDriveChooser;
 
   public DriveCommand(DriveSubsystem subsystem, DriveController controller, DriveConditioner conditioner) {
+    this(subsystem, controller, conditioner, conditioner);
+  }
+
+  public DriveCommand(DriveSubsystem subsystem, DriveController controller, DriveConditioner arcadeConditioner,
+      DriveConditioner tankConditioner) {
     m_controller = controller;
     m_subsystem = subsystem;
-    m_conditioner = conditioner;
+    this.arcadeConditioner = arcadeConditioner;
+    this.tankConditioner = tankConditioner;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
+
+    ShuffleboardTab tab = Tab.getTab(Tab.MATCH);
+
+    if (tab != null) {
+      if (tankDriveChooser == null) {
+        tankDriveChooser = tab.add("Tank Drive", true).withWidget(BuiltInWidgets.kToggleSwitch).withPosition(7, 1)
+            .getEntry();
+      }
+      tankDriveChooser.addListener(notice -> tankDrive = notice.value.getBoolean(),
+          EntryListenerFlags.kNew | EntryListenerFlags.kUpdate | EntryListenerFlags.kImmediate);
+    }
+  }
+
+  public void setTankDriveEnabled(boolean enabled) {
+    tankDriveChooser.setBoolean(enabled);
+    tankDrive = enabled;
   }
 
   // Called when the command is initially scheduled.
@@ -34,8 +65,21 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.drive(m_conditioner.conditionMove(m_controller.getMoveRequest()),
-        m_conditioner.conditionTurn(m_controller.getTurnRequest()));
+    double moveRequest, turnRequest;
+    if (this.tankDrive) {
+      double left = m_controller.getLeftStick();
+      double right = m_controller.getRightStick();
+
+      moveRequest = 0.5 * (left + right);
+      turnRequest = 0.5 * (left - right);
+
+      moveRequest = tankConditioner.conditionMove(moveRequest);
+      turnRequest = tankConditioner.conditionTurn(turnRequest);
+    } else {
+      moveRequest = arcadeConditioner.conditionMove(m_controller.getMoveRequest());
+      turnRequest = arcadeConditioner.conditionTurn(m_controller.getTurnRequest());
+    }
+    m_subsystem.drive(moveRequest, turnRequest);
   }
 
   // Called once the command ends or is interrupted.
