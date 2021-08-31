@@ -26,9 +26,6 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.ShooterHoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
-import frc.robot.subsystems.conditioners.CurvesConditioner;
-import frc.robot.subsystems.conditioners.DeadzoneConditioner;
-import frc.robot.subsystems.conditioners.SpeedLimitConditioner;
 import frc.robot.utils.MoPrefs;
 import frc.robot.utils.MoPrefs.MoPrefsKey;
 import frc.robot.controllers.ControllerBase;
@@ -78,10 +75,12 @@ public class RobotContainer {
   // ----------------------------------------Conditioners--------------------------------------
   private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
-  private final DriveConditioner driveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
+  private final DriveConditioner arcadeDriveConditioner = new ComposedConditioner(new DeadzoneConditioner(),
       new CurvesConditioner(), reverseConditioner, speedLimitConditioner,
       new FunctionalConditioner(mr -> mr, tr -> -0.5 * tr));
-
+  private final DriveConditioner tankDriveConditioner = new ComposedConditioner(new DeadzoneConditioner(0.1, 0.2),
+      new CurvesConditioner(), reverseConditioner, speedLimitConditioner,
+      new FunctionalConditioner(mr -> mr, tr -> -0.5 * tr));
   // ---------------------------------------Subsystems----------------------------------------
   final FalconDriveSubsystem falconDriveSubsystem = new FalconDriveSubsystem(new AHRS(SerialPort.Port.kMXP));
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem(powerDistributionPanel);
@@ -102,7 +101,8 @@ public class RobotContainer {
       shooterHoodSubsystem, storageSubsystem).alongWith(new RunCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
   public final PathWeaverCommand pathWeaverCommand = new PathWeaverCommand(falconDriveSubsystem, pathChooser);
 
-  private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
+  private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController,
+      arcadeDriveConditioner, tankDriveConditioner);
   // Starts shooting and turns on the limelight.
   private final Command shootCommand = autonDriveCommand;
   // Deploys the shooter hood, starts shooting, and runs the intake.
