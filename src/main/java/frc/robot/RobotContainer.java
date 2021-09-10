@@ -104,7 +104,8 @@ public class RobotContainer {
 
   private final DriveCommand driveCommand = new DriveCommand(falconDriveSubsystem, mainController, driveConditioner);
   // Starts shooting and turns on the limelight.
-  private final Command shootCommand = autonDriveCommand;
+  private final Command shootCommand = new ParallelCommandGroup(
+      new RunCommand(shooterSubsystem::shoot, shooterSubsystem));
   // Deploys the shooter hood, starts shooting, and runs the intake.
   // 10 seconds later, all of those stop, and then drive off of the initiation
   // line.
