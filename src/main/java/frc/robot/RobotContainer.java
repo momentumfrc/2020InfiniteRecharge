@@ -14,6 +14,7 @@ import org.usfirst.frc.team4999.utils.MoPDP;
 
 import frc.robot.choosers.AutoChooser;
 import frc.robot.choosers.PathChooser;
+import frc.robot.choosers.ShooterModeHandler;
 import frc.robot.commands.AutonDriveCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.PathWeaverCommand;
@@ -36,6 +37,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -66,7 +68,7 @@ public class RobotContainer {
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
   private final JoystickButton shooterShoot = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
-  private final JoystickButton smartShoot = new JoystickButton(f310, LogitechF310.Button.kStart.value);
+  private final JoystickButton shooterModeToggle = new JoystickButton(f310, LogitechF310.Button.kStart.value);
   private final JoystickButton purge = new JoystickButton(f310, LogitechF310.Button.kA.value);
 
   private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value);
@@ -125,6 +127,7 @@ public class RobotContainer {
   // ----------------------------------------Choosers------------------------------------------
   private final AutoChooser autoChooser = new AutoChooser(shootFromLine, driveToWall, autonDriveCommand, shootFromWall,
       pathWeaverCommand);
+  private final ShooterModeHandler shooterModeHandler = new ShooterModeHandler();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -166,8 +169,8 @@ public class RobotContainer {
     reverseRobot.whenPressed(reverseConditioner::toggleReversed);
 
     // --------------------------------------Shooter-----------------------------------------------
-    shooterShoot.whileHeld(shootCommand);
-    smartShoot.whileHeld(autonDriveCommand);
+    shooterShoot.whileHeld(new ConditionalCommand(autonDriveCommand, shootCommand, shooterModeHandler::get));
+    shooterModeToggle.whenPressed(shooterModeHandler::toggle);
 
     // --------------------------------------Storage------------------------------------------------
 

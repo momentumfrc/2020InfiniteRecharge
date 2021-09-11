@@ -74,7 +74,9 @@ public final class MoPrefs {
 
     LLIGHT_KI(1),
 
-    LLIGHT_KD(1);
+    LLIGHT_KD(1),
+
+    USE_SMART_SHOOTING(0);
 
     private double defaultValue;
 
