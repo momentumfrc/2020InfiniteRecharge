@@ -58,23 +58,24 @@ public class RobotContainer {
   private final ControllerBase mainController = new ControllerBase(xbox, f310);
 
   // ----------------------------------------Buttons------------------------------------------------
-  private final JoystickButton intakeRollerFwdButton = new JoystickButton(f310, LogitechF310.Button.kY.value);
-  private final JoystickButton intakeRollerRvsButton = new JoystickButton(f310, LogitechF310.Button.kBumperLeft.value);
+  private final JoystickButton intakeRollerFwdButton = new JoystickButton(xbox, XboxController.Button.kY.value);
+  private final JoystickButton intakeRollerRvsButton = new JoystickButton(xbox,
+      XboxController.Button.kBumperLeft.value);
   private final JoystickButton intakePistonToggle = new JoystickButton(f310, LogitechF310.Button.kB.value);
 
   private final JoystickButton climberStow = new JoystickButton(f310, 7); // Pick a button and update number
   private final JoystickButton climberClimb = new JoystickButton(f310, 8); // Pick a button and update number
 
-  private final JoystickButton shooterShoot = new JoystickButton(f310, LogitechF310.Button.kBumperRight.value);
-  private final JoystickButton smartShoot = new JoystickButton(f310, LogitechF310.Button.kStart.value);
-  private final JoystickButton purge = new JoystickButton(f310, LogitechF310.Button.kA.value);
+  private final JoystickButton shooterShoot = new JoystickButton(xbox, XboxController.Button.kBumperRight.value);
+  private final JoystickButton smartShoot = new JoystickButton(xbox, XboxController.Button.kStart.value);
+  private final JoystickButton purge = new JoystickButton(xbox, XboxController.Button.kA.value);
 
-  private final JoystickButton spdLimitInc = new JoystickButton(xbox, XboxController.Button.kY.value);
-  private final JoystickButton spdLimitDec = new JoystickButton(xbox, XboxController.Button.kA.value);
+  private final JoystickButton spdLimitInc = new JoystickButton(f310, LogitechF310.Button.kY.value);
+  private final JoystickButton spdLimitDec = new JoystickButton(f310, LogitechF310.Button.kA.value);
 
-  private final JoystickButton reverseRobot = new JoystickButton(xbox, XboxController.Button.kB.value);
+  private final JoystickButton reverseRobot = new JoystickButton(f310, LogitechF310.Button.kX.value);
 
-  private final JoystickButton storageButton = new JoystickButton(f310, LogitechF310.Button.kX.value);
+  private final JoystickButton storageButton = new JoystickButton(xbox, XboxController.Button.kX.value);
   // ----------------------------------------Conditioners--------------------------------------
   private final SpeedLimitConditioner speedLimitConditioner = new SpeedLimitConditioner();
   private final ReverseConditioner reverseConditioner = new ReverseConditioner();
